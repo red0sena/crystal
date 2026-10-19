@@ -1,0 +1,1208 @@
+{
+  "schema": 1,
+  "base_model_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "mmlu_pro_revision": "b189ec765aa7ed75c8acfea42df31fdae71f97be",
+  "files": [
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Accounting-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Accounting-test.csv",
+      "sha256": "57f9ad22a932fdcf8891f32ab15f3651f28af951681a82ab78a3763f3ec58730",
+      "bytes": 59440
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Agricultural-Sciences-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Agricultural-Sciences-test.csv",
+      "sha256": "3ba04eee8e5738d3fd8416d3f87d93a7e3b85b90165049cfbcd32d4e190ea7e2",
+      "bytes": 310058
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Aviation-Engineering-and-Maintenance-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Aviation-Engineering-and-Maintenance-test.csv",
+      "sha256": "6be70548311599cc9e657931369e22d0eaef49dc2a86572b61463350be61c696",
+      "bytes": 302481
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Biology-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Biology-test.csv",
+      "sha256": "024b729adabc6316e5109fd218bb72d255990239a7614c15bf1fead5e2fe94d7",
+      "bytes": 215046
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Chemical-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Chemical-Engineering-test.csv",
+      "sha256": "d663acd53b86caa55a4c3d8fa3b63b78670622b50bd1e02e0366a1a439f38412",
+      "bytes": 282663
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Chemistry-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Chemistry-test.csv",
+      "sha256": "6fcb111504024f9e5cfd4af994ac39747466bca27434726faa696209689b9d6f",
+      "bytes": 179051
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Civil-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Civil-Engineering-test.csv",
+      "sha256": "ace4a1b7b943c74b99b08c11d2e2fd2195d26b7acec51974ff91837494776d43",
+      "bytes": 316107
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Computer-Science-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Computer-Science-test.csv",
+      "sha256": "1f4ea55c56b0045f3cbbb1934f52f80d0890b9750438502e48cb74f8ddbc1c32",
+      "bytes": 293074
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Construction-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Construction-test.csv",
+      "sha256": "283007f0fb2847c094e409dcc233c6500d104a7baa85249957480c9ad25c58d9",
+      "bytes": 296631
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Criminal-Law-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Criminal-Law-test.csv",
+      "sha256": "997d867568fb7f12486d938645e2a95fe1f541c591a426cbd16b2dbf6fb5c601",
+      "bytes": 176909
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Ecology-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Ecology-test.csv",
+      "sha256": "9393f1e0fd85732366dba000b63f88d8bf6c9f08d8bcf192de0c5b9d9e750c0c",
+      "bytes": 312954
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Economics-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Economics-test.csv",
+      "sha256": "5dd198f9aea4b9131ee2532c7daa0e861ccf24d61add29822683d5aec2ad54bb",
+      "bytes": 63568
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Education-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Education-test.csv",
+      "sha256": "7c75aafb5ae29f42294b9be600c0db7df1aa003f9005198624d696d18b1a5b17",
+      "bytes": 47463
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Electrical-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Electrical-Engineering-test.csv",
+      "sha256": "0425e8e56bde00ea81b895179663629f81a49970f6ad09c1a3b11315a990aa9a",
+      "bytes": 259974
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Electronics-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Electronics-Engineering-test.csv",
+      "sha256": "d10d9a2158c60379ecadb299939f92feec17c615811773c6882138d5b07df885",
+      "bytes": 245218
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Energy-Management-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Energy-Management-test.csv",
+      "sha256": "be658506ed332d17f8ef3909f0795a083c768f52b94d56d80d90e12d909fccc0",
+      "bytes": 261792
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Environmental-Science-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Environmental-Science-test.csv",
+      "sha256": "0d0bccb6a823b4c7e8bdbf9232034176fd00185e4e2a14dcb769100f19628adf",
+      "bytes": 333620
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Fashion-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Fashion-test.csv",
+      "sha256": "a2d654566f485d63246fab0fe9dc9e6884935c4146d0512a9aa6cefd2b7d8250",
+      "bytes": 249145
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Food-Processing-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Food-Processing-test.csv",
+      "sha256": "4c8b43760631fd8ce5436015baa939004da5d661778903d7008c3dd44e69ced9",
+      "bytes": 267683
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Gas-Technology-and-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Gas-Technology-and-Engineering-test.csv",
+      "sha256": "3e51efdffe7ec98bd756a8001ed80ef6e675d287cbd72481752bc862afcd0f48",
+      "bytes": 274526
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Geomatics-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Geomatics-test.csv",
+      "sha256": "e9b7e5119f2b1eb555b6b93b0b61b5dcf500ce5d9978677e5c166d4c70b81365",
+      "bytes": 253499
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Health-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Health-test.csv",
+      "sha256": "88814c54e05aab2d99519d211c672efbb2daff3acc337d315d4a398a63f5da07",
+      "bytes": 37903
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Industrial-Engineer-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Industrial-Engineer-test.csv",
+      "sha256": "ae20b5ee0687f8bce947ec161e4fa3a81bcba56de6605977bac8a8aaa78ec2cf",
+      "bytes": 272449
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Information-Technology-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Information-Technology-test.csv",
+      "sha256": "44576d84cf99731cabbcf826a5476622a67d47c6619bb9c2230d6ef3d89ffc09",
+      "bytes": 259775
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Interior-Architecture-and-Design-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Interior-Architecture-and-Design-test.csv",
+      "sha256": "ad211ff9d8447f0dc35856fa28848df28fced19d4252ecb1dc175d11895e1dae",
+      "bytes": 300902
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Law-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Law-test.csv",
+      "sha256": "dfd473e541ebffe09e1257ee1d9d4a5aa2dab1c26c09710757e870b8c81c862d",
+      "bytes": 512349
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Machine-Design-and-Manufacturing-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Machine-Design-and-Manufacturing-test.csv",
+      "sha256": "4c454b6a9bf02730a453ae9b433b3086ef005812e19267d051a47b9ef35eba4c",
+      "bytes": 253394
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Management-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Management-test.csv",
+      "sha256": "ccf0b3ab0aec012225d61fed7b35ed94b1b5020bf851309b6cfd4406ce604693",
+      "bytes": 455900
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Maritime-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Maritime-Engineering-test.csv",
+      "sha256": "837c27023bea505e16b0fd568d494ff261e0cf008630c3b6b237dc45458973ec",
+      "bytes": 150453
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Marketing-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Marketing-test.csv",
+      "sha256": "a4958fe910b4415e3f5893ccc767558ba1b7641e705a3089b419be5126d66a29",
+      "bytes": 342708
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Materials-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Materials-Engineering-test.csv",
+      "sha256": "04cc20ab3f6da895e62db01a0312ee719c94d628969a4db0999abf10e57d0745",
+      "bytes": 257466
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Mechanical-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Mechanical-Engineering-test.csv",
+      "sha256": "ddeec8f94d4e5a1e9c6d4c0f09d6c9163383c2907475194d9f7ac4564826051e",
+      "bytes": 250159
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Nondestructive-Testing-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Nondestructive-Testing-test.csv",
+      "sha256": "acab3a30ab9c184b6780f805c262289d99cd8d30467cc846d9094309f7e3e97e",
+      "bytes": 293285
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Patent-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Patent-test.csv",
+      "sha256": "a220242616aca2c110303f78dafc7996f5683cf6c7f8a5e1df46c7fe4840894e",
+      "bytes": 95867
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Political-Science-and-Sociology-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Political-Science-and-Sociology-test.csv",
+      "sha256": "e4ca34705fa5a2846dd3b3c297736f19065293c495929aa45e287c2d3e1c1034",
+      "bytes": 161699
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Psychology-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Psychology-test.csv",
+      "sha256": "625ed34880528dda3b43bcc8e67b067aa9ba4d0df24c14a983adf555b4be16e0",
+      "bytes": 413234
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Public-Safety-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Public-Safety-test.csv",
+      "sha256": "0a8a26de738adbf0be1aa8c24c3daf8a36f543b65bc616812f606618284e4806",
+      "bytes": 270358
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Railway-and-Automotive-Engineering-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Railway-and-Automotive-Engineering-test.csv",
+      "sha256": "f6ff7b40ce388ef7c8913c99304f508266a9f711c49204598288cda279d1c77d",
+      "bytes": 276141
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Real-Estate-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Real-Estate-test.csv",
+      "sha256": "29a6cb8f8eb2a6ba49bc9801506625c0b7b7898c6e186186e10ff63989eedfc5",
+      "bytes": 123916
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Refrigerating-Machinery-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Refrigerating-Machinery-test.csv",
+      "sha256": "459769c594fb4c32db593f1e87b2f2ba47cbabe94cab10f954de4b222d7058de",
+      "bytes": 280437
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Social-Welfare-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Social-Welfare-test.csv",
+      "sha256": "fd957f11e87848b7e83a9f2997cfbe4df8c1aaa0b22af10a6243758a61465204",
+      "bytes": 348840
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Taxation-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Taxation-test.csv",
+      "sha256": "dcfbd0393cb7556d838c93b3dac32007747a81c616fb7c73a7dedc6e31716af3",
+      "bytes": 180541
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/Telecommunications-and-Wireless-Technology-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/Telecommunications-and-Wireless-Technology-test.csv",
+      "sha256": "c732e5b12a931e1cc7f187d11306e92729516b74f0ff3ac775d2f6a231a3d46d",
+      "bytes": 276773
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/korean-history-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/korean-history-test.csv",
+      "sha256": "d7ed0a2d581f754462248fea8aa8379df67de6c34b95c1eecc7705182426ed4a",
+      "bytes": 65757
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/data/math-test.csv",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/data/math-test.csv",
+      "sha256": "11ac1c99414f4b583f611e849df4842f1a61a212b2525b79dd9c355294850fd4",
+      "bytes": 52713
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/KMMLU/README.md",
+      "url": "https://huggingface.co/datasets/HAERAE-HUB/KMMLU/resolve/d61b3f19e552c576bf5960dd24289763edc36a88/README.md",
+      "sha256": "b561eccc2880a3704c16d0069746c14cb786f0eca19178afb5df1989e0a126ec",
+      "bytes": 14156
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/algebra/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/algebra/test-00000-of-00001.parquet",
+      "sha256": "0e04a850dac9cfc758eac0c80afd2d0cc65e29ea72f916c8ac1045b12af937f5",
+      "bytes": 353114
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/counting_and_probability/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/counting_and_probability/test-00000-of-00001.parquet",
+      "sha256": "c324818949c75a6227c0328a8499d58023cbbf6757cfc1736f5ab24cc8d87966",
+      "bytes": 175032
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/geometry/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/geometry/test-00000-of-00001.parquet",
+      "sha256": "98720f3a8134ad9784fd8951195245264495df03ffc5c9485a9a54ff5ae2431a",
+      "bytes": 263835
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/intermediate_algebra/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/intermediate_algebra/test-00000-of-00001.parquet",
+      "sha256": "e859f72486c951c2017da880541ca729940eaa986b0364eb23e238983df9bfeb",
+      "bytes": 394797
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/number_theory/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/number_theory/test-00000-of-00001.parquet",
+      "sha256": "ba156c9c9fa2040836ba12135fd964e6e67d6bccd8c469ec4a3ad941f8f6fbe9",
+      "bytes": 182003
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/prealgebra/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/prealgebra/test-00000-of-00001.parquet",
+      "sha256": "301e5d8ade5c7b5038032532e498bdc9dca799e7f1061a63f2e7d980803240cc",
+      "bytes": 267729
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/precalculus/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/precalculus/test-00000-of-00001.parquet",
+      "sha256": "da37474ba3761ae5727af3844a7ba963a735bd6a14c65e6137593669a4fe3b9c",
+      "bytes": 242241
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/MATH/README.md",
+      "url": "https://huggingface.co/datasets/EleutherAI/hendrycks_math/resolve/21a5633873b6a120296cce3e2df9d5550074f4a3/README.md",
+      "sha256": "2372e22a154ca3ed5865378e270b32d8ed5b615c4592fad42630a731a950bcc0",
+      "bytes": 3926
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/Omni-MATH/test.jsonl",
+      "url": "https://huggingface.co/datasets/KbsdJames/Omni-MATH/resolve/40ba231d8f16e29ecd40e6407e2c8640145a8f62/test.jsonl",
+      "sha256": "7c87be8ee41ac7c7a597ef5a5500e84bd2b639a85a06db3da7f69bf9a32ef168",
+      "bytes": 7504961
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/Omni-MATH/README.md",
+      "url": "https://huggingface.co/datasets/KbsdJames/Omni-MATH/resolve/40ba231d8f16e29ecd40e6407e2c8640145a8f62/README.md",
+      "sha256": "2688bd0d51f329de3647c540dc1df4fa699681d029068ae575bb2eb1eb8515f0",
+      "bytes": 2450
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/SuperGPQA/SuperGPQA-all.jsonl",
+      "url": "https://huggingface.co/datasets/m-a-p/SuperGPQA/resolve/4430d4458112c7d4497fdcf94d7cc223313d6acf/SuperGPQA-all.jsonl",
+      "sha256": "28b998e70205ee95e540317b5adc06a06552a3961fb50b153df126b833f7a910",
+      "bytes": 23957124
+    },
+    {
+      "path": "data/external-classification-candidates-v1/raw/SuperGPQA/README.md",
+      "url": "https://huggingface.co/datasets/m-a-p/SuperGPQA/resolve/4430d4458112c7d4497fdcf94d7cc223313d6acf/README.md",
+      "sha256": "0d670692d5f36a066d67c10741d160a5fcf0c2cb97f22c8dc8f453ac930b083a",
+      "bytes": 4442
+    },
+    {
+      "path": "data/text-decisions-v1/raw/PolyAI__banking77/README.md",
+      "url": "https://huggingface.co/datasets/PolyAI/banking77/resolve/90d4e2ee5521c04fc1488f065b8b083658768c57/README.md",
+      "sha256": "b494ae99274ad98adfedfefcb504469197a8732f9726f678320f4aaafc5502bf",
+      "bytes": 9779
+    },
+    {
+      "path": "data/text-decisions-v1/raw/PolyAI__banking77/banking77.py",
+      "url": "https://huggingface.co/datasets/PolyAI/banking77/resolve/90d4e2ee5521c04fc1488f065b8b083658768c57/banking77.py",
+      "sha256": "0e2b20c18def828886300332b15c6f647b77cdc289d1b49fffe65d8fde1d0834",
+      "bytes": 7168
+    },
+    {
+      "path": "data/text-decisions-v1/raw/PolyAI__banking77/dataset_infos.json",
+      "url": "https://huggingface.co/datasets/PolyAI/banking77/resolve/90d4e2ee5521c04fc1488f065b8b083658768c57/dataset_infos.json",
+      "sha256": "402fed10f4894f8989dffeca0a81572ca488e6488fac3f18a33d9fd32422acc7",
+      "bytes": 5892
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/README.md",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/README.md",
+      "sha256": "4a293e352253d771604725c978adcea71ee6504e89ed40e1cb0024ecafa9b37e",
+      "bytes": 9001
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/ARC-Challenge/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/train-00000-of-00001.parquet",
+      "sha256": "e488c1587ffdcfc8443f916c53488a95cd471c5790e0746c6bfe4cecf20962cb",
+      "bytes": 189909
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/ARC-Challenge/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/validation-00000-of-00001.parquet",
+      "sha256": "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05",
+      "bytes": 55743
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/ARC-Challenge/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+      "sha256": "62f03257e737aed263f55c6abf87c7bb0028a44a6bdd2a26eb1279eb42c1d1e9",
+      "bytes": 203808
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/ARC-Easy/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Easy/train-00000-of-00001.parquet",
+      "sha256": "b315db8a4be597dc7daa50a4e70d48dd7c990c32085629e6ccd8c926beaa80b5",
+      "bytes": 330598
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/ARC-Easy/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Easy/validation-00000-of-00001.parquet",
+      "sha256": "ed890ff1e4cef7a7140d3a30dcea3ed2c9d467c6458f447ad9ef0176d8dcbb74",
+      "bytes": 86080
+    },
+    {
+      "path": "data/text-decisions-v1/raw/allenai__ai2_arc/ARC-Easy/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Easy/test-00000-of-00001.parquet",
+      "sha256": "4160597d618ae851c7eb04e281574f3f654776216ac6b6641588d64527b47177",
+      "bytes": 346257
+    },
+    {
+      "path": "data/text-decisions-v1/raw/banking77-original/train.csv",
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/train.csv",
+      "sha256": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b",
+      "bytes": 839073
+    },
+    {
+      "path": "data/text-decisions-v1/raw/banking77-original/test.csv",
+      "url": "https://raw.githubusercontent.com/PolyAI-LDN/task-specific-datasets/57ec275d8078af65b7731c2a98be812d844a6d6b/banking_data/test.csv",
+      "sha256": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d",
+      "bytes": 239961
+    },
+    {
+      "path": "data/text-decisions-v1/raw/dair-ai__emotion/README.md",
+      "url": "https://huggingface.co/datasets/dair-ai/emotion/resolve/cab853a1dbdf4c42c2b3ef2173804746df8825fe/README.md",
+      "sha256": "7b10e5670f3e5b0a12274e90aad8f85fc48d8e25eccb4e4c16933cd8b7dfc373",
+      "bytes": 9052
+    },
+    {
+      "path": "data/text-decisions-v1/raw/dair-ai__emotion/split/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/dair-ai/emotion/resolve/cab853a1dbdf4c42c2b3ef2173804746df8825fe/split/train-00000-of-00001.parquet",
+      "sha256": "10817f0f2ea42358bc62f69a09dfb8bd71701727df6d5a387bea742f3ea06417",
+      "bytes": 1030740
+    },
+    {
+      "path": "data/text-decisions-v1/raw/dair-ai__emotion/split/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/dair-ai/emotion/resolve/cab853a1dbdf4c42c2b3ef2173804746df8825fe/split/validation-00000-of-00001.parquet",
+      "sha256": "c70f0e660b5ebd1ea9a37d2a851f516f08a6d6477cdfc11be204e22a2f1102fd",
+      "bytes": 127466
+    },
+    {
+      "path": "data/text-decisions-v1/raw/dair-ai__emotion/split/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/dair-ai/emotion/resolve/cab853a1dbdf4c42c2b3ef2173804746df8825fe/split/test-00000-of-00001.parquet",
+      "sha256": "6f8407fa1ca9c310f55781f082ed73812f6551e8dda2c61973123a121869245b",
+      "bytes": 128987
+    },
+    {
+      "path": "data/text-decisions-v1/raw/ehovy__race/README.md",
+      "url": "https://huggingface.co/datasets/ehovy/race/resolve/2fec9fd81f1dc971569a9b729c43f2f0e6436637/README.md",
+      "sha256": "85af31bd82cc5738676e189be1f83b86a31d74c9870ed31516c4966b560af41b",
+      "bytes": 11044
+    },
+    {
+      "path": "data/text-decisions-v1/raw/ehovy__race/all/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/ehovy/race/resolve/2fec9fd81f1dc971569a9b729c43f2f0e6436637/all/train-00000-of-00001.parquet",
+      "sha256": "d9986432dc7b5ced3d3e9372573eafdcfa599920bb5e65bbbdc245df3abfd09e",
+      "bytes": 37378263
+    },
+    {
+      "path": "data/text-decisions-v1/raw/ehovy__race/all/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/ehovy/race/resolve/2fec9fd81f1dc971569a9b729c43f2f0e6436637/all/validation-00000-of-00001.parquet",
+      "sha256": "2b3668ef8556831d174fab9cf9a7557e565a312034bce715a28e116903fa6a53",
+      "bytes": 2046503
+    },
+    {
+      "path": "data/text-decisions-v1/raw/ehovy__race/all/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/ehovy/race/resolve/2fec9fd81f1dc971569a9b729c43f2f0e6436637/all/test-00000-of-00001.parquet",
+      "sha256": "442e6b5f22f525811544016552b2ee7d8d1b8ef31e989132edc86e7925f94136",
+      "bytes": 2075881
+    },
+    {
+      "path": "data/text-decisions-v1/raw/fancyzhx__ag_news/README.md",
+      "url": "https://huggingface.co/datasets/fancyzhx/ag_news/resolve/eb185aade064a813bc0b7f42de02595523103ca4/README.md",
+      "sha256": "0ae9549054c5eca6a2284b1a6e8505b1ec92a39613aca402336429762b544a62",
+      "bytes": 8070
+    },
+    {
+      "path": "data/text-decisions-v1/raw/fancyzhx__ag_news/data/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fancyzhx/ag_news/resolve/eb185aade064a813bc0b7f42de02595523103ca4/data/train-00000-of-00001.parquet",
+      "sha256": "fc508d6d9868594e3da960a8cfeb63ab5a4746598b93428c224397080c1f52ee",
+      "bytes": 18585438
+    },
+    {
+      "path": "data/text-decisions-v1/raw/fancyzhx__ag_news/data/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/fancyzhx/ag_news/resolve/eb185aade064a813bc0b7f42de02595523103ca4/data/test-00000-of-00001.parquet",
+      "sha256": "71de87ec66bc5737752a2502204dfa6d7fe9856ade3ea444dc6317789a4f13fb",
+      "bytes": 1234829
+    },
+    {
+      "path": "data/text-decisions-v1/raw/furonghuang-lab__Easy2Hard-Bench/README.md",
+      "url": "https://huggingface.co/datasets/furonghuang-lab/Easy2Hard-Bench/resolve/55bc0d2fb10954151e669d2026b87fa896f2fa26/README.md",
+      "sha256": "5f387a562a9b915bb94ab5300330548a4586f731aa82b88d9f40467a66538101",
+      "bytes": 19926
+    },
+    {
+      "path": "data/text-decisions-v1/raw/furonghuang-lab__Easy2Hard-Bench/E2H-AMC/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/furonghuang-lab/Easy2Hard-Bench/resolve/55bc0d2fb10954151e669d2026b87fa896f2fa26/E2H-AMC/train-00000-of-00001.parquet",
+      "sha256": "1686c7df11b60848f05142e5b2215a96a9ab6952b3867827542f2c4d92621baa",
+      "bytes": 704414
+    },
+    {
+      "path": "data/text-decisions-v1/raw/furonghuang-lab__Easy2Hard-Bench/E2H-AMC/eval-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/furonghuang-lab/Easy2Hard-Bench/resolve/55bc0d2fb10954151e669d2026b87fa896f2fa26/E2H-AMC/eval-00000-of-00001.parquet",
+      "sha256": "2a04f50a80a16bfc5c1ff5667f9403e238184bbe7c325eff99f684d89f8f97fe",
+      "bytes": 2106855
+    },
+    {
+      "path": "data/text-decisions-v1/raw/mouryat9__CogBench/README.md",
+      "url": "https://huggingface.co/datasets/mouryat9/CogBench/resolve/2b6b6a2f1292eb11455d4a316b68b4a1c1bf2b32/README.md",
+      "sha256": "8ffe0bd1757920b449e27f433230e781560a656f963a0767240475afb60edaf7",
+      "bytes": 5298
+    },
+    {
+      "path": "data/text-decisions-v1/raw/mouryat9__CogBench/data/train.jsonl",
+      "url": "https://huggingface.co/datasets/mouryat9/CogBench/resolve/2b6b6a2f1292eb11455d4a316b68b4a1c1bf2b32/data/train.jsonl",
+      "sha256": "cf4f41e113cb56af7fa2b2f3eba929b3dd0adea34d9ef70b0b7bf6439661494d",
+      "bytes": 8721342
+    },
+    {
+      "path": "data/text-decisions-v1/raw/mouryat9__CogBench/data/validation.jsonl",
+      "url": "https://huggingface.co/datasets/mouryat9/CogBench/resolve/2b6b6a2f1292eb11455d4a316b68b4a1c1bf2b32/data/validation.jsonl",
+      "sha256": "ced6745e53cbd042bcef8b1ba5029cf732af8cdfe341cbcf49899c7ab697d48d",
+      "bytes": 1056810
+    },
+    {
+      "path": "data/text-decisions-v1/raw/mouryat9__CogBench/data/test.jsonl",
+      "url": "https://huggingface.co/datasets/mouryat9/CogBench/resolve/2b6b6a2f1292eb11455d4a316b68b4a1c1bf2b32/data/test.jsonl",
+      "sha256": "58eeaa5b6609631c511df9e2b148e39cf6030d998c0765ab77a26955e5156890",
+      "bytes": 1068253
+    },
+    {
+      "path": "data/text-decisions-v1/raw/mouryat9__CogBench/data/human_annotated.jsonl",
+      "url": "https://huggingface.co/datasets/mouryat9/CogBench/resolve/2b6b6a2f1292eb11455d4a316b68b4a1c1bf2b32/data/human_annotated.jsonl",
+      "sha256": "a24256d42da358b662fbb6f06b35f2162242caa7dd7f1b168242898bec833e9e",
+      "bytes": 217782
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1355_sent_comp_summarization.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1355_sent_comp_summarization.json",
+      "sha256": "8759154a179bf0c3d0b9542feda7b14cdf5d469f9d5a3f35b4d2f3bd698f72ee",
+      "bytes": 377859
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task672_amazon_and_yelp_summarization_dataset_summarization.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task672_amazon_and_yelp_summarization_dataset_summarization.json",
+      "sha256": "88511378b6af099fc37a38189575ea77b22adc40a33da022a8b9628baf7ae0a7",
+      "bytes": 540705
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1579_gigaword_incorrect_summarization.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1579_gigaword_incorrect_summarization.json",
+      "sha256": "8c939ae2f0ca16030d49891f453901093320c472e525260730cba25c3f0fd42c",
+      "bytes": 757135
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1499_dstc3_summarization.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1499_dstc3_summarization.json",
+      "sha256": "347d5901e69ac420f70a40086397248ab66b392a5bd9fc41ddf71a504bd99f94",
+      "bytes": 3286772
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task752_svamp_multiplication_question_answering.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task752_svamp_multiplication_question_answering.json",
+      "sha256": "b700dc77cb8ff0c72a2d4648fac5bd0db25e7b071fe3d46079315f21a70195a4",
+      "bytes": 40709
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task863_asdiv_multiop_question_answering.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task863_asdiv_multiop_question_answering.json",
+      "sha256": "34be71d0f7576b351116403713181a0d37a477fd6f9db9f236726b7ea8f5898a",
+      "bytes": 95023
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task144_subjqa_question_answering.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task144_subjqa_question_answering.json",
+      "sha256": "dde886fa09b21d76684e2416c2abb5cb1c646e45020f80c14750792ab2b1b9c5",
+      "bytes": 879915
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1412_web_questions_question_answering.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1412_web_questions_question_answering.json",
+      "sha256": "39e43371d4bb283fb73d0488bc9435ed668bdd29e3ea8ad761887e56b3f91ece",
+      "bytes": 1013682
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1665_trainglecopa_question_generation.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1665_trainglecopa_question_generation.json",
+      "sha256": "5d7e17d5ac2991fdb2c23a7f46899e2a07a105a47408577a532b2566e86b8159",
+      "bytes": 31123
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task859_prost_question_generation.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task859_prost_question_generation.json",
+      "sha256": "f10fdb744a886d72a41590cb599c298b0f66613a6b51f1bc750674e588b62f2c",
+      "bytes": 33828
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task489_mwsc_question_generation.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task489_mwsc_question_generation.json",
+      "sha256": "4086788c7884b2078b3574e79ed8854af64e2a19c9afee0a150e68544aeb6b85",
+      "bytes": 35322
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1657_gooaq_question_generation.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1657_gooaq_question_generation.json",
+      "sha256": "a7120460c365cd26ba183588cdb51deb40efd57ac61061f6fa020fa0fb5b88f4",
+      "bytes": 39466
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1451_drug_dose_extraction.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1451_drug_dose_extraction.json",
+      "sha256": "12f835ee73329bef9ddf56f0bcc5e66d6d74aa4d5996f6f09d2a8e672ae98bd3",
+      "bytes": 78374
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task180_intervention_extraction.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task180_intervention_extraction.json",
+      "sha256": "2c233b1ddb8fceebdc55275ef38d565757a1fae5f2cc944143b00572a9182b07",
+      "bytes": 139696
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1510_evalution_relation_extraction.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1510_evalution_relation_extraction.json",
+      "sha256": "5e6aad7b8f912b851841fadade28058afc2f4d4f0b8d38d175d388fd36e05ee1",
+      "bytes": 1429876
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1410_dart_relationship_extraction.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1410_dart_relationship_extraction.json",
+      "sha256": "1b0492dd4ed3264575cc53fbaf3401b6d89667a4a2e12ac7453bcecca641b1b2",
+      "bytes": 2767775
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task819_pec_sentiment_classification.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task819_pec_sentiment_classification.json",
+      "sha256": "b6ba45e76316792ee7663282a3d915f6ba116c17d5b0a455f9a07c812669b12e",
+      "bytes": 30418
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task833_poem_sentiment_classification.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task833_poem_sentiment_classification.json",
+      "sha256": "3ece7674f0fa61f0d3d4dfc079d65405e8585f3fece17b51b9d54f5faf38f9e0",
+      "bytes": 62026
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1338_peixian_equity_evaluation_corpus_sentiment_classifier.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1338_peixian_equity_evaluation_corpus_sentiment_classifier.json",
+      "sha256": "b23208016937748e9fb156dc627b31a4b9321424535a3e02524f70408ffca0df",
+      "bytes": 1253188
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task195_sentiment140_classification.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task195_sentiment140_classification.json",
+      "sha256": "9842f8ce28074cdb3816a8d28b33382666b9d5404fbb6baa4d78524af5c1a75f",
+      "bytes": 1598762
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1388_cb_entailment.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1388_cb_entailment.json",
+      "sha256": "79e7a7f47047fc1857d2d353702a2abd8e4b2c4f86e5712bd5b67fc9ffb0e153",
+      "bytes": 166838
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1386_anli_r2_entailment.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1386_anli_r2_entailment.json",
+      "sha256": "dbb78a38efc33a26fcf5b3a3fdd02e6603ea63437398e149ea9ce2618162732b",
+      "bytes": 591660
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1344_glue_entailment_classification.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1344_glue_entailment_classification.json",
+      "sha256": "2c7357fb287a32311113515e8e69919d521888be7884e78f85e89639d6356cda",
+      "bytes": 1277052
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task200_mnli_entailment_classification.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task200_mnli_entailment_classification.json",
+      "sha256": "36f74cc7f141bbff0b7b851df5b931cc63b9fffa5eca36666d944058beefa914",
+      "bytes": 2160402
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task045_miscellaneous_sentence_paraphrasing.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task045_miscellaneous_sentence_paraphrasing.json",
+      "sha256": "c57fce9498d64d4c6740fba9a704ca85078341b75c373988abc806381824365b",
+      "bytes": 240983
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task177_para-nmt_paraphrasing.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task177_para-nmt_paraphrasing.json",
+      "sha256": "5b5522ebd4d5f36368f1eb2453d57ce711e86cb6cd548dfd033e59a4e6fcb603",
+      "bytes": 1982477
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task143_odd-man-out_classification_generate_category.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task143_odd-man-out_classification_generate_category.json",
+      "sha256": "a8f3faef7de37f52b4929f5d9054cada16058f875a31f214fe14c7a6a634fb1f",
+      "bytes": 1353401
+    },
+    {
+      "path": "data/text-decisions-v1/raw/natural-instructions/tasks/task1308_amazonreview_category_classification.json",
+      "url": "https://raw.githubusercontent.com/allenai/natural-instructions/55a365637381ce7f3748fa2eac7aef1a113bbb82/tasks/task1308_amazonreview_category_classification.json",
+      "sha256": "c03015900a97d416be454c274ad2deeaa043de7ed70d17de5042a7b042509b10",
+      "bytes": 3424644
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/README.md",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/README.md",
+      "sha256": "073f689c80fc6b3366d583eb570a05be2140b01ff2fdd706c416e14d0d2d5d5a",
+      "bytes": 35296
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/rte/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/rte/train-00000-of-00001.parquet",
+      "sha256": "a6252ab17015d718f6de1effe0980f7b158df63e3d16207cd8bd396b608e5147",
+      "bytes": 583976
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/rte/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/rte/validation-00000-of-00001.parquet",
+      "sha256": "fb2aa2e04f551133ba663617a15ae133dc22b0f6a969bc0629b5ea6003ee9cf8",
+      "bytes": 69020
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/mrpc/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/mrpc/train-00000-of-00001.parquet",
+      "sha256": "61fd41301e0e244b0420c4350a170c8e7cf64740335fc875a4af2d79af0df0af",
+      "bytes": 649281
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/mrpc/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/mrpc/validation-00000-of-00001.parquet",
+      "sha256": "33c007dbf5bfa8463d87a13e6226df8c0fcf2596c2cd39d0f3bb79754e00f50f",
+      "bytes": 75678
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/cola/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/cola/train-00000-of-00001.parquet",
+      "sha256": "2e7538afa2000e63f5343f16a758d75c452661a384208399d2035cd2fce45c33",
+      "bytes": 251124
+    },
+    {
+      "path": "data/text-decisions-v1/raw/nyu-mll__glue/cola/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/cola/validation-00000-of-00001.parquet",
+      "sha256": "c14b7219a7d9f9fe3dd291fd000f6623ee413805eb108c9c49578ed50873e4ba",
+      "bytes": 37551
+    },
+    {
+      "path": "data/text-decisions-v1/raw/stanfordnlp__sst2/README.md",
+      "url": "https://huggingface.co/datasets/stanfordnlp/sst2/resolve/8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/README.md",
+      "sha256": "b67282cc0ee148ca5fad017275f5559095cca4252a76a4ae7688377935c862fc",
+      "bytes": 5274
+    },
+    {
+      "path": "data/text-decisions-v1/raw/stanfordnlp__sst2/data/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/stanfordnlp/sst2/resolve/8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/data/train-00000-of-00001.parquet",
+      "sha256": "c7921283b75a42e685f50edecb96798607ea0fcbfd0739ee8975f22c12d55f09",
+      "bytes": 3110458
+    },
+    {
+      "path": "data/text-decisions-v1/raw/stanfordnlp__sst2/data/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/stanfordnlp/sst2/resolve/8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/data/validation-00000-of-00001.parquet",
+      "sha256": "fb00fe008f6828f86ba2beda8415a4cf5da0c884f21c5f238c87131b5aa19529",
+      "bytes": 72813
+    },
+    {
+      "path": "data/text-decisions-v1/raw/tau__commonsense_qa/README.md",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/README.md",
+      "sha256": "172917e887dcc013fe0f0bd6aa8c810aea1e2be67d3bc7ff63e9b9d92075cc34",
+      "bytes": 7395
+    },
+    {
+      "path": "data/text-decisions-v1/raw/tau__commonsense_qa/data/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/data/train-00000-of-00001.parquet",
+      "sha256": "b0449767ed986bfc2ca52b1244a46ef12f732756727f3cb0a4ab69ac8b3d282b",
+      "bytes": 1247103
+    },
+    {
+      "path": "data/text-decisions-v1/raw/tau__commonsense_qa/data/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/data/validation-00000-of-00001.parquet",
+      "sha256": "bdbd9bf9cc4d2349b24901038b2ab2f58e10e4e507ad2fd425dca55cd3cb6660",
+      "bytes": 160240
+    },
+    {
+      "path": "data/text-decisions-v2/raw/clinc__clinc_oos/README.md",
+      "url": "https://huggingface.co/datasets/clinc/clinc_oos/resolve/155b9c710419136e17307b80d0a13e68cd46b4ec/README.md",
+      "sha256": "e28704a3c04f6b05c286ca2a8891bbf32c69c000dedfc5825d6e1713369b7a89",
+      "bytes": 23960
+    },
+    {
+      "path": "data/text-decisions-v2/raw/clinc__clinc_oos/plus/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/clinc/clinc_oos/resolve/155b9c710419136e17307b80d0a13e68cd46b4ec/plus/train-00000-of-00001.parquet",
+      "sha256": "30188119cf9f86fc9db27e1c22442d091cb5cb0913c9496f945fe11e7a02a28f",
+      "bytes": 312096
+    },
+    {
+      "path": "data/text-decisions-v2/raw/clinc__clinc_oos/plus/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/clinc/clinc_oos/resolve/155b9c710419136e17307b80d0a13e68cd46b4ec/plus/validation-00000-of-00001.parquet",
+      "sha256": "fbd545b46c611c4a7ba4b48cae6c7f09bb5b59f33ff56206ad1cd366c85cdfaa",
+      "bytes": 77789
+    },
+    {
+      "path": "data/text-decisions-v2/raw/clinc__clinc_oos/plus/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/clinc/clinc_oos/resolve/155b9c710419136e17307b80d0a13e68cd46b4ec/plus/test-00000-of-00001.parquet",
+      "sha256": "3e60e45b25bf86543aa5df8ba4fcc674114164e6184f0197690648c2908d0102",
+      "bytes": 135844
+    },
+    {
+      "path": "data/text-decisions-v2/raw/SetFit__20_newsgroups/README.md",
+      "url": "https://huggingface.co/datasets/SetFit/20_newsgroups/resolve/f1b91292074e7cfb69be58b642d583ec262f30ed/README.md",
+      "sha256": "3311a2a4199146b583258f2b3cc9436d6a2ce60e99db13218639df11cafd400a",
+      "bytes": 734
+    },
+    {
+      "path": "data/text-decisions-v2/raw/SetFit__20_newsgroups/train.jsonl",
+      "url": "https://huggingface.co/datasets/SetFit/20_newsgroups/resolve/f1b91292074e7cfb69be58b642d583ec262f30ed/train.jsonl",
+      "sha256": "b696a1d6a43a306b2ea21cdf20be62c1e56a04908053f24e606707454e84a728",
+      "bytes": 14810848
+    },
+    {
+      "path": "data/text-decisions-v2/raw/SetFit__20_newsgroups/test.jsonl",
+      "url": "https://huggingface.co/datasets/SetFit/20_newsgroups/resolve/f1b91292074e7cfb69be58b642d583ec262f30ed/test.jsonl",
+      "sha256": "a0c1f20c01fa77f6b832fdb5e6218018660781e762f3e68ee3e6f279e7839bcc",
+      "bytes": 8906768
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google-research-datasets__go_emotions/README.md",
+      "url": "https://huggingface.co/datasets/google-research-datasets/go_emotions/resolve/add492243ff905527e67aeb8b80c082af02207c3/README.md",
+      "sha256": "0a5a9f3a949cce822f6d7453b91433b9fac739187f51ecc665fc5b8a6ec291ba",
+      "bytes": 9399
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google-research-datasets__go_emotions/simplified/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/google-research-datasets/go_emotions/resolve/add492243ff905527e67aeb8b80c082af02207c3/simplified/train-00000-of-00001.parquet",
+      "sha256": "b7d74279616ae7c9b8374ab62ea9f9d6504d36a577bb17f745d720dc2b0d4e76",
+      "bytes": 2767678
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google-research-datasets__go_emotions/simplified/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/google-research-datasets/go_emotions/resolve/add492243ff905527e67aeb8b80c082af02207c3/simplified/validation-00000-of-00001.parquet",
+      "sha256": "d46ad5633c4fa41829d22d549743a7bf858d94129536a02af7280c281db5e63a",
+      "bytes": 350063
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google-research-datasets__go_emotions/simplified/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/google-research-datasets/go_emotions/resolve/add492243ff905527e67aeb8b80c082af02207c3/simplified/test-00000-of-00001.parquet",
+      "sha256": "fd0953e535ba2569edc6a1daaa1133f8e4b9071691d540c9bab812fda132bc26",
+      "bytes": 346630
+    },
+    {
+      "path": "data/text-decisions-v2/raw/nyu-mll__glue/README.md",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/README.md",
+      "sha256": "073f689c80fc6b3366d583eb570a05be2140b01ff2fdd706c416e14d0d2d5d5a",
+      "bytes": 35296
+    },
+    {
+      "path": "data/text-decisions-v2/raw/nyu-mll__glue/stsb/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/stsb/train-00000-of-00001.parquet",
+      "sha256": "bbd93bbb988fd18437e02185fe3b2bd9a18350376c392e7820de9df1b247ed1f",
+      "bytes": 502065
+    },
+    {
+      "path": "data/text-decisions-v2/raw/nyu-mll__glue/stsb/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/nyu-mll/glue/resolve/bcdcba79d07bc864c1c254ccfcedcce55bcc9a8c/stsb/validation-00000-of-00001.parquet",
+      "sha256": "152de7cf1fa34ee4df1c243bd209b02ade21a1d5c4fb3b7da5240f78e4000aa9",
+      "bytes": 150622
+    },
+    {
+      "path": "data/text-decisions-v2/raw/Yelp__yelp_review_full/README.md",
+      "url": "https://huggingface.co/datasets/Yelp/yelp_review_full/resolve/c1f9ee939b7d05667af864ee1cb066393154bf85/README.md",
+      "sha256": "0d1e54906d93dfe2c6b4138a38d2ec763dfe202a83e00ab118af4c7cbbc935fe",
+      "bytes": 6724
+    },
+    {
+      "path": "data/text-decisions-v2/raw/Yelp__yelp_review_full/yelp_review_full/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/Yelp/yelp_review_full/resolve/c1f9ee939b7d05667af864ee1cb066393154bf85/yelp_review_full/train-00000-of-00001.parquet",
+      "sha256": "da3ca3dcc52b1e2e44195b53668610d645a59010a985dd45aa12e1109cd44601",
+      "bytes": 299436850
+    },
+    {
+      "path": "data/text-decisions-v2/raw/Yelp__yelp_review_full/yelp_review_full/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/Yelp/yelp_review_full/resolve/c1f9ee939b7d05667af864ee1cb066393154bf85/yelp_review_full/test-00000-of-00001.parquet",
+      "sha256": "bf06d5969bff93ecd4a6d4b330643761ce108b42e9b8a894cf82c9df02a08540",
+      "bytes": 23515519
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google__boolq/README.md",
+      "url": "https://huggingface.co/datasets/google/boolq/resolve/35b264d03638db9f4ce671b711558bf7ff0f80d5/README.md",
+      "sha256": "07447668f46c7c1e62e24b650ea2a73f1ab34f2b3759b1587c7b7a81b4bf1cf4",
+      "bytes": 6570
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google__boolq/data/train-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/google/boolq/resolve/35b264d03638db9f4ce671b711558bf7ff0f80d5/data/train-00000-of-00001.parquet",
+      "sha256": "4f028e992c0bd4df30b9f056f4946b64f5c23028034ff0ed5ea467d8538cc623",
+      "bytes": 3685146
+    },
+    {
+      "path": "data/text-decisions-v2/raw/google__boolq/data/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/google/boolq/resolve/35b264d03638db9f4ce671b711558bf7ff0f80d5/data/validation-00000-of-00001.parquet",
+      "sha256": "52355d11524b4b874a9b9dcc278feb10f672d52c4f4eff9872e695ede59820f8",
+      "bytes": 1257630
+    },
+    {
+      "path": "data/text-decisions-v2/raw/emozilla__quality/README.md",
+      "url": "https://huggingface.co/datasets/emozilla/quality/resolve/7142df0407e16a99e5cda9188edc7db01e8c151a/README.md",
+      "sha256": "7337ae9c1af62d84b70bab081ef56ccf39176caecadb476f532fa38773be6d67",
+      "bytes": 578
+    },
+    {
+      "path": "data/text-decisions-v2/raw/emozilla__quality/data/train-00000-of-00001-0bffe0bf790d89eb.parquet",
+      "url": "https://huggingface.co/datasets/emozilla/quality/resolve/7142df0407e16a99e5cda9188edc7db01e8c151a/data/train-00000-of-00001-0bffe0bf790d89eb.parquet",
+      "sha256": "51053b096abacfac0a3e61c4e7c979bb60f6210859a491037b3fe1fbe481f328",
+      "bytes": 7560941
+    },
+    {
+      "path": "data/text-decisions-v2/raw/emozilla__quality/data/validation-00000-of-00001-77baeb9538209706.parquet",
+      "url": "https://huggingface.co/datasets/emozilla/quality/resolve/7142df0407e16a99e5cda9188edc7db01e8c151a/data/validation-00000-of-00001-77baeb9538209706.parquet",
+      "sha256": "c797bdff9b8ea6be13dca89dc2926fb01f450c6bfd84e135c226c8f464b9d41d",
+      "bytes": 6791206
+    },
+    {
+      "path": "data/text-decisions-v2/raw/mteb__amazon_massive_intent/en/train.parquet",
+      "url": "https://huggingface.co/api/datasets/mteb/amazon_massive_intent/parquet/en/train/0.parquet",
+      "sha256": "4fc1db8d735474a28949641103e4dd817366437dfa47b273c1b8bc19304fdf23",
+      "bytes": 342413
+    },
+    {
+      "path": "data/text-decisions-v2/raw/mteb__amazon_massive_intent/en/validation.parquet",
+      "url": "https://huggingface.co/api/datasets/mteb/amazon_massive_intent/parquet/en/validation/0.parquet",
+      "sha256": "5abc5981d0c6d4a7a90b1d11d2962f10a94a362a56b21fde348b09e3494507c4",
+      "bytes": 67980
+    },
+    {
+      "path": "data/text-decisions-v2/raw/mteb__amazon_massive_intent/en/test.parquet",
+      "url": "https://huggingface.co/api/datasets/mteb/amazon_massive_intent/parquet/en/test/0.parquet",
+      "sha256": "809eb94d3a945242fd2f1c92a8f6f41eeede5e938aa98ab10c145e2350d88086",
+      "bytes": 94924
+    },
+    {
+      "path": "data/unseen-text-v1/raw/HellaSwag/data/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/Rowan/hellaswag/resolve/218ec52e09a7e7462a5400043bb9a69a41d06b76/data/validation-00000-of-00001.parquet",
+      "sha256": "899813071e1e95efafec90f856e1987d2150fa4d020fc005df6962c259f660cd",
+      "bytes": 6315951
+    },
+    {
+      "path": "data/unseen-text-v1/raw/HellaSwag/README.md",
+      "url": "https://huggingface.co/datasets/Rowan/hellaswag/resolve/218ec52e09a7e7462a5400043bb9a69a41d06b76/README.md",
+      "sha256": "cfe6e26e7e936a447a12f7eee50f2bffb0355c3b97459496d8c7296f65c5b353",
+      "bytes": 7019
+    },
+    {
+      "path": "data/unseen-text-v1/raw/WinoGrande/winogrande_xl/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/winogrande/resolve/01e74176c63542e6b0bcb004dcdea22d94fb67b5/winogrande_xl/validation-00000-of-00001.parquet",
+      "sha256": "f9d914d1818c0aba98cabdf8af2bc4bd943c462b9c5e7062647e05c2ce3315d1",
+      "bytes": 85928
+    },
+    {
+      "path": "data/unseen-text-v1/raw/WinoGrande/README.md",
+      "url": "https://huggingface.co/datasets/allenai/winogrande/resolve/01e74176c63542e6b0bcb004dcdea22d94fb67b5/README.md",
+      "sha256": "fd653689cc77706672b40cd040156ad57f4969656d25a14be645cffa8ef55176",
+      "bytes": 11171
+    },
+    {
+      "path": "data/unseen-text-v1/raw/OpenBookQA/main/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/openbookqa/resolve/388097ea7776314e93a529163e0fea805b8a6454/main/test-00000-of-00001.parquet",
+      "sha256": "cd5483e366daa230c1c87bbdc512d8b7229f14f6dd04d19fc8b1a3855aaaa8a3",
+      "bytes": 55535
+    },
+    {
+      "path": "data/unseen-text-v1/raw/OpenBookQA/README.md",
+      "url": "https://huggingface.co/datasets/allenai/openbookqa/resolve/388097ea7776314e93a529163e0fea805b8a6454/README.md",
+      "sha256": "a58e68a31e20e7cbac02f80f44f3282ffbb8a40aeb20488670e5ffa975687960",
+      "bytes": 9061
+    },
+    {
+      "path": "model/.gitattributes",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/.gitattributes",
+      "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+      "bytes": 1570
+    },
+    {
+      "path": "model/LICENSE",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/LICENSE",
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "bytes": 11544
+    },
+    {
+      "path": "model/README.md",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/README.md",
+      "sha256": "87a163af54f32fa608a0f8d3ac67945c53dd2b4a7c96740b3d7fdc28e8458864",
+      "bytes": 61705
+    },
+    {
+      "path": "model/chat_template.jinja",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/chat_template.jinja",
+      "sha256": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+      "bytes": 7755
+    },
+    {
+      "path": "model/config.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/config.json",
+      "sha256": "b90b86f35c8e6925ef74ee04d0e758f0a845c83a42089ad82bbaa948de9b4204",
+      "bytes": 2907
+    },
+    {
+      "path": "model/merges.txt",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/merges.txt",
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+      "bytes": 3353259
+    },
+    {
+      "path": "model/model.safetensors-00001-of-00001.safetensors",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/model.safetensors-00001-of-00001.safetensors",
+      "sha256": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696",
+      "bytes": 1746942600
+    },
+    {
+      "path": "model/model.safetensors.index.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/model.safetensors.index.json",
+      "sha256": "d8a08838a613b025eb7952ed9db11696213e57e76a375661ef5c12f9dd5dcf4e",
+      "bytes": 50900
+    },
+    {
+      "path": "model/preprocessor_config.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/preprocessor_config.json",
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "bytes": 390
+    },
+    {
+      "path": "model/tokenizer.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/tokenizer.json",
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "bytes": 12807982
+    },
+    {
+      "path": "model/tokenizer_config.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/tokenizer_config.json",
+      "sha256": "49e2b6e395f959f077f1e992b338919c0d4a9732fc6e613995e06557f843500c",
+      "bytes": 16709
+    },
+    {
+      "path": "model/video_preprocessor_config.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/video_preprocessor_config.json",
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "bytes": 385
+    },
+    {
+      "path": "model/vocab.json",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B/resolve/2fc06364715b967f1860aea9cf38778875588b17/vocab.json",
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003",
+      "bytes": 6722759
+    },
+    {
+      "path": "data/mmlu-pro/.gitattributes",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/.gitattributes",
+      "sha256": "f4e703ea6e44bbebe53aceed2a89c11e40b88b7ae130c480c89860ab805ffc8f",
+      "bytes": 2307
+    },
+    {
+      "path": "data/mmlu-pro/README.md",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/README.md",
+      "sha256": "4bd710f67da3fa359a33edce1b4b5816b3de416c823c2624ba5e89c2557d2a47",
+      "bytes": 11723
+    },
+    {
+      "path": "data/mmlu-pro/data/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/test-00000-of-00001.parquet",
+      "sha256": "0e24a191921c2f453518a537a8b2117bd137e7714d4ef1565e9ba06c1ecb9ad8",
+      "bytes": 4144185
+    },
+    {
+      "path": "data/mmlu-pro/data/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/data/validation-00000-of-00001.parquet",
+      "sha256": "139423c23722e480c807ac4a191409a710cfce4eba744c1d641cf88e730e2078",
+      "bytes": 42857
+    },
+    {
+      "path": "data/mmlu-pro/eval.yaml",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/eval.yaml",
+      "sha256": "2c40150225e27de8529ee29c19ce26ad2d53ee1add6b871c495250668b538e1c",
+      "bytes": 590
+    },
+    {
+      "path": "data/mmlu-pro/run_claude3.py",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/run_claude3.py",
+      "sha256": "95165af65f5a98a9e26e6a3ef8effd9bbc000e47b0b28845c0a6384096a302be",
+      "bytes": 2716
+    },
+    {
+      "path": "data/mmlu-pro/run_gpt4o.py",
+      "url": "https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro/resolve/b189ec765aa7ed75c8acfea42df31fdae71f97be/run_gpt4o.py",
+      "sha256": "c51204e2ee4a7e2aa0f1082a7ffef0d6a2752450525b3c62d444d743f6fdb54f",
+      "bytes": 2982
+    },
+    {
+      "path": "data/choice-benchmarks/allenai__ai2_arc/.cache/huggingface/.gitignore",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/.cache/huggingface/.gitignore",
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "bytes": 1
+    },
+    {
+      "path": "data/choice-benchmarks/allenai__ai2_arc/.cache/huggingface/CACHEDIR.TAG",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/.cache/huggingface/CACHEDIR.TAG",
+      "sha256": "f6572428f6d5e1575e73a1502895a8731f10757dfbb634909c6e154b849af91d",
+      "bytes": 191
+    },
+    {
+      "path": "data/choice-benchmarks/allenai__ai2_arc/.cache/huggingface/download/ARC-Challenge/test-00000-of-00001.parquet.lock",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/.cache/huggingface/download/ARC-Challenge/test-00000-of-00001.parquet.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "data/choice-benchmarks/allenai__ai2_arc/.cache/huggingface/download/ARC-Challenge/test-00000-of-00001.parquet.metadata",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/.cache/huggingface/download/ARC-Challenge/test-00000-of-00001.parquet.metadata",
+      "sha256": "3015b82031ee0d36f2515444a5de13241e15f155d679a3967fdba8f9e49cb19b",
+      "bytes": 124
+    },
+    {
+      "path": "data/choice-benchmarks/allenai__ai2_arc/ARC-Challenge/test-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/210d026faf9955653af8916fad021475a3f00453/ARC-Challenge/test-00000-of-00001.parquet",
+      "sha256": "62f03257e737aed263f55c6abf87c7bb0028a44a6bdd2a26eb1279eb42c1d1e9",
+      "bytes": 203808
+    },
+    {
+      "path": "data/choice-benchmarks/tau__commonsense_qa/.cache/huggingface/.gitignore",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/.cache/huggingface/.gitignore",
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "bytes": 1
+    },
+    {
+      "path": "data/choice-benchmarks/tau__commonsense_qa/.cache/huggingface/CACHEDIR.TAG",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/.cache/huggingface/CACHEDIR.TAG",
+      "sha256": "f6572428f6d5e1575e73a1502895a8731f10757dfbb634909c6e154b849af91d",
+      "bytes": 191
+    },
+    {
+      "path": "data/choice-benchmarks/tau__commonsense_qa/.cache/huggingface/download/data/validation-00000-of-00001.parquet.lock",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/.cache/huggingface/download/data/validation-00000-of-00001.parquet.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "data/choice-benchmarks/tau__commonsense_qa/.cache/huggingface/download/data/validation-00000-of-00001.parquet.metadata",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/.cache/huggingface/download/data/validation-00000-of-00001.parquet.metadata",
+      "sha256": "57ee2a47086eae77ef46c396ab20f933fa6a6974c67e76b87ec9d109336d44b2",
+      "bytes": 125
+    },
+    {
+      "path": "data/choice-benchmarks/tau__commonsense_qa/data/validation-00000-of-00001.parquet",
+      "url": "https://huggingface.co/datasets/tau/commonsense_qa/resolve/94630fe30dad47192a8546eb75f094926d47e155/data/validation-00000-of-00001.parquet",
+      "sha256": "bdbd9bf9cc4d2349b24901038b2ab2f58e10e4e507ad2fd425dca55cd3cb6660",
+      "bytes": 160240
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/.cache/huggingface/.gitignore",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/.cache/huggingface/.gitignore",
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "bytes": 1
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/.cache/huggingface/CACHEDIR.TAG",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/.cache/huggingface/CACHEDIR.TAG",
+      "sha256": "f6572428f6d5e1575e73a1502895a8731f10757dfbb634909c6e154b849af91d",
+      "bytes": 191
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/.cache/huggingface/download/piqa.py.lock",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/.cache/huggingface/download/piqa.py.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/.cache/huggingface/download/piqa.py.metadata",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/.cache/huggingface/download/piqa.py.metadata",
+      "sha256": "5e40f660d9eeb301af6240599449bb2ad65cfbdb690e1b7322e9adf30607b976",
+      "bytes": 101
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/dev-labels.lst",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/dev-labels.lst",
+      "sha256": "b4192dc3a2a0363d9d60ccf79800cbbe2f32ebb17726efdde6970e0b8131bceb",
+      "bytes": 3676
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/dev.jsonl",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/dev.jsonl",
+      "sha256": "a73f46cb5d72b2cc399522a79f27728a429d9b89d9a236243fcfda8c02588d54",
+      "bytes": 580477
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/physicaliqa-train-dev.zip",
+      "url": "https://storage.googleapis.com/ai2-mosaic/public/physicaliqa/physicaliqa-train-dev.zip",
+      "sha256": "54d32a04f59a7e354396f321723c8d7ec35cc6b08506563d8d1ffcc15ce98ddd",
+      "bytes": 1824009
+    },
+    {
+      "path": "data/choice-benchmarks/ybisk__piqa/piqa.py",
+      "url": "https://huggingface.co/datasets/ybisk/piqa/resolve/2e8ac2dffd59bac8c3c6714948f4c551a0848bb0/piqa.py",
+      "sha256": "99107ad59e6f5ffc26923f98bb4cb6e2029b0e368005e9639ea7eadc86d2d46b",
+      "bytes": 5358
+    }
+  ],
+  "note": "Download exact recorded URLs and verify SHA256. Floating converted-parquet URLs are hash-guarded; fail if their bytes change."
+}

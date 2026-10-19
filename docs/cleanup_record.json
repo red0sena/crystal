@@ -1,0 +1,50 @@
+{
+  "completed_at": "2026-10-11T10:59:29.210890+00:00",
+  "project": "/home/khkim/qwen-decision",
+  "authorization": "User requested deletion of generated artifacts while preserving code/comments/documents for reproduction.",
+  "removed_paths": [
+    "model",
+    "data",
+    "training",
+    "results",
+    ".venv",
+    "__pycache__",
+    "choice-benchmarks-audit.log",
+    "choice-benchmarks-evaluation.log",
+    "choice-bias-audit.log",
+    "choice-bias-crossed-audit.log",
+    "choice-bias-crossed-evaluation.log",
+    "choice-bias-evaluation.log",
+    "choice-probabilities-audit.log",
+    "choice-probabilities-evaluation.log",
+    "mmlu-pro-evaluation.log",
+    "mmlu-pro-generate-audit.log",
+    "mmlu-pro-generate-preflight.log",
+    "mmlu-pro-generate.log",
+    "smoke-results.json"
+  ],
+  "folder_allocated_bytes_before": 66936926208,
+  "folder_allocated_bytes_after_before_receipt": 58257408,
+  "filesystem_free_bytes_before": 77422145536,
+  "filesystem_free_bytes_after": 136716226560,
+  "archive_files": 779,
+  "archive_sha256": "e2fdcaab3e406a338dc60272c7082b477e364673fd63fc352d8459178e14a606",
+  "verification_before_deletion": {
+    "archive_hashes": true,
+    "original_source_asts_unchanged": true,
+    "source_files_sha256_verified": 200,
+    "dataset_split_sha256_verified": 13,
+    "active_local_document_links_verified": 123,
+    "root_python_syntax": true,
+    "shell_syntax_and_plan": true,
+    "restore_mock_stream_hash_mismatch_and_path_checks": true
+  },
+  "models_raw_datasets_predictions_and_environment_retained": false,
+  "training_or_full_gpu_evaluation_rerun_during_cleanup": false,
+  "verification_after_deletion": {
+    "archive_integrity": true,
+    "deleted_paths_absent": true,
+    "active_local_document_links_verified": 123,
+    "experiment_report_source_hashes_verified": 24
+  }
+}

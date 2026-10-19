@@ -1,0 +1,21 @@
+[project]
+name = "qwen-decision"
+version = "0.1.0"
+description = "Score image/text answer options with Qwen3.5 without generation or training"
+requires-python = ">=3.11"
+dependencies = [
+    "torch==2.10.0",
+    "torchvision==0.25.0",
+    "transformers==5.18.0",
+    "pillow>=11",
+    "pyarrow>=26.0.0",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true

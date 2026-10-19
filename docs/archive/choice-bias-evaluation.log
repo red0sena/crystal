@@ -1,0 +1,18 @@
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 8209.25it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+DONE ARC-Challenge shuffle_contents: accuracy 58.02%, first 52.65%, A 52.65%
+DONE ARC-Challenge shuffle_labels: accuracy 50.85%, first 17.83%, A 52.82%
+DONE ARC-Challenge neutral_letters: accuracy 62.12%, first 30.63%, A 30.63%
+DONE ARC-Challenge neutral_shuffle_letters: accuracy 56.83%, first 18.69%, A 30.29%
+DONE ARC-Challenge neutral_shuffle_numbers: accuracy 54.35%, first 17.49%, 1 35.84%
+DONE CommonsenseQA shuffle_contents: accuracy 43.00%, first 58.56%, A 58.56%
+DONE CommonsenseQA shuffle_labels: accuracy 36.28%, first 12.20%, A 57.66%
+DONE CommonsenseQA neutral_letters: accuracy 53.40%, first 29.24%, A 29.24%
+DONE CommonsenseQA neutral_shuffle_letters: accuracy 41.36%, first 8.11%, A 29.57%
+DONE CommonsenseQA neutral_shuffle_numbers: accuracy 41.61%, first 7.62%, 1 40.29%
+DONE PIQA shuffle_contents: accuracy 61.37%, first 81.45%, A 81.45%
+DONE PIQA shuffle_labels: accuracy 60.45%, first 62.30%, A 68.93%
+DONE PIQA neutral_letters: accuracy 64.20%, first 66.92%, A 66.92%
+DONE PIQA neutral_shuffle_letters: accuracy 63.60%, first 67.74%, A 49.13%
+DONE PIQA neutral_shuffle_numbers: accuracy 63.60%, first 47.82%, 1 67.63%

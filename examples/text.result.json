@@ -1,0 +1,50 @@
+{
+  "model": "/home/khkim/qwen-decision/model",
+  "choice": "billing",
+  "probabilities": {
+    "billing": 0.8021511435508728,
+    "technical": 0.1789841204881668,
+    "sales": 0.018864788115024567
+  },
+  "options": [
+    {
+      "name": "billing",
+      "description": "Billing: charges, refunds, and invoices",
+      "label": "A",
+      "token_id": 32,
+      "logit": 25.625,
+      "probability": 0.8021511435508728
+    },
+    {
+      "name": "technical",
+      "description": "Technical support: app failures and bugs",
+      "label": "B",
+      "token_id": 33,
+      "logit": 24.125,
+      "probability": 0.1789841204881668
+    },
+    {
+      "name": "sales",
+      "description": "Sales: new purchases and pricing",
+      "label": "C",
+      "token_id": 34,
+      "logit": 21.875,
+      "probability": 0.018864788115024567
+    }
+  ],
+  "temperature": 1.0,
+  "score_semantics": "softmax over supplied option-label logits; uncalibrated",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 0
+  },
+  "inference": {
+    "device": "cuda",
+    "dtype": "torch.bfloat16",
+    "head_mode": "selected",
+    "preprocess_ms": 45.411,
+    "forward_ms": 303.275,
+    "total_ms": 371.95,
+    "timing_note": "single call; includes no model load, no warmup, no compilation"
+  }
+}

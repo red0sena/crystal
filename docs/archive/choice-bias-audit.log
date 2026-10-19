@@ -1,0 +1,170 @@
+{
+  "verified": true,
+  "results": [
+    {
+      "benchmark": "ARC-Challenge",
+      "case": "shuffle_contents",
+      "accuracy_pct": 58.02047781569966,
+      "first_position_selection_pct": 52.64505119453925,
+      "preferred_label_selection_pct": 52.64505119453925,
+      "first_position_selection_pct_excluding_ties": 50.27223230490018,
+      "preferred_label_selection_pct_excluding_ties": 50.27223230490018,
+      "top_logit_tie_count": 70,
+      "content_agreement_with_baseline_pct": 58.10580204778157
+    },
+    {
+      "benchmark": "ARC-Challenge",
+      "case": "shuffle_labels",
+      "accuracy_pct": 50.85324232081911,
+      "first_position_selection_pct": 17.832764505119453,
+      "preferred_label_selection_pct": 52.815699658703075,
+      "first_position_selection_pct_excluding_ties": 15.412844036697248,
+      "preferred_label_selection_pct_excluding_ties": 53.211009174311926,
+      "top_logit_tie_count": 82,
+      "content_agreement_with_baseline_pct": 52.13310580204778
+    },
+    {
+      "benchmark": "ARC-Challenge",
+      "case": "neutral_letters",
+      "accuracy_pct": 62.1160409556314,
+      "first_position_selection_pct": 30.631399317406142,
+      "preferred_label_selection_pct": 30.631399317406142,
+      "first_position_selection_pct_excluding_ties": 28.763440860215052,
+      "preferred_label_selection_pct_excluding_ties": 28.763440860215052,
+      "top_logit_tie_count": 56,
+      "content_agreement_with_baseline_pct": 80.97269624573379
+    },
+    {
+      "benchmark": "ARC-Challenge",
+      "case": "neutral_shuffle_letters",
+      "accuracy_pct": 56.8259385665529,
+      "first_position_selection_pct": 18.686006825938566,
+      "preferred_label_selection_pct": 30.2901023890785,
+      "first_position_selection_pct_excluding_ties": 15.613382899628252,
+      "preferred_label_selection_pct_excluding_ties": 30.20446096654275,
+      "top_logit_tie_count": 96,
+      "content_agreement_with_baseline_pct": 56.484641638225256
+    },
+    {
+      "benchmark": "ARC-Challenge",
+      "case": "neutral_shuffle_numbers",
+      "accuracy_pct": 54.351535836177476,
+      "first_position_selection_pct": 17.49146757679181,
+      "preferred_label_selection_pct": 35.83617747440273,
+      "first_position_selection_pct_excluding_ties": 14.784205693296602,
+      "preferred_label_selection_pct_excluding_ties": 36.91460055096419,
+      "top_logit_tie_count": 83,
+      "content_agreement_with_baseline_pct": 53.58361774744027
+    },
+    {
+      "benchmark": "CommonsenseQA",
+      "case": "shuffle_contents",
+      "accuracy_pct": 42.997542997543,
+      "first_position_selection_pct": 58.55855855855856,
+      "preferred_label_selection_pct": 58.55855855855856,
+      "first_position_selection_pct_excluding_ties": 55.932203389830505,
+      "preferred_label_selection_pct_excluding_ties": 55.932203389830505,
+      "top_logit_tie_count": 100,
+      "content_agreement_with_baseline_pct": 41.68714168714169
+    },
+    {
+      "benchmark": "CommonsenseQA",
+      "case": "shuffle_labels",
+      "accuracy_pct": 36.28173628173628,
+      "first_position_selection_pct": 12.203112203112203,
+      "preferred_label_selection_pct": 57.65765765765766,
+      "first_position_selection_pct_excluding_ties": 10.286225402504472,
+      "preferred_label_selection_pct_excluding_ties": 57.69230769230769,
+      "top_logit_tie_count": 103,
+      "content_agreement_with_baseline_pct": 29.893529893529895
+    },
+    {
+      "benchmark": "CommonsenseQA",
+      "case": "neutral_letters",
+      "accuracy_pct": 53.3988533988534,
+      "first_position_selection_pct": 29.23832923832924,
+      "preferred_label_selection_pct": 29.23832923832924,
+      "first_position_selection_pct_excluding_ties": 26.16740088105727,
+      "preferred_label_selection_pct_excluding_ties": 26.16740088105727,
+      "top_logit_tie_count": 86,
+      "content_agreement_with_baseline_pct": 66.74856674856674
+    },
+    {
+      "benchmark": "CommonsenseQA",
+      "case": "neutral_shuffle_letters",
+      "accuracy_pct": 41.35954135954136,
+      "first_position_selection_pct": 8.108108108108109,
+      "preferred_label_selection_pct": 29.565929565929565,
+      "first_position_selection_pct_excluding_ties": 6.725663716814159,
+      "preferred_label_selection_pct_excluding_ties": 28.495575221238937,
+      "top_logit_tie_count": 91,
+      "content_agreement_with_baseline_pct": 29.074529074529075
+    },
+    {
+      "benchmark": "CommonsenseQA",
+      "case": "neutral_shuffle_numbers",
+      "accuracy_pct": 41.6052416052416,
+      "first_position_selection_pct": 7.616707616707616,
+      "preferred_label_selection_pct": 40.29484029484029,
+      "first_position_selection_pct_excluding_ties": 6.542882404951371,
+      "preferred_label_selection_pct_excluding_ties": 40.93722369584439,
+      "top_logit_tie_count": 90,
+      "content_agreement_with_baseline_pct": 31.203931203931205
+    },
+    {
+      "benchmark": "PIQA",
+      "case": "shuffle_contents",
+      "accuracy_pct": 61.37105549510337,
+      "first_position_selection_pct": 81.44722524483134,
+      "preferred_label_selection_pct": 81.44722524483134,
+      "first_position_selection_pct_excluding_ties": 79.83441750443525,
+      "preferred_label_selection_pct_excluding_ties": 79.83441750443525,
+      "top_logit_tie_count": 147,
+      "content_agreement_with_baseline_pct": 63.873775843307946
+    },
+    {
+      "benchmark": "PIQA",
+      "case": "shuffle_labels",
+      "accuracy_pct": 60.44613710554951,
+      "first_position_selection_pct": 62.295973884657236,
+      "preferred_label_selection_pct": 68.93362350380849,
+      "first_position_selection_pct_excluding_ties": 56.52446675031368,
+      "preferred_label_selection_pct_excluding_ties": 73.96486825595984,
+      "top_logit_tie_count": 244,
+      "content_agreement_with_baseline_pct": 77.20348204570185
+    },
+    {
+      "benchmark": "PIQA",
+      "case": "neutral_letters",
+      "accuracy_pct": 64.20021762785636,
+      "first_position_selection_pct": 66.92056583242655,
+      "preferred_label_selection_pct": 66.92056583242655,
+      "first_position_selection_pct_excluding_ties": 64.31924882629107,
+      "preferred_label_selection_pct_excluding_ties": 64.31924882629107,
+      "top_logit_tie_count": 134,
+      "content_agreement_with_baseline_pct": 84.87486398258977
+    },
+    {
+      "benchmark": "PIQA",
+      "case": "neutral_shuffle_letters",
+      "accuracy_pct": 63.60174102285092,
+      "first_position_selection_pct": 67.7366702937976,
+      "preferred_label_selection_pct": 49.12948857453754,
+      "first_position_selection_pct_excluding_ties": 64.95271867612293,
+      "preferred_label_selection_pct_excluding_ties": 49.290780141843975,
+      "top_logit_tie_count": 146,
+      "content_agreement_with_baseline_pct": 80.9031556039173
+    },
+    {
+      "benchmark": "PIQA",
+      "case": "neutral_shuffle_numbers",
+      "accuracy_pct": 63.60174102285092,
+      "first_position_selection_pct": 47.82372143634385,
+      "preferred_label_selection_pct": 67.6278563656148,
+      "first_position_selection_pct_excluding_ties": 42.78042959427208,
+      "preferred_label_selection_pct_excluding_ties": 69.1527446300716,
+      "top_logit_tie_count": 162,
+      "content_agreement_with_baseline_pct": 63.81936887921654
+    }
+  ]
+}

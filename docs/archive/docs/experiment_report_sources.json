@@ -1,0 +1,103 @@
+{
+  "document": "/home/khkim/qwen-decision/docs/experiment_report_ko.md",
+  "document_sha256": "b8c772086834a26af39593da26e12c8d9c65eb6c420bfcabfaf271039439c821",
+  "local_sources": [
+    {
+      "path": "/home/khkim/qwen-decision/data/external-classification-eval-v1/manifest.json",
+      "sha256": "1d09cc15fb4051ecb7c817d7461e41ac93ec663f08b82d91cc155ce09e2b3e5c"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/data/text-decisions-v1/difficulty_rubric.json",
+      "sha256": "482f4df4ab8b494f0f1ede04017b9b9baacc8c7714206a94c07758a74d89e6af"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/data/text-decisions-v1/manifest.json",
+      "sha256": "0f10262a59d57ddc58b4abcf42a7e64e682acec2e5e4ea48d33fd14352ae1dd8"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/choice-benchmarks-generate-1run/summary.json",
+      "sha256": "937a867447dfe2c1570869a44c477d9bea37058d09503b69decb89d406a8fa4c"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/choice-benchmarks-probabilities-1run/summary.json",
+      "sha256": "e244becad612fa0a3f972f437488e3a1023c3f118010701ec8d665a5f035be78"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/choice-bias-controls/summary.json",
+      "sha256": "d0be0060e2c5195772b76729e3795a91c5d53f840c6fe8f7c0e0c12176258c75"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/choice-bias-crossed/summary.json",
+      "sha256": "7c2247855b97553fb74253d7eb30b141ae1b79da85c4f551e8dd6eb1dd8de95e"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/classification-examples-v1/results.json",
+      "sha256": "6f3ec179d436c801f1020d5409bbdada84cc0d2441630b92d55abb59a0cc531a"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/external-classification-v1/audit.json",
+      "sha256": "a85b987fde55a5832d072f2a1787cff23fdf229adf3ed9ad0cf8c3cec355cfcf"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/external-classification-v1/code-position-analysis.json",
+      "sha256": "7449c19c3187c483eac4e7041b8a9b5b70129207d6605c5e890343b028abe91f"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/external-classification-v1/summary.json",
+      "sha256": "e80687ce99556ed70ccd9ae1b4a1add8bc8fc05b5ecbe4948806a549293e7ffa"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/full-classification-v1/audit.json",
+      "sha256": "b4935fc24dc05968cb6abfb1695bb2b61cc6a2b0a353d8983d534bb426198c7d"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/full-classification-v1/summary.json",
+      "sha256": "5177008898338ba2ef0da2512b963cdae5e609808e8d281e1eff8a965a45fd67"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/mmlu-pro-0shot-5runs/audit.json",
+      "sha256": "d9d077562bfe61dae9a21136d84e1a43be78e53ea52026d645192e10ecdb7a00"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/mmlu-pro-0shot-5runs/summary.json",
+      "sha256": "f680ebea6bccaeca242231ca80f7db3537ba032edca79ae05c452642cd124735"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/mmlu-pro-generate-5runs/audit.json",
+      "sha256": "1a5226988385cfe17f1d9a17eb650156a1ccaba1d67a132ce39cc03898c061b3"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/mmlu-pro-generate-5runs/summary.json",
+      "sha256": "a885fd159c8baeebd8fc47660cdc9bbe3f328dc5afbb82eab61853310b5f220d"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/unseen-text-v1/audit.json",
+      "sha256": "0c25e2f46a9c74d0c2a2b7663627814a837cd181a05d9454efcb06b5a5a568f1"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/results/unseen-text-v1/summary.json",
+      "sha256": "ec6fc116e360524dbc5290623904b48c21715f75043f8458d1be463da44cdc7b"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/smoke-results.json",
+      "sha256": "9b8d49b1f27d59f47427575f7fe48a1bdf209892725f738b3ffe7720cbf21c4f"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/training/text-decision-full-v1/evaluation/summary.json",
+      "sha256": "1c4a2bc19f83f52a17a087518c56ff3adb49f510e5163ed345c27a761c811f1f"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/training/text-decision-full-v1/manifest.json",
+      "sha256": "f56139d04c6ffe187076d7795d7fd40e1cecd16576b5fd3dd6a991923ffb7f60"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/training/text-decision-full-v1/pipeline.json",
+      "sha256": "8a0daf8501194cfd781e10ee868b3b953b17455abd4ebeb1bcf994f3b28ef969"
+    },
+    {
+      "path": "/home/khkim/qwen-decision/training/text-decision-full-v1/selection.json",
+      "sha256": "88acabd1c8221cb379e988d23aeebf0dad2ab85adc2ddb803ae243e373e0eef4"
+    }
+  ],
+  "scope": "Documentation only; no model, dataset or evaluation artifact modified."
+}

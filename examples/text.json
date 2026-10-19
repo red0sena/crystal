@@ -1,0 +1,9 @@
+{
+  "state": "The customer was charged twice for one order and asks for a refund. The app works normally.",
+  "question": "Which team should handle this request?",
+  "options": {
+    "billing": "Billing: charges, refunds, and invoices",
+    "technical": "Technical support: app failures and bugs",
+    "sales": "Sales: new purchases and pricing"
+  }
+}

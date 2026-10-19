@@ -1,0 +1,74 @@
+Loaded 12032 test questions across 14 categories
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 10088.82it/s]
+Encoded 2000/12032 questions
+Encoded 4000/12032 questions
+Encoded 6000/12032 questions
+Encoded 8000/12032 questions
+Encoded 10000/12032 questions
+Encoded 12000/12032 questions
+Prepared 115 batches; tokens min/max 106/1733
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+Batch path validated on 8 lengths; 7/8 same argmax
+Run 1: 2432/12032; acc 19.78%; elapsed 21s; ETA 83s
+Run 1: 4352/12032; acc 18.24%; elapsed 42s; ETA 73s
+Run 1: 6016/12032; acc 18.18%; elapsed 62s; ETA 62s
+Run 1: 7522/12032; acc 18.77%; elapsed 82s; ETA 49s
+Run 1: 8858/12032; acc 19.51%; elapsed 103s; ETA 37s
+Run 1: 10005/12032; acc 19.90%; elapsed 124s; ETA 25s
+Run 1: 10960/12032; acc 19.77%; elapsed 144s; ETA 14s
+Run 1: 11728/12032; acc 19.57%; elapsed 165s; ETA 4s
+Run 1: 12032/12032; acc 19.42%; elapsed 177s; ETA 0s
+COMPLETED run 1: 2337/12032 = 19.4232%
+Run 2: 2304/12032; acc 19.88%; elapsed 20s; ETA 86s
+Run 2: 4224/12032; acc 18.28%; elapsed 41s; ETA 75s
+Run 2: 5888/12032; acc 18.29%; elapsed 61s; ETA 63s
+Run 2: 7402/12032; acc 18.78%; elapsed 81s; ETA 51s
+Run 2: 8754/12032; acc 19.47%; elapsed 102s; ETA 38s
+Run 2: 9917/12032; acc 19.89%; elapsed 123s; ETA 26s
+Run 2: 10888/12032; acc 19.78%; elapsed 143s; ETA 15s
+Run 2: 11673/12032; acc 19.58%; elapsed 164s; ETA 5s
+Run 2: 12032/12032; acc 19.42%; elapsed 178s; ETA 0s
+COMPLETED run 2: 2337/12032 = 19.4232%
+Run 3: 2304/12032; acc 19.88%; elapsed 20s; ETA 86s
+Run 3: 4224/12032; acc 18.28%; elapsed 41s; ETA 75s
+Run 3: 5888/12032; acc 18.29%; elapsed 61s; ETA 63s
+Run 3: 7402/12032; acc 18.78%; elapsed 81s; ETA 51s
+Run 3: 8754/12032; acc 19.47%; elapsed 102s; ETA 38s
+Run 3: 9917/12032; acc 19.89%; elapsed 123s; ETA 26s
+Run 3: 10888/12032; acc 19.78%; elapsed 143s; ETA 15s
+Run 3: 11673/12032; acc 19.58%; elapsed 164s; ETA 5s
+Run 3: 12032/12032; acc 19.42%; elapsed 178s; ETA 0s
+COMPLETED run 3: 2337/12032 = 19.4232%
+Run 4: 2304/12032; acc 19.88%; elapsed 20s; ETA 86s
+Run 4: 4224/12032; acc 18.28%; elapsed 41s; ETA 75s
+Run 4: 5888/12032; acc 18.29%; elapsed 61s; ETA 63s
+Run 4: 7402/12032; acc 18.78%; elapsed 81s; ETA 51s
+Run 4: 8754/12032; acc 19.47%; elapsed 102s; ETA 38s
+Run 4: 9917/12032; acc 19.89%; elapsed 123s; ETA 26s
+Run 4: 10888/12032; acc 19.78%; elapsed 143s; ETA 15s
+Run 4: 11673/12032; acc 19.58%; elapsed 164s; ETA 5s
+Run 4: 12032/12032; acc 19.42%; elapsed 178s; ETA 0s
+COMPLETED run 4: 2337/12032 = 19.4232%
+Run 5: 2304/12032; acc 19.88%; elapsed 20s; ETA 86s
+Run 5: 4224/12032; acc 18.28%; elapsed 41s; ETA 75s
+Run 5: 5888/12032; acc 18.29%; elapsed 61s; ETA 63s
+Run 5: 7402/12032; acc 18.78%; elapsed 81s; ETA 51s
+Run 5: 8754/12032; acc 19.47%; elapsed 102s; ETA 38s
+Run 5: 9917/12032; acc 19.89%; elapsed 123s; ETA 26s
+Run 5: 10888/12032; acc 19.78%; elapsed 143s; ETA 15s
+Run 5: 11673/12032; acc 19.58%; elapsed 164s; ETA 5s
+Run 5: 12032/12032; acc 19.42%; elapsed 178s; ETA 0s
+COMPLETED run 5: 2337/12032 = 19.4232%
+{
+  "mean_accuracy_pct": 19.42320478723404,
+  "population_stddev_percentage_points": 0.0,
+  "prediction_disagreements_vs_run_1": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "complete": true
+}

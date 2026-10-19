@@ -1,0 +1,440 @@
+{
+  "updated": "2026-10-18",
+  "language": "ko",
+  "scope": "decision model literature notes; proposed Qwen adaptations are unimplemented",
+  "papers": [
+    {
+      "slug": "candidate-independent-attention",
+      "title": "Permutation-Robust Decision Modeling with Candidate-Independent Block-Causal Attention",
+      "arxiv_id": "2610.01601",
+      "year": 2026,
+      "topic": "Attention 구조 / 순서 편향",
+      "url": "https://www.alphaxiv.org/abs/2610.01601",
+      "note": "papers/candidate-independent-attention.md"
+    },
+    {
+      "slug": "dual-head-reasoning-distillation",
+      "title": "Dual-Head Reasoning Distillation: Improving Classifier Accuracy with Train-Time-Only Reasoning",
+      "arxiv_id": "2509.21487",
+      "year": 2025,
+      "topic": "학습 때만 reasoning / 분류층",
+      "url": "https://www.alphaxiv.org/abs/2509.21487",
+      "note": "papers/dual-head-reasoning-distillation.md"
+    },
+    {
+      "slug": "poly-encoders",
+      "title": "Poly-encoders: Architectures and Pre-training Strategies for Fast and Accurate Multi-sentence Scoring",
+      "arxiv_id": "1905.01969",
+      "year": 2020,
+      "topic": "공통 문맥 / 후보 비교",
+      "url": "https://www.alphaxiv.org/abs/1905.01969",
+      "note": "papers/poly-encoders.md"
+    },
+    {
+      "slug": "set-transformer",
+      "title": "Set Transformer: A Framework for Attention-based Permutation-Invariant Neural Networks",
+      "arxiv_id": "1810.00825",
+      "year": 2019,
+      "topic": "선택지 집합 / 대칭성",
+      "url": "https://www.alphaxiv.org/abs/1810.00825",
+      "note": "papers/set-transformer.md"
+    },
+    {
+      "slug": "llm2vec",
+      "title": "LLM2Vec: Large Language Models Are Secretly Powerful Text Encoders",
+      "arxiv_id": "2404.05961",
+      "year": 2024,
+      "topic": "Decoder를 표현 모델로 전환",
+      "url": "https://www.alphaxiv.org/abs/2404.05961",
+      "note": "papers/llm2vec.md"
+    },
+    {
+      "slug": "llm-as-jev",
+      "title": "LLM-as-Jev: LLMs Are Already Jev-Style Decision Models—When and How to Fine-Tune Them",
+      "arxiv_id": "2610.02076",
+      "year": 2026,
+      "topic": "기존 LM Head / 후보 문자열 점수",
+      "url": "https://www.alphaxiv.org/abs/2610.02076",
+      "note": "papers/llm-as-jev.md"
+    },
+    {
+      "slug": "gliclass",
+      "title": "GLiClass: Generalist Lightweight Model for Sequence Classification Tasks",
+      "arxiv_id": "2508.07662",
+      "year": 2025,
+      "topic": "가변 라벨 내용 / 공동 인코딩",
+      "url": "https://www.alphaxiv.org/abs/2508.07662",
+      "note": "papers/gliclass.md"
+    },
+    {
+      "slug": "soft-contextualized-encoder",
+      "title": "Soft Contextualized Encoder For User Defined Text Classification",
+      "arxiv_id": "2601.03450",
+      "year": 2026,
+      "topic": "새 판단 아키텍처 / 집합 비교",
+      "url": "https://www.alphaxiv.org/abs/2601.03450",
+      "note": "papers/soft-contextualized-encoder.md"
+    },
+    {
+      "slug": "metaencoder",
+      "title": "MetaEncoder: Exploring the Limit of Bi-Encoders for Multimodal System One Decision Making with Natural Language Interface",
+      "arxiv_id": "2610.11316",
+      "year": 2026,
+      "topic": "후보 캐시 / 대조 학습",
+      "url": "https://www.alphaxiv.org/abs/2610.11316",
+      "note": "papers/metaencoder.md"
+    },
+    {
+      "slug": "innerjev",
+      "title": "General Decision Models: Benchmarking and Insights Beyond Jev",
+      "arxiv_id": "2610.03935",
+      "year": 2026,
+      "topic": "reasoning 분포 증류 / 기존 LM Head",
+      "url": "https://www.alphaxiv.org/abs/2610.03935",
+      "note": "papers/innerjev.md"
+    },
+    {
+      "slug": "token-layer-readout",
+      "title": "A BERTology View of LLM Orchestrations: Token- and Layer-Selective Probes for Efficient Single-Pass Classification",
+      "arxiv_id": "2601.13288",
+      "year": 2026,
+      "topic": "hidden state 집계 / 작은 분류층",
+      "url": "https://www.alphaxiv.org/abs/2601.13288",
+      "note": "papers/token-layer-readout.md"
+    },
+    {
+      "slug": "colbert",
+      "title": "ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction over BERT",
+      "arxiv_id": "2004.12832",
+      "year": 2020,
+      "topic": "토큰 단위 late interaction",
+      "url": "https://www.alphaxiv.org/abs/2004.12832",
+      "note": "papers/colbert.md"
+    },
+    {
+      "slug": "rankt5",
+      "title": "RankT5: Fine-Tuning T5 for Text Ranking with Ranking Losses",
+      "arxiv_id": "2210.10634",
+      "year": 2022,
+      "topic": "스칼라 점수 / ranking loss",
+      "url": "https://www.alphaxiv.org/abs/2210.10634",
+      "note": "papers/rankt5.md"
+    },
+    {
+      "slug": "ordinal-scale-bias",
+      "title": "More Choices, Fewer Decisions: Ordinal-Scale Bias in JEV-like Direct-Decision Models",
+      "arxiv_id": "2609.38827",
+      "year": 2026,
+      "topic": "등급 편향 / 진단",
+      "url": "https://www.alphaxiv.org/abs/2609.38827",
+      "note": "papers/ordinal-scale-bias.md"
+    },
+    {
+      "slug": "conentail",
+      "title": "ConEntail: An Entailment-based Framework for Universal Zero and Few Shot Classification with Supervised Contrastive Pretraining",
+      "arxiv_id": "2210.07587",
+      "year": 2023,
+      "topic": "통합 분류 데이터 / 대조 학습",
+      "url": "https://www.alphaxiv.org/abs/2210.07587",
+      "note": "papers/conentail.md"
+    },
+    {
+      "slug": "dqwen35",
+      "title": "dQwen3.5: Hybrid-Attention Diffusion Language Models",
+      "arxiv_id": "2609.20751",
+      "year": 2026,
+      "topic": "hybrid 정보 흐름 / 주변 연구",
+      "url": "https://www.alphaxiv.org/abs/2609.20751",
+      "note": "papers/dqwen35.md"
+    },
+    {
+      "slug": "multiple-choice-bias",
+      "title": "Large Language Models Are Not Robust Multiple Choice Selectors",
+      "arxiv_id": "2309.03882",
+      "year": 2024,
+      "topic": "코드 prior / 객관식 안정성",
+      "url": "https://www.alphaxiv.org/abs/2309.03882",
+      "note": "papers/multiple-choice-bias.md"
+    },
+    {
+      "slug": "temperature-scaling",
+      "title": "On Calibration of Modern Neural Networks",
+      "arxiv_id": "1706.04599",
+      "year": 2017,
+      "topic": "확률 보정",
+      "url": "https://www.alphaxiv.org/abs/1706.04599",
+      "note": "papers/temperature-scaling.md"
+    },
+    {
+      "slug": "wise-ft",
+      "title": "Robust fine-tuning of zero-shot models",
+      "arxiv_id": "2109.01903",
+      "year": 2022,
+      "topic": "가중치 보간 / 분포 밖 강건성",
+      "url": "https://arxiv.org/abs/2109.01903",
+      "note": "papers/wise-ft.md"
+    },
+    {
+      "slug": "l2-sp",
+      "title": "Explicit Inductive Bias for Transfer Learning with Convolutional Networks",
+      "arxiv_id": "1802.01483",
+      "year": 2018,
+      "topic": "원본 가중치 쪽 L2 제약 / 망각 완화",
+      "url": "https://www.alphaxiv.org/abs/1802.01483",
+      "note": "papers/l2-sp.md"
+    },
+    {
+      "slug": "lora-learns-less",
+      "title": "LoRA Learns Less and Forgets Less",
+      "arxiv_id": "2405.09673",
+      "year": 2024,
+      "topic": "미세조정 방식과 망각",
+      "url": "https://arxiv.org/abs/2405.09673",
+      "note": "papers/lora-learns-less.md"
+    },
+    {
+      "slug": "lp-ft",
+      "title": "Fine-Tuning can Distort Pretrained Features and Underperform Out-of-Distribution",
+      "arxiv_id": "2202.10054",
+      "year": 2022,
+      "topic": "출력층 먼저 학습 / 분포 밖 성능",
+      "url": "https://arxiv.org/abs/2202.10054",
+      "note": "papers/lp-ft.md"
+    },
+    {
+      "slug": "option-bias-two-factors",
+      "title": "One Bias Score, Two Factors: How Mitigations Affect Option Bias in Multiple-Choice Evaluation",
+      "arxiv_id": "2610.20993",
+      "year": 2026,
+      "topic": "객관식 편향 측정 / 뒤집힘과 위치 쏠림",
+      "url": "https://www.alphaxiv.org/abs/2610.20993",
+      "note": "papers/option-bias-two-factors.md"
+    },
+    {
+      "slug": "model-stock",
+      "title": "Model Stock: All we need is just a few fine-tuned models",
+      "arxiv_id": "2403.19522",
+      "year": 2024,
+      "topic": "가중치 병합 / 각도 기반 보간 비율",
+      "url": "https://arxiv.org/abs/2403.19522",
+      "note": "papers/model-stock.md"
+    },
+    {
+      "slug": "lines",
+      "title": "LiNeS: Post-training Layer Scaling Prevents Forgetting and Enhances Model Merging",
+      "arxiv_id": "2410.17146",
+      "year": 2025,
+      "topic": "층별 스케일링 / 망각 완화",
+      "url": "https://arxiv.org/abs/2410.17146",
+      "note": "papers/lines.md"
+    },
+    {
+      "slug": "checkpoint-averaging",
+      "title": "Early Weight Averaging meets High Learning Rates for LLM Pre-training",
+      "arxiv_id": "2306.03241",
+      "year": 2023,
+      "topic": "체크포인트 평균(LAWA)",
+      "url": "https://arxiv.org/abs/2306.03241",
+      "note": "papers/checkpoint-averaging.md"
+    },
+    {
+      "slug": "merging-in-the-wild",
+      "title": "A Systematic Study of In-the-Wild Model Merging for Large Language Models",
+      "arxiv_id": "2511.21437",
+      "year": 2026,
+      "topic": "LLM 병합 방법 비교",
+      "url": "https://arxiv.org/abs/2511.21437",
+      "note": "papers/merging-in-the-wild.md"
+    },
+    {
+      "slug": "dataset-cartography",
+      "title": "Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics",
+      "arxiv_id": "2009.10795",
+      "year": 2020,
+      "topic": "문항 난이도 지도 / OOD 일반화",
+      "url": "https://arxiv.org/abs/2009.10795",
+      "note": "papers/dataset-cartography.md"
+    },
+    {
+      "slug": "power-analysis",
+      "title": "With Little Power Comes Great Responsibility",
+      "arxiv_id": "2010.06595",
+      "year": 2020,
+      "topic": "평가셋 크기 / 검정력",
+      "url": "https://web.stanford.edu/~jurafsky/pubs/2020.emnlp-main.745.pdf",
+      "note": "papers/power-analysis.md"
+    }
+  ],
+  "v3_resources": [
+    {
+      "kind": "leaderboard",
+      "name": "Jev Decision Index 0.3.2",
+      "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index",
+      "note": "project/jev-index.md"
+    },
+    {
+      "kind": "kit",
+      "name": "apolinario/decision-index",
+      "url": "https://github.com/apolinario/decision-index",
+      "revision": "f5a6e4fd85fed05e77878dfc4966d0568bfb45ec",
+      "note": "external/decision-index"
+    },
+    {
+      "kind": "model",
+      "name": "vllm-sr/d3-lite",
+      "url": "https://huggingface.co/vllm-sr/d3-lite",
+      "revision": "a8d25a91ef75552803f7009d25b7bd435991abd9",
+      "note": "target to beat; board run revision"
+    },
+    {
+      "kind": "results",
+      "name": "vllm-sr/d3-lite-decision-index",
+      "url": "https://huggingface.co/datasets/vllm-sr/d3-lite-decision-index",
+      "note": "board run used to verify the rebuild and the reproduction; never trained on"
+    },
+    {
+      "kind": "model",
+      "name": "Qwen/Qwen3.5-0.8B",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17"
+    },
+    {
+      "kind": "dataset",
+      "name": "SargeDev/jev-distill-corpus-v3",
+      "url": "https://huggingface.co/datasets/SargeDev/jev-distill-corpus-v3",
+      "revision": "75111a13a8455032f0435050bfc7e0c9026ecfe8",
+      "license": "apache-2.0",
+      "note": "Jev 1.13 soft labels; used for variants ② and m2 only. Not used since 2026-10-17 (no teacher labels: yuri_v3 distilled, openjev_v2 origin unverified)"
+    },
+    {
+      "kind": "dataset",
+      "name": "carlosxiang/JEVal",
+      "url": "https://huggingface.co/datasets/carlosxiang/JEVal",
+      "note": "held-out proxy only; never trained on"
+    },
+    {
+      "kind": "data-plan",
+      "name": "phase-2 training sources",
+      "note": "designs/phase2-data-sources.md; per-source revisions and licences in data/phase2/*.manifest.json"
+    },
+    {
+      "kind": "dataset",
+      "name": "pyRis/SEntFiN",
+      "url": "https://github.com/pyRis/SEntFiN",
+      "revision": "eba43610fe3cb57a3e5773cd6c037da1f8992ad5",
+      "license": "MIT",
+      "note": "sentfin-train (human entity-level sentiment); qwen_decision/v3/sources/finance.py"
+    },
+    {
+      "kind": "dataset",
+      "name": "NExTplusplus/TAT-QA",
+      "url": "https://github.com/NExTplusplus/TAT-QA",
+      "revision": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+      "license": "CC-BY-4.0",
+      "note": "tatqa-train (train+dev; test never read); qwen_decision/v3/sources/finance.py"
+    },
+    {
+      "kind": "mix",
+      "name": "data/mix/v3-gold2.jsonl",
+      "note": "g3 training set: 199,981 rows, dev 6,719, 44 sources (manifest data/mix/v3-gold2.manifest.json)"
+    },
+    {
+      "kind": "protocol",
+      "name": "runs/proxy/protocol/jeval-v2.json",
+      "note": "JEVal dev/restricted split by document group; lex-glue and CUAD excluded (trained on)"
+    },
+    {
+      "kind": "dataset",
+      "name": "allenai/social_i_qa",
+      "license": "CC-BY-4.0 (AllenAI)",
+      "note": "siqa-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "allenai/cosmos_qa",
+      "license": "CC-BY-4.0",
+      "note": "cosmosqa-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "nyu-mll/multi_nli",
+      "license": "CC-BY-3.0",
+      "note": "mnli-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "McGill-NLP/FaithDial",
+      "license": "MIT",
+      "note": "faithdial-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "demelin/moral_stories",
+      "license": "MIT",
+      "note": "moralstories-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "github Waste-Wood/e-CARE@c3b52648",
+      "license": "MIT",
+      "note": "ecare-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "google-research-datasets/go_emotions",
+      "license": "Apache-2.0",
+      "note": "goemotions-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "DeveloperOats/DBPedia_Classes",
+      "license": "CC0-1.0",
+      "note": "icl-classify (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "zeroshot/twitter-financial-news-topic, -sentiment",
+      "license": "MIT",
+      "note": "fintweet-train, icl-classify (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "facebook/kilt_tasks wned",
+      "license": "MIT (KILT); Wikipedia text",
+      "note": "wned-el (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "tals/vitaminc",
+      "license": "CC-BY-SA-3.0",
+      "note": "vitaminc-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "google-research-datasets/paws",
+      "license": "free for any purpose",
+      "note": "paws-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "dataset",
+      "name": "allenai/scitail",
+      "license": "Apache-2.0",
+      "note": "scitail-train (phase 3/4, 2026-10-18)"
+    },
+    {
+      "kind": "mix",
+      "name": "data/mix/v3-gold3.jsonl",
+      "note": "g4b training set: 399,978 rows, dev 15,154, 51 sources"
+    },
+    {
+      "kind": "mix",
+      "name": "data/mix/v3-gold4.jsonl",
+      "note": "next training set: 449,978 rows, dev 17,903, 58 sources (rebuilt deterministically 2026-10-19)"
+    },
+    {
+      "kind": "eval",
+      "name": "data/fresh/fresh-v1.jsonl",
+      "note": "fresh held-out set, 1,335 rows, 16 sources; never trained on"
+    }
+  ]
+}

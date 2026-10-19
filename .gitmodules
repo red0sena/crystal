@@ -1,0 +1,3 @@
+[submodule "external/decision-index"]
+	path = external/decision-index
+	url = https://github.com/apolinario/decision-index

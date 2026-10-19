@@ -1,0 +1,56 @@
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 8227.88it/s]
+START ARC-Challenge: 1172 questions, 10 batches
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+ARC-Challenge: 1172/1172; acc 57.42%
+START CommonsenseQA: 1221 questions, 10 batches
+CommonsenseQA: 1221/1221; acc 42.34%
+START PIQA: 1838 questions, 15 batches
+PIQA: 1838/1838; acc 59.09%
+[
+  {
+    "benchmark": "ARC-Challenge",
+    "split": "test",
+    "run": 1,
+    "seed": 0,
+    "total": 1172,
+    "correct": 673,
+    "accuracy_pct": 57.42320819112628,
+    "output_tokens": 0,
+    "generation_calls": 0,
+    "forward_calls": 10,
+    "elapsed_seconds": 9.568170197308064,
+    "prediction_sha256": "cf4cd60ad6c9d2b1309768a1a5967e895d5777e0e7e0415a36ce3959525f91fb",
+    "manifest_sha256": "b7a3f6ae8f19d0d00cfa9758abfdee451a6913a1d136521ea2e5de4a50ef4b8c"
+  },
+  {
+    "benchmark": "CommonsenseQA",
+    "split": "validation",
+    "run": 1,
+    "seed": 0,
+    "total": 1221,
+    "correct": 517,
+    "accuracy_pct": 42.34234234234234,
+    "output_tokens": 0,
+    "generation_calls": 0,
+    "forward_calls": 10,
+    "elapsed_seconds": 7.7400833950378,
+    "prediction_sha256": "af8a81265a6eba1efd53667ef87082e7bd66229229cdf1bf2a5e41a974b14594",
+    "manifest_sha256": "f67992d99e6fa76c255c40b7e3ae96fdb7c39a6a7f584c569c8dfdf73192fb64"
+  },
+  {
+    "benchmark": "PIQA",
+    "split": "validation",
+    "run": 1,
+    "seed": 0,
+    "total": 1838,
+    "correct": 1086,
+    "accuracy_pct": 59.08596300326442,
+    "output_tokens": 0,
+    "generation_calls": 0,
+    "forward_calls": 15,
+    "elapsed_seconds": 15.096337673254311,
+    "prediction_sha256": "5dfeb81674690544c2f7e2e53fa616cd2153777f88a37bfcf32cb249834cff6a",
+    "manifest_sha256": "e1f4b27f97f5355edcc0df43b7a4c3fccd79e96fe66c76894ee0d92877b01e70"
+  }
+]

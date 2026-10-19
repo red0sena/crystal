@@ -1,0 +1,84 @@
+{
+  "verified": true,
+  "runs": [
+    {
+      "run": 1,
+      "correct": 2340,
+      "total": 12032,
+      "accuracy_pct": 19.44813829787234,
+      "invalid_format_count": 0,
+      "jsonl_sha256": "a21b55712c02bbcdcdf17325a2477b2c8132732b2744464572170330d883f523"
+    },
+    {
+      "run": 2,
+      "correct": 2340,
+      "total": 12032,
+      "accuracy_pct": 19.44813829787234,
+      "invalid_format_count": 0,
+      "jsonl_sha256": "a21b55712c02bbcdcdf17325a2477b2c8132732b2744464572170330d883f523"
+    },
+    {
+      "run": 3,
+      "correct": 2340,
+      "total": 12032,
+      "accuracy_pct": 19.44813829787234,
+      "invalid_format_count": 0,
+      "jsonl_sha256": "a21b55712c02bbcdcdf17325a2477b2c8132732b2744464572170330d883f523"
+    },
+    {
+      "run": 4,
+      "correct": 2340,
+      "total": 12032,
+      "accuracy_pct": 19.44813829787234,
+      "invalid_format_count": 0,
+      "jsonl_sha256": "a21b55712c02bbcdcdf17325a2477b2c8132732b2744464572170330d883f523"
+    },
+    {
+      "run": 5,
+      "correct": 2340,
+      "total": 12032,
+      "accuracy_pct": 19.44813829787234,
+      "invalid_format_count": 0,
+      "jsonl_sha256": "a21b55712c02bbcdcdf17325a2477b2c8132732b2744464572170330d883f523"
+    }
+  ],
+  "raw_response_tokens_equal_across_runs": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "comparison_with_previous_scoring": {
+    "different_answers": 228,
+    "both_correct": 2305,
+    "generation_only_correct": 35,
+    "scoring_only_correct": 32,
+    "both_wrong": 9660
+  },
+  "previous_mean_accuracy_pct": 19.42320478723404,
+  "generation_mean_accuracy_pct": 19.44813829787234,
+  "difference_percentage_points": 0.024933510638298628,
+  "generated_label_counts": {
+    "A": 8144,
+    "D": 311,
+    "B": 2028,
+    "C": 1083,
+    "E": 107,
+    "J": 68,
+    "G": 67,
+    "F": 92,
+    "H": 70,
+    "I": 62
+  },
+  "non_label_first_token_count": 0,
+  "invalid_responses": {},
+  "generated_token_count_distribution": {
+    "2": 12032
+  },
+  "previous_top_two_logit_gap_for_changed_answers": {
+    "0.0": 106,
+    "0.125": 120,
+    "0.25": 2
+  }
+}

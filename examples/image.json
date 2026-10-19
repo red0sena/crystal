@@ -1,0 +1,10 @@
+{
+  "state": "Inspect the attached color sample.",
+  "images": ["red.png"],
+  "question": "What is the main color of the image?",
+  "options": {
+    "red": "Red",
+    "blue": "Blue",
+    "green": "Green"
+  }
+}

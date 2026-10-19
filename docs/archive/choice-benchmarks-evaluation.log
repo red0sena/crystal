@@ -1,0 +1,41 @@
+{'ARC-Challenge': 1172, 'CommonsenseQA': 1221, 'PIQA': 1838}
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 8718.59it/s]
+START ARC-Challenge: 1172 questions; 10 batches
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+Run 1: 1172/1172; acc 57.00%; invalid 0; elapsed 10s; ETA 0s
+COMPLETED run 1: 668/1172 = 56.9966%; invalid 0
+START CommonsenseQA: 1221 questions; 10 batches
+Run 1: 1221/1221; acc 42.42%; invalid 0; elapsed 9s; ETA 0s
+COMPLETED run 1: 518/1221 = 42.4242%; invalid 0
+START PIQA: 1838 questions; 15 batches
+Run 1: 1838/1838; acc 58.92%; invalid 0; elapsed 16s; ETA 0s
+COMPLETED run 1: 1083/1838 = 58.9227%; invalid 0
+[
+  {
+    "benchmark": "ARC-Challenge",
+    "split": "test",
+    "correct": 668,
+    "total": 1172,
+    "accuracy_pct": 56.996587030716725,
+    "invalid_format_count": 0
+  },
+  {
+    "benchmark": "CommonsenseQA",
+    "split": "validation",
+    "correct": 518,
+    "total": 1221,
+    "accuracy_pct": 42.42424242424242,
+    "invalid_format_count": 0
+  },
+  {
+    "benchmark": "PIQA",
+    "split": "validation",
+    "correct": 1083,
+    "total": 1838,
+    "accuracy_pct": 58.92274211099021,
+    "invalid_format_count": 0
+  }
+]

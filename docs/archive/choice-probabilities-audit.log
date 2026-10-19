@@ -1,0 +1,77 @@
+{
+  "verified": true,
+  "benchmarks": [
+    {
+      "benchmark": "ARC-Challenge",
+      "split": "test",
+      "correct": 673,
+      "total": 1172,
+      "probability_accuracy_pct": 57.42320819112628,
+      "generation_accuracy_pct": 56.996587030716725,
+      "difference_percentage_points": 0.4266211604095531,
+      "changed_answers": 20,
+      "probability_only_correct": 10,
+      "generation_only_correct": 5,
+      "max_softmax_absolute_error": 1.1550713241437194e-07,
+      "prediction_label_counts": {
+        "B": 327,
+        "C": 153,
+        "A": 555,
+        "D": 137
+      },
+      "changed_answer_top_two_gap_counts": {
+        "0.125": 10,
+        "0.25": 1,
+        "0.0": 9
+      },
+      "jsonl_sha256": "ddc7134eb7d6c678a498a977ed34328ea7497bc777e6a1e1df38cf4d05ddfe17"
+    },
+    {
+      "benchmark": "CommonsenseQA",
+      "split": "validation",
+      "correct": 517,
+      "total": 1221,
+      "probability_accuracy_pct": 42.34234234234234,
+      "generation_accuracy_pct": 42.42424242424242,
+      "difference_percentage_points": -0.08190008190008058,
+      "changed_answers": 15,
+      "probability_only_correct": 2,
+      "generation_only_correct": 3,
+      "max_softmax_absolute_error": 1.7201720114989882e-07,
+      "prediction_label_counts": {
+        "A": 721,
+        "B": 284,
+        "C": 114,
+        "E": 55,
+        "D": 47
+      },
+      "changed_answer_top_two_gap_counts": {
+        "0.125": 7,
+        "0.0": 8
+      },
+      "jsonl_sha256": "e4438690f19679307083ca00e5d42e43d1dba1be7c01e95d369140875aa1d66f"
+    },
+    {
+      "benchmark": "PIQA",
+      "split": "validation",
+      "correct": 1086,
+      "total": 1838,
+      "probability_accuracy_pct": 59.08596300326442,
+      "generation_accuracy_pct": 58.92274211099021,
+      "difference_percentage_points": 0.16322089227421088,
+      "changed_answers": 53,
+      "probability_only_correct": 28,
+      "generation_only_correct": 25,
+      "max_softmax_absolute_error": 4.943631737308607e-08,
+      "prediction_label_counts": {
+        "A": 1496,
+        "B": 342
+      },
+      "changed_answer_top_two_gap_counts": {
+        "0.0": 30,
+        "0.125": 23
+      },
+      "jsonl_sha256": "226da4c26a620fd953ad67fa07a83819812e55780801dd88ea74ddbd91a4c2d3"
+    }
+  ]
+}

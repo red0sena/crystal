@@ -1,0 +1,9 @@
+Loading weights:   0%|          | 0/473 [00:00<?, ?it/s]Loading weights: 100%|██████████| 473/473 [00:00<00:00, 9786.96it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+DONE ARC-Challenge neutral_shuffle_letters: accuracy 53.84%, first 19.88%, A 29.69%
+DONE ARC-Challenge neutral_shuffle_numbers: accuracy 51.37%, first 20.48%, 1 36.18%
+DONE CommonsenseQA neutral_shuffle_letters: accuracy 41.28%, first 7.21%, A 28.75%
+DONE CommonsenseQA neutral_shuffle_numbers: accuracy 41.61%, first 6.47%, 1 38.98%
+DONE PIQA neutral_shuffle_letters: accuracy 64.80%, first 69.31%, A 48.64%
+DONE PIQA neutral_shuffle_numbers: accuracy 63.17%, first 47.77%, 1 67.03%

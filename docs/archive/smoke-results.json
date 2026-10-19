@@ -1,0 +1,215 @@
+{
+  "red_image": {
+    "model": "/home/khkim/qwen-decision/model",
+    "choice": "red",
+    "probabilities": {
+      "red": 0.9962779879570007,
+      "blue": 0.0031709347385913134,
+      "green": 0.0005510257906280458
+    },
+    "options": [
+      {
+        "name": "red",
+        "description": "Red",
+        "label": "A",
+        "token_id": 32,
+        "logit": 28.25,
+        "probability": 0.9962779879570007
+      },
+      {
+        "name": "blue",
+        "description": "Blue",
+        "label": "B",
+        "token_id": 33,
+        "logit": 22.5,
+        "probability": 0.0031709347385913134
+      },
+      {
+        "name": "green",
+        "description": "Green",
+        "label": "C",
+        "token_id": 34,
+        "logit": 20.75,
+        "probability": 0.0005510257906280458
+      }
+    ],
+    "temperature": 1.0,
+    "score_semantics": "softmax over supplied option-label logits; uncalibrated",
+    "usage": {
+      "input_tokens": 174,
+      "output_tokens": 0
+    },
+    "inference": {
+      "device": "cuda",
+      "dtype": "torch.bfloat16",
+      "head_mode": "selected",
+      "preprocess_ms": 42.645,
+      "forward_ms": 443.692,
+      "total_ms": 500.847,
+      "timing_note": "single call; includes no model load, no warmup, no compilation"
+    }
+  },
+  "blue_image": {
+    "model": "/home/khkim/qwen-decision/model",
+    "choice": "blue",
+    "probabilities": {
+      "red": 0.006692508701235056,
+      "blue": 0.9932563304901123,
+      "green": 5.109793710289523e-05
+    },
+    "options": [
+      {
+        "name": "red",
+        "description": "Red",
+        "label": "A",
+        "token_id": 32,
+        "logit": 23.875,
+        "probability": 0.006692508701235056
+      },
+      {
+        "name": "blue",
+        "description": "Blue",
+        "label": "B",
+        "token_id": 33,
+        "logit": 28.875,
+        "probability": 0.9932563304901123
+      },
+      {
+        "name": "green",
+        "description": "Green",
+        "label": "C",
+        "token_id": 34,
+        "logit": 19.0,
+        "probability": 5.109793710289523e-05
+      }
+    ],
+    "temperature": 1.0,
+    "score_semantics": "softmax over supplied option-label logits; uncalibrated",
+    "usage": {
+      "input_tokens": 174,
+      "output_tokens": 0
+    },
+    "inference": {
+      "device": "cuda",
+      "dtype": "torch.bfloat16",
+      "head_mode": "selected",
+      "preprocess_ms": 4.268,
+      "forward_ms": 39.648,
+      "total_ms": 44.129,
+      "timing_note": "single call; includes no model load, no warmup, no compilation"
+    }
+  },
+  "long_text": {
+    "model": "/home/khkim/qwen-decision/model",
+    "choice": "billing",
+    "probabilities": {
+      "billing": 0.5990613102912903,
+      "technical": 0.28297653794288635,
+      "sales": 0.11796215921640396
+    },
+    "options": [
+      {
+        "name": "billing",
+        "description": "Billing: charges, refunds, and invoices",
+        "label": "A",
+        "token_id": 32,
+        "logit": 26.5,
+        "probability": 0.5990613102912903
+      },
+      {
+        "name": "technical",
+        "description": "Technical support: app failures and bugs",
+        "label": "B",
+        "token_id": 33,
+        "logit": 25.75,
+        "probability": 0.28297653794288635
+      },
+      {
+        "name": "sales",
+        "description": "Sales: new purchases and pricing",
+        "label": "C",
+        "token_id": 34,
+        "logit": 24.875,
+        "probability": 0.11796215921640396
+      }
+    ],
+    "temperature": 1.0,
+    "score_semantics": "softmax over supplied option-label logits; uncalibrated",
+    "usage": {
+      "input_tokens": 9137,
+      "output_tokens": 0
+    },
+    "inference": {
+      "device": "cuda",
+      "dtype": "torch.bfloat16",
+      "head_mode": "selected",
+      "preprocess_ms": 53.223,
+      "forward_ms": 611.892,
+      "total_ms": 665.4,
+      "timing_note": "single call; includes no model load, no warmup, no compilation"
+    }
+  },
+  "head_equivalence": {
+    "selected_logits": [
+      28.25,
+      22.5,
+      20.75
+    ],
+    "full_logits": [
+      28.25,
+      22.5,
+      20.75
+    ],
+    "max_abs_logit_difference": 0.0
+  },
+  "text": {
+    "model": "/home/khkim/qwen-decision/model",
+    "choice": "billing",
+    "probabilities": {
+      "billing": 0.8021511435508728,
+      "technical": 0.1789841204881668,
+      "sales": 0.018864788115024567
+    },
+    "options": [
+      {
+        "name": "billing",
+        "description": "Billing: charges, refunds, and invoices",
+        "label": "A",
+        "token_id": 32,
+        "logit": 25.625,
+        "probability": 0.8021511435508728
+      },
+      {
+        "name": "technical",
+        "description": "Technical support: app failures and bugs",
+        "label": "B",
+        "token_id": 33,
+        "logit": 24.125,
+        "probability": 0.1789841204881668
+      },
+      {
+        "name": "sales",
+        "description": "Sales: new purchases and pricing",
+        "label": "C",
+        "token_id": 34,
+        "logit": 21.875,
+        "probability": 0.018864788115024567
+      }
+    ],
+    "temperature": 1.0,
+    "score_semantics": "softmax over supplied option-label logits; uncalibrated",
+    "usage": {
+      "input_tokens": 137,
+      "output_tokens": 0
+    },
+    "inference": {
+      "device": "cuda",
+      "dtype": "torch.bfloat16",
+      "head_mode": "selected",
+      "preprocess_ms": 1.722,
+      "forward_ms": 31.677,
+      "total_ms": 33.599,
+      "timing_note": "single call; includes no model load, no warmup, no compilation"
+    }
+  }
+}
