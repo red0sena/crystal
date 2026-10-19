@@ -8,6 +8,12 @@
   python -m qwen_decision.v3.merge --tuned runs/v3/<run>/epoch-2 runs/v3/<run>/epoch-3 --alpha 1 --out ...
   # Model Stock (Jang et al., ECCV 2024): the share of the averaged update set per tensor by the angle
   python -m qwen_decision.v3.merge --tuned runs/v3/<a>/final runs/v3/<b>/final --alpha 1 --stock --out ...
+  # TIES-Merging (Yadav et al., NeurIPS 2023): trim each update to its largest --ties share, elect a sign per
+  # entry, average only the updates that agree with it
+  python -m qwen_decision.v3.merge --tuned <a> <b> <c> --alpha 1 --ties 0.2 --out ...
+  # DARE (Yu et al., ICML 2024): drop each update entry with probability --dare and rescale the rest by 1/(1-p);
+  # with --ties as well it is DARE-TIES (drop, then elect signs and average the agreeing entries)
+  python -m qwen_decision.v3.merge --tuned <a> <b> --alpha 1 --dare 0.7 [--ties 1] --out ...
 
 theta = base + sum_i w_i * lambda(tensor) * (theta_i - base), computed in FP32 and stored in the tuned dtype.
 lambda is alpha for every tensor outside the decoder layers. In LiNeS's pseudocode, the parameters outside
@@ -34,6 +40,25 @@ ROOT = Path(__file__).resolve().parents[2]
 LAYER = re.compile(r"language_model\.layers\.(\d+)\.")
 
 
+def ties(deltas: list[torch.Tensor], weights: list[float], keep: float) -> torch.Tensor:
+    """TIES-Merging for one tensor: trim, elect sign, disjoint (weighted) mean."""
+    trimmed = []
+    for d in deltas:
+        if keep < 1 and d.numel() > 1:
+            k = max(1, int(round(d.numel() * (1 - keep))))  # entries at or below the k-th smallest |d| are dropped
+            threshold = d.abs().flatten().kthvalue(k).values
+            d = torch.where(d.abs() > threshold, d, torch.zeros_like(d))
+        trimmed.append(d)
+    elected = torch.sign(sum(w * d for w, d in zip(weights, trimmed)))
+    numerator = torch.zeros_like(trimmed[0])
+    denominator = torch.zeros_like(trimmed[0])
+    for w, d in zip(weights, trimmed):
+        agree = (torch.sign(d) == elected) & (d != 0)
+        numerator += torch.where(agree, w * d, torch.zeros_like(d))
+        denominator += agree * w
+    return torch.where(denominator > 0, numerator / denominator.clamp_min(1e-12), torch.zeros_like(numerator))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--base", type=Path, default=ROOT / "models/qwen3.5-0.8b")
@@ -46,6 +71,10 @@ def main():
                    help="Model Stock (Jang et al., ECCV 2024): per tensor, share t = N cos / (1 + (N-1) cos) of the "
                         "averaged update, cos = mean pairwise cosine of the checkpoints' updates (needs 2+ --tuned; "
                         "--alpha/--beta then multiply t, so use --alpha 1)")
+    p.add_argument("--ties", type=float, help="TIES: keep this share of each update's entries (largest |delta| per tensor), "
+                                              "elect signs, disjoint weighted mean; 1 = no trimming")
+    p.add_argument("--dare", type=float, help="DARE: drop probability of each update entry (rescale the rest by 1/(1-p))")
+    p.add_argument("--seed", type=int, default=20261019, help="DARE drop masks")
     p.add_argument("--out", type=Path, required=True)
     args = p.parse_args()
     if args.stock and len(args.tuned) < 2:
@@ -72,10 +101,16 @@ def main():
         return args.alpha + args.beta * int(m.group(1)) / max(1, depth - 1)
 
     merged, stock = {}, {}
+    generator = torch.Generator().manual_seed(args.seed)
     for k in sorted(keys):
         b = base[k].to(torch.float32)
         deltas = [t[k].to(torch.float32) - b for t in tuned]
-        update = sum(w * d for w, d in zip(weights, deltas))
+        if args.dare:
+            deltas = [d * (torch.rand(d.shape, generator=generator) >= args.dare) / (1 - args.dare) for d in deltas]
+        if args.ties is not None:
+            update = ties(deltas, weights, args.ties)
+        else:
+            update = sum(w * d for w, d in zip(weights, deltas))
         scale = share(k)
         if args.stock:
             pairs = [(i, j) for i in range(len(deltas)) for j in range(i + 1, len(deltas))]
@@ -94,7 +129,11 @@ def main():
               "beta": args.beta, "outside": outside, "decoder_layers": depth,
               "layer_shares": [round(args.alpha + args.beta * i / max(1, depth - 1), 4) for i in range(depth)],
               "rule": "theta = base + sum_i w_i * share * (theta_i - base); share = alpha + beta*(l-1)/(L-1) per decoder layer"
-                      + ("; times Model Stock t per tensor" if args.stock else ""),
+                      + ("; times Model Stock t per tensor" if args.stock else "")
+                      + (f"; DARE drop p={args.dare} (seed {args.seed}), rescaled by 1/(1-p)" if args.dare else "")
+                      + (f"; TIES: top {args.ties} of |delta| per tensor, elected sign, weighted mean of agreeing entries"
+                         if args.ties is not None else ""),
+              "ties": args.ties, "dare": args.dare, "seed": args.seed if args.dare else None,
               "stock_t": stock or None}
     (args.out / "merge.json").write_text(json.dumps(recipe, indent=2) + "\n")
     print(json.dumps({k: recipe[k] for k in ("alpha", "beta", "outside", "weights")}))

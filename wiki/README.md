@@ -8,15 +8,16 @@
 
 목표는 우리 Qwen3.5-0.8B로 [Jev Decision Index](https://huggingface.co/spaces/multimodalart/jev-decision-index)에서 `vllm-sr/d3-lite`(0.8B, Full 32.33)를 넘는 것이다.
 
-0. **[v3 전체 요약](project/v3-summary.md)**: 방침, 데이터 버전, 학습 실험(g1·g3·g4b), 가중치 섞기, 진단, 현재 최선 후보를 한 페이지에 정리했다. 처음엔 이것부터 읽는다.
+0. **[v3 전체 요약](project/v3-summary.md)**: 방침, 데이터 버전, 학습 실험(g1·g3·g4b·g6), 가중치 섞기, 진단, 현재 최선 후보를 한 페이지에 정리했다. 처음엔 이것부터 읽는다.
 1. [목표와 리더보드 규칙](project/jev-index.md): 점수 산식, d3-lite 구조와 약점, 0.8B 경쟁 모델, 제출·오염 규칙.
 2. [작업 기록](project/v3-log.md): 시간순 상세 기록이다. 측정값만 적는다. 주요 내용은 다음과 같다.
    - 준비: suite 재구성과 d3-lite 재현, JEVal 대리셋, 오염 필터, 학습 속도 개선.
    - 학습 방식과 g1: 정답 전용 학습(교사 금지, 도구만 예외), 정답 기준선 g1(공개 샘플 33.68 대 d3-lite 39.65).
    - 분석: 원본과 가중치 섞기, d3-lite 가중치 감사, 순서 편향·문항별 망각 측정.
    - 데이터: 내부 dev 누수 수정, 3·4차 데이터(사람 정답, 라이선스 확인), dev 분할 규칙 개정(검정력 기준).
-   - 학습: g3(3에폭), g4b(새 데이터 40만, 패딩 없음), fresh-v1 평가셋.
-   - 섞기: Soup g4b + g3 e2가 현재 최선 후보다.
+   - 학습: g3(3에폭), g4b(새 데이터 40만, 패딩 없음), fresh-v1 평가셋, g6(104개 출처 70만, JEVal 0.465·공개 40.28).
+   - 데이터 감사와 5·6차 데이터(46개 출처 추가, 에이전트 병렬 빌드와 직접 검수).
+   - 섞기: g6 0.67 + g3e2 0.33(공개 43.12·fresh 0.520, d3-lite 초과)과 g6 + g4b(JEVal 0.476)가 현재 최선 후보다. 논문 방식(TIES·DARE·LiNeS·Model Stock)은 단순 평균보다 낮았다.
 3. [전략](designs/beat-d3-lite.md): 수단의 우선순위와 상태, 지금까지 알게 된 것, 다음 단계.
 4. [학습 데이터 출처](designs/phase2-data-sources.md): 108개 출처 194만 문항(v3-gold6이 104개 사용). 정답 출처(사람/프로그램/모델), 학습 셋 사용량, 라이선스, 오염 함정을 정리했다.
 5. [참고 문헌과 데이터](resources/references.md): v3에서 참고한 논문과 데이터셋, 확인 수준(카드/초록/검색/인용만)과 쓰인 곳.
@@ -41,7 +42,7 @@
 | 마지막 토큰 외 표현 활용 | [Token·Layer readout](papers/token-layer-readout.md), [GLiClass](papers/gliclass.md) |
 | 기존 구조를 유지하는 대조군 | [LLM-as-Jev](papers/llm-as-jev.md), [InnerJev](papers/innerjev.md) |
 | 미세조정 망각 줄이기 | [WiSE-FT](papers/wise-ft.md), [L2-SP](papers/l2-sp.md), [LoRA Learns Less](papers/lora-learns-less.md), [LP-FT](papers/lp-ft.md) |
-| 가중치 섞기 | [Model Stock](papers/model-stock.md), [LiNeS](papers/lines.md), [체크포인트 평균·Soup](papers/checkpoint-averaging.md), [In-the-Wild 병합](papers/merging-in-the-wild.md) |
+| 가중치 섞기 | [Model Stock](papers/model-stock.md), [LiNeS](papers/lines.md), [TIES-Merging](papers/ties-merging.md), [DARE](papers/dare.md), [체크포인트 평균·Soup](papers/checkpoint-averaging.md), [In-the-Wild 병합](papers/merging-in-the-wild.md) |
 | 객관식 편향 측정 | [One Bias Score, Two Factors](papers/option-bias-two-factors.md), [객관식 편향](papers/multiple-choice-bias.md) |
 | 난이도·품질 등급 및 확률 | [Ordinal scale bias](papers/ordinal-scale-bias.md), [Temperature scaling](papers/temperature-scaling.md) |
 | Encoder 전환과 주변 연구 | [LLM2Vec](papers/llm2vec.md), [dQwen3.5](papers/dqwen35.md) |
@@ -76,6 +77,8 @@
 | [One Bias Score, Two Factors](papers/option-bias-two-factors.md) | 2026 | 객관식 편향의 두 요인 |
 | [Model Stock](papers/model-stock.md) | 2024 | 각도 기반 병합 비율 |
 | [LiNeS](papers/lines.md) | 2025 | 층별 스케일링 병합 |
+| [TIES-Merging](papers/ties-merging.md) | 2023 | 자르기·부호 투표 병합 |
+| [DARE](papers/dare.md) | 2024 | 무작위 버리기·재스케일 병합 |
 | [체크포인트 평균·Soup](papers/checkpoint-averaging.md) | 2023 | 가중치 평균 |
 | [In-the-Wild 병합 비교](papers/merging-in-the-wild.md) | 2026 | LLM 병합 방법 비교 |
 | [Dataset Cartography](papers/dataset-cartography.md) | 2020 | 문항 지도 / OOD 일반화 |
@@ -88,7 +91,7 @@
   - 학습 셋: `mix.py`.
   - 학습: `train.py`(에폭별 저장, 원본 당기기 포함).
   - 평가: `proxy_eval.py`(JEVal), `board_check.py`(공개 샘플), `fresh_eval.py`(fresh-v1), `bias_eval.py`, `forget_report.py`, `format_probe.py`.
-  - 섞기·분석: `merge.py`(WiSE·LiNeS·Model Stock·평균), `interpolate.py`, `weight_drift.py`, `check_packed.py`(회귀 검사), `bench_train.py`.
+  - 섞기·분석: `merge.py`(WiSE·LiNeS·Model Stock·TIES·DARE·가중 평균), `interpolate.py`, `weight_drift.py`, `check_packed.py`(회귀 검사), `bench_train.py`.
   - 실행 스크립트: `runs/v3/queue/`.
 - [조사 범위와 인용 규칙](resources/research-notes.md): 완독·재현 여부와 검색 오매칭 기록.
 - [v1 실험 보고서](../docs/experiment_report_ko.md), [v2 실험 보고서](../docs/experiment_report_v2_ko.md).

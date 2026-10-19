@@ -34,7 +34,8 @@
 | PoE / Debiased focal loss (Utama 외 2020), PoE NLI (2604.19069) | 검색 | 방침 확인 필요로 보류 |
 | MoFO (2407.20999) | 검색 | 미구현 후보 |
 | Calibrate Before Use (Zhao 외 2021) | 검색 | 편향 보정은 규칙상 마지막 |
-| AdaMerging (ICLR 2024), AIM (2502.02421), Locate-then-Merge (2505.16703), Model Breadcrumbs (ECCV 2024), TSV (CVPR 2025), TIES, DARE | 검색·초록 | 병합 후보 검토, 미실행 |
+| [TIES-Merging](../papers/ties-merging.md) (Yadav 외, NeurIPS 2023), [DARE](../papers/dare.md) (Yu 외, ICML 2024) | 초록 | `merge.py --ties/--dare`(2026-10-19 구현·실행, 단순 평균보다 낮음) |
+| AdaMerging (ICLR 2024), AIM (2502.02421), Locate-then-Merge (2505.16703), Model Breadcrumbs (ECCV 2024), TSV (CVPR 2025) | 검색·초록 | 병합 후보 검토, 미실행 |
 | LM-Cocktail, WARP, Safeguard FT (2412.19512) | 검색 | 원본 보간의 LLM 사례 |
 | FINCH (2605.20005), 재노출 연구 (2512.22337), 문항별 망각 (2510.17776), mSFT (2603.21606), FLOW (2502.02797), FastMix (2606.14971), Post-Training Science (2609.01244), 불완전 학습 (2604.10079), Prism-1 (2610.22066), Label smoothing (Müller 외 2019) | 인용만 | 외부 검토 근거. 수치를 우리 근거로 쓰지 않음 |
 | ProLong (Gao 외, ACL 2025) | 검색 | **정정:** 장문 붕괴 진단 근거로 쓴 것은 잘못이었다 |
