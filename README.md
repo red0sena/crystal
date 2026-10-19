@@ -21,6 +21,31 @@ bash reproduce.sh --plan
 후속 미세조정과 전체 실험 결과는
 [Qwen3.5 선택지 판단 모델 개발과 평가 기록](/home/khkim/qwen-decision/docs/experiment_report_ko.md)에 정리했다.
 
+## 데이터·체크포인트 (Hugging Face)
+
+git에는 코드·문서·작은 기록만 둔다. 직접 만든 데이터와 학습 결과는 비공개 Hugging Face 저장소에 있고,
+프로젝트 루트와 같은 경로로 올렸으므로 루트에서 받으면 제자리에 풀린다.
+
+| 저장소 | 내용 |
+|---|---|
+| [Kyunghwan-kim/kkh-decision-data](https://huggingface.co/datasets/Kyunghwan-kim/kkh-decision-data) (dataset) | `data/`(`data/raw/` 제외), `docs/archive/{data,results,training}`, `external/decision-index/suite-0.3` |
+| [Kyunghwan-kim/kkh-decision-model](https://huggingface.co/Kyunghwan-kim/kkh-decision-model) (model) | `runs/`: best·final·병합 체크포인트와 평가 결과. `last`, `epoch-N` 중간 체크포인트는 없다 |
+
+```bash
+git submodule update --init
+hf download Kyunghwan-kim/kkh-decision-data --repo-type dataset --include "data/*" --include "docs/*" --include "external/*" --local-dir .
+hf download Kyunghwan-kim/kkh-decision-model --include "runs/*" --local-dir .
+```
+
+- `runs/v3/<run>/final`은 `best`를 가리키는 링크였다. 올린 것은 `best`뿐이므로 필요하면 `ln -s best final`로 다시 만든다.
+- 외부에서 받은 것은 올리지 않았다. 고정 revision에서 다시 받는다.
+  - `models/qwen3.5-0.8b`: `Qwen/Qwen3.5-0.8B` @ `2fc06364715b967f1860aea9cf38778875588b17`
+  - `models/d3-lite`: `vllm-sr/d3-lite` @ `a8d25a91ef75552803f7009d25b7bd435991abd9`
+  - `models/d3-flash`: `vllm-sr/d3-flash` @ `8b35c853b90e777595ec36bacae820fe08ea077a`
+  - `data/raw/<owner>__<name>@<rev>`: HF 데이터셋 `<owner>/<name>`의 해당 revision
+- `external/decision-index`는 submodule이다. `suite-0.3/`은 `qwen_decision.v3.finish_suite`로 만든 것이라 데이터 저장소에 올렸고,
+  `work/`(업스트림 원본 다운로드)는 올리지 않았다.
+
 ## v2: 선택지 64개, 질문 유형 3종, 상태 공유
 
 v2는 선택지 2~64개(`A–Z`, `AA–AZ`, `BA–BL`), choice·noul·score 질문, temperature 보정, 한 상태에 대한
