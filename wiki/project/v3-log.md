@@ -972,3 +972,6 @@ g3의 격차 분석(같은 역량에서 덜 일반화, 빈 역량)과 fresh-v1 �
   - JEVal restricted 최종 확인.
   - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, SCOTUS SCDB CC-BY-NC, QuALITY).
   - HoVer 문서 단위 분할, habermas 라벨 확인.
+  - g7이 끝나면 에폭 1~3을 JEVal·fresh·공개 샘플로 비교하고, 고른 것을 g3e2·g4b와 섞는다.
+  - 7차 출처 라이선스 검토(EZ-STANCE 라이선스 파일 없음, 트윗·Reddit 본문, NVD 스냅샷).
+  - 기존 출처의 상류 ID 중복(MNLI 11, fintweet 2) 정리.

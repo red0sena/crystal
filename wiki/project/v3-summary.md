@@ -45,6 +45,7 @@
 | v3-gold4 | 449,978 | 17,903 | 58 | 4차 데이터(TAT-QA 예/아니오, 예시 기반 분류, WNED 개체 연결, VitaminC, PAWS, SciTail, 금융 트윗). 가중 2배: HellaSwag·WinoGrande·BANKING77·GoEmotions·TAT-QA 예/아니오·예시 기반 분류·WNED. **감사에서 분할 누수·변환 오류가 나와 폐기** | 없음 |
 | v3-gold5 | 449,979 | 17,904 | 58 | v3-gold4의 감사 반영: TAT-QA 증감 문항은 표로 검증한 것만, 예시 기반 분류는 텍스트마다 역할 하나, WNED·PAWS·SciTail 문서 단위 분할, VitaminC 대조 사례 단위, fresh-v1과 문장 단위 겹침 제외 | 아직 없음 |
 | v3-gold6 | 699,960 | 30,832 | 104 | v3-gold5 + 5차 11개(Zeshel, TabFact, DROP, FiNER, Few-NERD, ABCD 등) + 6차 35개(선호·판단, 읽기·추론, 전문 분야·대화, 개체·언어). 새 출처 행 46% | g6 |
+| v3-gold7 | 999,961 | 33,821 | 113 | v3-gold6 + 7차 9개(시 최소쌍, MiniCheck, 입장 3개, CSQA2, Aegis, Scruples, NVD) 87,968행. 100만 행으로 늘려 기존 출처 몫도 70만 → 91만 행. 학습 전 검토로 Aegis·입장 중복 ID, NVD 근접 중복·CVSS 노출, Scruples 갈린 투표를 고침 | g7(학습 중) |
 
 - **재현성:** 학습에 쓴 mix 파일은 각 run의 manifest sha256과 일치한다(g1 = archive, g3 = v3-gold2, g4b = v3-gold3). 2026-10-18 자정에 `mix.quotas`의 순서 비결정성을 고쳤다(그 전에는 다시 만들면 학습 행 표본이 달라졌다).
 - **dev 규칙(v3-gold3부터):** 출처당 min(300, 행의 10%). 행 비례 그룹 추출이고, 목표의 절반보다 큰 그룹은 제외한다.
@@ -63,6 +64,7 @@
 | **g3** e1 / e2(best) / e3 | v3-gold2 20만 × 3에폭 | lr 3e-6, 코드 배정 섞기, 학습 표본 진단 | 20.8시간 | 0.491 / 0.337 / 0.403 · 0.470 / 0.348 / 0.400 · 0.479 / 0.327 / 0.393 | 38.79 · 39.84 · 39.90 | e2 0.413 |
 | **g4b** | v3-gold3 40만 × 1바퀴 | lr 3e-6, **무관한 선택지 패딩 0** | 6.5시간 | 0.522 / 0.345 / 0.421 | 36.95 | 0.484 (−GE 0.469) |
 | **g6** | v3-gold6 70만 × 1바퀴(104개 출처) | g4b와 같음(lr 3e-6, 패딩 0) | 10.2시간 | **0.556 / 0.397 / 0.465** | 40.28 | 0.474 (−GE 0.459) |
+| g7 | v3-gold7 100만 × 3에폭(113개 출처) | g6과 같음(lr 3e-6, 패딩 0), 평가 5,000스텝마다 | 약 41시간 예상(2026-10-19 17:03 시작) | 학습 중 | | |
 | d3-lite | | | | 0.578 / 0.409 / 0.482 | 39.65 | 0.509 (−GE 0.498) |
 | 원본 (noncausal) | | | | 0.240 / 0.177 / 0.205 | | 0.185 |
 
@@ -149,3 +151,6 @@
   - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, SCOTUS SCDB CC-BY-NC, QuALITY).
   - HoVer 문서 단위 분할, habermas 라벨 확인.
   - 제출 전 공개 suite 전체 실행.
+  - g7이 끝나면 에폭 1~3을 JEVal·fresh·공개 샘플로 비교하고(3에폭 과적합 여부), 고른 것을 g3e2·g4b와 섞는다.
+  - 7차 출처 라이선스 검토: EZ-STANCE(라이선스 파일 없음), P-Stance·EZ-STANCE(트윗), Scruples(Reddit 글), NVD(매일 바뀌는 피드, HF에 만든 결과만 보존).
+  - 다음 후보: Mind2Web(웹 행동 선택), Lichess 퍼즐, CLadder 생성기, Webis-Clickbait-17, WMT MQM, BLiMP.

@@ -29,7 +29,7 @@ v1/v2 시절의 모델·원시 데이터·체크포인트·가상환경은 사�
 [Jev Decision Index 목표](jev-index.md)를 위해 v3를 새로 만들었다(`qwen_decision/v3/`). v2와 다른 점은 이렇다.
 - 프롬프트와 코드가 d3 계약을 따른다. 코드는 255개다.
 - full-attention 6층을 양방향으로 바꿀 수 있다(`noncausal`).
-- ~~학습 target이 교사 분포에 대한 soft CE다.~~ **2026-10-17부터 정답 전용이다.** 교사 모델의 출력(증류, argmax)은 쓰지 않고, 표시된 코드들에 대한 CE를 정답(`train.gold_targets`)으로만 계산한다. 도구 영역만 생성 모델이 만든 정답을 허용한다.
+- ~~학습 target이 교사 분포에 대한 soft CE다.~~ **2026-10-17부터 정답 전용이다.** 교사 모델의 출력(증류, argmax)은 쓰지 않고, 표시된 코드들에 대한 CE를 정답(`train.gold_targets`)으로만 계산한다. 생성 모델이 만든 정답은 도구 영역과 MiniCheck C2D/D2C(2026-10-19 사용자 결정)만 허용한다. 투표가 갈린 출처(vote_distribution: VAST, Scruples)는 최다 득표 옵션을 정답으로 학습한다(`mix.gold_set`).
 - 키트 Engine으로 공개 suite와 JEVal 대리셋을 평가한다.
 
 현재 학습 경로(`qwen_decision/v3/train.py`, 2026-10-17):

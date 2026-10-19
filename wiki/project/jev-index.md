@@ -13,6 +13,11 @@ Full ≈ 0.2·public + 0.506·same + 0.404·new − 3.04
 - 원점수 1점의 가치: public 0.2, same-skills 0.506, new-domains 0.404. 공개 벤치마크만 올리는 전략은 효율이 낮다.
 - 0.9점 이내는 동순위(tie band)다. 확실히 넘으려면 33.3 이상, 계획 목표는 35 이상이다.
 - 공개 37개 벤치마크는 chance-corrected skill(0=무작위, 100=완벽)이며 미응답은 오답이다.
+- 공개 지수는 다섯 영역의 고정 가중 평균이다(2026-10-19 키트 채점 결과 `note`에서 확인).
+  - 가중치: knowledge 25.8%, language 25.8%, retrieval 20.0%, tools 18.3%, arts 10%.
+  - 영역 안에서는 gold ★ 벤치마크가 1.2, 나머지가 1.0이다.
+  - 그래서 벤치마크 하나의 비중은 영역마다 다르다. 예술 6개 중 하나는 약 1.7%, 언어 9개 중 하나는 약 2.9%다.
+- RouterBench, SGD/SGD-X, MMLU, ARC-Easy, ARC-Challenge, SimpleBench는 보드에 보이지만 지수에 들어가지 않는다(shown, not counted).
 - same-skills: 공개 37개 중 34개에 대응하는 비공개 시험(새 데이터, 미공개). ContractNLI, cfcolor, HLE는 대응 시험이 없다.
 - new-domains: "일부는 폭넓은 지식, 일부는 언제 yes/no로 답할지 판단하는 능력"을 본다(보드 설명).
 

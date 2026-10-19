@@ -15,8 +15,8 @@
 | 순위 | 수단 | 근거 | 상태 |
 |---|---|---|---|
 | 1 | d3식 구조와 맞추기: 255코드 LM readout + full-attention 6층 양방향 | d3, CoCo-4B의 전환 효과 | 구현·검증 완료. causal과 차이가 작아 구조 비교는 중단(아래) |
-| 2 | 데이터 다양성: 같은 역량의 train split + 넓은 도메인 yes/no + 실제 장문 + 다지선다 + 금융 | ②의 지식 손실, OneJev의 과적합, g1이 진 분야 | 60개 출처 구축. g4b가 v3-gold3(40만 행)로 fresh 0.469·JEVal same 0.522까지 올렸다. 다음 학습 셋 v3-gold4(45만 행, 58개 출처) |
-| 3 | ~~강한 교사 soft label 증류(d3-flash)~~ | | **폐기(2026-10-17):** 교사에게서 아무것도 배우지 않는다. 정답만으로 학습하고, 도구 영역만 모델 생성 정답을 허용 |
+| 2 | 데이터 다양성: 같은 역량의 train split + 넓은 도메인 yes/no + 실제 장문 + 다지선다 + 금융 | ②의 지식 손실, OneJev의 과적합, g1이 진 분야 | g4b(v3-gold3, 40만 행)가 fresh·JEVal same을 올렸고, g6(v3-gold6, 104개 출처 70만 행)가 JEVal new 격차를 −0.012까지 줄였다. 지금은 117개 출처를 만들었고 `v3-gold7`(113개 출처 100만 행)로 g7 학습 중(2026-10-19) |
+| 3 | ~~강한 교사 soft label 증류(d3-flash)~~ | | **폐기(2026-10-17):** 교사에게서 아무것도 배우지 않는다. 정답만으로 학습하고, 도구 영역과 MiniCheck C2D/D2C(GPT-4로 만든 근거 문서 사실 확인, 2026-10-19)만 모델 생성 정답을 허용 |
 | 4 | noul(명제 참/거짓) 강화 | d3-lite의 RAGTruth·PhishNChips 약점 | 반영. g1이 RAGTruth 0.91(d3-lite 0.32)로 이김 |
 | 5 | 추론 시 순열 평균(`orders`) | d3-lite는 끔 | 평가함: g1 JEVal 0.348→0.353으로 효과 작음. 위치 편향 자체가 작다 |
 | 6 | 원본과의 가중치 보간(WiSE-FT), seed soup | Wortsman et al.; v2의 2-seed 평균 | 원본 보간, LiNeS, Model Stock, 서로 다른 학습의 평균(soup)을 평가했다. **Soup g4b + g3 e2가 최선**(공개 39.80, fresh 0.483, JEVal same 0.548). 원본 쪽으로 갈수록 new↑ same·공개↓ |
@@ -53,7 +53,10 @@
 
 ## 다음 단계
 
-1. 남은 확실한 격차(금융 예/아니오, BoolQ·WinoGrande·CommonsenseQA)를 데이터로 보강한다. 7차 데이터(`v3-gold7`: 시 최소쌍, MiniCheck, 입장, CommonsenseQA 2.0)가 준비돼 있다.
+1. g7(`v3-gold7`, 3에폭)이 끝나면 에폭 1~3을 JEVal·fresh·공개 샘플로 비교하고, 고른 것을 g3e2·g4b와 섞는다.
+   - v3-gold7은 공개 격차가 큰 BPoMP(시 최소쌍)와 VAST(입장 3개), JEVal 상식 예/아니오(CSQA2)와 halueval-qa(MiniCheck), 빈 분야(Aegis 안전, Scruples 윤리, NVD 취약점)를 더했다.
+   - 금융 예/아니오 격차는 17·14문항 중 3·2문항이고, 중국어 지시문 형식 문제일 수 있어 데이터 대신 진단한다.
+   - 공개 영역 가중치가 달라(지식·언어 25.8%, 검색 20%, 도구 18.3%, 예술 10%) BPoMP와 VAST의 Full 효과는 각 약 0.55점으로 비슷하다.
 2. 패딩 효과를 확인한다(g3e2를 섞으면 공개가 오르는 이유가 패딩 학습인지).
 3. 최종 후보는 JEVal restricted로 한 번만 확인한다. fresh-v1도 함께 본다.
 4. 제출 전: 라이선스 검토, 공개 suite 전체 실행(`complete: true`), 학습 데이터 공개 문서 작성.
