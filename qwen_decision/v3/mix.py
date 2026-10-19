@@ -129,19 +129,31 @@ SOURCES = {
     "ragtruth-train": ("human", _after(1)), "squad2-answerability": ("human", _after(1)),
     "strategyqa-train": ("human", _after(1)), "tools-percall": ("model", _after(2)), "vast-train": ("human", _after(1)),
     "wanli-train": ("human", _after(1)), "when2call-train": ("model", _after(2)), "winogrande-train": ("human", _after(1)),
+    # phase 7 (2026-10-19, qwen_decision/v3/sources/poetry_pairs.py): item = the public-domain poem (all its versions)
+    "poem-pairs-gen": ("programmatic", _after(1)),
+    # MiniCheck C2D/D2C (qwen_decision/v3/sources/minicheck.py): GPT-4 generation, labels by a model entailment
+    # check, so model (allowed by MODEL_ORIGIN_ALLOWED); item = rows linked by a claim, document or document sentence
+    "minicheck-synth": ("model", _after(1)),
+    # phase 7 stance and commonsense (qwen_decision/v3/sources/phase7.py): item = tweet / tweet / debate page / question
+    "ezstance-train": ("human", _after(1)), "pstance-train": ("human", _after(1)), "argsme-train": ("human", _after(1)),
+    "csqa2-train": ("human", _after(1)),
+    # phase 7 new domains (qwen_decision/v3/sources/phase7_domains.py): item = prompt / Reddit post or dilemma / CVE
+    "aegis-prompts": ("human", _after(1)), "scruples-train": ("human", _after(1)), "nvd-cve": ("human", _after(1)),
 }
 
 
-TARGET_KIND = {"valid_set": ["habermas-train"], "vote_distribution": ["vast-train"]}
+TARGET_KIND = {"valid_set": ["habermas-train"], "vote_distribution": ["vast-train", "scruples-train"]}
 AREAS = {
     "knowledge": ["mmlu-aux-train", "medmcqa-train", "arc-train", "openbookqa-train", "aqua-rat-train", "mathqa-train",
                   "gsm8k-train", "code-output-gen", "logic-puzzles-gen", "strategyqa-train", "commonsenseqa-train",
-                  "hellaswag-train", "winogrande-train", "corr2cause-train", "pubmedqa-labeled"],
+                  "hellaswag-train", "winogrande-train", "corr2cause-train", "pubmedqa-labeled", "csqa2-train"],
     "language": ["wanli-train", "nli4ct-train", "vast-train", "isarcasm-train", "acos-train", "boolq-train",
-                 "squad2-answerability", "ragtruth-train", "habermas-train", "phishing"],
+                 "squad2-answerability", "ragtruth-train", "habermas-train", "phishing", "minicheck-synth",
+                 "ezstance-train", "pstance-train", "argsme-train"],
+    "new-domains-7": ["aegis-prompts", "scruples-train", "nvd-cve"],
     "retrieval": ["clinc-train", "banking77-train", "massive-intents", "esci-train", "hover-train"],
     "tools": ["tools-percall", "when2call-train", "apibank-train"],
-    "arts": ["humicroedit-train", "newyorker-matching-train"],
+    "arts": ["humicroedit-train", "newyorker-matching-train", "poem-pairs-gen"],
     "finance": ["sentfin-train", "tatqa-train"],
     "commonsense-new": ["siqa-train", "cosmosqa-train", "ecare-train", "moralstories-train"],
     "language-new": ["mnli-train", "faithdial-train", "goemotions-train"],
@@ -183,6 +195,12 @@ MIXES = {
     # v3-gold5 plus the phase-5 and phase-6 sources (2026-10-19): many more kinds of decisions (PHASE5, PHASE6).
     "v3-gold6": {"long": (.05, ["quality-train", "musique-train", "kv-lookup", "cuad-train", "lexglue-train", "contractnli-train"]),
                  "public-train": (.95, None)},
+    # v3-gold6 plus the phase-7 sources (2026-10-19): poetic minimal pairs for BPoMP, where g6 trails d3-lite most
+    # (public sample skill 0.05-0.13 against 0.60), MiniCheck grounded fact-checking (JEVal halueval-qa -0.20), stance
+    # toward a target for VAST (-0.28: EZ-STANCE, P-Stance, args.me), CommonsenseQA 2.0 yes/no (JEVal BoolQ/CSQA), and
+    # three domains no source had: request safety (Aegis 2.0), community ethics (Scruples), vulnerability triage (NVD).
+    "v3-gold7": {"long": (.05, ["quality-train", "musique-train", "kv-lookup", "cuad-train", "lexglue-train", "contractnli-train"]),
+                 "public-train": (.95, None)},
 }
 # Sources weighted up within their group (x the sqrt-size weight): g1 lost most to d3-lite on HellaSwag
 # (0.65 vs 0.90), BANKING77 (0.69 vs 0.89) and JEVal WinoGrande (0.17 vs 0.43), and the mix used only
@@ -191,7 +209,7 @@ BOOST = {"v3-gold2": {"hellaswag-train": 2., "winogrande-train": 2., "banking77-
          "v3-gold3": {"hellaswag-train": 2., "winogrande-train": 2., "banking77-train": 2., "goemotions-train": 2.},
          "v3-gold4": {"hellaswag-train": 2., "winogrande-train": 2., "banking77-train": 2., "goemotions-train": 2.,
                       "tatqa-yesno": 2., "icl-classify": 2., "wned-el": 2.}}
-BOOST["v3-gold5"] = BOOST["v3-gold6"] = BOOST["v3-gold4"]
+BOOST["v3-gold5"] = BOOST["v3-gold6"] = BOOST["v3-gold7"] = BOOST["v3-gold4"]
 # Sources new to a mix are left out of the others, so rebuilding an older mix keeps its source list.
 PHASE5 = ["tabfact-train", "condaqa-train", "ropes-train", "folio-train", "abcd-train", "helpsteer2-train", "finer-train",
           "zeshel-train", "fewnerd-train", "drop-train", "taskmaster-train"]
@@ -200,17 +218,21 @@ PHASE6 = ["helpsteer3-train", "oasst2-train", "hhrlhf-train", "tldr-feedback-tra
           "infotabs-train", "wtq-train", "svamp-train", "stepgame-train", "spartqa-train", "maud-train", "pubhealth-train",
           "headqa-train", "civilcomments-train", "hatexplain-train", "multiwoz-train", "mtop-train", "snips-train", "redial-train",
           "fewrel-train", "gap-train", "semcor-train", "klue-train", "chid-train", "cmrc-train", "jglue-train", "tydiqa-train"]
-ONLY_IN = {"sentfin-train": {"v3-gold2", "v3-gold3", "v3-gold4", "v3-gold5", "v3-gold6"},
-           "tatqa-train": {"v3-gold2", "v3-gold3", "v3-gold4", "v3-gold5", "v3-gold6"},
-           **{s: {"v3-gold3", "v3-gold4", "v3-gold5", "v3-gold6"} for s in ("siqa-train", "cosmosqa-train", "mnli-train", "faithdial-train",
+PHASE7 = ["poem-pairs-gen", "minicheck-synth", "ezstance-train", "pstance-train", "argsme-train", "csqa2-train",
+          "aegis-prompts", "scruples-train", "nvd-cve"]
+ONLY_IN = {"sentfin-train": {"v3-gold2", "v3-gold3", "v3-gold4", "v3-gold5", "v3-gold6", "v3-gold7"},
+           "tatqa-train": {"v3-gold2", "v3-gold3", "v3-gold4", "v3-gold5", "v3-gold6", "v3-gold7"},
+           **{s: {"v3-gold3", "v3-gold4", "v3-gold5", "v3-gold6", "v3-gold7"} for s in ("siqa-train", "cosmosqa-train", "mnli-train", "faithdial-train",
                                                                            "moralstories-train", "ecare-train", "goemotions-train")},
-           **{s: {"v3-gold4", "v3-gold5", "v3-gold6"} for s in ("tatqa-yesno", "icl-classify", "wned-el", "vitaminc-train", "paws-train",
+           **{s: {"v3-gold4", "v3-gold5", "v3-gold6", "v3-gold7"} for s in ("tatqa-yesno", "icl-classify", "wned-el", "vitaminc-train", "paws-train",
                                                                 "scitail-train", "fintweet-train")},
-           **{s: {"v3-gold6"} for s in PHASE5 + PHASE6}}
+           **{s: {"v3-gold6", "v3-gold7"} for s in PHASE5 + PHASE6},
+           **{s: {"v3-gold7"} for s in PHASE7}}
 # Sources sampled as whole items (all rows of an item key or none): a VitaminC case is a claim and its contrast
 # claim against the evidence before and after an edit, and the pair is what teaches the verdict to follow the
 # evidence. gold4 sampled rows one by one and kept 4% of rows with their partner.
-WHOLE_ITEMS = {"v3-gold5": {"vitaminc-train"}, "v3-gold6": {"vitaminc-train", "condaqa-train"}}
+WHOLE_ITEMS = {"v3-gold5": {"vitaminc-train"}, "v3-gold6": {"vitaminc-train", "condaqa-train"},
+               "v3-gold7": {"vitaminc-train", "condaqa-train"}}
 BOILERPLATE = 50   # a short paragraph (< LONG_PIECE chars) in more rows than this is a template or tool schema line
 LONG_PIECE = 200   # normalized characters from which a paragraph is passage text (a SQuAD/BoolQ passage, a clause)
 LONG_BOILERPLATE = 1000  # a long paragraph in more rows than this is licence text (Gutenberg) or a fixed preamble
@@ -219,8 +241,10 @@ SAME_DOCUMENT = .5  # share of the smaller row's paragraphs two rows must share 
 
 
 # Model-made golds are allowed only for tool use (user decision 2026-10-17): no human-labelled tool-selection
-# train data was found, and the tools area cannot be left empty. Everything else stays human/programmatic.
-MODEL_ORIGIN_ALLOWED = {"tools-percall", "when2call-train", "apibank-train"}
+# train data was found, and the tools area cannot be left empty. Everything else stays human/programmatic,
+# except MiniCheck C2D/D2C (user decision 2026-10-19): GPT-4-built grounding data with labels fixed by its
+# construction. Teacher outputs on our own tasks (typed-decisions, SII-Decision teacher targets, yuri_v3) stay out.
+MODEL_ORIGIN_ALLOWED = {"tools-percall", "when2call-train", "apibank-train", "minicheck-synth"}
 
 
 def allowed_origin(row: dict, origins: set[str]) -> bool:
@@ -330,7 +354,10 @@ DOCUMENTS = {"newyorker-matching-train": _newyorker, "corr2cause-train": _premis
 NEAR_TEXT = {"when2call-train": lambda r: _values(r["state"], ("request", "question", "user_message")),
              "mathqa-train": lambda r: _values(r["state"]), "aqua-rat-train": lambda r: _values(r["state"]),
              # an empty-state WinoGrande row shows the two filled-in sentences as its options
-             "winogrande-train": lambda r: _values(r["state"]) or " ".join(sorted(r["question"]["criteria"])[:1])}
+             "winogrande-train": lambda r: _values(r["state"]) or " ".join(sorted(r["question"]["criteria"])[:1]),
+             # NVD descriptions repeat vendor templates with other versions or report numbers (review 2026-10-19:
+             # 74 of 300 dev rows had 80%+ of their trigrams in a train description, 5 were identical but digits)
+             "nvd-cve": lambda r: _values(r["state"])}
 NEAR_SAME = .6
 
 

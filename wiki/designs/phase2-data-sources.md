@@ -11,6 +11,10 @@
 - 4차(TAT-QA 예/아니오, 예시 기반 분류, WNED, VitaminC, PAWS, SciTail, 금융 트윗).
 - 5차(2026-10-19, `phase5.py`): TabFact, CondaQA, ROPES, FOLIO, ABCD, HelpSteer2, FiNER-139, Zeshel, Few-NERD, DROP, Taskmaster-1.
 - 6차(2026-10-19, `phase6_{pref,reason,domain,lang}.py`): 선호·판단 9, 읽기·추론 11, 전문 분야·대화 9, 개체·언어 8. 상세는 [작업 기록](../project/v3-log.md).
+- 7차(2026-10-19, `poetry_pairs.py`): 시 최소쌍(BPoMP와 같은 역량, 퍼블릭 도메인 시로 직접 생성). 계획 A7을 구현했다. 상세는 [작업 기록](../project/v3-log.md)의 "7차: 시 최소쌍".
+- 7차 예외(2026-10-19, `minicheck.py`): MiniCheck C2D/D2C. 모델이 만든 정답이지만 사용자 결정으로 허용했다. 상세는 [작업 기록](../project/v3-log.md)의 "MiniCheck 예외 허용".
+- 7차 입장·상식(2026-10-19, `phase7.py`): EZ-STANCE, P-Stance, args.me(정리된 토론 사이트 3곳), CommonsenseQA 2.0. 상세는 [작업 기록](../project/v3-log.md)의 "7차: 입장과 CommonsenseQA 2.0".
+- 7차 새 분야(2026-10-19, `phase7_domains.py`): Aegis 2.0 프롬프트 안전성, Scruples 커뮤니티 윤리 판단, NVD CVE 취약점 분류. 상세는 [작업 기록](../project/v3-log.md)의 "7차: 새 분야".
 
 "정답 출처"는 `mix.SOURCES`의 label_origin이고, "v3-gold6 사용"은 다음 학습 셋의 행 수다(g3는 v3-gold2, g4b는 v3-gold3을 썼다; 각 manifest 참조). 2026-10-19에 4차 출처 4개(tatqa-yesno, icl-classify, vitaminc-train, fintweet-train)를 감사 결과대로 다시 만들었다([작업 기록](../project/v3-log.md)의 "v3-gold4 데이터 감사 반영"). 이전 파일은 `data/phase2/archive/gold4-build/`에 있다.
 HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 개 파일과 manifest는 `data/phase2/archive/`에 있다.
@@ -19,11 +23,13 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 |---|---:|---:|---|---|---:|---|
 | abcd-train | 37,214 | 0 | strict | human | 9,657 | MIT |
 | acos-train | 22,644 | 0 | strict | human | 7,513 | no licence file (research release; SemEval-2016 restaurant r |
+| aegis-prompts | 27,256 | 40 | strict | human | — (v3-gold7부터) | CC-BY-4.0 (nvidia Aegis 2.0; prompt labels only, LLM-jury response labels not used) |
 | apibank-train | 8,463 | 183 | strict | model (도구 예외 허용) | 4,541 | MIT |
 | aqua-rat-train | 14,141 | 859 | strict | human | 5,897 | Apache-2.0 |
 | arc-train | 3,341 | 29 | strict | human | 2,770 | CC-BY-SA-4.0 |
 | arena55k-train | 35,048 | 3,690 | strict | human | 9,369 | Apache-2.0 |
 | argq-train | 20,000 | 0 | strict | human | 7,108 | CC-BY-SA-3.0 (card licensing text; YAML says cc-by-3.0) |
+| argsme-train | 9,023 | 4 | strict | human | — (v3-gold7부터) | CC-BY-4.0 (webis/args_me; idebate·debatewise·debatepedia만) |
 | banking77-train | 9,961 | 17 | strict | human | 9,661 | CC-BY-4.0 |
 | boolq-train | 9,000 | 427 | strict | human | 4,684 | CC-BY-SA-3.0 |
 | chid-train | 19,986 | 14 | strict | human | 7,052 | Apache-2.0 |
@@ -39,10 +45,12 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | corr2cause-train | 10,000 | 0 | strict | programmatic | 4,949 | MIT (GitHub causalNLP/corr2cause; no licence tag on the Hub  |
 | cosmosqa-train | 25,242 | 4 | strict | human | 7,934 | CC-BY-4.0 |
 | creak-train | 10,175 | 1 | strict | human | 4,994 | MIT (LICENSE.txt) |
+| csqa2-train | 9,789 | 0 | strict (+ 검증 과반 불일치·미검증 2,016문항 제외) | human | — (v3-gold7부터) | CC-BY-4.0 (github allenai/csqa2 LICENSE) |
 | cuad-train | 4,804 | 0 | documents | human | 4,497 | CC-BY-4.0 (card YAML and Licensing Information; contracts fr |
 | drop-train | 71,161 | 198 | strict | human | 13,379 | CC-BY-SA-4.0 |
 | ecare-train | 17,013 | 0 | strict | human | 6,498 | MIT |
 | esci-train | 14,221 | 779 | strict | human | 5,928 | Apache-2.0 |
+| ezstance-train | 39,253 | 44 | strict | human | — (v3-gold7부터) | no licence file (Google Drive release; tweets): review before release |
 | faithdial-train | 12,777 | 167 | strict | human | 5,602 | MIT |
 | fewnerd-train | 39,982 | 18 | strict | human | 10,012 | CC-BY-SA-4.0 |
 | fewrel-train | 31,598 | 402 | strict | human | 8,892 | MIT |
@@ -75,6 +83,7 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | mathqa-train | 14,236 | 764 | strict | human | 5,901 | Apache-2.0 |
 | maud-train | 30,991 | 1,179 | strict | human | 8,789 | CC-BY-4.0 |
 | medmcqa-train | 9,999 | 1 | strict | human | 4,950 | Apache-2.0 |
+| minicheck-synth | 14,366 | 25 | strict | model (2026-10-19 예외 허용) | — (v3-gold7부터) | MIT (lytang/C2D-and-D2C-MiniCheck; GPT-4 generated) |
 | mmlu-aux-train | 19,984 | 15 | strict | human | 7,040 | MIT |
 | mnli-train | 35,871 | 129 | strict | human | 9,480 | CC-BY-3.0 (card); genre sources per the MultiNLI paper |
 | moralstories-train | 12,000 | 0 | strict | human | 5,436 | MIT |
@@ -84,10 +93,13 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | musique-train | 12,000 | 0 | strict | human | 7,936 | CC-BY-4.0 |
 | newyorker-matching-train | 9,753 | 558 | strict | human | 4,878 | CC-BY-4.0 |
 | nli4ct-train | 1,867 | 33 | strict | human | 1,680 | no licence file (SemEval-2024 Task 2 data; CTRs from Clinica |
+| nvd-cve | 39,966 | 14 | strict | human | — (v3-gold7부터) | NVD: no licensing restrictions (NIST); CVE text: MITRE CVE terms; CWE names: MITRE |
 | oasst2-train | 24,912 | 1,858 | strict | human | 7,885 | Apache-2.0 |
 | openbookqa-train | 4,945 | 7 | strict | human | 3,425 | unknown on the Hub (AllenAI release Apache-2.0; unverified) |
 | paws-train | 19,991 | 7 | strict | human | 7,053 | free for any purpose (google-research-datasets/paws LICENSE) |
 | phishing | 9,579 | 421 | strict | human (LLMGen: model, 제외) | 4,137 | {"kudzaiprichard/aura-phishing-email-corpus": "CC-BY-4.0 (Ze |
+| poem-pairs-gen | 16,997 | 0 | strict (+ BPoMP 원본과 줄 단위 대조로 시 9편 제외) | programmatic | — (v3-gold7부터) | public-domain poems (Project Gutenberg); Gutenberg Poetry Corpus CC0; CMUdict BSD-style; WordNet 3.0 licence |
+| pstance-train | 19,412 | 0 | strict | human | — (v3-gold7부터) | repository MIT; data on Google Drive (tweets, Twitter terms) |
 | pubhealth-train | 9,803 | 1 | strict | human | 4,899 | MIT |
 | pubmedqa-labeled | 995 | 5 | strict | human | 895 | MIT |
 | quac-train | 29,013 | 987 | strict | human | 8,516 | CC-BY-SA-4.0 |
@@ -98,6 +110,7 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | ropes-train | 10,245 | 137 | strict | human | 4,993 | CC-BY-4.0 |
 | sciq-train | 9,992 | 8 | strict | ? | — | CC-BY-NC-3.0 (non-commercial) |
 | scitail-train | 23,034 | 43 | strict | human | 7,577 | Apache-2.0 (github allenai/scitail LICENSE) |
+| scruples-train | 37,597 | 37 | strict (+ 갈린 투표 14,190개 제외) | human (최다 득표 학습) | — (v3-gold7부터) | Apache-2.0 (allenai/scruples); anecdotes are Reddit posts |
 | semcor-train | 29,977 | 5 | strict | human | 8,655 | Princeton WordNet licence (SemCor 1.6/WordNet; SemCor 3.0 ma |
 | sentfin-train | 14,398 | 0 | strict | human | 5,967 | MIT (repository LICENSE) |
 | sharc-train | 21,821 | 28 | strict | human | 7,370 | CC-BY-SA-3.0 |
@@ -126,7 +139,7 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | wtq-train | 11,889 | 369 | strict; table text by shingles only | human | 5,411 | CC-BY-SA-4.0 (repository LICENSE) |
 | zeshel-train | 48,896 | 369 | strict | human | 11,080 | CC-BY-SA (Fandom wikis) |
 
-처음 만든 37개 출처의 합계는 410,337문항이었고, 60개 출처 시점(2026-10-19 감사 반영)의 합계는 864,090문항이었다. 5·6차 출처를 더한 현재 108개 출처의 합계는 1,944,489문항이다(v3-gold6이 그중 104개를 쓴다. MT-Bench 사람 판정·ConditionalQA는 `mix.EXCLUDED`). SciQ는 비상업(CC-BY-NC) 라이선스라, 합성 장문 `long-context`는 실제 장문 출처로 대체해서 혼합에서 뺀다. 모델이 정답을 만든 출처(ToolACE·Glaive의 tools-percall, When2Call, API-Bank 학습셋)는 도구 영역에 한해 허용하고, phishing의 GPT 생성 이메일(LLMGen)은 뺀다(2026-10-17 결정, [작업 기록](../project/v3-log.md)). 라이선스 파일이 없거나 확인되지 않은 출처(ACOS, VAST, NLI4CT, Humicroedit, OpenBookQA)는 비교 실험에만 쓰고, 공개 모델에 쓸지는 제출 전에 검토한다. xLAM은 gated라 ToolACE와 Glaive로 대체했다.
+처음 만든 37개 출처의 합계는 410,337문항이었고, 60개 출처 시점(2026-10-19 감사 반영)의 합계는 864,090문항이었다. 5·6차 출처를 더하면 108개 출처, 1,944,489문항이고(v3-gold6이 그중 104개를 쓴다), 7차 출처 9개(시 최소쌍, MiniCheck, 입장 3개, CSQA2, Aegis, Scruples, NVD)까지 더한 현재 117개 출처의 합계는 2,158,148문항이다(MT-Bench 사람 판정·ConditionalQA는 `mix.EXCLUDED`). SciQ는 비상업(CC-BY-NC) 라이선스라, 합성 장문 `long-context`는 실제 장문 출처로 대체해서 혼합에서 뺀다. 모델이 정답을 만든 출처(ToolACE·Glaive의 tools-percall, When2Call, API-Bank 학습셋)는 도구 영역에 한해 허용하고(2026-10-19부터 MiniCheck C2D/D2C도 예외), phishing의 GPT 생성 이메일(LLMGen)은 뺀다(2026-10-17 결정, [작업 기록](../project/v3-log.md)). 라이선스 파일이 없거나 확인되지 않은 출처(ACOS, VAST, NLI4CT, Humicroedit, OpenBookQA, EZ-STANCE)는 비교 실험에만 쓰고, 공개 모델에 쓸지는 제출 전에 검토한다. xLAM은 gated라 ToolACE와 Glaive로 대체했다.
 
 주요 함정(측정됨): ToolRet 시험 질의가 xLAM·ToolACE 등에서 왔다. SATA-Bench 일부가 MultiRC train에서 나왔다. MASSIVE에 JEVal nlu-eval-68 발화가 들어 있다. New Yorker의 다른 fold에 시험 콘테스트가 있다. GSM8K train 문제가 index의 RouterBench·BRIGHT 행 안에 들어 있다. FinEntity, BFCL, BRIGHT, HLE, GPQA, MuSR, SATA, CRUXEval, POP909, PhishNChips core, BPoMP는 전부 제외한다.
 
