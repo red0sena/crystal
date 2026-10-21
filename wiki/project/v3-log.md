@@ -1087,7 +1087,10 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
 
 **Decision Index 0.4:** 키트 문서가 2026-10-20에 0.4로 바뀌었다. Full = 비공개 same 60% + new 40%이고, 공개 점수는 빠진다([목표와 규칙](jev-index.md)). 0.6·Δsame + 0.4·Δnew로 다시 줄 세워도 wise80이 dev에서 1위다(+0.40). 다만 공개 점수 우위는 의미를 잃었다.
 
-**crystal-0.8b:** wise80을 `crystal-0.8b`라는 이름으로 비공개 Hub 저장소 `Kyunghwan-kim/crystal-0.8b`에 올렸다(사용자 요청, 다른 PC에서 쓰려는 용도).
+**crystal-0.8b:** wise80을 `crystal-0.8b`라는 이름으로 Hub 저장소 `Kyunghwan-kim/crystal-0.8b`에 올렸다. 처음에는 비공개였고(다른 PC에서 쓰려는 용도), 같은 날 사용자 결정으로 공개했다.
+- **라이선스:** 가중치는 CC BY-NC 4.0이다. SCOTUS SCDB 라벨의 비상업 조건을 지키는 선택이다. 실행 코드와 기반 모델은 Apache-2.0이다.
+- **학습 데이터 목록:** `TRAINING_DATA.md`에 113개 출처의 원본, 기록된 라이선스, 정답 출처, g6·g7 행 수를 적었다. 공개 벤치마크의 train split을 쓴 18개는 따로 표시했다.
+- **공개 전 점검:** Hub 파일 23개에 로컬 경로·이메일·토큰이 없음을 확인했다.
 - 이 저장소 코드 없이 도는 실행 코드 `crystal/`를 함께 넣었다: Python API `Crystal.system_one`, CLI `python -m crystal`, 키트 엔진 `crystal.engine:CrystalEngine`.
 - 모델 카드는 d3-lite 카드 구성을 따랐다. 코드와 카드는 `release/crystal-0.8b/`에 있다.
 - 키트 엔진은 V3Engine과 1,468개 질문에서 답과 확률이 같았고, Hub에서 새로 받은 폴더에서도 예제가 돌았다.
@@ -1119,7 +1122,7 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
   - `wise85-g6-g7e2`(원본 15%): 0.572 / 0.419 / 0.485, 44.82, 0.544. +1.11.
   - 처음으로 JEVal 전체, 공개, fresh가 모두 d3-lite(0.482, 39.65, 0.509)를 넘었다. JEVal same만 0.003~0.010 낮다. 22개 중 1위라 점수는 낙관적이다.
   - 공개 suite 전체: crystal 42.79, d3-lite 공식 36.93(다섯 분야 모두 앞섬).
-  - **JEVal restricted(선택에 쓰지 않은 절반)에서는 wise80이 d3-lite보다 조금 낮다:** 58.5 / 40.2 / 48.1 대 58.9 / 41.6 / 49.1(위 "d3-lite와 직접 비교"). wise80은 `crystal-0.8b`로 비공개 Hub에 올렸다.
+  - **JEVal restricted(선택에 쓰지 않은 절반)에서는 wise80이 d3-lite보다 조금 낮다:** 58.5 / 40.2 / 48.1 대 58.9 / 41.6 / 49.1(위 "d3-lite와 직접 비교"). wise80은 `crystal-0.8b`로 Hub에 공개했다(CC BY-NC 4.0).
 - **준비됨**:
   - `data/mix/v3-gold5`(v3-gold4의 감사 반영판, 449,979행, dev 17,904행, 58개 출처). 가중치 2배: HellaSwag·WinoGrande·BANKING77·GoEmotions·TAT-QA 예/아니오·예시 기반 분류·WNED. v3-gold4는 쓰지 않는다.
   - `data/mix/v3-gold6`(5·6차 포함 104개 출처, 699,960행). g6 완료: JEVal 전체 0.465(d3-lite 0.482), 공개 40.28, fresh 0.474. 결과는 위 "g6 결과".

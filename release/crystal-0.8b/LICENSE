@@ -1,0 +1,11 @@
+crystal-0.8b model weights
+Licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+Full legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+The runtime code in crystal/ is licensed under the Apache License, Version 2.0
+(https://www.apache.org/licenses/LICENSE-2.0); see NOTICE for the code it adapts.
+
+The base model, Qwen/Qwen3.5-0.8B, is licensed under the Apache License, Version 2.0.
+The training datasets remain under their own licences; see TRAINING_DATA.md.
+
+THE MODEL AND CODE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

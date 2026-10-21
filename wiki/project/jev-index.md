@@ -68,7 +68,7 @@ Full ≈ 0.2·public + 0.506·same + 0.404·new − 3.04
   2. `apolinario/decision-index`에 PR을 보내 `submissions/README.md`(없으면 새로 만듦)에 한 줄을 추가한다. 모델명, Hub 모델 저장소, 결과 데이터셋 링크, 엔진·커밋, 하드웨어, 추론 설정을 적는다. d3-lite의 `RUN_NOTES.md`(`runs/board-d3-lite/`)가 좋은 예다.
   3. 관리자가 비공개 두 파트를 우리 방식 그대로 돌린다. 그러려면 가중치(공개 또는 관리자에게 접근 허용), 실행 코드, 설정이 필요하다. 공개 답안과의 일치도 비교한다. 지연 시간은 RTX PRO 6000 한 장에서 잰다.
 - 우리 상태(2026-10-21):
-  - 우리 GitHub과 HF 저장소는 모두 비공개다. 제출 후보 `crystal-0.8b`는 독립 실행 코드와 함께 비공개 Hub 저장소에 있다(`release/crystal-0.8b/`).
+  - 우리 GitHub과 HF 작업 저장소(kkh-decision-data·model)는 비공개다. 제출 후보 `crystal-0.8b`는 독립 실행 코드와 함께 Hub에 **공개**했다(2026-10-21, CC BY-NC 4.0, 학습 데이터 목록 `TRAINING_DATA.md` 포함, `release/crystal-0.8b/`).
   - 로컬에서 다시 만든 suite는 연구실 원본과 `selected-rows` 해시가 다르다. RouterBench 6개와 SGD 10개 요청이 다르고, 둘 다 지수 밖이다. 그래서 로컬 실행에는 `--no-verify`가 필요하고, 실제 제출에는 원본 파일이 필요하다.
   - 공개 전체 실행은 A6000에서 2시간 30분 걸렸다(14만 요청, 질문 32만 개). crystal-0.8b는 42.79(d3-lite 공식 36.93)이고, 지연 시간은 중앙값 32ms, 평균 64ms, p95 171ms다.
   - SCOTUS SCDB 라벨(CC-BY-NC-3.0 upstream)이 학습에 들어 있어, 가중치를 공개하기 전에 판단이 필요하다.
