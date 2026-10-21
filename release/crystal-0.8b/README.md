@@ -25,7 +25,7 @@ It reads the same prompt as `vllm-sr/d3-lite`, so the two are compared on identi
 | **Parameters** | 0.85B (Qwen3.5-0.8B, including its 0.10B vision encoder, which this runtime does not use) |
 | **Inputs** | Text or JSON state |
 | **Decision types** | Choice (2–255 options) · Yes / No |
-| **Speed** | Median 32 ms per request on one NVIDIA RTX A6000 (public-suite sample, one request at a time) |
+| **Speed** | Median 32 ms, mean 64 ms, p95 171 ms per request over the full public suite on one NVIDIA RTX A6000 (one request at a time) |
 | **Status** | Private. The training data mixes licences, including non-commercial label sets (see [Licence and data](#licence-and-data)) |
 
 ## Results
@@ -38,11 +38,12 @@ All numbers are our own measurements. d3-lite was run on the same questions, wit
 | JEVal dev half, 2,971 questions, same / new / all | 57.5 / 42.4 / 48.9 | 57.8 / 40.9 / 48.2 |
 | fresh-v1, 1,335 questions from 16 sources (15 unseen by our training) | 54.1 (without GoEmotions 53.3) | 50.9 (49.8) |
 | Decision Index 0.3 public suite, 2,149-request sample, kit scorer | 44.95 | 39.65 |
-| Decision Index 0.3 public suite, full | running (2026-10-21) | 36.93 (official run) |
+| Decision Index 0.3 public suite, full (140,620 requests) | **42.79** | 36.93 (official run) |
 
 - JEVal (carlosxiang/JEVal) stands in for the board's private tests. Its "same" sources match the public benchmarks' skills and its "new" sources are other domains.
 - crystal-0.8b was chosen among 22 weight merges on the JEVal dev half and the public sample, so those two rows favour it. The JEVal restricted half and fresh-v1 played no part in the choice.
 - **On the held-back restricted half, crystal-0.8b is slightly behind d3-lite** (−0.4 same, −1.4 new; it wins 24 of 51 sources and loses 19). Its lead on the dev half was mostly selection. Read the two models as roughly level on the private-test proxies. crystal-0.8b is ahead on fresh-v1 and the public suite, and it is better calibrated.
+- **Full public 0.3 suite (140,620 requests, all answered): crystal-0.8b 42.79 against d3-lite's official 36.93.** It is ahead in all five areas (Language +10.5, Arts +11.1, Tools +8.6, Retrieval +1.7, Knowledge +0.5 skill points) and on 24 of the 37 index benchmarks. The biggest gains are RAGTruth, ContractNLI, the Habermas Machine, ACOS, API-Bank and BPoMP. The biggest losses are VAST (stance, −19), iSarcasmEval (−12), PhishNChips, CLINC150, GSM8K and CLadder. It ran on our rebuilt copy of the suite, which differs from the frozen file in 16 RouterBench/SGD requests outside the index.
 - On Decision Index 0.4 (October 2026) the Full score is 60% private same-skills and 40% private new-domains. The public suite is still run, but it no longer counts.
 
 ## Quickstart

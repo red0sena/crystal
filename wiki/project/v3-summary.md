@@ -170,7 +170,7 @@ Full 추정은 d3-lite 대비 0.2·Δ공개 + 0.506·ΔJEVal same + 0.404·ΔJEV
   - JEVal same만 d3-lite보다 0.003~0.010 낮고 나머지는 모두 앞선다. 22개 후보 중 1위라 낙관적이고, 후보 사이 차이는 잡음 범위다.
   - **JEVal restricted(4,926문항, 선택에 쓰지 않음)에서는 d3-lite가 조금 앞선다:** wise80 58.5 / 40.2 / 48.1, d3-lite 58.9 / 41.6 / 49.1. 0.4 기준 추정 −0.9로 동률 경계다. dev 우위는 선택 효과였다.
   - wise80은 `crystal-0.8b`로 비공개 Hub(`Kyunghwan-kim/crystal-0.8b`)에 독립 실행 코드와 함께 올렸다(`release/crystal-0.8b/`).
-- **Decision Index 0.4(2026-10-20):** Full = 비공개 same 60% + new 40%이고, 공개 점수는 빠졌다. 공개 전체 실행은 여전히 필수다([목표와 규칙](jev-index.md)). 공개 suite 전체 비교(crystal 대 d3-lite)는 진행 중이다.
+- **Decision Index 0.4(2026-10-20):** Full = 비공개 same 60% + new 40%이고, 공개 점수는 빠졌다. 공개 전체 실행은 여전히 필수다([목표와 규칙](jev-index.md)). 공개 suite 전체(14만 요청)는 crystal 42.79, d3-lite 공식 36.93이다. 다섯 분야 모두 앞서고, VAST(−19)와 iSarcasmEval(−12)에서 크게 진다. 다만 0.4 Full에는 들어가지 않는다.
 - **준비됨:**
   - v3-gold5 (4차 데이터 포함 45만 행, v3-gold4 감사 반영. [작업 기록](v3-log.md)의 "v3-gold4 데이터 감사 반영").
   - v3-gold6 (5·6차 데이터 포함 70만 행, 104개 출처)로 학습한 **g6**: JEVal same 0.556 / new 0.397 / 전체 0.465(당시 단독 모델 최고, d3-lite 0.578/0.409/0.482), 공개 40.28(d3-lite 39.65), fresh 0.474(d3-lite 0.509). [작업 기록](v3-log.md)의 "g6 결과".
