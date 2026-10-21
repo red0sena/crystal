@@ -6,7 +6,7 @@
 
 ## 원칙
 
-- 점수의 80%가 비공개다. checkpoint와 변형은 **대리셋(JEVal)과 d3-lite 맞대결**로 고른다. 공개 점수로 고르지 않는다.
+- 점수의 80%가 비공개다. 학습 중 best는 정답 dev로 고른다. 학습 뒤 체크포인트와 섞기 후보는 **JEVal dev와 공개 샘플을 Full 가중치로 합친 d3-lite 대비 추정**(0.2·Δ공개 + 0.506·Δsame + 0.404·Δnew)으로 고른다(g7 섞기부터 `runs/v3/queue/judge_merges.py`). 그래서 JEVal dev와 공개 샘플은 선택에 쓴 평가이고, 선택에 쓰지 않은 확인은 fresh-v1과 JEVal restricted(아직 미사용)뿐이다.
 - 공개 벤치마크 과적합(OneJev 0.8B: public 42.7, new 16.8)은 피한다. 같은 역량의 **다른 데이터**와 넓은 도메인 데이터로 일반화를 지킨다.
 - 모든 학습 데이터는 [오염 필터](../project/v3-log.md)를 통과해야 한다.
 

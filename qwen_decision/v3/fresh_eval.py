@@ -1,11 +1,13 @@
-"""Fresh held-out set (2026-10-18): datasets in none of our training sources, not in JEVal, not in the public index.
+"""Fresh held-out set (2026-10-18): datasets in none of our training sources, not in JEVal, not in the public index,
+except GoEmotions (see below), so report the mean without it as well.
 
   python -m qwen_decision.v3.fresh_eval build            # writes data/fresh/fresh-v1.jsonl (+ .manifest.json)
   python -m qwen_decision.v3.fresh_eval score --model <checkpoint dir> [--attention noncausal] --out runs/fresh/<name>.json
 
 Sources (validation/test splits, at most 100 rows each, seeded sample):
 - PIQA, QASC, QuaRTz, Balanced COPA, SuperGLUE CB and WiC.
-- GoEmotions validation, single-label rows only. JEVal uses its test split.
+- GoEmotions validation, single-label rows only. JEVal uses its test split, and training uses its train split
+  from v3-gold3 (g4b) on.
 - ETHICS commonsense test, short items.
 - SWAG validation.
 - BigBench tasks outside BBH: epistemic_reasoning, timedial, presuppositions_as_nli, analogical_similarity,

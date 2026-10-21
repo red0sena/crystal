@@ -98,6 +98,7 @@
   - 실행 스크립트: `runs/v3/queue/`.
 - [조사 범위와 인용 규칙](resources/research-notes.md): 완독·재현 여부와 검색 오매칭 기록.
 - [v1 실험 보고서](../docs/experiment_report_ko.md), [v2 실험 보고서](../docs/experiment_report_v2_ko.md).
+- [v3 재현 안내](../docs/reproduce_v3_ko.md): v3 환경(`.venv-di`, `requirements-v3.lock`), HF 복구와 섞기 입력 링크, `Scorer` 추론, JEVal·fresh·공개 샘플 평가, 섞기·학습 명령.
 - [재현 안내](../docs/reproduce_ko.md): v1/v2 재현 문서다. 당시 모델·원시 데이터·가상환경은 요청에 따라 삭제됐다. v3 환경(`.venv-di`, `models/`)은 따로 있다.
 - [기계가 읽을 수 있는 출처 색인](sources.json).
 

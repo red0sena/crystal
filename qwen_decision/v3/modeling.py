@@ -413,7 +413,18 @@ def save(model, tokenizer, out: Path, config: dict) -> None:
     (out / CONFIG_NAME).write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n")
 
 
+D3_ATTENTION = {"noncausal_full_attention": "noncausal", "causal": "causal"}  # d3 decision_config.json attention_mode
+
+
 def read_config(path: Path) -> dict:
+    """Our v3_config.json; for a d3 checkpoint without one (d3-lite, d3-flash), the attention mode its own
+    decision_config.json declares, so loading it by path alone matches the d3 runtime (2026-10-21 audit)."""
     file = Path(path) / CONFIG_NAME
     config = json.loads(file.read_text()) if file.exists() else {}
+    d3 = Path(path) / "decision_config.json"
+    if not file.exists() and d3.exists():
+        mode = json.loads(d3.read_text()).get("attention_mode")
+        if mode not in D3_ATTENTION:
+            raise ValueError(f"{d3}: unknown attention_mode {mode!r}")
+        config["attention"] = D3_ATTENTION[mode]
     return {"attention": "causal", "layout": "d3", "deltanet": "causal", **config}

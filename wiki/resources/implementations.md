@@ -18,13 +18,13 @@
 
 | 구현 | 확인한 핵심 | 원본 |
 |---|---|---|
-| vLLM-SR d3-lite (0.8B) | Qwen3.5-0.8B full FT. tied LM head를 255코드로 제한한 readout(별도 readout 행이 원본 embedding과 cosine 0.99995). full-attention 6층 양방향, DeltaNet causal. 질문당 forward 1회, T=1, 순열 평균 꺼짐. 학습 recipe 미공개 | [model](https://huggingface.co/vllm-sr/d3-lite), [보드 실행 결과](https://huggingface.co/datasets/vllm-sr/d3-lite-decision-index), [design.md](https://github.com/vllm-project/semantic-router/blob/main/src/model-runtime/docs/design.md) |
+| vLLM-SR d3-lite (0.8B) | Qwen3.5-0.8B 미세조정(full FT인지 LoRA 병합인지는 가중치로 구분되지 않음). 255코드 readout은 별도 FP32 행렬(`readout.safetensors`, 255×1024)이다. 원본 LM head 코드 행과 코사인 0.99994·상대 L2 1.1%이고, d3 자신의 입력 임베딩 행과는 1.8% 달라 tied가 아니다. full-attention 6층 양방향, DeltaNet causal. 질문당 forward 1회, T=1, 순열 평균 꺼짐. 학습 recipe 미공개 | [model](https://huggingface.co/vllm-sr/d3-lite), [보드 실행 결과](https://huggingface.co/datasets/vllm-sr/d3-lite-decision-index), [design.md](https://github.com/vllm-project/semantic-router/blob/main/src/model-runtime/docs/design.md) |
 | vLLM-SR Decision 2.0 Eos (0.8B) | 옵션별 마지막 토큰 + 질의 토큰의 bilinear+MLP scalar head, causal. 학습 코드 일부 공개(valid-K CE + 선택적 Brier + replay KL). 3-seed soup | [model](https://huggingface.co/vllm-sr/Decision-2.0-Eos-0.8B) |
 | OneJev1.5-0.8B | LM head 슬롯 readout. 약 32만 문항(공개 데이터 train split 다수), soft-target CE + Brier, lr 5e-6. 옵션을 255개까지 패딩하는 증강 | [code](https://github.com/OmniJev/OneJev) |
 | Sieve-0.8B | 블록 1–16만 사용. state를 한 번 인코딩해 옵션별로 복제(option fork), scalar head로 순서 불변. 학습 문항의 17%가 index 데이터셋의 train/dev | [model](https://huggingface.co/sthanika-ai/Sieve-0.8B) |
 | autotrust JEV | Jev 1.13 분포로 증류(LoRA r16 + 24슬롯 head). 사용한 코퍼스가 `SargeDev/jev-distill-corpus-v3`(Apache-2.0, Jev soft label 49.8만 행) | [model](https://huggingface.co/autotrust/JEV), [corpus](https://huggingface.co/datasets/SargeDev/jev-distill-corpus-v3) |
 
-d3-lite 구조는 우리 엔진으로 재현해 확인했다. 결정 일치율은 JEVal 360문항에서 98.6%, 공개 suite 샘플에서 99.36%다([작업 기록](../project/v3-log.md)).
+d3-lite 구조는 우리 엔진으로 재현해 확인했다. JEVal 360문항 결정 일치율은 임베딩 행을 readout으로 쓴 처음 구현에서 355/360(98.6%), d3의 `readout.safetensors`를 읽도록 고친 뒤 360/360(100%)이다. 키트로 돌린 d3-lite와 보드 결과의 일치율은 공개 suite 샘플에서 99.36%다([작업 기록](../project/v3-log.md)). 우리 엔진은 d3 체크포인트의 `decision_config.json` attention 모드를 읽는다(2026-10-21 전에는 `attention=noncausal`을 따로 줘야 했다).
 
 ## d1-3B와 d1-omni를 구분
 

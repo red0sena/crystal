@@ -8,8 +8,9 @@ Qwen3.5-0.8B에 이미지·텍스트·질문·선택지를 넣고 생성 없이 
 
 **2026-10-11 정리:** 모델·원시 데이터·체크포인트·문항별 예측·가상환경은 삭제했다.
 코드, lock, 입력 예제, 실험 문서와 작은 설정·결과 기록은 보존했다.
-재설치·고정 원본 복구·학습·평가 절차는 [재현 안내](docs/reproduce_ko.md),
+재설치·고정 원본 복구·학습·평가 절차는 [재현 안내](docs/reproduce_ko.md)(v1/v2),
 파일별 역할은 [코드 색인](docs/code_index_ko.md)에 있다.
+현재 v3(정답 전용 학습, g6·g7, 가중치 섞기)의 환경·모델 복구·추론·평가·섞기·학습은 [v3 재현 안내](docs/reproduce_v3_ko.md)에 있다.
 
 ```bash
 python3 -m qwen_decision.audit.verify_reproduction
@@ -38,6 +39,7 @@ hf download Kyunghwan-kim/kkh-decision-model --include "runs/*" --local-dir .
 ```
 
 - `runs/v3/<run>/final`은 `best`를 가리키는 링크였다. 올린 것은 `best`뿐이므로 필요하면 `ln -s best final`로 다시 만든다.
+- 섞기 레시피(`merge.json`)가 입력으로 적은 `g6-gold6-pad0/last`와 `g7-gold7-ep3-pad0/epoch-2`는 각각 `best`와 SHA256이 같다. 레시피를 그대로 쓰려면 이 두 개만 `ln -s best last`, `ln -s best epoch-2`로 만든다. 다른 run의 `last`·`epoch-N`은 `best`와 다르다([v3 재현 안내](docs/reproduce_v3_ko.md)).
 - 외부에서 받은 것은 올리지 않았다. 고정 revision에서 다시 받는다.
   - `models/qwen3.5-0.8b`: `Qwen/Qwen3.5-0.8B` @ `2fc06364715b967f1860aea9cf38778875588b17`
   - `models/d3-lite`: `vllm-sr/d3-lite` @ `a8d25a91ef75552803f7009d25b7bd435991abd9`
@@ -157,7 +159,7 @@ DeltaNet 기준 PyTorch 구현을 사용했다. v2는 위의 FLA 0.5.2를 별도
 ## Python에서 모델을 한 번 로드해 재사용
 
 ```python
-from scorer import ChoiceScorer
+from qwen_decision.core.scorer import ChoiceScorer
 
 scorer = ChoiceScorer("/home/khkim/qwen-decision/model")
 result = scorer.score({

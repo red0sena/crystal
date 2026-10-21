@@ -7,13 +7,13 @@
 ## 1. 목표와 평가
 
 - **목표:** Qwen3.5-0.8B 판정 모델로 Jev Decision Index에서 `vllm-sr/d3-lite`(Full 32.33)를 넘는다. 지수는 대략 Full ≈ 0.2·공개 + 0.506·비공개 same + 0.404·비공개 new − 3.04이고, 80%가 비공개 평가다([규칙](jev-index.md)).
-- **평가 지표** (skill = (정확도 − 우연) / (1 − 우연), 출처별 평균):
+- **평가 지표** (출처마다 skill = max(0, (정확도 − 우연) / (1 − 우연))을 구한 뒤 출처 평균. 우연보다 낮은 출처는 0으로 센다):
 
 | 지표 | 무엇 | 대응 | 파일 |
 |---|---|---|---|
 | JEVal same / new / 전체 | JEVal 51개 출처를 문서 그룹 단위로 나눈 dev(출처당 60, 2,971문항). same 22개, new 29개 | 비공개 same / new | `runs/proxy/<모델>/summary.json` |
 | 공개 샘플 | 공개 0.3 suite에서 벤치마크당 40그룹(2,149행), 키트 채점기 | 공개 20% | `runs/board/score-<모델>/index.json` |
-| fresh-v1 | 학습·JEVal·index에 없는 16개 출처 1,335문항 | 독립 일반화 확인 | `runs/fresh/<모델>.json` |
+| fresh-v1 | 16개 출처 1,335문항. 15개는 학습·JEVal·index에 없다. GoEmotions는 validation을 쓰는데, test는 JEVal에 있고 train은 g4부터 학습한다("−GE"는 GoEmotions를 뺀 15개 평균) | 선택에 쓰지 않는 일반화 확인 | `runs/fresh/<모델>.json` |
 | 정답 dev | 학습 출처에서 그룹 단위로 떼어 둔 dev | 학습 중 모델 선택 | `runs/v3/<run>/eval.json` |
 | 순서 편향·망각 | 4순서 채점, 원본 대비 맞힘→틀림 / 틀림→맞힘 | 진단 | `runs/bias/`, `runs/proxy/forgetting-*.json` |
 
@@ -31,8 +31,8 @@
   - JEVal 과제와 같은 데이터셋은 학습에 쓰지 않는다(FinQA, FEVER, TREC, AIDA 등).
   - 학습에 쓴 lex-glue·CUAD는 JEVal에서 뺐다. GoEmotions는 g4부터 학습해서 따로 표시한다.
 - **fresh-v1 보호:** 학습 셋 빌드가 fresh-v1과 같은 상태 텍스트를 뺀다. 2026-10-19부터 정규화 60자 이상 문장이 하나라도 겹치는 행도 뺀다.
-- **같은 원문 묶음도 피한다(2026-10-19):** 데이터셋 이름이 달라도 평가셋과 원문을 공유하면 쓰지 않는다(MultiHiertt·TAT-DQA는 FinQA와 같은 연차보고서, Re-DocRED는 HotpotQA 문단, Social Chemistry·Scruples는 ETHICS와 같은 AITA 글).
-- **라이선스:** 비상업(NC) 데이터는 학습에 쓰지 않는다(SciQ, ANLI, Financial PhraseBank). "연구 목적으로만" 같은 사용 제한도 같이 본다(ConditionalQA 제외). 라이선스가 불명확한 출처는 표시하고 공개 전에 검토한다(WNED 원 배포처는 라이선스 없음, 사용자 판단 대기).
+- **같은 원문 묶음도 피한다(2026-10-19):** 데이터셋 이름이 달라도 평가셋과 원문을 공유하면 쓰지 않는다(MultiHiertt·TAT-DQA는 FinQA와 같은 연차보고서, Re-DocRED는 HotpotQA 문단, Social Chemistry도 같은 이유로 뺐다). Scruples도 처음엔 fresh-v1 ETHICS와 같은 AITA 글이라 뺐지만, fresh-v1은 ETHICS의 짧은 MTurk 문항만 써서 그 사유를 철회했고 g7은 Scruples를 학습한다([작업 기록](v3-log.md)의 "gold7 학습 전 검토 반영").
+- **라이선스:** 비상업(NC) 데이터셋은 학습에 쓰지 않는다(SciQ, ANLI, Financial PhraseBank를 뺐다). **미해결 예외:** LexGLUE SCOTUS 문항은 판결문이 퍼블릭 도메인이지만 쟁점 분야 라벨(SCDB)의 upstream 조건이 CC-BY-NC-3.0이다. 이 문항이 g6에 1,363행, g7에 2,684행 학습됐다. 공개 전 검토 대상이다. "연구 목적으로만" 같은 사용 제한도 같이 본다(ConditionalQA 제외). 라이선스가 불명확한 출처는 표시하고 공개 전에 검토한다(WNED 원 배포처는 라이선스 없음, 사용자 판단 대기).
 
 ## 3. 학습 데이터 버전
 
@@ -45,10 +45,11 @@
 | v3-gold4 | 449,978 | 17,903 | 58 | 4차 데이터(TAT-QA 예/아니오, 예시 기반 분류, WNED 개체 연결, VitaminC, PAWS, SciTail, 금융 트윗). 가중 2배: HellaSwag·WinoGrande·BANKING77·GoEmotions·TAT-QA 예/아니오·예시 기반 분류·WNED. **감사에서 분할 누수·변환 오류가 나와 폐기** | 없음 |
 | v3-gold5 | 449,979 | 17,904 | 58 | v3-gold4의 감사 반영: TAT-QA 증감 문항은 표로 검증한 것만, 예시 기반 분류는 텍스트마다 역할 하나, WNED·PAWS·SciTail 문서 단위 분할, VitaminC 대조 사례 단위, fresh-v1과 문장 단위 겹침 제외 | 아직 없음 |
 | v3-gold6 | 699,960 | 30,832 | 104 | v3-gold5 + 5차 11개(Zeshel, TabFact, DROP, FiNER, Few-NERD, ABCD 등) + 6차 35개(선호·판단, 읽기·추론, 전문 분야·대화, 개체·언어). 새 출처 행 46% | g6 |
-| v3-gold7 | 999,961 | 33,821 | 113 | v3-gold6 + 7차 9개(시 최소쌍, MiniCheck, 입장 3개, CSQA2, Aegis, Scruples, NVD) 87,968행. 100만 행으로 늘려 기존 출처 몫도 70만 → 91만 행. 학습 전 검토로 Aegis·입장 중복 ID, NVD 근접 중복·CVSS 노출, Scruples 갈린 투표를 고침 | g7 |
+| v3-gold7 | 999,961 | 33,821 | 113 | v3-gold6 + 7차 9개(시 최소쌍, MiniCheck, 입장 3개, CSQA2, Aegis, Scruples, NVD) 87,968행. 100만 행으로 늘려 기존 출처 몫도 70만 → 91만 행. 학습 전 검토로 Aegis·입장 중복 ID, NVD 근접 중복·CVSS 노출, Scruples 갈린 투표를 고침. dev는 111개 출처(argq·ukpconvarg는 dev 없음) | g7 |
 
 - **재현성:** 학습에 쓴 mix 파일은 각 run의 manifest sha256과 일치한다(g1 = archive, g3 = v3-gold2, g4b = v3-gold3). 2026-10-18 자정에 `mix.quotas`의 순서 비결정성을 고쳤다(그 전에는 다시 만들면 학습 행 표본이 달라졌다).
 - **dev 규칙(v3-gold3부터):** 출처당 min(300, 행의 10%). 행 비례 그룹 추출이고, 목표의 절반보다 큰 그룹은 제외한다.
+  - 이 규칙 때문에 argq-train(g7 학습 9,354행)과 ukpconvarg-train(7,072행)은 주제 하나가 수백 행이라 dev가 없다. 학습 중 best 선택(출처 평균)은 v3-gold6에서 102개, v3-gold7에서 111개 출처만 본다.
   - 짝지은 비교로 출처 정확도 약 5점, 매크로 약 0.7점 차이를 감지하는 크기다.
   - 상세: [작업 기록](v3-log.md)의 "dev 분할 규칙 개정".
 
@@ -98,7 +99,8 @@ Full 추정은 d3-lite 대비 0.2·Δ공개 + 0.506·ΔJEVal same + 0.404·ΔJEV
 - 원본을 섞을수록 new가 25%까지 오르고, same은 10%를 넘기면 내린다. 20~25%에서 JEVal 전체·공개·fresh가 처음으로 모두 d3-lite를 넘었다.
 - 원본을 섞고 나면 g3e2·g4b를 더하는 이득이 없다. 원소별 방법(TIES, SLERP, Model Stock)은 단순 가중 평균보다 낮았다.
 - 1위는 [Task Arithmetic](../papers/task-arithmetic.md)(원본 + 0.4·Δg6 + 0.4·Δg7e2)이다. 두 모델은 데이터가 겹쳐 변화량 충돌이 작다(코사인 중앙값 0.29). 그래서 다른 과제 병합용 방법(RegMean, Fisher, CART, CAT)은 미실행으로 두었다. AdaMerging식 층별 계수만 남은 후보다([작업 기록](v3-log.md)의 "병합 방법 검토").
-- 22개 중 1위라 점수는 낙관적이다. JEVal restricted로 아직 확인하지 않았다. 가중치는 상위 3개(원본 20·25·15%)만 남겼다.
+- 22개 중 1위라 점수는 낙관적이다. 순위는 JEVal dev와 공개 샘플로 매겼으므로 두 점수 모두 선택 편향이 있다. JEVal restricted로 아직 확인하지 않았다. 가중치는 상위 3개(원본 20·25·15%)만 남겼다.
+- fresh-v1에는 학습한 GoEmotions(validation)가 들어 있다. 이를 뺀 15개 평균(−GE)은 wise80 0.533, wise75 0.522, wise85 0.537, g6 0.459, g7e2 0.452, d3-lite 0.498로, 우위 방향은 같다.
 
 ### g6 시기 (2026-10-19, GoEmotions 포함 값)
 
@@ -168,7 +170,7 @@ Full 추정은 d3-lite 대비 0.2·Δ공개 + 0.506·ΔJEVal same + 0.404·ΔJEV
   - JEVal same만 d3-lite보다 0.003~0.010 낮고 나머지는 모두 앞선다. 22개 후보 중 1위라 낙관적이고, 후보 사이 차이는 잡음 범위다.
 - **준비됨:**
   - v3-gold5 (4차 데이터 포함 45만 행, v3-gold4 감사 반영. [작업 기록](v3-log.md)의 "v3-gold4 데이터 감사 반영").
-  - v3-gold6 (5·6차 데이터 포함 70만 행, 104개 출처)로 학습한 **g6**: JEVal same 0.556 / new 0.397 / 전체 0.465(우리 최고, d3-lite 0.578/0.409/0.482), 공개 40.28(d3-lite 39.65), fresh 0.474(d3-lite 0.509). [작업 기록](v3-log.md)의 "g6 결과".
+  - v3-gold6 (5·6차 데이터 포함 70만 행, 104개 출처)로 학습한 **g6**: JEVal same 0.556 / new 0.397 / 전체 0.465(당시 단독 모델 최고, d3-lite 0.578/0.409/0.482), 공개 40.28(d3-lite 39.65), fresh 0.474(d3-lite 0.509). [작업 기록](v3-log.md)의 "g6 결과".
   - g4a 실행 명령: v3-gold3에서 패딩만 켬.
   - 7차 시 최소쌍 `poem-pairs-gen`(16,997행, 퍼블릭 도메인 리머릭·4행 운문, BPoMP와 같은 14종 변형 + 삽입)과 이를 넣는 `v3-gold7` 정의. 공개 샘플에서 가장 크게 지는 BPoMP(0.13 대 0.60)를 겨냥한다. [작업 기록](v3-log.md)의 "7차: 시 최소쌍".
   - MiniCheck `minicheck-synth`(14,366행, 모델 정답 예외)도 `v3-gold7`에 들어간다. JEVal halueval-qa(−0.20)를 겨냥한다.
@@ -178,7 +180,7 @@ Full 추정은 d3-lite 대비 0.2·Δ공개 + 0.506·ΔJEVal same + 0.404·ΔJEV
   - 패딩 효과 확인(g4a 또는 v3-gold5 패딩 켬/끔).
   - WNED 사용 여부(원 배포처 라이선스 없음)와 동명이인 후보 개선.
   - JEVal restricted로 최종 후보 확인.
-  - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, SCOTUS SCDB CC-BY-NC, QuALITY).
+  - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, QuALITY). SCOTUS SCDB 라벨(CC-BY-NC-3.0 upstream)은 이미 g6·g7에 학습됐으므로, 공개 전에 쓸 수 있는지 판단하고 안 되면 빼고 다시 학습해야 한다.
   - HoVer 문서 단위 분할, habermas 라벨 확인.
   - 제출 전 공개 suite 전체 실행.
   - JEVal restricted로 `wise80`·`wise75`·`wise85`와 d3-lite를 확인하고 최종 후보를 고른다.

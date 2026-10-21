@@ -1016,7 +1016,8 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
 - **원소별로 다르게 다루는 방법은 졌다.** TIES와 SLERP는 −1.08, Model Stock은 −2.69였다. DARE는 단순 평균과 비슷했다(+0.20 대 +0.13). g6 시기와 같은 결론이다.
   - Model Stock은 원본 쪽으로 가장 세게 당긴 극단이다. new 0.446으로 역대 최고지만 same과 공개가 무너졌다.
 - **LiNeS(얕은 층만 원본 20%)는 same이 0.580으로 가장 높다.** 층별 비율과 원본 비율을 함께 바꾸는 후보(예: α 0.7, β 0.2)는 아직 돌리지 않았다.
-- **주의:** 22개 후보를 같은 JEVal dev로 비교해 1위를 골랐으므로 1위 점수는 낙관적이다. 후보 사이 차이(±0.5)는 잡음 범위다. 최종 후보는 JEVal restricted로 확인한다.
+- fresh-v1에는 학습한 GoEmotions(validation)가 들어 있다. 이를 뺀 15개 평균(−GE)은 wise80 0.533, wise75 0.522, wise85 0.537, g6 0.459, g7e2 0.452, d3-lite 0.498로, 우위 방향은 같다.
+- **주의:** 22개 후보를 같은 JEVal dev와 공개 샘플로 비교해 1위를 골랐으므로 1위 점수는 낙관적이다. 후보 사이 차이(±0.5)는 잡음 범위다. 최종 후보는 JEVal restricted로 확인한다.
 - 디스크에는 `wise80-g6-g7e2`, `wise75-g6-g7e2`, `wise85-g6-g7e2`의 가중치만 있다. 이 세 개와 g7 `best`(에폭 2), 평가 결과를 HF 모델 저장소에 올렸다(2026-10-21, 커밋 `a93659f`). 섞기 레시피의 `g6-gold6-pad0/last`와 `g7-gold7-ep3-pad0/epoch-2`는 각각 `best`와 바이트가 같다. 데이터 저장소는 바뀐 파일이 없었다.
 
 ### 병합 방법 검토 (2026-10-21)
@@ -1040,6 +1041,24 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
   - λ 합을 1보다 키우는 쪽은 0.8이 1.0보다 나았으니 반대 방향이다.
 - 여기서 섞기를 멈췄다(사용자 결정). 층별 격자와 JEVal restricted 확인은 남은 일이다.
 
+### 문서 검증 반영 (2026-10-21, `runs/analysis/documentation-audit-20261021.json`)
+
+별도 검증이 문서와 코드·기록을 대조해 12건을 지적했다. 모두 코드와 데이터로 다시 확인했고 사실이었다. 핵심 수치(JEVal 재집계, 학습 파일 해시 10개, 상위 섞기 3개의 텐서 표본)는 기록과 일치했다.
+- **후보 선택 원칙(F01):** "공개 점수로 고르지 않는다"는 학습 중 best에만 맞는다. 섞기 후보는 JEVal dev와 공개 샘플을 Full 가중치로 합쳐 골랐다(`judge_merges.py`). 전략·평가 문서에 실제 기준을 쓰고, 선택에 쓰지 않은 확인은 fresh-v1과 JEVal restricted뿐이라고 고쳤다.
+- **비상업 조건(F02):** LexGLUE SCOTUS 문항의 SCDB 쟁점 라벨이 upstream CC-BY-NC-3.0인데, g6에 1,363행, g7에 2,684행이 학습됐다. "NC 데이터 미사용" 단정을 "미해결 예외"로 고치고, 출처 표에도 적었다. 법적 판단을 새로 한 것은 아니다.
+- **fresh-v1 범위(F03):** GoEmotions는 validation을 쓰지만 train을 g4부터 학습한다. 16개 중 15개만 미학습이다. GoEmotions를 뺀 평균은 wise80 0.533, wise75 0.522, wise85 0.537, d3-lite 0.498로 우위 방향은 같다. 요약·평가 문서와 `fresh_eval.py` docstring을 고쳤다.
+- **README 예제(F04):** `from scorer import ChoiceScorer` → `from qwen_decision.core.scorer import ChoiceScorer`.
+- **v3 재현 안내(F05):** [`docs/reproduce_v3_ko.md`](../../docs/reproduce_v3_ko.md)를 새로 썼다. 내용은 `.venv-di`·`requirements-v3.lock`(transformers 5.17.0), HF 복구, `Scorer` 추론, 평가·섞기·학습 명령이다. 새 머신에서 끝까지 실행해 보지는 않았다.
+- **복구 안내(F06):** 섞기 레시피가 쓰는 g6 `last`와 g7 `epoch-2`는 `best`와 SHA256이 같다. 이 두 링크만 만들라고 README와 재현 안내에 적었다.
+- **d3-lite attention(F07):** `modeling.read_config`가 `v3_config.json`만 읽어, d3 체크포인트를 경로만으로 열면 causal로 잡혔다. d3의 `decision_config.json` `attention_mode`를 읽도록 고쳤다.
+  - 이제 경로만 주고 d3-lite를 fresh-v1로 채점하면 0.5085가 나온다. 기존 기록과 같고, noncausal을 명시했을 때와도 같다(causal이면 0.467).
+  - 기록된 d3-lite 기준점은 영향을 받지 않았다. JEVal과 공개 샘플은 d3 자체 엔진으로 쟀고, fresh는 noncausal로 쟀다.
+- **d3-lite 구현 카드(F08):** 일치율을 readout 수정 전 355/360(98.6%), 후 360/360으로 나눠 적었다. readout은 별도 FP32 행렬(임베딩과 1.8% 다름)이라고 바로잡았고, "full FT" 단정은 "구분 불가"로 고쳤다.
+- **요약 동기화(F09):** 철회한 Scruples 제외 사유를 정정했다. g6의 "우리 최고"는 "당시 단독 모델 최고"로 바꿨다.
+- **코드 색인(F10):** scorer_v2 기본 모델 경로를 `ROOT/training/text-decision-v2/model`로 고쳤다.
+- **dev 범위(F11):** argq·ukpconvarg는 dev가 없어 학습 중 best 선택이 v3-gold7 113개 출처 중 111개만 본다(v3-gold6은 104개 중 102개). 요약과 현재 구조 문서에 적었다.
+- **skill 정의(F12):** 출처마다 max(0, ·)를 적용한 뒤 평균한다고 적었다.
+
 ## 현재 상태 (2026-10-21 오전)
 
 - **최선 후보** (가중치 있음, 위 "g7 섞기". 요약은 [v3 요약](v3-summary.md)):
@@ -1060,7 +1079,7 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
   - 패딩 효과 확인(g4a 또는 v3-gold5 패딩 켬/끔).
   - WNED 사용 여부 결정(원 배포처 라이선스 없음)과 동명이인 후보 개선.
   - JEVal restricted 최종 확인.
-  - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, SCOTUS SCDB CC-BY-NC, QuALITY).
+  - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, QuALITY). SCOTUS SCDB 라벨(CC-BY-NC-3.0 upstream)은 이미 g6·g7에 학습됐으므로, 공개 전에 쓸 수 있는지 판단하고 안 되면 빼고 다시 학습해야 한다.
   - HoVer 문서 단위 분할, habermas 라벨 확인.
   - JEVal restricted로 `wise80`·`wise75`·`wise85`와 d3-lite를 확인하고 최종 후보를 고른다.
   - 층별 비율과 원본 비율을 함께 바꾼 섞기(LiNeS α 0.7~0.75, β 0.2 등).

@@ -76,7 +76,7 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | klue-train | 30,001 | 0 | strict | human | 8,662 | CC-BY-SA-4.0 |
 | kv-lookup | 4,000 | 0 | strict | programmatic | 3,700 | ours |
 | lexglue-short-train | 22,919 | 2,098 | strict | human | 7,559 | CC-BY-4.0 |
-| lexglue-train | 26,312 | 2,083 | documents | human | 11,860 | CC-BY-4.0 |
+| lexglue-train | 26,312 | 2,083 | documents | human | 11,860 | CC-BY-4.0. **SCOTUS 문항의 SCDB 쟁점 라벨은 upstream CC-BY-NC-3.0**(판결문은 퍼블릭 도메인). g6 1,363행·g7 2,684행 학습, 공개 전 검토 대기 |
 | logic-puzzles-gen | 4,999 | 0 | strict | programmatic | 3,445 | ours (generated) |
 | long-context | 15,999 | 1 | documents | ? | — | SQuAD 2.0 CC-BY-SA-4.0; CLINC150 CC-BY-3.0; BANKING77 CC-BY- |
 | massive-intents | 11,413 | 99 | strict | human | 5,298 | CC-BY-4.0 |

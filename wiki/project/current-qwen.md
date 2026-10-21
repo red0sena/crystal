@@ -36,7 +36,7 @@ v1/v2 시절의 모델·원시 데이터·체크포인트·가상환경은 사�
 - 언어 백본과 tied 임베딩/LM head를 full fine-tune하고 비전은 동결한다. BF16 계산, FP32 master 가중치·모멘트(`MasterAdamW`).
 - 패딩 없이 이어 붙인 배치(varlen attention, FLA scan·conv), 원소별 블록 `torch.compile`, 큰 microbatch만 체크포인팅.
 - 증강: 선택지 내용 섞기, 코드 배정 섞기(약 60%는 A, B, C 순서), 17~255지선다 무작위 패딩(`--pad-probability`, 기본 0.35. g4b는 0), noul을 2지선다로 표시. 선택지끼리 위치로 참조하는 문항은 순서를 고정한다.
-- 선택: 출처별 정답 dev 정확도 평균으로 best를 고른다. `--epochs`이면 에폭마다 저장하고, `--anchor`이면 원본 가중치 쪽으로 당긴다(분리형 L2-SP).
+- 선택: 출처별 정답 dev 정확도 평균으로 best를 고른다. dev가 없는 출처(argq, ukpconvarg: 주제 하나가 수백 행이라 dev 그룹 상한에 걸림)는 이 평균에 들어가지 않는다(v3-gold7: 113개 중 111개). `--epochs`이면 에폭마다 저장하고, `--anchor`이면 원본 가중치 쪽으로 당긴다(분리형 L2-SP).
 - 학습 셋은 `qwen_decision/v3/mix.py`가 만든다(원본 항목·문서·근사 중복 단위 dev 분할, 누수 시 빌드 실패).
 
 결과와 진행 상황은 [작업 기록](v3-log.md)에 있다. 같은 날 루트의 스크립트는 `qwen_decision/` 패키지(core, prepare, train, evaluate, audit, analysis, sources)로 옮겨졌다. 위 링크의 `scorer_v2.py`는 `qwen_decision/core/scorer_v2.py`에 있다.

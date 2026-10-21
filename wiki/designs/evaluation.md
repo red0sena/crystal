@@ -25,11 +25,11 @@
 | 순서 편향 | choice 문항을 4가지 표시 순서로 채점해 답 뒤집힘 비율, 위치별 재현율 표준편차(RStd), 첫 위치 선택률, 순서 평균 정확도를 따로 낸다 | `bias_eval.py` |
 | 문항별 망각 | 같은 조건(noncausal·d3 프롬프트) 원본 대비 맞힘→틀림과 틀림→맞힘을 소스별로 센다 | `forget_report.py` |
 | 가중치 비교 | 원본 대비 층별 상대 L2 이동량(d3-lite와 비교) | `weight_drift.py` |
-| fresh-v1 (10-18) | 학습·JEVal·index 어디에도 없는 16개 출처 1,335문항(PIQA, QASC, QuaRTz, COPA, CB, WiC, GoEmotions val, ETHICS, SWAG, BigBench 7개). 학습 셋 빌드가 같은 상태 텍스트를 뺀다. d3-lite에게도 새 데이터인지는 보장하지 못한다 | `fresh_eval.py` |
+| fresh-v1 (10-18) | 16개 출처 1,335문항(PIQA, QASC, QuaRTz, COPA, CB, WiC, GoEmotions val, ETHICS 짧은 문항, SWAG, BigBench 7개). 15개는 학습·JEVal·index 어디에도 없다. GoEmotions는 test가 JEVal에 있고 train을 g4부터 학습하므로, GoEmotions를 뺀 15개 평균(−GE)도 함께 본다. 학습 셋 빌드가 같은 상태 텍스트를 뺀다. d3-lite에게도 새 데이터인지는 보장하지 못한다 | `fresh_eval.py` |
 | 선택지 형식 민감도 (10-18) | 같은 문항을 자리표시 키(opt_k: 내용)와 내용 키로 채점해 비교(차이 0.4%p로 원인 아님) | `format_probe.py` |
 | dev 크기 (10-18) | 출처당 min(300, 10%), 행 비례 그룹 추출. 짝지은 비교로 출처 5점·매크로 0.7점 감지([검정력](../papers/power-analysis.md)) | `mix.hold_out` |
 
-checkpoint 선택은 공개 점수가 아니라 대리셋과 맞대결로 한다. 아래 원래 계획 중 순서 대칭성은 `bias_eval.py`로 일부 측정했다(코드와 위치를 교차한 분리 측정은 아직 아니다). 후보 수와 장문 축은 따로 측정하지 않았다.
+학습 중 best는 정답 dev로 고른다. 학습 뒤 체크포인트·섞기 후보는 JEVal dev와 공개 샘플을 Full 가중치로 합친 d3-lite 대비 추정으로 고른다(`runs/v3/queue/judge_merges.py`). 따라서 JEVal dev와 공개 샘플 점수는 선택 편향을 포함하고, fresh-v1과 JEVal restricted만 선택에 쓰지 않은 확인이다. 아래 원래 계획 중 순서 대칭성은 `bias_eval.py`로 일부 측정했다(코드와 위치를 교차한 분리 측정은 아직 아니다). 후보 수와 장문 축은 따로 측정하지 않았다.
 
 ## 비교할 축
 
