@@ -1,0 +1,22 @@
+{
+  "state": "The order arrived damaged yesterday. The customer has a receipt and asks for a replacement today.",
+  "questions": {
+    "route": {
+      "type": "choice",
+      "instructions": "Which team should handle this request?",
+      "criteria": {
+        "returns": "Refunds, replacements and damaged deliveries",
+        "billing": "Payments, invoices and charges",
+        "technical": "Product setup and faults"
+      }
+    },
+    "receipt": {
+      "type": "noul",
+      "instructions": "Does the customer have a receipt?"
+    },
+    "today": {
+      "type": "noul",
+      "instructions": "Does the customer want it handled today?"
+    }
+  }
+}

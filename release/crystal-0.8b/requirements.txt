@@ -1,0 +1,11 @@
+# Versions used to train and evaluate crystal-0.8b (Python 3.11, CUDA 12.8).
+# torch: install the CUDA build for your machine, e.g.
+#   pip install torch==2.10.0 --index-url https://download.pytorch.org/whl/cu128
+torch==2.10.0
+transformers==5.17.0
+safetensors>=0.8.0
+huggingface_hub>=1.0
+accelerate>=1.15
+# Optional, recommended on GPU: the fast Gated DeltaNet kernels used in training and evaluation.
+# Without it transformers uses its PyTorch reference (same model, BF16-level differences, slower).
+flash-linear-attention==0.5.2

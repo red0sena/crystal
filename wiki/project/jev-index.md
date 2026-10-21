@@ -6,7 +6,13 @@
 
 ## 점수 구조
 
-Full = 20% 공개 벤치마크 + 50% 비공개 same-skills + 30% 비공개 new-domains. 비공개 두 파트는 21개 stock 모델로 공개 척도에 맞춰진다(equating). `own.json`의 계수로 역산하면 다음과 같다. Jev 1.13의 공개 수치로 검산했다.
+**Decision Index 0.4 (키트 문서 2026-10-20, upstream `25c6ec7`):** Full = 60% 비공개 same-skills + 40% 비공개 new-domains다. new-domains는 과제 세트가 바뀌었다.
+- 공개 점수는 Full에 들어가지 않는다. 다만 공개 0.3 suite 전체 실행은 계속 필수다. 제출 검증에 쓰이고 보드에도 표시되며, 공개 점수가 비공개보다 지나치게 높으면 따로 들여다본다.
+- 학습 데이터가 비공개 시험과 겹친 흔적이 있으면 그 시험은 해당 모델 점수에서 빠진다. 동률 기준(0.9점)은 그대로다.
+- 0.4에서 비공개 두 파트를 공개 척도에 맞추는 계수는 아직 모른다. 그래서 우리는 0.6·Δsame + 0.4·Δnew(JEVal skill 점수)로 어림한다.
+- d3-lite의 0.4 Full은 아직 확인하지 못했다.
+
+아래는 0.3 기준이다. Full = 20% 공개 벤치마크 + 50% 비공개 same-skills + 30% 비공개 new-domains. 비공개 두 파트는 21개 stock 모델로 공개 척도에 맞춰진다(equating). `own.json`의 계수로 역산하면 다음과 같다. Jev 1.13의 공개 수치로 검산했다.
 
 Full ≈ 0.2·public + 0.506·same + 0.404·new − 3.04
 
@@ -57,4 +63,12 @@ Full ≈ 0.2·public + 0.506·same + 0.404·new − 3.04
 - 자르기 금지, 옵션 필터링 금지, 벤치마크별 프롬프트 금지, 정답 기반 재시도 금지. 지원하지 않는 요청은 오답이다.
 - **오염:** index 시험 문항으로 학습하면 그 문항이 오답 처리된다(감사로 적발된 사례: Lumma, JevK5, reflex 4B 퇴출). 데이터셋의 train/dev split 사용은 공개하면 허용된다.
 - 지연시간 median·mean·p80이 각각 1초 이하여야 한다. 점수에는 반영되지 않는다.
-- 제출: 공개 0.3 suite 전체 실행(`complete: true`) → 결과를 Hub에 업로드 → `apolinario/decision-index`에 PR. 연구실이 비공개 시험을 우리 서빙 코드로 실행하고, 결정 일치율(BF16 98.5%)을 확인한다. 가중치는 Hub에 공개해야 한다.
+- 제출(키트 README, 0.4에서도 같음):
+  1. 공개 0.3 suite 전체를 실행하고 결과 폴더를 Hub 데이터셋에 올린다(`pipeline --upload <you>/<repo>`). `runs/<name>/scores.json`에 `"complete": true`가 있어야 한다.
+  2. `apolinario/decision-index`에 PR을 보내 `submissions/README.md`(없으면 새로 만듦)에 한 줄을 추가한다. 모델명, Hub 모델 저장소, 결과 데이터셋 링크, 엔진·커밋, 하드웨어, 추론 설정을 적는다. d3-lite의 `RUN_NOTES.md`(`runs/board-d3-lite/`)가 좋은 예다.
+  3. 관리자가 비공개 두 파트를 우리 방식 그대로 돌린다. 그러려면 가중치(공개 또는 관리자에게 접근 허용), 실행 코드, 설정이 필요하다. 공개 답안과의 일치도 비교한다. 지연 시간은 RTX PRO 6000 한 장에서 잰다.
+- 우리 상태(2026-10-21):
+  - 우리 GitHub과 HF 저장소는 모두 비공개다. 제출 후보 `crystal-0.8b`는 독립 실행 코드와 함께 비공개 Hub 저장소에 있다(`release/crystal-0.8b/`).
+  - 로컬에서 다시 만든 suite는 연구실 원본과 `selected-rows` 해시가 다르다. RouterBench 6개와 SGD 10개 요청이 다르고, 둘 다 지수 밖이다. 그래서 로컬 실행에는 `--no-verify`가 필요하고, 실제 제출에는 원본 파일이 필요하다.
+  - 공개 전체 실행은 A6000에서 약 2.3시간이다(14만 요청, 질문 32만 개). 지연 시간은 중앙값 32ms, 80% 지점 193ms다.
+  - SCOTUS SCDB 라벨(CC-BY-NC-3.0 upstream)이 학습에 들어 있어, 가중치를 공개하기 전에 판단이 필요하다.

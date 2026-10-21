@@ -1,0 +1,9 @@
+crystal-0.8b
+
+Base model: Qwen/Qwen3.5-0.8B (Apache License 2.0), revision 2fc06364715b967f1860aea9cf38778875588b17.
+
+crystal/format.py follows the prompt contract of vllm-sr/d3-lite (d3_format.py, Apache License 2.0), so the
+two models read the same prompt.
+
+The noncausal attention mask in crystal/modeling.py is adapted from vllm-sr/d3-lite d3_runtime.py, itself
+adapted from perplexity-ai/pplx-decider-v1.1-27b (Copyright Perplexity AI, Apache License 2.0).
