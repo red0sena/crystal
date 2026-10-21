@@ -18,7 +18,8 @@
    - 학습: g3(3에폭), g4b(새 데이터 40만, 패딩 없음), fresh-v1 평가셋, g6(104개 출처 70만, JEVal 0.465·공개 40.28).
    - 데이터 감사와 5·6차 데이터(46개 출처 추가, 에이전트 병렬 빌드와 직접 검수).
    - 섞기: g6 0.67 + g3e2 0.33(공개 43.12·fresh 0.520, d3-lite 초과)과 g6 + g4b(JEVal 0.476)가 현재 최선 후보다. 논문 방식(TIES·DARE·LiNeS·Model Stock)은 단순 평균보다 낮았다.
-   - 7차 데이터와 g7: 공개 격차(BPoMP·VAST)와 빈 분야(안전·커뮤니티 윤리·취약점)를 겨냥한 9개 출처, 학습 전 검토 반영, `v3-gold7`(100만 행, 113개 출처)로 g7 3에폭 학습 중(2026-10-19 17:03 시작).
+   - 7차 데이터와 g7: 공개 격차(BPoMP·VAST)와 빈 분야(안전·커뮤니티 윤리·취약점)를 겨냥한 9개 출처, 학습 전 검토 반영, `v3-gold7`(100만 행, 113개 출처)로 g7 3에폭 학습. 에폭 3은 과적합했고, 에폭 2는 공개 42.04지만 JEVal은 g6보다 낮다.
+   - g7 섞기(2026-10-21): 원본 20% + g6 40% + g7e2 40%(`wise80-g6-g7e2`)가 JEVal 0.489·공개 44.95·fresh 0.541로 처음 d3-lite(0.482·39.65·0.509)를 모두 넘었다(Full 추정 +1.49, restricted 확인 전). 22개 후보 중 TIES·SLERP·Model Stock은 단순 가중 평균보다 낮았다.
 3. [전략](designs/beat-d3-lite.md): 수단의 우선순위와 상태, 지금까지 알게 된 것, 다음 단계.
 4. [학습 데이터 출처](designs/phase2-data-sources.md): 117개 출처 216만 문항(v3-gold7이 113개 사용). 정답 출처(사람/프로그램/모델), 학습 셋 사용량, 라이선스, 오염 함정을 정리했다.
 5. [참고 문헌과 데이터](resources/references.md): v3에서 참고한 논문과 데이터셋, 확인 수준(카드/초록/검색/인용만)과 쓰인 곳.
@@ -43,7 +44,7 @@
 | 마지막 토큰 외 표현 활용 | [Token·Layer readout](papers/token-layer-readout.md), [GLiClass](papers/gliclass.md) |
 | 기존 구조를 유지하는 대조군 | [LLM-as-Jev](papers/llm-as-jev.md), [InnerJev](papers/innerjev.md) |
 | 미세조정 망각 줄이기 | [WiSE-FT](papers/wise-ft.md), [L2-SP](papers/l2-sp.md), [LoRA Learns Less](papers/lora-learns-less.md), [LP-FT](papers/lp-ft.md) |
-| 가중치 섞기 | [Model Stock](papers/model-stock.md), [LiNeS](papers/lines.md), [TIES-Merging](papers/ties-merging.md), [DARE](papers/dare.md), [체크포인트 평균·Soup](papers/checkpoint-averaging.md), [In-the-Wild 병합](papers/merging-in-the-wild.md) |
+| 가중치 섞기 | [Task Arithmetic](papers/task-arithmetic.md), [Model Stock](papers/model-stock.md), [LiNeS](papers/lines.md), [TIES-Merging](papers/ties-merging.md), [DARE](papers/dare.md), [체크포인트 평균·Soup](papers/checkpoint-averaging.md), [In-the-Wild 병합](papers/merging-in-the-wild.md) |
 | 객관식 편향 측정 | [One Bias Score, Two Factors](papers/option-bias-two-factors.md), [객관식 편향](papers/multiple-choice-bias.md) |
 | 난이도·품질 등급 및 확률 | [Ordinal scale bias](papers/ordinal-scale-bias.md), [Temperature scaling](papers/temperature-scaling.md) |
 | Encoder 전환과 주변 연구 | [LLM2Vec](papers/llm2vec.md), [dQwen3.5](papers/dqwen35.md) |
@@ -78,6 +79,7 @@
 | [One Bias Score, Two Factors](papers/option-bias-two-factors.md) | 2026 | 객관식 편향의 두 요인 |
 | [Model Stock](papers/model-stock.md) | 2024 | 각도 기반 병합 비율 |
 | [LiNeS](papers/lines.md) | 2025 | 층별 스케일링 병합 |
+| [Task Arithmetic](papers/task-arithmetic.md) | 2023 | 변화량(task vector) 더하기 병합 |
 | [TIES-Merging](papers/ties-merging.md) | 2023 | 자르기·부호 투표 병합 |
 | [DARE](papers/dare.md) | 2024 | 무작위 버리기·재스케일 병합 |
 | [체크포인트 평균·Soup](papers/checkpoint-averaging.md) | 2023 | 가중치 평균 |
@@ -92,7 +94,7 @@
   - 학습 셋: `mix.py`.
   - 학습: `train.py`(에폭별 저장, 원본 당기기 포함).
   - 평가: `proxy_eval.py`(JEVal), `board_check.py`(공개 샘플), `fresh_eval.py`(fresh-v1), `bias_eval.py`, `forget_report.py`, `format_probe.py`.
-  - 섞기·분석: `merge.py`(WiSE·LiNeS·Model Stock·TIES·DARE·가중 평균), `interpolate.py`, `weight_drift.py`, `check_packed.py`(회귀 검사), `bench_train.py`.
+  - 섞기·분석: `merge.py`(Task Arithmetic·WiSE·LiNeS·Model Stock·TIES·DARE·SLERP·가중 평균), `interpolate.py`, `weight_drift.py`, `check_packed.py`(회귀 검사), `bench_train.py`.
   - 실행 스크립트: `runs/v3/queue/`.
 - [조사 범위와 인용 규칙](resources/research-notes.md): 완독·재현 여부와 검색 오매칭 기록.
 - [v1 실험 보고서](../docs/experiment_report_ko.md), [v2 실험 보고서](../docs/experiment_report_v2_ko.md).

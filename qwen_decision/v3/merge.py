@@ -14,6 +14,9 @@
   # DARE (Yu et al., ICML 2024): drop each update entry with probability --dare and rescale the rest by 1/(1-p);
   # with --ties as well it is DARE-TIES (drop, then elect signs and average the agreeing entries)
   python -m qwen_decision.v3.merge --tuned <a> <b> --alpha 1 --dare 0.7 [--ties 1] --out ...
+  # SLERP of two updates (as in mergekit, but on the updates from the base): per tensor, interpolate along the
+  # arc between the two updates at t = the second --weights value, so the result keeps their norms
+  python -m qwen_decision.v3.merge --tuned <a> <b> --weights 0.5 0.5 --alpha 1 --slerp --out ...
 
 theta = base + sum_i w_i * lambda(tensor) * (theta_i - base), computed in FP32 and stored in the tuned dtype.
 lambda is alpha for every tensor outside the decoder layers. In LiNeS's pseudocode, the parameters outside
@@ -27,6 +30,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 import re
 import shutil
@@ -59,6 +63,17 @@ def ties(deltas: list[torch.Tensor], weights: list[float], keep: float) -> torch
     return torch.where(denominator > 0, numerator / denominator.clamp_min(1e-12), torch.zeros_like(numerator))
 
 
+def slerp(a: torch.Tensor, b: torch.Tensor, t: float) -> torch.Tensor:
+    """Spherical interpolation from update a (t=0) to update b (t=1); linear when either is 0 or they are parallel."""
+    na, nb = a.norm(), b.norm()
+    if na == 0 or nb == 0:
+        return (1 - t) * a + t * b
+    omega = math.acos(min(max(float((a * b).sum() / (na * nb)), -1.), 1.))
+    if math.sin(omega) < 1e-6:
+        return (1 - t) * a + t * b
+    return (math.sin((1 - t) * omega) * a + math.sin(t * omega) * b) / math.sin(omega)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--base", type=Path, default=ROOT / "models/qwen3.5-0.8b")
@@ -74,11 +89,15 @@ def main():
     p.add_argument("--ties", type=float, help="TIES: keep this share of each update's entries (largest |delta| per tensor), "
                                               "elect signs, disjoint weighted mean; 1 = no trimming")
     p.add_argument("--dare", type=float, help="DARE: drop probability of each update entry (rescale the rest by 1/(1-p))")
+    p.add_argument("--slerp", action="store_true",
+                   help="SLERP of exactly two updates at t = second --weights value (no --ties, --stock or --dare)")
     p.add_argument("--seed", type=int, default=20261019, help="DARE drop masks")
     p.add_argument("--out", type=Path, required=True)
     args = p.parse_args()
     if args.stock and len(args.tuned) < 2:
         raise SystemExit("--stock needs at least two --tuned checkpoints of the same base")
+    if args.slerp and (len(args.tuned) != 2 or args.ties is not None or args.stock or args.dare):
+        raise SystemExit("--slerp takes exactly two --tuned checkpoints and no --ties, --stock or --dare")
     weights = args.weights or [1 / len(args.tuned)] * len(args.tuned)
     if len(weights) != len(args.tuned):
         raise SystemExit("one --weights value per --tuned checkpoint")
@@ -107,7 +126,9 @@ def main():
         deltas = [t[k].to(torch.float32) - b for t in tuned]
         if args.dare:
             deltas = [d * (torch.rand(d.shape, generator=generator) >= args.dare) / (1 - args.dare) for d in deltas]
-        if args.ties is not None:
+        if args.slerp:
+            update = slerp(deltas[0], deltas[1], weights[1] / sum(weights))
+        elif args.ties is not None:
             update = ties(deltas, weights, args.ties)
         else:
             update = sum(w * d for w, d in zip(weights, deltas))
@@ -132,8 +153,9 @@ def main():
                       + ("; times Model Stock t per tensor" if args.stock else "")
                       + (f"; DARE drop p={args.dare} (seed {args.seed}), rescaled by 1/(1-p)" if args.dare else "")
                       + (f"; TIES: top {args.ties} of |delta| per tensor, elected sign, weighted mean of agreeing entries"
-                         if args.ties is not None else ""),
-              "ties": args.ties, "dare": args.dare, "seed": args.seed if args.dare else None,
+                         if args.ties is not None else "")
+                      + ("; SLERP of the two updates at t = w_2 / (w_1 + w_2) instead of the weighted sum" if args.slerp else ""),
+              "slerp": args.slerp, "ties": args.ties, "dare": args.dare, "seed": args.seed if args.dare else None,
               "stock_t": stock or None}
     (args.out / "merge.json").write_text(json.dumps(recipe, indent=2) + "\n")
     print(json.dumps({k: recipe[k] for k in ("alpha", "beta", "outside", "weights")}))

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-18",
+  "updated": "2026-10-21",
   "language": "ko",
   "scope": "decision model literature notes; proposed Qwen adaptations are unimplemented",
   "papers": [
@@ -263,6 +263,33 @@
       "topic": "평가셋 크기 / 검정력",
       "url": "https://web.stanford.edu/~jurafsky/pubs/2020.emnlp-main.745.pdf",
       "note": "papers/power-analysis.md"
+    },
+    {
+      "slug": "ties-merging",
+      "title": "TIES-Merging: Resolving Interference When Merging Models",
+      "arxiv_id": "2306.01708",
+      "year": 2023,
+      "topic": "가중치 병합 / 간섭",
+      "url": "https://arxiv.org/abs/2306.01708",
+      "note": "papers/ties-merging.md"
+    },
+    {
+      "slug": "dare",
+      "title": "Language Models are Super Mario: Absorbing Abilities from Homologous Models as a Free Lunch",
+      "arxiv_id": "2311.03099",
+      "year": 2024,
+      "topic": "가중치 병합 / 변화량 희소화",
+      "url": "https://arxiv.org/abs/2311.03099",
+      "note": "papers/dare.md"
+    },
+    {
+      "slug": "task-arithmetic",
+      "title": "Editing Models with Task Arithmetic",
+      "arxiv_id": "2212.04089",
+      "year": 2023,
+      "topic": "가중치 병합 / 모델 편집",
+      "url": "https://arxiv.org/abs/2212.04089",
+      "note": "papers/task-arithmetic.md"
     }
   ],
   "v3_resources": [

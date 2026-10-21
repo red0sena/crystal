@@ -18,6 +18,7 @@
 | 논문 | 확인 | 쓰인 곳 |
 |---|---|---|
 | [WiSE-FT](../papers/wise-ft.md) (Wortsman 외, CVPR 2022) | 카드 | 원본과 섞기(`interpolate.py`, `merge.py`) |
+| [Task Arithmetic](../papers/task-arithmetic.md) (Ilharco 외, ICLR 2023) | 카드 | `merge.py --weights --alpha`가 이 식이다. g6 + g7e2, 벡터별 λ 0.4가 최선(2026-10-21) |
 | [L2-SP](../papers/l2-sp.md) (Li 외, ICML 2018) | 카드 | `train.py --anchor`(구현, 미평가) |
 | [LoRA Learns Less and Forgets Less](../papers/lora-learns-less.md) (Biderman 외, TMLR 2024) | 카드 | 망각 해석, LoRA 후보 |
 | [LP-FT](../papers/lp-ft.md) (Kumar 외, ICLR 2022) | 카드 | MLP head 반대 근거, 출력층 이동 해석 |
@@ -35,7 +36,9 @@
 | MoFO (2407.20999) | 검색 | 미구현 후보 |
 | Calibrate Before Use (Zhao 외 2021) | 검색 | 편향 보정은 규칙상 마지막 |
 | [TIES-Merging](../papers/ties-merging.md) (Yadav 외, NeurIPS 2023), [DARE](../papers/dare.md) (Yu 외, ICML 2024) | 초록 | `merge.py --ties/--dare`(2026-10-19 구현·실행, 단순 평균보다 낮음) |
-| AdaMerging (ICLR 2024), AIM (2502.02421), Locate-then-Merge (2505.16703), Model Breadcrumbs (ECCV 2024), TSV (CVPR 2025) | 검색·초록 | 병합 후보 검토, 미실행 |
+| SLERP (Shoemake 1985; mergekit) | 검색 | `merge.py --slerp`(2026-10-21, 두 변화량의 구면 보간). 단순 평균보다 낮음(Full 추정 −1.08) |
+| AdaMerging (ICLR 2024), AIM (2502.02421), Locate-then-Merge (2505.16703), Model Breadcrumbs (ECCV 2024), TSV (CVPR 2025) | 검색·초록 | 병합 후보 검토, 미실행. AdaMerging의 층별 계수만 우리 조건에 맞는다(아래 행) |
+| RegMean (ICLR 2023), Fisher-Weighted Averaging (NeurIPS 2022), CART (arXiv 2024), CAT Merging (ICML 2025) | 검색 | 2026-10-21 검토, 미실행. 같은 데이터로 학습한 두 모델이라 RegMean·Fisher는 단순 평균에 가깝고, CART는 두 모델이면 단순 평균과 같아진다. CAT·Breadcrumbs·TSV는 충돌 해결이라 TIES·DARE와 같은 이유로 기대가 낮다. 상세는 [작업 기록](../project/v3-log.md)의 "병합 방법 검토" |
 | LM-Cocktail, WARP, Safeguard FT (2412.19512) | 검색 | 원본 보간의 LLM 사례 |
 | FINCH (2605.20005), 재노출 연구 (2512.22337), 문항별 망각 (2510.17776), mSFT (2603.21606), FLOW (2502.02797), FastMix (2606.14971), Post-Training Science (2609.01244), 불완전 학습 (2604.10079), Prism-1 (2610.22066), Label smoothing (Müller 외 2019) | 인용만 | 외부 검토 근거. 수치를 우리 근거로 쓰지 않음 |
 | ProLong (Gao 외, ACL 2025) | 검색 | **정정:** 장문 붕괴 진단 근거로 쓴 것은 잘못이었다 |

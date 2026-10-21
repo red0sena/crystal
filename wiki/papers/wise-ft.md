@@ -27,6 +27,8 @@ CLIP 계열에서 ImageNet과 다섯 개 분포 이동 변형에 대해 분포 �
 
 `qwen_decision/v3/interpolate.py`로 g1과 원본을 섞었다(2026-10-17). JEVal v2 dev 매크로 skill이 g1 0.348에서 α 0.3일 때 0.432로 올랐고, 새 분야는 0.288→0.399(d3-lite 0.409)였다. 공개 샘플 지수는 α 0.5가 35.30으로 가장 높았고 α 0.3은 29.97이었다. 대리셋과 공개 점수의 최적 α가 다르다. 상세는 [작업 기록](../project/v3-log.md).
 
+g7 시기(2026-10-21)에는 두 학습(g6, g7 에폭 2)의 평균에 α를 적용했다(= [Task Arithmetic](task-arithmetic.md)). α 0.8(원본 20%)이 JEVal 0.489, 공개 44.95, fresh 0.541로 처음 d3-lite를 모두 넘었다. α 0.9 → 0.75로 내리면 new가 오르고 same이 내리며, 공개는 0.8까지 유지되다가 0.7에서 꺾였다.
+
 ## 연결 문서
 
 - [L2-SP](l2-sp.md) · [LoRA Learns Less and Forgets Less](lora-learns-less.md) · [LP-FT](lp-ft.md)
