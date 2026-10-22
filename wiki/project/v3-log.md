@@ -1114,6 +1114,28 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
 - 표본(sample-40)은 두 모델 모두 전체보다 2~3점 높게 나왔다(44.95, 39.65). 차이(+5.3)는 전체(+5.9)와 비슷했다.
 - **해석:** 0.4는 공개 점수를 Full에 넣지 않는다. 그리고 공개가 비공개보다 지나치게 높으면 따로 들여다본다. crystal은 공개에서 +5.9인데 비공개 대리(restricted)에서는 −1.0이라, 그 대상이 될 수 있는 모양이다. 공개 우위 일부는 공개 벤치마크 데이터셋의 train split을 학습한 데서 온다(허용되지만 공개해야 한다).
 
+### 보드의 Qwen3.5-0.8B 모델과 비교 (2026-10-22, `release/crystal-0.8b/assets/board_0.8b.json`)
+
+- 보드 Space의 `data/index.json`과 `v03.json`(Decision Index 0.4.1, 2026-10-22 04:18 UTC 생성)에는 모델마다 벤치마크별 공식 결과가 있다. 그래서 다른 모델을 내려받아 공개 suite를 다시 돌릴 필요가 없었다.
+  - 보드의 d3-lite 벤치마크별 raw·분야 skill·공개 지수(36.93)는 우리 키트로 다시 채점한 공식 결과(`runs/board-d3-lite/`)와 같다.
+- Qwen3.5-0.8B(또는 -Base)로 만든 보드 모델은 18개다. crystal-0.8b(공개 42.79, 로컬 실행)는 그 사이에서 3위에 해당한다.
+  - StartLux-Decision v1.1 0.8B(53.79)와 OneJev1.6-0.8B(48.76)가 다섯 분야 모두 앞선다. d3-lite(36.93)와 Saina Helm 2 두 모델(39.26, 37.44)에는 다섯 분야 모두 앞선다.
+  - 0.4.1 Full은 OneJev1.6 29.58, StartLux 28.88, Saina Omni 26.54, d3-lite 26.16(same 34.81 / new 9.33) 순이다. 새 new-domains 세트에서 0.8B 모델의 new는 모두 5~14다(jiwo v2가 13.71로 가장 높다).
+- StartLux·OneJev 대비 크게 지는 벤치마크:
+  - POP909: crystal 1.4, d3-lite 1.7, StartLux 77.1, OneJev 78.4. 선택지가 많은 음악 과제다(우연 0.78%). 이 다섯 모델 중 255코드 readout 계열(crystal, d3-lite)과 Saina 2.0 v2는 우연 수준이다. 원인을 따로 볼 만하다.
+  - Home appliances: 14.8 대 60.2(StartLux).
+  - SATA-Bench: 22.5 대 50.6.
+  - VAST: 42.6 대 75.7.
+  - PhishNChips: 51.9 대 91.1(OneJev).
+  - CLadder: 58.9 대 82.1.
+  - BBH: 52.5 대 71.5.
+- 앞서는 곳: GPQA Diamond, MMLU-Pro, NLI4CT, Humicroedit(다섯 모델 중 1위). HellaSwag와 HoVer는 1위와 0.4점 이내다.
+- 모델 카드의 성능 절을 이 비교로 바꿨다.
+  - 공개 지수 상위 10개 순위 그림(`assets/board_0.8b.png`, 나머지 9개는 11.8~25.8이라고 문장으로 적음)과 분야 표를 넣었다. 분야 표와 벤치마크 표는 같은 5개 모델(crystal, StartLux, OneJev, Saina 2.0 v2, d3-lite)이다.
+  - 벤치마크 37개 표(crystal, StartLux, OneJev, Saina 2.0 v2, d3-lite)를 접지 않고 넣었다.
+  - JEVal·fresh 비교(d3-lite만)는 한 문장으로 줄였다.
+  - 그림과 스냅숏은 `assets/make_figures.py OUT --board <보드 data 폴더>`로 다시 만든다. 이전 `public_areas.png`는 지웠다.
+
 ## 현재 상태 (2026-10-21 오후)
 
 - **최선 후보** (가중치 있음, 위 "g7 섞기". 요약은 [v3 요약](v3-summary.md)):

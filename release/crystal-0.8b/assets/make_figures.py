@@ -1,4 +1,10 @@
-"""Figures for the crystal-0.8b model card: assets/logo.png and assets/public_areas.png."""
+"""Figures for the crystal-0.8b model card: assets/logo.png and assets/board_0.8b.png.
+
+    python make_figures.py OUT [--board BOARD_DIR]
+
+--board rebuilds OUT/board_0.8b.json from the leaderboard's data files (BOARD_DIR/index.json and v03.json, from the
+multimodalart/jev-decision-index Space) and our own public-kit run; without it the saved snapshot is reused.
+"""
 import json
 import sys
 from pathlib import Path
@@ -13,6 +19,33 @@ OUT = Path(sys.argv[1])
 ROOT = Path("/home/khkim/qwen-decision")
 OUT.mkdir(parents=True, exist_ok=True)
 plt.rcParams["font.family"] = "DejaVu Sans"
+
+
+def snapshot(board):
+    """Every board model built on Qwen3.5-0.8B (or -Base), plus crystal-0.8b from our run of the public kit."""
+    index = json.load(open(board / "index.json"))
+    full = {m["engine"]: m for m in json.load(open(board / "v03.json"))["models"]}
+
+    def entry(name, url, public, areas, benchmarks, x):
+        return dict(name=name, url=url, public=public, full=x.get("v"), same_skills=x.get("same_skills"),
+                    new_domains=x.get("new_domains"), areas={a["id"]: round(100 * a["skill"], 2) for a in areas},
+                    raw={k: b["raw"] for k, b in benchmarks.items()})
+
+    models = [entry(m["name"], m["meta"].get("model_url"), full[m["engine"]]["pub"], m["categories"], m["benchmarks"],
+                    full[m["engine"]])
+              for m in index["models"] if (m["meta"].get("base_model") or "").startswith("Qwen/Qwen3.5-0.8B")]
+    run = json.load(open(ROOT / "runs/board/full-wise80-g6-g7e2/index.json"))
+    models.append(entry("crystal-0.8b", "https://huggingface.co/Kyunghwan-kim/crystal-0.8b", run["index"], run["areas"],
+                        run["benchmarks"], {}))
+    models.sort(key=lambda m: -m["public"])
+    return dict(board=index["suite"]["label"], generated_utc=index["generated_utc"], areas=index["suite"]["areas"],
+                benchmarks={k: dict(name=b["short"], metric=b["metric"]) for k, b in index["benchmarks"].items()},
+                models=models)
+
+
+if "--board" in sys.argv:
+    json.dump(snapshot(Path(sys.argv[sys.argv.index("--board") + 1])), open(OUT / "board_0.8b.json", "w"), indent=1)
+SNAP = json.load(open(OUT / "board_0.8b.json"))
 
 # ------------------------------------------------------------------ logo
 fig = plt.figure(figsize=(8, 3), dpi=200)
@@ -49,34 +82,34 @@ ax.text(3.38, 0.88, "typed decisions  ·  one forward pass per question", color=
 fig.savefig(OUT / "logo.png", transparent=True)
 plt.close(fig)
 
-# ------------------------------------------------------------------ public-suite areas
-a = json.load(open(ROOT / "runs/board/full-wise80-g6-g7e2/index.json"))
-b = json.load(open(ROOT / "runs/board-d3-lite/index.json"))
-labels = ["Knowledge &\nReasoning", "Language\nUnderstanding", "Retrieval &\nClassification", "Tools &\nAutomation",
-          "Arts &\nHuman Taste", "Public index"]
-ours = [100 * x["skill"] for x in a["areas"]] + [a["index"]]
-theirs = [100 * x["skill"] for x in b["areas"]] + [b["index"]]
-fig, ax = plt.subplots(figsize=(10, 4.6), dpi=200)
+# ------------------------------------------------------------------ public index, top Qwen3.5-0.8B models
+ACCENT, OTHER = "#6366f1", "#cbd5e1"
+TOP = 10
+models = SNAP["models"][:TOP]
+fig, ax = plt.subplots(figsize=(9, 0.34 * len(models) + 1.3), dpi=200)
 fig.patch.set_facecolor("white")
-xs = range(len(labels))
-w = 0.38
-bars1 = ax.bar([x - w / 2 for x in xs], ours, w, color="#6366f1", label="crystal-0.8b", zorder=3)
-bars2 = ax.bar([x + w / 2 for x in xs], theirs, w, color="#cbd5e1", label="d3-lite (official run)", zorder=3)
-for bars, color in ((bars1, "#312e81"), (bars2, "#475569")):
-    for r in bars:
-        ax.text(r.get_x() + r.get_width() / 2, r.get_height() + 0.8, f"{r.get_height():.1f}", ha="center", va="bottom",
-                fontsize=9.5, color=color, fontweight="bold" if color == "#312e81" else "normal")
-ax.axvline(4.5, color="#e2e8f0", linewidth=1.2, zorder=1)
-ax.set_xticks(list(xs), labels, fontsize=10)
-ax.set_ylabel("chance-corrected skill (0-100)", fontsize=10, color="#334155")
-ax.set_ylim(0, 75)
-ax.grid(axis="y", color="#f1f5f9", zorder=0)
+ys = range(len(models))
+ours = [m["name"] == "crystal-0.8b" for m in models]
+ax.barh(list(ys), [m["public"] for m in models], height=0.68, color=[ACCENT if o else OTHER for o in ours], zorder=3)
+for y, m, o in zip(ys, models, ours):
+    ax.text(m["public"] + 0.6, y, f"{m['public']:.2f}", va="center", fontsize=9, color="#312e81" if o else "#475569",
+            fontweight="bold" if o else "normal")
+ax.set_yticks(list(ys), [m["name"] for m in models], fontsize=9.5)
+for label, o in zip(ax.get_yticklabels(), ours):
+    label.set_color("#312e81" if o else "#334155")
+    label.set_fontweight("bold" if o else "normal")
+ax.invert_yaxis()
+ax.set_xlim(0, 60)
+ax.grid(axis="x", color="#f1f5f9", zorder=0)
 for s in ("top", "right", "left"):
     ax.spines[s].set_visible(False)
-ax.tick_params(axis="y", length=0, labelcolor="#64748b")
-ax.legend(frameon=False, fontsize=10, loc="upper left")
-ax.set_title("Decision Index 0.3 public suite, all 140k requests", fontsize=12, color="#0f172a", loc="left", pad=12)
+ax.spines["bottom"].set_color("#cbd5e1")
+ax.tick_params(axis="y", length=0)
+ax.tick_params(axis="x", labelcolor="#64748b", labelsize=9)
+ax.set_xlabel("public index (0 = random, 100 = perfect)", fontsize=9.5, color="#334155")
+ax.set_title(f"Decision Index public suite: top {TOP} models built on Qwen3.5-0.8B", fontsize=11.5,
+             color="#0f172a", loc="left", pad=10)
 fig.tight_layout()
-fig.savefig(OUT / "public_areas.png")
+fig.savefig(OUT / "board_0.8b.png")
 plt.close(fig)
 print("ok", sorted(p.name for p in OUT.iterdir()))
