@@ -83,6 +83,7 @@ Full ≈ 0.2·public + 0.506·same + 0.404·new − 3.04
   3. 관리자가 비공개 두 파트를 우리 방식 그대로 돌린다. 그러려면 가중치(공개 또는 관리자에게 접근 허용), 실행 코드, 설정이 필요하다. 공개 답안과의 일치도 비교한다. 지연 시간은 RTX PRO 6000 한 장에서 잰다.
 - 우리 상태(2026-10-21):
   - 우리 GitHub과 HF 작업 저장소(kkh-decision-data·model)는 비공개다. 제출 후보 `crystal-0.8b`는 독립 실행 코드와 함께 Hub에 **공개**했다(2026-10-21, CC BY-NC 4.0, 학습 데이터 목록 `TRAINING_DATA.md` 포함, `release/crystal-0.8b/`).
-  - 로컬에서 다시 만든 suite는 연구실 원본과 `selected-rows` 해시가 다르다. RouterBench 6개와 SGD 10개 요청이 다르고, 둘 다 지수 밖이다. 그래서 로컬 실행에는 `--no-verify`가 필요하고, 실제 제출에는 원본 파일이 필요하다.
+  - suite 해시 문제는 해결했다(2026-10-23, `qwen_decision/v3/fix_frozen_suite.py`). RouterBench는 Python 3.12 이상에서, SGD는 키트 `2d7791c` 이전 빌더로 만들면 연구실 원본과 바이트까지 같아진다(selected-rows `b2b56d6f…`). 검증된 suite는 `runs/suite-0.3-frozen/`에 있다. 이전에 적은 "16개 요청 차이"는 틀렸고, 실제로는 RouterBench 10,000행과 SGD 2,500행 전부의 payload가 달랐다.
+  - **제출(2026-10-23):** [apolinario/decision-index#278](https://github.com/apolinario/decision-index/pull/278). 결과 데이터셋은 `Kyunghwan-kim/crystal-0.8b-decision-index`(공개, `bb6fdaa`)다. 공개 지수는 42.79다. 비공개 Full은 관리자가 돌린 뒤 나온다.
   - 공개 전체 실행은 A6000에서 2시간 30분 걸렸다(14만 요청, 질문 32만 개). crystal-0.8b는 42.79(d3-lite 공식 36.93)이고, 지연 시간은 중앙값 32ms, 평균 64ms, p95 171ms다. 보드의 Qwen3.5-0.8B 모델 18개 사이에서는 3위에 해당한다(StartLux v1.1 53.79, OneJev1.6 48.76 다음).
   - SCOTUS SCDB 라벨(CC-BY-NC-3.0 upstream)이 학습에 들어 있어, 가중치를 공개하기 전에 판단이 필요하다.

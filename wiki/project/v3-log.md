@@ -1136,6 +1136,23 @@ g6과 g7 에폭 2를 중심으로 22개 후보를 만들어 JEVal dev, fresh, �
   - JEVal·fresh 비교(d3-lite만)는 한 문장으로 줄였다.
   - 그림과 스냅숏은 `assets/make_figures.py OUT --board <보드 data 폴더>`로 다시 만든다. 이전 `public_areas.png`는 지웠다.
 
+### Decision Index 제출 (2026-10-23)
+
+- **suite 해시 해결:** 로컬 suite는 지수 밖 두 벤치마크의 모든 행이 연구실 원본과 달랐다. RouterBench 10,000행과 SGD 2,500행이다. 이전에 적은 "16개 요청"은 틀렸다. 지수 행은 원래 모두 같았다.
+  - SGD: 원본은 키트 `2d7791c`("dialogue history를 행마다 복사") 이전 빌더로 만들어졌다. 그 빌더에서는 각 행이 대화 전체를 담는다. 고치기 전 동작으로 다시 만들면 2,500행이 모두 같다.
+  - RouterBench: 행마다 들어 있는 보정 프로파일이 `sum()`으로 구한 float 평균이다. Python 3.12부터 float 합산 방식이 바뀌었고, 원본은 3.12 이상에서 만들어졌다. 3.11(`.venv-di`)에서는 모든 행이 달랐다. pandas 2와 3은 차이가 없었다.
+  - [`qwen_decision/v3/fix_frozen_suite.py`](../../qwen_decision/v3/fix_frozen_suite.py)를 Python 3.12로 실행해 두 벤치마크를 다시 만들고 행을 바꿔 끼웠다. 결과 selected-rows의 sha256이 `b2b56d6f…`로 원본과 같다. 정규화 파일 해시도 키트 manifest와 같다. `suite import`의 엄격 검증을 통과해 `runs/suite-0.3-frozen/`에 두었다. `external/decision-index`는 건드리지 않았다.
+- **제출용 전체 실행** (`runs/v3/queue/run_submit_public.sh`, 08:19~10:49, A6000):
+  - Hub에서 로그인 없이 받은 공개 저장소(`befc98e`)의 `crystal.engine:CrystalEngine`으로 해시 검증을 켜고 돌렸다. 이전 실행은 비공개 `V3Engine`에 `--no-verify`였다.
+  - 공개 지수는 42.79(raw 57.26)로 분야별 값까지 이전과 같다. 140,178건이 모두 ok이고 `complete: true`다. 지연 시간은 중앙값 31.4ms, 평균 63.4ms, p80 43.9ms, p95 170.6ms다.
+  - RouterBench·SGD 밖의 128,120건은 이전 실행과 답이 확률까지 같다. payload 해시 140,178건이 보드의 d3-lite 공식 실행과 모두 같다. 키트로 다시 채점하면 결과 파일이 그대로 나온다.
+- **다른 제출과 대조:** 관리자가 받아들인 PR(#128 d3, #217 OneJev1.6, #208 StartLux, #230 jdi-ptr14, #263 tasksource 등)과 관리자 댓글을 확인했다. 고친 점은 세 가지다.
+  - 결과를 compact로 바꿨다. `payload`와 `raw_output`을 빼서 suite 원문(HLE 등)을 재배포하지 않는다.
+  - 지연 시간을 규정 기준인 median / mean / p80으로 적었다.
+  - `submissions/crystal-0.8b/README.md` 상세 문서를 추가했다.
+- **제출:** 결과 데이터셋 [`Kyunghwan-kim/crystal-0.8b-decision-index`](https://huggingface.co/datasets/Kyunghwan-kim/crystal-0.8b-decision-index)(공개, `bb6fdaa`)와 PR [apolinario/decision-index#278](https://github.com/apolinario/decision-index/pull/278)(fork `red0sena/decision-index`, 브랜치 `submit-crystal-0.8b`)을 올렸다. 초안과 스테이징 파일은 `runs/submission/`에 있다.
+  - 예상: 0.4 Full은 d3-lite(26.16) 근처일 것이다. JEVal held-out에서 d3-lite보다 약 1점 낮았다. 비공개 점수가 나오면 JEVal 대리 지표를 처음으로 검증할 수 있다.
+
 ## 현재 상태 (2026-10-21 오후)
 
 - **최선 후보** (가중치 있음, 위 "g7 섞기". 요약은 [v3 요약](v3-summary.md)):
