@@ -1,0 +1,1023 @@
+{
+  "candidate_status": "retired_by_user_2026-10-19",
+  "retirement_reason": "User rejected this architecture after no confirmed accuracy gain and increased latency; preserve evidence, exclude from adoption candidates.",
+  "conclusion": "No confirmed accuracy improvement in this one-seed, 512-update trial; paired end-to-end engine latency increased by about5.4%.",
+  "experiment": {
+    "manifest": {
+      "plan": {
+        "base": "runs/v3/g4b-gold3-pad0/best",
+        "arms": [
+          "vanilla",
+          "delta"
+        ],
+        "seed": 41,
+        "architecture": {
+          "kind": "gated_block_delta_memory",
+          "block_size": 4,
+          "groups": 6,
+          "parameters": 10240,
+          "sources": "per-token block output minus block input, plus fixed zero source",
+          "routing": "RMS-normalized delta keys, learned query, depth softmax, zero-initialized tanh channel gate",
+          "backbone_calls": 1,
+          "native_layers_executed": 24
+        },
+        "training": "full language backbone and tied embedding/LM head; vision frozen",
+        "train_sampling": "lowest stable hash <=128 gold6 examples/source before length filtering",
+        "steps": 512,
+        "batch_size": 16,
+        "body_lr": 3e-06,
+        "gate_lr": null,
+        "warmup": 32,
+        "schedule": "linear warmup then cosine to 10%",
+        "snapshots": [
+          256,
+          512
+        ],
+        "selection": "independent best trained snapshot 256/512 on old selection; no step-0 fallback",
+        "optimizer": "AdamW FP32 masters, betas(.9,.95), weight decay .01, clip global norm 1",
+        "augmentation": "same per-step choice/code permutation draws in both arms; one view, CE gold only",
+        "max_training_tokens": 1536,
+        "max_eval_tokens": 4096,
+        "confirmation": "one preregistered delta-vs-native comparison, source macro, 5000 paired document bootstrap draws, 95% CI",
+        "fixed_data_update_budget": true,
+        "matched_compute_budget": false,
+        "no_model_or_seed_averaging": true,
+        "no_new_teacher_labels_or_rationales": true,
+        "micro_batch": 4,
+        "padded_token_budget": 4096,
+        "router_lr": 0.003,
+        "fresh_sampling": "remaining gold6-dev plus local pinned official fresh-v1 inventory excluding GoEmotions; >=20 unobserved groups/source; <=256 groups/source, one fixed-hash representative/group; max4096 tokens, no truncation",
+        "control": "reuse complete verified native fit; no new native training claimed",
+        "routing_optimizer": "same AdamW master, no decay for new query/gate parameters",
+        "checkpointing": "six explicit tensor-carrying four-native-layer groups; native control used per-layer checkpointing; no dropout or extra training examples"
+      },
+      "counts": {
+        "train": 12290,
+        "selection": 4147,
+        "confirmation": 2220
+      },
+      "sources": {
+        "train": {
+          "abcd-train": 128,
+          "acos-train": 128,
+          "aqua-rat-train": 128,
+          "arc-train": 128,
+          "arena55k-train": 116,
+          "argq-train": 128,
+          "banking77-train": 128,
+          "boolq-train": 128,
+          "chid-train": 128,
+          "civilcomments-train": 128,
+          "claimstance-train": 128,
+          "clinc-train": 128,
+          "cmrc-train": 128,
+          "code-output-gen": 128,
+          "commonsenseqa-train": 128,
+          "condaqa-train": 128,
+          "contractnli-train": 66,
+          "corr2cause-train": 125,
+          "cosmosqa-train": 128,
+          "creak-train": 128,
+          "cuad-train": 15,
+          "drop-train": 128,
+          "ecare-train": 128,
+          "esci-train": 128,
+          "faithdial-train": 128,
+          "fewnerd-train": 128,
+          "fewrel-train": 128,
+          "finer-train": 128,
+          "fintweet-train": 128,
+          "folio-train": 128,
+          "gap-train": 128,
+          "goemotions-train": 128,
+          "gsm8k-train": 128,
+          "habermas-train": 120,
+          "hatexplain-train": 128,
+          "headqa-train": 128,
+          "hellaswag-train": 128,
+          "helpsteer2-train": 122,
+          "helpsteer3-train": 86,
+          "hhrlhf-train": 128,
+          "hover-train": 128,
+          "humicroedit-train": 128,
+          "icl-classify": 5,
+          "infotabs-train": 128,
+          "isarcasm-train": 128,
+          "jglue-train": 128,
+          "klue-train": 128,
+          "lexglue-short-train": 128,
+          "lexglue-train": 52,
+          "logic-puzzles-gen": 128,
+          "massive-intents": 128,
+          "mathqa-train": 128,
+          "maud-train": 118,
+          "medmcqa-train": 128,
+          "mmlu-aux-train": 128,
+          "mnli-train": 128,
+          "moralstories-train": 128,
+          "mtop-train": 128,
+          "multiwoz-train": 128,
+          "newyorker-matching-train": 128,
+          "nli4ct-train": 126,
+          "oasst2-train": 122,
+          "openbookqa-train": 128,
+          "paws-train": 128,
+          "phishing": 128,
+          "pubhealth-train": 128,
+          "pubmedqa-labeled": 128,
+          "quac-train": 125,
+          "quoref-train": 128,
+          "ragtruth-train": 126,
+          "redial-train": 128,
+          "ropes-train": 128,
+          "scitail-train": 127,
+          "semcor-train": 128,
+          "sentfin-train": 128,
+          "sharc-train": 128,
+          "siqa-train": 128,
+          "snips-train": 128,
+          "snli-train": 128,
+          "spartqa-train": 128,
+          "squad2-answerability": 128,
+          "stepgame-train": 128,
+          "strategyqa-train": 128,
+          "svamp-train": 128,
+          "tabfact-train": 123,
+          "taskmaster-train": 128,
+          "tatqa-train": 125,
+          "tatqa-yesno": 126,
+          "tldr-feedback-train": 128,
+          "tools-percall": 112,
+          "tydiqa-train": 128,
+          "ukpconvarg-train": 128,
+          "vast-train": 128,
+          "vitaminc-train": 128,
+          "wanli-train": 128,
+          "when2call-train": 128,
+          "winogrande-train": 128,
+          "wned-el": 125,
+          "wtq-train": 116,
+          "zeshel-train": 128
+        },
+        "selection": {
+          "abcd-train": 105,
+          "aqua-rat-train": 27,
+          "arena55k-train": 42,
+          "boolq-train": 9,
+          "chid-train": 32,
+          "civilcomments-train": 33,
+          "clinc-train": 32,
+          "cmrc-train": 94,
+          "commonsenseqa-train": 18,
+          "condaqa-train": 92,
+          "cosmosqa-train": 9,
+          "creak-train": 94,
+          "drop-train": 227,
+          "ecare-train": 33,
+          "esci-train": 27,
+          "fewnerd-train": 33,
+          "fewrel-train": 35,
+          "finer-train": 36,
+          "fintweet-train": 32,
+          "folio-train": 45,
+          "gap-train": 37,
+          "goemotions-train": 31,
+          "gsm8k-train": 8,
+          "hatexplain-train": 32,
+          "headqa-train": 64,
+          "hellaswag-train": 27,
+          "helpsteer2-train": 74,
+          "helpsteer3-train": 38,
+          "hhrlhf-train": 92,
+          "hover-train": 31,
+          "humicroedit-train": 3,
+          "icl-classify": 33,
+          "infotabs-train": 99,
+          "jglue-train": 97,
+          "klue-train": 56,
+          "lexglue-short-train": 32,
+          "lexglue-train": 9,
+          "massive-intents": 24,
+          "mathqa-train": 32,
+          "medmcqa-train": 18,
+          "mmlu-aux-train": 32,
+          "mnli-train": 37,
+          "moralstories-train": 32,
+          "mtop-train": 76,
+          "multiwoz-train": 120,
+          "musique-train": 19,
+          "oasst2-train": 77,
+          "paws-train": 82,
+          "phishing": 10,
+          "pubhealth-train": 33,
+          "quac-train": 86,
+          "quoref-train": 119,
+          "ragtruth-train": 19,
+          "redial-train": 106,
+          "ropes-train": 108,
+          "scitail-train": 201,
+          "sentfin-train": 13,
+          "siqa-train": 32,
+          "snips-train": 32,
+          "snli-train": 39,
+          "spartqa-train": 73,
+          "squad2-answerability": 13,
+          "stepgame-train": 32,
+          "svamp-train": 23,
+          "tabfact-train": 96,
+          "taskmaster-train": 40,
+          "tldr-feedback-train": 99,
+          "tools-percall": 11,
+          "tydiqa-train": 96,
+          "vast-train": 19,
+          "vitaminc-train": 94,
+          "wanli-train": 32,
+          "when2call-train": 17,
+          "winogrande-train": 20,
+          "wned-el": 133,
+          "wtq-train": 100,
+          "zeshel-train": 84
+        },
+        "confirmation": {
+          "bigbench-epistemic_reasoning": 100,
+          "bigbench-timedial": 210,
+          "chid-train": 44,
+          "civilcomments-train": 31,
+          "copa": 197,
+          "ethics-commonsense": 256,
+          "fewnerd-train": 26,
+          "fewrel-train": 34,
+          "fintweet-train": 45,
+          "hatexplain-train": 44,
+          "piqa": 256,
+          "pubhealth-train": 42,
+          "qasc": 256,
+          "quartz": 82,
+          "snips-train": 42,
+          "stepgame-train": 43,
+          "swag": 256,
+          "wic": 256
+        }
+      },
+      "confirmation_suites": {
+        "official_fresh": 1869,
+        "remaining_gold6": 351
+      },
+      "exact_candidate_duplicates_removed": 0,
+      "confirmation_groups": 2220,
+      "available_unobserved_groups": {
+        "acos-train": 1,
+        "bigbench-epistemic_reasoning": 100,
+        "bigbench-timedial": 210,
+        "chid-train": 44,
+        "civilcomments-train": 31,
+        "copa": 197,
+        "ecare-train": 1,
+        "ethics-commonsense": 1809,
+        "fewnerd-train": 26,
+        "fewrel-train": 34,
+        "fintweet-train": 45,
+        "hatexplain-train": 44,
+        "piqa": 1500,
+        "pubhealth-train": 42,
+        "qasc": 591,
+        "quartz": 82,
+        "snips-train": 42,
+        "stepgame-train": 43,
+        "swag": 12509,
+        "wic": 338
+      },
+      "files": {
+        "train.jsonl": "f921fcaea29521bcaa745954f815568aa56f37f3b711503e55d32ef94ef1b75d",
+        "selection.jsonl": "45e33aba0b043afd8f1342c74fb96225ee0db5103d93edc19c6aebe15dff3a29",
+        "confirmation.jsonl": "23014224a333e3f7ea03a069978553e1dd9c4163732f25371aaf1f7e115b52ec"
+      },
+      "implementation": {
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/delta_memory.py": "a1c366e73967a437de465a3fffe2d35d92d342388e8388c42770b40bf51ea1bc",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/modeling.py": "0e67919f50af2b0f0fbf297ad80bdb02f8c2d6f9ae4aba72df4d30a68bf225db",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/train.py": "1f00378cbf27744d4f68d6cadaa86a713aad791a6f4f52b61640725b33271271",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/robust_adaptation.py": "12b4184c6ae7d82c3cf34102a22aa9dcdd23f18fb24ec366533310271f06c712",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/recurrent_experiment.py": "b919488f02e7a2185110c206d2bcca0201b3d1754f9dd187c870ebb44b11f7ab",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/robust_experiment.py": "ee949d07b42c3dc65dded2979877353cab7fc8bd5587144ce327ec8f4b1c3489",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/fresh_eval.py": "1c727836607a7eba753444ac315ff748a6f2ca0ff8f836001a263cebc618b138",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/engine.py": "11a59fbf66f8e2015643513f434a4bc275e435f57db004da26b1b7e649eb43d1",
+        "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/delta_memory_experiment.py": "5c66261104ff6aca5430de649853b9b3b898c81bdccc1eff704cbd4c825b0c1c"
+      },
+      "base_sha256": "c216eb62b5e5c46d06a2a4217be21bae426e62b284c5ebcc752f682435f78ce6",
+      "cached_control_files": {
+        "runs/recurrent/internal4-v1/vanilla/step-256/config.json": "7da36b70e64fe3f18344db08566751c76dffc1e0fcb292c31336fe2197d2faa3",
+        "runs/recurrent/internal4-v1/vanilla/step-256/v3_config.json": "c4b31b8fc0a9662ed19bf5112b727dc238bd880b6d5463c903e1461d67cd9e10",
+        "runs/recurrent/internal4-v1/vanilla/step-256/model.safetensors": "48ae5a020d8c2a98d66f6e951f3aa718aedb3b17d2ecfba6eb7aff42d3673038",
+        "runs/recurrent/internal4-v1/vanilla/selection-256.json": "e154379b8b13ef282f6465f540ea3149cbedaab098a8f292a1b75b276d55535e",
+        "runs/recurrent/internal4-v1/vanilla/selection-256.jsonl": "070f75d9ce6f07ea9c5d7b8726db128260449d5b2fb4c66728f789de45c3f322",
+        "runs/recurrent/internal4-v1/vanilla/step-512/config.json": "7da36b70e64fe3f18344db08566751c76dffc1e0fcb292c31336fe2197d2faa3",
+        "runs/recurrent/internal4-v1/vanilla/step-512/v3_config.json": "449af28ed2f111735e590e8515ed93ddce01ebbc621b66725334319fb5be93f6",
+        "runs/recurrent/internal4-v1/vanilla/step-512/model.safetensors": "d14d1fe7c15dbaf2dbbfe860090ed01979f558229d77a81a9f39aafc66d1ab23",
+        "runs/recurrent/internal4-v1/vanilla/selection-512.json": "0e2c6f1677646e7cef3f94f22146d9d9f4cd966b3a40a893dfe7139aca2eb84c",
+        "runs/recurrent/internal4-v1/vanilla/selection-512.jsonl": "252c1b8b8c189944156b6a6c30db2ee19e456dd0fd5d4690648d5889454939b1",
+        "runs/recurrent/internal4-v1/vanilla/train.jsonl": "91b4bdceb9d4bd75fb8dde6ff464051b0827ec2a3120bc51cccdcd08eed3f9c4"
+      },
+      "audit": {
+        "data/mix/v3-gold3.dev.jsonl": {
+          "new_blocked": 1011,
+          "sha256": "d881fbbc3b1c7a64bea04765036ae24ec56ed2d0cb35bec711fb086407f56770"
+        },
+        "data/fresh/fresh-v1.jsonl": {
+          "new_blocked": 1328,
+          "sha256": "685535c3a81e0f27d56e74cbb21649b1aa715dae05ed1f7118542fd6eb42c89f"
+        },
+        "runs/robust/fresh-v2-holdback/examples.jsonl": {
+          "new_blocked": 2029,
+          "sha256": "3ca96160366a8c5cccbf66bd679b707162911fc524803b3e32538b102f8f9c0f"
+        },
+        "runs/recurrent/internal4-v1/selection.jsonl": {
+          "new_blocked": 4147,
+          "sha256": "45e33aba0b043afd8f1342c74fb96225ee0db5103d93edc19c6aebe15dff3a29"
+        },
+        "runs/recurrent/internal4-v1/confirmation.jsonl": {
+          "new_blocked": 8827,
+          "sha256": "84cea3b6f06e926a911c49e41da540a95da3c408d1f311f242ac9985bcbef832"
+        },
+        "runs/decision-tail/trained-v1/confirmation.jsonl": {
+          "new_blocked": 3395,
+          "sha256": "fe30c3a4c371f5394e649d118d8b286769c0311a4e7259b61b30c2d0f8d10eac"
+        },
+        "after_entire_jeval": 20744,
+        "data/mix/v3-gold2.jsonl": {
+          "rows": 199981,
+          "sha256": "f6931f405415553206c9138cebb46fa3c5f6bb7a68f63def679e0e54805c8560",
+          "new_blocked": 7489
+        },
+        "data/mix/v3-gold3.jsonl": {
+          "rows": 399978,
+          "sha256": "1ea0207572123df50e436e7f471dc9eff05f3563e036d8a95e9364b6d79557f7",
+          "new_blocked": 5294
+        },
+        "data/mix/v3-gold6.jsonl": {
+          "rows": 699960,
+          "sha256": "5b2ce10c2620c4ee8d4269f9949c6e14d3cffe78747a99b67118cda2102d278f",
+          "new_blocked": 99
+        }
+      },
+      "raw_snapshots": {
+        "baber/piqa": {
+          "revision": "142f6d7367fd9877f0fb3b5734ea6a545f54cdd1",
+          "files": [
+            "piqa_validation.parquet"
+          ]
+        },
+        "allenai/qasc": {
+          "revision": "a34ba204eb9a33b919c10cc08f4f1c8dae5ec070",
+          "files": [
+            "data/validation-00000-of-00001.parquet"
+          ]
+        },
+        "allenai/quartz": {
+          "revision": "28c1dbb56caf81799296cb17892fa73402e23464",
+          "files": [
+            "data/validation-00000-of-00001.parquet"
+          ]
+        },
+        "pkavumba/balanced-copa": {
+          "revision": "813bd03cd6e07d9bd8d7333896ad5d40abb95ea9",
+          "files": [
+            "test.csv"
+          ]
+        },
+        "aps/super_glue": {
+          "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+          "files": [
+            "cb/validation-00000-of-00001.parquet",
+            "wic/validation-00000-of-00001.parquet"
+          ]
+        },
+        "google-research-datasets/go_emotions": {
+          "revision": "add492243ff905527e67aeb8b80c082af02207c3",
+          "files": [
+            "simplified/validation-00000-of-00001.parquet"
+          ]
+        },
+        "hendrycks/ethics": {
+          "revision": "b8b47c589f8bee77175b8648e5497278b68da48a",
+          "files": [
+            "data/commonsense/test.csv"
+          ]
+        },
+        "allenai/swag": {
+          "revision": "dc48148372b3853a9c7bae7bb06c161b46d8364a",
+          "files": [
+            "regular/validation-00000-of-00001.parquet"
+          ]
+        },
+        "tasksource/bigbench": {
+          "revision": "b8ee34693560a13a9feac6aa5540449e18b7eddb",
+          "files": [
+            "epistemic_reasoning/validation-00000-of-00001.parquet",
+            "timedial/validation-00000-of-00001.parquet",
+            "presuppositions_as_nli/validation-00000-of-00001.parquet",
+            "analogical_similarity/validation-00000-of-00001.parquet",
+            "anachronisms/validation-00000-of-00001.parquet",
+            "fantasy_reasoning/validation-00000-of-00001.parquet",
+            "entailed_polarity/validation-00000-of-00001.parquet"
+          ]
+        }
+      },
+      "scope": "exclude whole linked upstream/document/state/normalized-state groups matching full gold2/3/6 training, old dev/fresh/recurrent/tail confirmation and all JEVal; official rows additionally exclude all gold2/3/6 dev; not semantic paraphrase audit"
+    },
+    "frozen": {
+      "choices": {
+        "vanilla": {
+          "path": "runs/recurrent/internal4-v1/vanilla/step-512",
+          "step": 512,
+          "selection_macro": 0.7574192933784724,
+          "files": {
+            "config.json": "7da36b70e64fe3f18344db08566751c76dffc1e0fcb292c31336fe2197d2faa3",
+            "v3_config.json": "449af28ed2f111735e590e8515ed93ddce01ebbc621b66725334319fb5be93f6",
+            "model.safetensors": "d14d1fe7c15dbaf2dbbfe860090ed01979f558229d77a81a9f39aafc66d1ab23"
+          }
+        },
+        "delta": {
+          "path": "runs/delta-memory/block4-v1/delta/step-512",
+          "step": 512,
+          "selection_macro": 0.7561237111180893,
+          "files": {
+            "config.json": "7da36b70e64fe3f18344db08566751c76dffc1e0fcb292c31336fe2197d2faa3",
+            "v3_config.json": "15a4c265a3aef7f544ab97aef859b452ae3a0edd2d0ed19164a9d0bea46ac760",
+            "decision_architecture.json": "8f43de1d5fdf63262d5c99df712106ae68222d4e183717289fd78d2d8fc8f2f3",
+            "model.safetensors": "2609de38dcd5b6ee73ba5d53ddd04228460eb32b40c667e12306fa2c40774528",
+            "delta_memory.safetensors": "07c2122c89b517f04c2851d4daaea2977c2b5a97e76785222c753662e781acd1"
+          }
+        }
+      },
+      "confirmation_sha256": "23014224a333e3f7ea03a069978553e1dd9c4163732f25371aaf1f7e115b52ec"
+    },
+    "arms": {
+      "vanilla": {
+        "n": 2220,
+        "accuracy": 0.6400900900900901,
+        "macro": 0.6569931703941174,
+        "sources": {
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.56
+          },
+          "bigbench-timedial": {
+            "n": 210,
+            "accuracy": 0.4142857142857143
+          },
+          "chid-train": {
+            "n": 44,
+            "accuracy": 0.5454545454545454
+          },
+          "civilcomments-train": {
+            "n": 31,
+            "accuracy": 0.6774193548387096
+          },
+          "copa": {
+            "n": 197,
+            "accuracy": 0.8984771573604061
+          },
+          "ethics-commonsense": {
+            "n": 256,
+            "accuracy": 0.51953125
+          },
+          "fewnerd-train": {
+            "n": 26,
+            "accuracy": 0.7307692307692307
+          },
+          "fewrel-train": {
+            "n": 34,
+            "accuracy": 0.8823529411764706
+          },
+          "fintweet-train": {
+            "n": 45,
+            "accuracy": 0.6666666666666666
+          },
+          "hatexplain-train": {
+            "n": 44,
+            "accuracy": 0.4772727272727273
+          },
+          "piqa": {
+            "n": 256,
+            "accuracy": 0.75390625
+          },
+          "pubhealth-train": {
+            "n": 42,
+            "accuracy": 0.5952380952380952
+          },
+          "qasc": {
+            "n": 256,
+            "accuracy": 0.66796875
+          },
+          "quartz": {
+            "n": 82,
+            "accuracy": 0.8780487804878049
+          },
+          "snips-train": {
+            "n": 42,
+            "accuracy": 0.9523809523809523
+          },
+          "stepgame-train": {
+            "n": 43,
+            "accuracy": 0.4186046511627907
+          },
+          "swag": {
+            "n": 256,
+            "accuracy": 0.671875
+          },
+          "wic": {
+            "n": 256,
+            "accuracy": 0.515625
+          }
+        },
+        "seconds": 26.020915185996273,
+        "prompt_evaluations": 2220,
+        "batches": 555,
+        "tokens": 406372
+      },
+      "delta": {
+        "n": 2220,
+        "accuracy": 0.6427927927927928,
+        "macro": 0.6585329356057577,
+        "sources": {
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.56
+          },
+          "bigbench-timedial": {
+            "n": 210,
+            "accuracy": 0.4380952380952381
+          },
+          "chid-train": {
+            "n": 44,
+            "accuracy": 0.5681818181818182
+          },
+          "civilcomments-train": {
+            "n": 31,
+            "accuracy": 0.6774193548387096
+          },
+          "copa": {
+            "n": 197,
+            "accuracy": 0.8984771573604061
+          },
+          "ethics-commonsense": {
+            "n": 256,
+            "accuracy": 0.51953125
+          },
+          "fewnerd-train": {
+            "n": 26,
+            "accuracy": 0.7307692307692307
+          },
+          "fewrel-train": {
+            "n": 34,
+            "accuracy": 0.8823529411764706
+          },
+          "fintweet-train": {
+            "n": 45,
+            "accuracy": 0.6666666666666666
+          },
+          "hatexplain-train": {
+            "n": 44,
+            "accuracy": 0.45454545454545453
+          },
+          "piqa": {
+            "n": 256,
+            "accuracy": 0.75390625
+          },
+          "pubhealth-train": {
+            "n": 42,
+            "accuracy": 0.5952380952380952
+          },
+          "qasc": {
+            "n": 256,
+            "accuracy": 0.671875
+          },
+          "quartz": {
+            "n": 82,
+            "accuracy": 0.8780487804878049
+          },
+          "snips-train": {
+            "n": 42,
+            "accuracy": 0.9523809523809523
+          },
+          "stepgame-train": {
+            "n": 43,
+            "accuracy": 0.4186046511627907
+          },
+          "swag": {
+            "n": 256,
+            "accuracy": 0.67578125
+          },
+          "wic": {
+            "n": 256,
+            "accuracy": 0.51171875
+          }
+        },
+        "seconds": 25.856089362001512,
+        "prompt_evaluations": 2220,
+        "batches": 555,
+        "tokens": 406372
+      }
+    },
+    "difference": {
+      "macro_delta": 0.0015397652116402316,
+      "paired_document_bootstrap_95ci": [
+        -0.002816873158670034,
+        0.0057617845117845096
+      ],
+      "wins": 19,
+      "losses": 13,
+      "confirmed_improvement": false
+    }
+  },
+  "inference_audit": {
+    "rows": 512,
+    "sources": 75,
+    "tokens": 205191,
+    "batches": 138,
+    "arms": {
+      "vanilla": {
+        "gpu_seconds": [
+          8.03373821999412,
+          8.011942914003157,
+          8.016870889005077
+        ],
+        "gpu_median_seconds": 8.016870889005077,
+        "engine_seconds": [
+          8.600532244003261,
+          8.572944669998833,
+          8.571333284999127
+        ],
+        "engine_median_seconds": 8.572944669998833,
+        "peak_cuda_allocated_gb": 1.834752
+      },
+      "delta": {
+        "gpu_seconds": [
+          8.523727407999104,
+          8.494046280000475,
+          8.524414229003014
+        ],
+        "gpu_median_seconds": 8.523727407999104,
+        "engine_seconds": [
+          9.081041140998423,
+          9.08206132199848,
+          9.088947025004018
+        ],
+        "engine_median_seconds": 9.08206132199848,
+        "peak_cuda_allocated_gb": 1.993975808
+      }
+    },
+    "timing_protocol": "RTX3090 BF16 padded SDPA microbatch4/4096; 8 warm GPU batches; 3 timed passes; separate checkpoint loads; no concurrent training",
+    "implementation_sha256": "6283bd584dfa0879c7e058c7e94dc98d96d5dec642a8bcd6d11c204a3a86e225",
+    "training_checkpoint_reload": {
+      "rows": 4147,
+      "prediction_mismatches": 0,
+      "max_probability_delta": 0.0
+    },
+    "zero_gate_ablation_selection": {
+      "rows": 128,
+      "changed_predictions": 1,
+      "max_probability_delta": 0.04871290922164917
+    },
+    "gate_rms": {
+      "0.gate": 0.040651511400938034,
+      "1.gate": 0.0410277284681797,
+      "2.gate": 0.04027572646737099,
+      "3.gate": 0.03440266475081444,
+      "4.gate": 0.032183688133955
+    },
+    "query_rms": {
+      "0.query": 0.0417892225086689,
+      "1.query": 0.0430205874145031,
+      "2.query": 0.0438367985188961,
+      "3.query": 0.038974639028310776,
+      "4.query": 0.03477451577782631
+    },
+    "erase_earlier_delta_ablation_selection": {
+      "rows": 128,
+      "changed_predictions": 1,
+      "max_probability_delta": 0.012729495763778687
+    },
+    "engine": {
+      "rows": 128,
+      "prediction_mismatches": 0,
+      "max_probability_delta": 1.6234193378483752e-07,
+      "one_backbone_call_per_batch": true,
+      "native_blocks_executed": 24,
+      "calls": 34,
+      "orders": 1,
+      "router_relative_activation_norm": 0.009803806804188575,
+      "router_changed_feature_fraction": 0.66514334137482
+    },
+    "routing_selection": {
+      "0": {
+        "mean_max_weight": 0.8064645570314346,
+        "uniform_max_weight": 0.5,
+        "mean_null_weight": 0.3517251542144328,
+        "mean_earlier_block_weight": 0.0,
+        "tokens": 44444
+      },
+      "1": {
+        "mean_max_weight": 0.7913383097301432,
+        "uniform_max_weight": 0.3333333333333333,
+        "mean_null_weight": 0.6521230599268883,
+        "mean_earlier_block_weight": 0.01426170511943538,
+        "tokens": 44444
+      },
+      "2": {
+        "mean_max_weight": 0.595372200784691,
+        "uniform_max_weight": 0.25,
+        "mean_null_weight": 0.35322229946542627,
+        "mean_earlier_block_weight": 0.369948743776073,
+        "tokens": 44444
+      },
+      "3": {
+        "mean_max_weight": 0.6141995205199855,
+        "uniform_max_weight": 0.2,
+        "mean_null_weight": 0.29041763524019515,
+        "mean_earlier_block_weight": 0.6750815052248423,
+        "tokens": 44444
+      },
+      "4": {
+        "mean_max_weight": 0.8254507684694767,
+        "uniform_max_weight": 0.16666666666666666,
+        "mean_null_weight": 0.08740553466649931,
+        "mean_earlier_block_weight": 0.9115979302188041,
+        "tokens": 44444
+      }
+    },
+    "paired_engine_timing": {
+      "seconds": {
+        "native": [
+          8.620886835997226,
+          8.590515871997923,
+          8.595562736998545
+        ],
+        "delta": [
+          9.062422107999737,
+          9.071187944995472,
+          9.050911487000121
+        ]
+      },
+      "median_seconds": {
+        "native": 8.595562736998545,
+        "delta": 9.062422107999737
+      },
+      "delta_to_native_ratio": 1.0543139972664795,
+      "protocol": "same trained delta checkpoint, native versus delta graph; same512 raw requests, 16-request warmup and 3 alternating-order score_many passes; includes tokenization/padding/transfer/probability conversion, excludes model loading; timing only"
+    }
+  },
+  "matched_training": {
+    "steps": 512,
+    "draws": 8192,
+    "native_control_reused": true,
+    "all_prompt_hashes_identical": true,
+    "native_log_sha256": "91b4bdceb9d4bd75fb8dde6ff464051b0827ec2a3120bc51cccdcd08eed3f9c4",
+    "delta_log_sha256": "c9cede165303573448356c05e7095427552e025a54782187cf6fe9210f149610"
+  },
+  "initial_identity": {
+    "rows": 4147,
+    "prediction_mismatches": 0,
+    "max_probability_delta": 0.0
+  },
+  "training": {
+    "steps": 512,
+    "seconds": 928.6836708250048,
+    "trainable_parameters": 752403264,
+    "peak_cuda_allocated_gb": 15.408775168,
+    "all_prompt_hashes_match_native": true
+  },
+  "hybrid_smoke": {
+    "initial_max_logit_delta": 0.0,
+    "steps": [
+      {
+        "step": 1,
+        "loss": 0.6833890210837126,
+        "grad_norm": 106.18401336669922,
+        "routing_gate_grad_norm": 0.13745529374435092
+      },
+      {
+        "step": 2,
+        "loss": 0.6651707217097282,
+        "grad_norm": 57.79740905761719,
+        "routing_gate_grad_norm": 0.07152341681725038
+      },
+      {
+        "step": 3,
+        "loss": 0.42541315220296383,
+        "grad_norm": 47.80123519897461,
+        "routing_gate_grad_norm": 0.09116013700420168
+      }
+    ],
+    "reload_max_probability_delta": 0.0,
+    "all_trainable_gradients_finite": true,
+    "all_prompt_hashes_match_native": true,
+    "source": {
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/delta_memory.py": "a1c366e73967a437de465a3fffe2d35d92d342388e8388c42770b40bf51ea1bc",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/modeling.py": "0e67919f50af2b0f0fbf297ad80bdb02f8c2d6f9ae4aba72df4d30a68bf225db",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/train.py": "1f00378cbf27744d4f68d6cadaa86a713aad791a6f4f52b61640725b33271271",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/robust_adaptation.py": "12b4184c6ae7d82c3cf34102a22aa9dcdd23f18fb24ec366533310271f06c712",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/recurrent_experiment.py": "b919488f02e7a2185110c206d2bcca0201b3d1754f9dd187c870ebb44b11f7ab",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/robust_experiment.py": "ee949d07b42c3dc65dded2979877353cab7fc8bd5587144ce327ec8f4b1c3489",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/fresh_eval.py": "1c727836607a7eba753444ac315ff748a6f2ca0ff8f836001a263cebc618b138",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/engine.py": "11a59fbf66f8e2015643513f434a4bc275e435f57db004da26b1b7e649eb43d1",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/delta_memory_experiment.py": "8070f40a15ad43a75ff7bf14aea5b3968922d16572c52d16391cd423b12361d0"
+    }
+  },
+  "diagnostic_suite_metrics_not_additional_confirmations": {
+    "vanilla": {
+      "official_fresh": {
+        "n": 1869,
+        "accuracy": 0.6383092562867844,
+        "macro": 0.6533019891259917,
+        "sources": {
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.56
+          },
+          "bigbench-timedial": {
+            "n": 210,
+            "accuracy": 0.4142857142857143
+          },
+          "copa": {
+            "n": 197,
+            "accuracy": 0.8984771573604061
+          },
+          "ethics-commonsense": {
+            "n": 256,
+            "accuracy": 0.51953125
+          },
+          "piqa": {
+            "n": 256,
+            "accuracy": 0.75390625
+          },
+          "qasc": {
+            "n": 256,
+            "accuracy": 0.66796875
+          },
+          "quartz": {
+            "n": 82,
+            "accuracy": 0.8780487804878049
+          },
+          "swag": {
+            "n": 256,
+            "accuracy": 0.671875
+          },
+          "wic": {
+            "n": 256,
+            "accuracy": 0.515625
+          }
+        }
+      },
+      "remaining_gold6": {
+        "n": 351,
+        "accuracy": 0.6495726495726496,
+        "macro": 0.6606843516622432,
+        "sources": {
+          "chid-train": {
+            "n": 44,
+            "accuracy": 0.5454545454545454
+          },
+          "civilcomments-train": {
+            "n": 31,
+            "accuracy": 0.6774193548387096
+          },
+          "fewnerd-train": {
+            "n": 26,
+            "accuracy": 0.7307692307692307
+          },
+          "fewrel-train": {
+            "n": 34,
+            "accuracy": 0.8823529411764706
+          },
+          "fintweet-train": {
+            "n": 45,
+            "accuracy": 0.6666666666666666
+          },
+          "hatexplain-train": {
+            "n": 44,
+            "accuracy": 0.4772727272727273
+          },
+          "pubhealth-train": {
+            "n": 42,
+            "accuracy": 0.5952380952380952
+          },
+          "snips-train": {
+            "n": 42,
+            "accuracy": 0.9523809523809523
+          },
+          "stepgame-train": {
+            "n": 43,
+            "accuracy": 0.4186046511627907
+          }
+        }
+      }
+    },
+    "delta": {
+      "official_fresh": {
+        "n": 1869,
+        "accuracy": 0.6415195291599786,
+        "macro": 0.6563815195492722,
+        "sources": {
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.56
+          },
+          "bigbench-timedial": {
+            "n": 210,
+            "accuracy": 0.4380952380952381
+          },
+          "copa": {
+            "n": 197,
+            "accuracy": 0.8984771573604061
+          },
+          "ethics-commonsense": {
+            "n": 256,
+            "accuracy": 0.51953125
+          },
+          "piqa": {
+            "n": 256,
+            "accuracy": 0.75390625
+          },
+          "qasc": {
+            "n": 256,
+            "accuracy": 0.671875
+          },
+          "quartz": {
+            "n": 82,
+            "accuracy": 0.8780487804878049
+          },
+          "swag": {
+            "n": 256,
+            "accuracy": 0.67578125
+          },
+          "wic": {
+            "n": 256,
+            "accuracy": 0.51171875
+          }
+        }
+      },
+      "remaining_gold6": {
+        "n": 351,
+        "accuracy": 0.6495726495726496,
+        "macro": 0.6606843516622432,
+        "sources": {
+          "chid-train": {
+            "n": 44,
+            "accuracy": 0.5681818181818182
+          },
+          "civilcomments-train": {
+            "n": 31,
+            "accuracy": 0.6774193548387096
+          },
+          "fewnerd-train": {
+            "n": 26,
+            "accuracy": 0.7307692307692307
+          },
+          "fewrel-train": {
+            "n": 34,
+            "accuracy": 0.8823529411764706
+          },
+          "fintweet-train": {
+            "n": 45,
+            "accuracy": 0.6666666666666666
+          },
+          "hatexplain-train": {
+            "n": 44,
+            "accuracy": 0.45454545454545453
+          },
+          "pubhealth-train": {
+            "n": 42,
+            "accuracy": 0.5952380952380952
+          },
+          "snips-train": {
+            "n": 42,
+            "accuracy": 0.9523809523809523
+          },
+          "stepgame-train": {
+            "n": 43,
+            "accuracy": 0.4186046511627907
+          }
+        }
+      }
+    }
+  },
+  "tests": {
+    "command": ".venv/bin/python -m unittest discover -s tests -p 'test_v3_*.py'",
+    "passed": 55
+  },
+  "environment": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.18.0",
+    "fla": "0.5.2",
+    "triton": "3.6.0",
+    "python": "3.13.14"
+  },
+  "limits": [
+    "one seed41, one router learning rate.003, block size4 and512 updates",
+    "18 fixed source domains, one case per linked document group",
+    "source/document/normalized-state audit, not semantic paraphrase or foundation pretraining audit",
+    "same data/update budget, not equal compute budget",
+    "latency is a fixed512-request measurement on this RTX3090"
+  ]
+}

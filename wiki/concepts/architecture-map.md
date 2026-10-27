@@ -12,6 +12,8 @@
 | 후보의 정보 흐름 변경 | [Candidate-independent Attention](../papers/candidate-independent-attention.md) | block mask·local position | 기본 Transformer block |
 | 판단 아키텍처 재조합 | [Soft Contextualized Encoder](../papers/soft-contextualized-encoder.md), [Poly-encoders](../papers/poly-encoders.md) | query encoder·label set·Attention의 배치와 상호작용 | 기존 신경망 구성 요소 |
 | 양방향 적응 | [LLM2Vec](../papers/llm2vec.md), [dQwen3.5](../papers/dqwen35.md) | Attention visibility 및 적응 목표 | 사전학습 가중치; hybrid의 causal 순환 계층은 별도 문제 |
+| 중간 잠재 작업공간 | [latent reasoning 대조](../papers/latent-workspaces.md), [우리 구현](../project/hypothesis-workspace.md) | 중간에 선택지 상태 추가, 상위 full attention에서 원문·가설 공동 갱신 | native24층 가중치·기존 판정 head; DeltaNet은 원문만 혼합 |
+| post-Transformer memory | [공개 BDH 기반 실제 retrofit](../project/bdh-memory.md) | native 상위8층을 positive feature·연상 행렬·coactivation3회로 교체 | 앞16층·코드 head 재사용; 비공개 BDH-CQ의 재현은 아님 |
 
 새로운 판단 아키텍처는 확인했다. 하지만 이번 조사에서는 Transformer·DeltaNet의 기본 계산 블록을 처음부터 대체하는 Decision 전용 Backbone을 검증한 근거까지 확보하지 않았다. 문헌 전체에 그런 연구가 없다는 결론은 아니다.
 
@@ -38,4 +40,3 @@
 
 - [Attention 차단 상세](attention-isolation.md)
 - [다음 설계](../designs/qwen-next.md)
-

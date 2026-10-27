@@ -1,8 +1,107 @@
 {
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "language": "ko",
-  "scope": "decision model literature notes; proposed Qwen adaptations are unimplemented",
+  "scope": "decision model literature notes; implementation and validation status recorded per project trial",
   "papers": [
+    {
+      "slug": "dragon-hatchling",
+      "title": "The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain",
+      "arxiv_id": "2509.26507",
+      "year": 2025,
+      "topic": "연상 메모리 / 공개 BDH-GPU",
+      "url": "https://arxiv.org/abs/2509.26507",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "lolcats",
+      "title": "LoLCATs: On Low-Rank Linearizing of Large Language Models",
+      "arxiv_id": "2410.10254",
+      "year": 2024,
+      "topic": "구조 전환 / attention transfer",
+      "url": "https://arxiv.org/abs/2410.10254",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "mamba-in-llama",
+      "title": "The Mamba in the Llama: Distilling and Accelerating Hybrid Models",
+      "arxiv_id": "2408.15237",
+      "year": 2024,
+      "topic": "구조 전환 / 정렬과 증류",
+      "url": "https://arxiv.org/abs/2408.15237",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "tiny-recursive-model",
+      "title": "Less is More: Recursive Reasoning with Tiny Networks",
+      "arxiv_id": "2510.04871",
+      "year": 2025,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2510.04871",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "temporal-middle-layer-recurrence",
+      "title": "T^2MLR: Transformer with Temporal Middle-Layer Recurrence",
+      "arxiv_id": "2607.15178",
+      "year": 2026,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2607.15178",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "llocot",
+      "title": "From Chain-of-Thought to Loops: Non-Autoregressive Latent Reasoning via Looped Transformers",
+      "arxiv_id": "2610.11472",
+      "year": 2026,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2610.11472",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "intact",
+      "title": "INTACT: Inducing Latent Reasoning on a Frozen Backbone",
+      "arxiv_id": "2610.19568",
+      "year": 2026,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2610.19568",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "latent-recurrent-thoughts",
+      "title": "Latent Recurrent Thoughts: Recurrent Refinement of Proposed Latents for Reasoning with Frozen LLMs",
+      "arxiv_id": "2609.01117",
+      "year": 2026,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2609.01117",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "bdh-cq",
+      "title": "BDH-CQ: In-Context Learning with Recurrent Latent Reasoning",
+      "arxiv_id": "2608.09888",
+      "year": 2026,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2608.09888",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "pause-tokens",
+      "title": "Think before you speak: Training Language Models With Pause Tokens",
+      "arxiv_id": "2310.02226",
+      "year": 2023,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2310.02226",
+      "note": "papers/latent-workspaces.md"
+    },
+    {
+      "slug": "reasoning-in-memory",
+      "title": "Unlocking the Working Memory of Large Language Models for Latent Reasoning",
+      "arxiv_id": "2605.30343",
+      "year": 2026,
+      "topic": "잠재 작업공간 / 구조 변경",
+      "url": "https://arxiv.org/abs/2605.30343",
+      "note": "papers/latent-workspaces.md"
+    },
     {
       "slug": "candidate-independent-attention",
       "title": "Permutation-Robust Decision Modeling with Candidate-Independent Block-Causal Attention",

@@ -1,0 +1,393 @@
+{
+  "manifest": {
+    "plan": {
+      "candidate": "runs/robust/rebuilt-g6w67-g3e2",
+      "baseline": "runs/v3/g4b-gold3-pad0/best",
+      "recipe": "fixed g6 .67 + g3 epoch2 .33; never reselect",
+      "sampling": "all non-GoEmotions fresh-v1 source families with >=20 unused normalized-state groups; <=200 groups/source; lowest fixed hash, one representative/group",
+      "selection": "none; this file is evaluation only",
+      "metric": "source macro accuracy",
+      "bootstrap": 5000,
+      "confidence": 0.95,
+      "max_tokens": 4096,
+      "no_truncation": true,
+      "teacher_labels_generated": false,
+      "source_inventory": "exact fresh-v1 builder, official validation/test rows; exclude all old fresh-v1 and JEVal states",
+      "implementation_sha256": "0520ccdff4ac67603ab613b31a46352dbc7efdb08dc41d7b2db7f37c160c4ef9"
+    },
+    "rows": 1847,
+    "sources": {
+      "bigbench-epistemic_reasoning": 200,
+      "bigbench-presuppositions_as_nli": 47,
+      "bigbench-timedial": 200,
+      "copa": 200,
+      "ethics-commonsense": 200,
+      "piqa": 200,
+      "qasc": 200,
+      "quartz": 200,
+      "swag": 200,
+      "wic": 200
+    },
+    "available_unseen_groups": {
+      "bigbench-epistemic_reasoning": 300,
+      "bigbench-presuppositions_as_nli": 47,
+      "bigbench-timedial": 410,
+      "copa": 397,
+      "ethics-commonsense": 2009,
+      "piqa": 1700,
+      "qasc": 791,
+      "quartz": 282,
+      "swag": 18662,
+      "wic": 538
+    },
+    "original_raw_rows": 32241,
+    "audit": {
+      "after_fresh_v1_blocked_ids": 1253,
+      "after_entire_jeval_blocked_ids": 1260,
+      "v3-gold2": {
+        "rows": 199981,
+        "sha256": "f6931f405415553206c9138cebb46fa3c5f6bb7a68f63def679e0e54805c8560",
+        "training_rows_sharing_candidate_keys": 153,
+        "new_blocked_candidate_ids": 153
+      },
+      "v3-gold3": {
+        "rows": 399978,
+        "sha256": "1ea0207572123df50e436e7f471dc9eff05f3563e036d8a95e9364b6d79557f7",
+        "training_rows_sharing_candidate_keys": 446,
+        "new_blocked_candidate_ids": 375
+      },
+      "v3-gold6": {
+        "rows": 699960,
+        "sha256": "5b2ce10c2620c4ee8d4269f9949c6e14d3cffe78747a99b67118cda2102d278f",
+        "training_rows_sharing_candidate_keys": 318,
+        "new_blocked_candidate_ids": 90
+      }
+    },
+    "excluded_groups": 2444,
+    "dropped_over_4096": 0,
+    "audit_scope": "upstream id and lowercase punctuation/whitespace-normalized complete state, including parsed/canonical JSON; not semantic near-duplicate detection",
+    "no_training_or_previous_eval_shared_keys_in_retained_cases": true,
+    "examples_sha256": "3ca96160366a8c5cccbf66bd679b707162911fc524803b3e32538b102f8f9c0f",
+    "model_sha256": {
+      "runs/v3/g4b-gold3-pad0/best": "c216eb62b5e5c46d06a2a4217be21bae426e62b284c5ebcc752f682435f78ce6",
+      "runs/robust/rebuilt-g6w67-g3e2": "c90f56aea77f0dfa5fc4c50b7fe08cbe1ca5a168eefa8648ee97b5d15b18ac2c"
+    },
+    "raw_dataset_snapshots": {
+      "baber/piqa": {
+        "revision": "142f6d7367fd9877f0fb3b5734ea6a545f54cdd1",
+        "files": [
+          "piqa_validation.parquet"
+        ]
+      },
+      "allenai/qasc": {
+        "revision": "a34ba204eb9a33b919c10cc08f4f1c8dae5ec070",
+        "files": [
+          "data/validation-00000-of-00001.parquet"
+        ]
+      },
+      "allenai/quartz": {
+        "revision": "28c1dbb56caf81799296cb17892fa73402e23464",
+        "files": [
+          "data/validation-00000-of-00001.parquet"
+        ]
+      },
+      "pkavumba/balanced-copa": {
+        "revision": "813bd03cd6e07d9bd8d7333896ad5d40abb95ea9",
+        "files": [
+          "test.csv"
+        ]
+      },
+      "aps/super_glue": {
+        "revision": "3de24cf8022e94f4ee4b9d55a6f539891524d646",
+        "files": [
+          "cb/validation-00000-of-00001.parquet",
+          "wic/validation-00000-of-00001.parquet"
+        ]
+      },
+      "google-research-datasets/go_emotions": {
+        "revision": "add492243ff905527e67aeb8b80c082af02207c3",
+        "files": [
+          "simplified/validation-00000-of-00001.parquet"
+        ]
+      },
+      "hendrycks/ethics": {
+        "revision": "b8b47c589f8bee77175b8648e5497278b68da48a",
+        "files": [
+          "data/commonsense/test.csv"
+        ]
+      },
+      "allenai/swag": {
+        "revision": "dc48148372b3853a9c7bae7bb06c161b46d8364a",
+        "files": [
+          "regular/validation-00000-of-00001.parquet"
+        ]
+      },
+      "tasksource/bigbench": {
+        "revision": "b8ee34693560a13a9feac6aa5540449e18b7eddb",
+        "files": [
+          "epistemic_reasoning/validation-00000-of-00001.parquet",
+          "timedial/validation-00000-of-00001.parquet",
+          "presuppositions_as_nli/validation-00000-of-00001.parquet",
+          "analogical_similarity/validation-00000-of-00001.parquet",
+          "anachronisms/validation-00000-of-00001.parquet",
+          "fantasy_reasoning/validation-00000-of-00001.parquet",
+          "entailed_polarity/validation-00000-of-00001.parquet"
+        ]
+      }
+    },
+    "prior_fresh_sha256": "685535c3a81e0f27d56e74cbb21649b1aa715dae05ed1f7118542fd6eb42c89f",
+    "additional_pre_scoring_audit": {
+      "dev_file_sha256": {
+        "data/mix/v3-gold2.dev.jsonl": "ece236b0bc5b92a117cb1f04f4254bd6c0436ceac6a2f29fd2abf71d51f29d89",
+        "data/mix/v3-gold6.dev.jsonl": "424da2e912921e3a0ae196e4ca425220fb2973a1b5a328396a364df574577dcb",
+        "data/mix/v3-gold3.dev.jsonl": "d881fbbc3b1c7a64bea04765036ae24ec56ed2d0cb35bec711fb086407f56770"
+      },
+      "identical_tokenizer_files": {
+        "runs/v3/g4b-gold3-pad0/best/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+        "runs/robust/rebuilt-g6w67-g3e2/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523"
+      },
+      "scores_not_accessed": true
+    }
+  },
+  "models": {
+    "g4b": {
+      "sources": {
+        "bigbench-epistemic_reasoning": {
+          "n": 200,
+          "accuracy": 0.685,
+          "skill": 0.3700000000000001
+        },
+        "bigbench-presuppositions_as_nli": {
+          "n": 47,
+          "accuracy": 0.48936170212765956,
+          "skill": 0.23404255319148934
+        },
+        "bigbench-timedial": {
+          "n": 200,
+          "accuracy": 0.15,
+          "skill": 0.0
+        },
+        "copa": {
+          "n": 200,
+          "accuracy": 0.9,
+          "skill": 0.8
+        },
+        "ethics-commonsense": {
+          "n": 200,
+          "accuracy": 0.67,
+          "skill": 0.3400000000000001
+        },
+        "piqa": {
+          "n": 200,
+          "accuracy": 0.765,
+          "skill": 0.53
+        },
+        "qasc": {
+          "n": 200,
+          "accuracy": 0.725,
+          "skill": 0.6857142857142857
+        },
+        "quartz": {
+          "n": 200,
+          "accuracy": 0.87,
+          "skill": 0.74
+        },
+        "swag": {
+          "n": 200,
+          "accuracy": 0.775,
+          "skill": 0.7000000000000001
+        },
+        "wic": {
+          "n": 200,
+          "accuracy": 0.51,
+          "skill": 0.020000000000000018
+        }
+      },
+      "macro_accuracy": 0.653936170212766,
+      "macro_skill": 0.44197568389057756,
+      "runtime": {
+        "n": 1847,
+        "accuracy": 0.6675690308608554,
+        "macro": 0.653936170212766,
+        "sources": {
+          "bigbench-epistemic_reasoning": {
+            "n": 200,
+            "accuracy": 0.685
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 47,
+            "accuracy": 0.48936170212765956
+          },
+          "bigbench-timedial": {
+            "n": 200,
+            "accuracy": 0.15
+          },
+          "copa": {
+            "n": 200,
+            "accuracy": 0.9
+          },
+          "ethics-commonsense": {
+            "n": 200,
+            "accuracy": 0.67
+          },
+          "piqa": {
+            "n": 200,
+            "accuracy": 0.765
+          },
+          "qasc": {
+            "n": 200,
+            "accuracy": 0.725
+          },
+          "quartz": {
+            "n": 200,
+            "accuracy": 0.87
+          },
+          "swag": {
+            "n": 200,
+            "accuracy": 0.775
+          },
+          "wic": {
+            "n": 200,
+            "accuracy": 0.51
+          }
+        },
+        "seconds": 23.9904229590029,
+        "prompt_evaluations": 1847,
+        "batches": 462,
+        "tokens": 318587
+      }
+    },
+    "soup": {
+      "sources": {
+        "bigbench-epistemic_reasoning": {
+          "n": 200,
+          "accuracy": 0.71,
+          "skill": 0.41999999999999993
+        },
+        "bigbench-presuppositions_as_nli": {
+          "n": 47,
+          "accuracy": 0.5319148936170213,
+          "skill": 0.2978723404255319
+        },
+        "bigbench-timedial": {
+          "n": 200,
+          "accuracy": 0.45,
+          "skill": 0.17500000000000002
+        },
+        "copa": {
+          "n": 200,
+          "accuracy": 0.925,
+          "skill": 0.8500000000000001
+        },
+        "ethics-commonsense": {
+          "n": 200,
+          "accuracy": 0.77,
+          "skill": 0.54
+        },
+        "piqa": {
+          "n": 200,
+          "accuracy": 0.785,
+          "skill": 0.5700000000000001
+        },
+        "qasc": {
+          "n": 200,
+          "accuracy": 0.755,
+          "skill": 0.72
+        },
+        "quartz": {
+          "n": 200,
+          "accuracy": 0.915,
+          "skill": 0.8300000000000001
+        },
+        "swag": {
+          "n": 200,
+          "accuracy": 0.795,
+          "skill": 0.7266666666666667
+        },
+        "wic": {
+          "n": 200,
+          "accuracy": 0.56,
+          "skill": 0.1200000000000001
+        }
+      },
+      "macro_accuracy": 0.7196914893617021,
+      "macro_skill": 0.5249539007092199,
+      "runtime": {
+        "n": 1847,
+        "accuracy": 0.7352463454250135,
+        "macro": 0.7196914893617021,
+        "sources": {
+          "bigbench-epistemic_reasoning": {
+            "n": 200,
+            "accuracy": 0.71
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 47,
+            "accuracy": 0.5319148936170213
+          },
+          "bigbench-timedial": {
+            "n": 200,
+            "accuracy": 0.45
+          },
+          "copa": {
+            "n": 200,
+            "accuracy": 0.925
+          },
+          "ethics-commonsense": {
+            "n": 200,
+            "accuracy": 0.77
+          },
+          "piqa": {
+            "n": 200,
+            "accuracy": 0.785
+          },
+          "qasc": {
+            "n": 200,
+            "accuracy": 0.755
+          },
+          "quartz": {
+            "n": 200,
+            "accuracy": 0.915
+          },
+          "swag": {
+            "n": 200,
+            "accuracy": 0.795
+          },
+          "wic": {
+            "n": 200,
+            "accuracy": 0.56
+          }
+        },
+        "seconds": 27.620834825000202,
+        "prompt_evaluations": 1847,
+        "batches": 462,
+        "tokens": 318587
+      }
+    }
+  },
+  "new_cases_not_used_to_select_recipe": true,
+  "difference": {
+    "macro_delta": 0.06575531914893618,
+    "paired_document_bootstrap_95ci": [
+      0.04610146209772267,
+      0.08576879878113974
+    ],
+    "wins": 182,
+    "losses": 57,
+    "confirmed_improvement": true
+  },
+  "environment": {
+    "python": "3.13.14",
+    "packages": {
+      "torch": "2.10.0+cu128",
+      "transformers": "5.18.0",
+      "huggingface-hub": "2.2.0",
+      "numpy": "2.5.3",
+      "pandas": "3.0.6",
+      "pyarrow": "26.0.0"
+    },
+    "gpu": "RTX 3090 24GB",
+    "kernel": "padded SDPA, BF16",
+    "timing": "shared GPU with independent robust experiment, not a latency benchmark"
+  }
+}

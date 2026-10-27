@@ -1,0 +1,2090 @@
+{
+  "date": "2026-10-19",
+  "run": "runs/inputs/search-v2",
+  "research_papers_read": 14,
+  "candidate_count": 7,
+  "scope": "Frozen g4b; training-free; gold3 dev short-context inputs. Base had previously used full gold3 dev for early stopping. No additional JEVal restricted evaluation.",
+  "plan": {
+    "base": "runs/v3/g4b-gold3-pad0/best",
+    "previous": "runs/architecture/search-v1",
+    "modes": [
+      "base",
+      "definitions",
+      "echo",
+      "repeat",
+      "prefill"
+    ],
+    "calibration_alphas": [
+      0.25,
+      0.5,
+      1.0
+    ],
+    "content_free": [
+      "N/A",
+      "[MASK]",
+      ""
+    ],
+    "max_tokens": 4096,
+    "selection_n": 1474,
+    "confirmation_gate_macro_delta": 0.005,
+    "selection_sha256": "2ec6707f325a0f7eff86d172be38cd45357b070518709a21cca161b793b2921d",
+    "implementation_sha256": "d89270c6f3267e2c372bb09d188aea004e9fc692b46789020bb73cf73a012a8e",
+    "dev_sha256": "d881fbbc3b1c7a64bea04765036ae24ec56ed2d0cb35bec711fb086407f56770",
+    "holdback": "exclude all prior architecture selection/confirmation and Pointer dev document groups",
+    "note": "base historically used full gold3 dev for early stopping; no pristine benchmark claim"
+  },
+  "base_weight_sha256": "c216eb62b5e5c46d06a2a4217be21bae426e62b284c5ebcc752f682435f78ce6",
+  "selection": {
+    "base": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7862957937584804,
+        "macro": 0.7882118272841051,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.8235294117647058
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.9411764705882353
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.59375
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.21875
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.46875
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.875
+          }
+        }
+      },
+      "runtime": {
+        "seconds": 22.006210925999767,
+        "unique_prompts": 1474,
+        "batches": 379,
+        "tokens": 528693,
+        "max_tokens": 1524
+      }
+    },
+    "definitions": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7869742198100407,
+        "macro": 0.7888767209011264,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.8235294117647058
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.9411764705882353
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.21875
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.46875
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.59375
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.875
+          }
+        }
+      },
+      "runtime": {
+        "seconds": 21.963895508999485,
+        "unique_prompts": 1474,
+        "batches": 379,
+        "tokens": 526379,
+        "max_tokens": 1524
+      }
+    },
+    "echo": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7611940298507462,
+        "macro": 0.7630240926157696,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.46875
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.7647058823529411
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.9411764705882353
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.34375
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.46875
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.59375
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.59375
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.4375
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.875
+          }
+        }
+      },
+      "runtime": {
+        "seconds": 25.59430167500068,
+        "unique_prompts": 1474,
+        "batches": 402,
+        "tokens": 686094,
+        "max_tokens": 2223
+      }
+    },
+    "repeat": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7917232021709634,
+        "macro": 0.7935309762202754,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.4375
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.8823529411764706
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.8823529411764706
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.34375
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.59375
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          }
+        }
+      },
+      "runtime": {
+        "seconds": 34.41098787400006,
+        "unique_prompts": 1474,
+        "batches": 466,
+        "tokens": 983686,
+        "max_tokens": 2998
+      }
+    },
+    "prefill": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7876526458616011,
+        "macro": 0.7895416145181477,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.8235294117647058
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.9411764705882353
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.21875
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.4375
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.46875
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          }
+        }
+      },
+      "runtime": {
+        "seconds": 21.91410960400026,
+        "unique_prompts": 1474,
+        "batches": 380,
+        "tokens": 537537,
+        "max_tokens": 1530
+      }
+    },
+    "prior-0": {
+      "runtime": {
+        "seconds": 14.244121914000061,
+        "unique_prompts": 1252,
+        "batches": 313,
+        "tokens": 213859,
+        "max_tokens": 901
+      }
+    },
+    "prior-1": {
+      "runtime": {
+        "seconds": 14.23041887799991,
+        "unique_prompts": 1252,
+        "batches": 313,
+        "tokens": 215111,
+        "max_tokens": 902
+      }
+    },
+    "prior-2": {
+      "runtime": {
+        "seconds": 14.22570209800142,
+        "unique_prompts": 1252,
+        "batches": 313,
+        "tokens": 213859,
+        "max_tokens": 901
+      }
+    },
+    "calibration-0.25": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7829036635006784,
+        "macro": 0.7843006883604505,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.7647058823529411
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.9411764705882353
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.25
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.40625
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.875
+          }
+        }
+      }
+    },
+    "calibration-0.5": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7801899592944369,
+        "macro": 0.7810544430538173,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.5
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.7058823529411765
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.9411764705882353
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.4375
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.25
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.46875
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.4375
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.9375
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          }
+        }
+      }
+    },
+    "calibration-1.0": {
+      "metrics": {
+        "n": 1474,
+        "accuracy": 0.7408412483039348,
+        "macro": 0.7413172715894869,
+        "sources": {
+          "acos-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "aqua-rat-train": {
+            "n": 32,
+            "accuracy": 0.4375
+          },
+          "arc-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "banking77-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "boolq-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "clinc-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "code-output-gen": {
+            "n": 32,
+            "accuracy": 0.625
+          },
+          "commonsenseqa-train": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "contractnli-train": {
+            "n": 17,
+            "accuracy": 0.7058823529411765
+          },
+          "corr2cause-train": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "cosmosqa-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "cuad-train": {
+            "n": 17,
+            "accuracy": 0.8235294117647058
+          },
+          "ecare-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "esci-train": {
+            "n": 32,
+            "accuracy": 0.59375
+          },
+          "faithdial-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "goemotions-train": {
+            "n": 32,
+            "accuracy": 0.40625
+          },
+          "gsm8k-train": {
+            "n": 32,
+            "accuracy": 0.3125
+          },
+          "habermas-train": {
+            "n": 32,
+            "accuracy": 0.3125
+          },
+          "hellaswag-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "hover-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "humicroedit-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "isarcasm-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "lexglue-short-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "lexglue-train": {
+            "n": 32,
+            "accuracy": 0.90625
+          },
+          "logic-puzzles-gen": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "massive-intents": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "mathqa-train": {
+            "n": 32,
+            "accuracy": 0.40625
+          },
+          "medmcqa-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "mmlu-aux-train": {
+            "n": 32,
+            "accuracy": 0.8125
+          },
+          "mnli-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "moralstories-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "newyorker-matching-train": {
+            "n": 32,
+            "accuracy": 0.6875
+          },
+          "nli4ct-train": {
+            "n": 32,
+            "accuracy": 0.75
+          },
+          "openbookqa-train": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "phishing": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "pubmedqa-labeled": {
+            "n": 32,
+            "accuracy": 0.65625
+          },
+          "ragtruth-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "sentfin-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          },
+          "siqa-train": {
+            "n": 32,
+            "accuracy": 0.875
+          },
+          "squad2-answerability": {
+            "n": 32,
+            "accuracy": 0.78125
+          },
+          "strategyqa-train": {
+            "n": 32,
+            "accuracy": 0.53125
+          },
+          "tatqa-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "tools-percall": {
+            "n": 32,
+            "accuracy": 1.0
+          },
+          "vast-train": {
+            "n": 32,
+            "accuracy": 0.5625
+          },
+          "wanli-train": {
+            "n": 32,
+            "accuracy": 0.71875
+          },
+          "when2call-train": {
+            "n": 32,
+            "accuracy": 0.96875
+          },
+          "winogrande-train": {
+            "n": 32,
+            "accuracy": 0.84375
+          }
+        }
+      }
+    }
+  },
+  "frozen_candidate": {
+    "candidate": "repeat",
+    "selection_macro_delta": 0.005319148936170248,
+    "run_confirmation": true,
+    "criterion": "at least +0.5 percentage points macro on selection, fixed before screening"
+  },
+  "confirmation": {
+    "frozen": {
+      "candidate": "repeat",
+      "selection_macro_delta": 0.005319148936170248,
+      "run_confirmation": true,
+      "criterion": "at least +0.5 percentage points macro on selection, fixed before screening"
+    },
+    "n": 2573,
+    "base": {
+      "n": 2573,
+      "accuracy": 0.7924601632335795,
+      "macro": 0.7980722677149987,
+      "sources": {
+        "acos-train": {
+          "n": 43,
+          "accuracy": 0.9069767441860465
+        },
+        "aqua-rat-train": {
+          "n": 64,
+          "accuracy": 0.390625
+        },
+        "arc-train": {
+          "n": 64,
+          "accuracy": 0.875
+        },
+        "banking77-train": {
+          "n": 64,
+          "accuracy": 0.859375
+        },
+        "boolq-train": {
+          "n": 64,
+          "accuracy": 0.90625
+        },
+        "clinc-train": {
+          "n": 64,
+          "accuracy": 0.96875
+        },
+        "code-output-gen": {
+          "n": 64,
+          "accuracy": 0.765625
+        },
+        "commonsenseqa-train": {
+          "n": 64,
+          "accuracy": 0.75
+        },
+        "corr2cause-train": {
+          "n": 41,
+          "accuracy": 0.8536585365853658
+        },
+        "cosmosqa-train": {
+          "n": 33,
+          "accuracy": 0.7878787878787878
+        },
+        "ecare-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "esci-train": {
+          "n": 64,
+          "accuracy": 0.53125
+        },
+        "faithdial-train": {
+          "n": 64,
+          "accuracy": 1.0
+        },
+        "goemotions-train": {
+          "n": 64,
+          "accuracy": 0.71875
+        },
+        "gsm8k-train": {
+          "n": 64,
+          "accuracy": 0.453125
+        },
+        "habermas-train": {
+          "n": 64,
+          "accuracy": 0.515625
+        },
+        "hellaswag-train": {
+          "n": 64,
+          "accuracy": 0.8125
+        },
+        "hover-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "humicroedit-train": {
+          "n": 64,
+          "accuracy": 0.625
+        },
+        "isarcasm-train": {
+          "n": 63,
+          "accuracy": 0.8253968253968254
+        },
+        "lexglue-short-train": {
+          "n": 64,
+          "accuracy": 0.828125
+        },
+        "lexglue-train": {
+          "n": 21,
+          "accuracy": 0.8571428571428571
+        },
+        "logic-puzzles-gen": {
+          "n": 64,
+          "accuracy": 0.703125
+        },
+        "massive-intents": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "mathqa-train": {
+          "n": 64,
+          "accuracy": 0.625
+        },
+        "medmcqa-train": {
+          "n": 64,
+          "accuracy": 0.453125
+        },
+        "mmlu-aux-train": {
+          "n": 64,
+          "accuracy": 0.8125
+        },
+        "mnli-train": {
+          "n": 64,
+          "accuracy": 0.875
+        },
+        "moralstories-train": {
+          "n": 64,
+          "accuracy": 0.90625
+        },
+        "newyorker-matching-train": {
+          "n": 6,
+          "accuracy": 0.6666666666666666
+        },
+        "nli4ct-train": {
+          "n": 10,
+          "accuracy": 0.9
+        },
+        "openbookqa-train": {
+          "n": 64,
+          "accuracy": 0.828125
+        },
+        "phishing": {
+          "n": 64,
+          "accuracy": 0.96875
+        },
+        "pubmedqa-labeled": {
+          "n": 17,
+          "accuracy": 0.9411764705882353
+        },
+        "ragtruth-train": {
+          "n": 64,
+          "accuracy": 0.90625
+        },
+        "sentfin-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "siqa-train": {
+          "n": 64,
+          "accuracy": 0.8125
+        },
+        "squad2-answerability": {
+          "n": 64,
+          "accuracy": 0.890625
+        },
+        "strategyqa-train": {
+          "n": 63,
+          "accuracy": 0.7142857142857143
+        },
+        "tatqa-train": {
+          "n": 36,
+          "accuracy": 0.9444444444444444
+        },
+        "tools-percall": {
+          "n": 64,
+          "accuracy": 1.0
+        },
+        "vast-train": {
+          "n": 64,
+          "accuracy": 0.75
+        },
+        "wanli-train": {
+          "n": 64,
+          "accuracy": 0.75
+        },
+        "when2call-train": {
+          "n": 64,
+          "accuracy": 0.984375
+        },
+        "winogrande-train": {
+          "n": 64,
+          "accuracy": 0.875
+        }
+      }
+    },
+    "candidate": {
+      "n": 2573,
+      "accuracy": 0.7854644383987563,
+      "macro": 0.7892216299977691,
+      "sources": {
+        "acos-train": {
+          "n": 43,
+          "accuracy": 0.8837209302325582
+        },
+        "aqua-rat-train": {
+          "n": 64,
+          "accuracy": 0.375
+        },
+        "arc-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "banking77-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "boolq-train": {
+          "n": 64,
+          "accuracy": 0.890625
+        },
+        "clinc-train": {
+          "n": 64,
+          "accuracy": 0.96875
+        },
+        "code-output-gen": {
+          "n": 64,
+          "accuracy": 0.703125
+        },
+        "commonsenseqa-train": {
+          "n": 64,
+          "accuracy": 0.78125
+        },
+        "corr2cause-train": {
+          "n": 41,
+          "accuracy": 0.8292682926829268
+        },
+        "cosmosqa-train": {
+          "n": 33,
+          "accuracy": 0.6666666666666666
+        },
+        "ecare-train": {
+          "n": 64,
+          "accuracy": 0.859375
+        },
+        "esci-train": {
+          "n": 64,
+          "accuracy": 0.484375
+        },
+        "faithdial-train": {
+          "n": 64,
+          "accuracy": 1.0
+        },
+        "goemotions-train": {
+          "n": 64,
+          "accuracy": 0.71875
+        },
+        "gsm8k-train": {
+          "n": 64,
+          "accuracy": 0.421875
+        },
+        "habermas-train": {
+          "n": 64,
+          "accuracy": 0.578125
+        },
+        "hellaswag-train": {
+          "n": 64,
+          "accuracy": 0.796875
+        },
+        "hover-train": {
+          "n": 64,
+          "accuracy": 0.828125
+        },
+        "humicroedit-train": {
+          "n": 64,
+          "accuracy": 0.65625
+        },
+        "isarcasm-train": {
+          "n": 63,
+          "accuracy": 0.8095238095238095
+        },
+        "lexglue-short-train": {
+          "n": 64,
+          "accuracy": 0.859375
+        },
+        "lexglue-train": {
+          "n": 21,
+          "accuracy": 0.8571428571428571
+        },
+        "logic-puzzles-gen": {
+          "n": 64,
+          "accuracy": 0.703125
+        },
+        "massive-intents": {
+          "n": 64,
+          "accuracy": 0.859375
+        },
+        "mathqa-train": {
+          "n": 64,
+          "accuracy": 0.609375
+        },
+        "medmcqa-train": {
+          "n": 64,
+          "accuracy": 0.53125
+        },
+        "mmlu-aux-train": {
+          "n": 64,
+          "accuracy": 0.8125
+        },
+        "mnli-train": {
+          "n": 64,
+          "accuracy": 0.875
+        },
+        "moralstories-train": {
+          "n": 64,
+          "accuracy": 0.890625
+        },
+        "newyorker-matching-train": {
+          "n": 6,
+          "accuracy": 0.6666666666666666
+        },
+        "nli4ct-train": {
+          "n": 10,
+          "accuracy": 0.8
+        },
+        "openbookqa-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "phishing": {
+          "n": 64,
+          "accuracy": 0.96875
+        },
+        "pubmedqa-labeled": {
+          "n": 17,
+          "accuracy": 1.0
+        },
+        "ragtruth-train": {
+          "n": 64,
+          "accuracy": 0.84375
+        },
+        "sentfin-train": {
+          "n": 64,
+          "accuracy": 0.859375
+        },
+        "siqa-train": {
+          "n": 64,
+          "accuracy": 0.8125
+        },
+        "squad2-answerability": {
+          "n": 64,
+          "accuracy": 0.875
+        },
+        "strategyqa-train": {
+          "n": 63,
+          "accuracy": 0.6825396825396826
+        },
+        "tatqa-train": {
+          "n": 36,
+          "accuracy": 0.9444444444444444
+        },
+        "tools-percall": {
+          "n": 64,
+          "accuracy": 1.0
+        },
+        "vast-train": {
+          "n": 64,
+          "accuracy": 0.734375
+        },
+        "wanli-train": {
+          "n": 64,
+          "accuracy": 0.6875
+        },
+        "when2call-train": {
+          "n": 64,
+          "accuracy": 0.984375
+        },
+        "winogrande-train": {
+          "n": 64,
+          "accuracy": 0.875
+        }
+      }
+    },
+    "delta": {
+      "macro_delta": -0.008850637717229604,
+      "paired_document_bootstrap_95ci": [
+        -0.019069706609348192,
+        0.0014872520684646206
+      ],
+      "wins": 74,
+      "losses": 92
+    },
+    "evidence_of_improvement": false
+  },
+  "split_audit": {
+    "confirmation_n": 2573,
+    "prior_exposed_ids": 4665,
+    "shared_id_state_item_document_keys": 0,
+    "implementation_and_dev_hash_match": true
+  },
+  "validation": {
+    "tests_passed": 6,
+    "test_command": ".venv/bin/python -m unittest tests.test_v3_inputs -v",
+    "tests_log_sha256": "a12e39307e67e13dda7dfa10e85e0ba860551585fc366427169f64cbbf7a1d51",
+    "base_weights_unchanged": true,
+    "stored_confirmation_metrics_recomputed": true
+  },
+  "adoption": "No candidate adopted. Existing serving format and model weights retained."
+}

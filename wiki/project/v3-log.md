@@ -709,3 +709,203 @@ g3의 격차 분석(같은 역량에서 덜 일반화, 빈 역량)과 fresh-v1 �
   - JEVal restricted 최종 확인.
   - 라이선스 검토(ACOS·VAST·NLI4CT·Humicroedit·OpenBookQA, SCOTUS SCDB CC-BY-NC, QuALITY).
   - HoVer 문서 단위 분할, habermas 라벨 확인.
+
+## 2026-10-19 — 논문 기반 구조 검색
+
+- alphaXiv 문헌 검색과 PDF 본문 확인 후 g4b에서 99개 설정·seed 조합을 비교했다. 학습 7,615행, selection 1,474행, confirmation 2,956행, 최대 1,536토큰.
+- 층 결합·pooling·class attention·추가 FFN·residual scalar/channel·IA3·층 생략/교환·DoLa 변형·기존 점수를 보존하는 잔차 Pointer/Set Transformer를 실제 비교했다.
+- selection 공동 최선(두 seed 평균 79.19%, 기본 78.82%) 중 정해진 순서로 scoring gate를 고정했다. confirmation은 seed 41/73에서 78.20%/78.10%로 기본 78.25%를 넘지 못했다.
+- seed 41을 미리 고정한 JEVal restricted 짧은 문맥 부분집합 1,645행/44출처도 후보 57.86%, 기본 58.02%로 개선되지 않았다. 전체 JEVal/보드 결과가 아니다. 이 restricted ID들은 이제 결과를 관찰한 평가 문항이다.
+- 선택 모델을 실제 backbone에서 재로딩해 selection 예측 불일치 0개를 확인했다. 21개 테스트 통과. 같은 batch의 forward+head 시간은 기본 14.47 ms/문항, 후보 16.37 ms/문항.
+- 이번 동결 backbone·소규모 추가 학습 범위에서 채택할 구조 개선은 확인하지 못했다. [논문·설정·결과](architecture-search.md), [작은 결과 기록](architecture-search-results.json), 원본 run은 `runs/architecture/search-v1/`.
+
+## 2026-10-19 — 다른 방법 조사와 입력 실험
+
+- alphaXiv 추가 검색 2회·PDF 14편으로 입력 표현, loss, 추가 추론 계산을 조사했다. [논문별 근거·적용 조건](other-methods.md).
+- 같은 g4b에서 training-free 후보 7개를 기존 selection 1,474문항으로 비교했다. 기본 78.82%; 정의만 78.89%; echo 76.30%; 입력 반복 79.35%; prefix 78.95%; prior α=.25/.5/1은 78.43/78.11/74.13%였다.
+- selection +0.5%p를 사전 확인 기준으로 두고, 통과한 repeat 하나를 고정했다. 과거 architecture selection/confirmation과 Pointer dev의 문서 그룹 전체를 제외한 2,573문항/45출처/2,263그룹에서 확인했다. 원문 ID·state·item·document key 공유 0개, 코드·dev SHA 일치.
+- confirmation 기본 79.81%, repeat 78.92%, 차이 −0.89%p, paired 문서 bootstrap 95% 구간 [−1.91,+0.15]%p. 74개 회복, 92개 악화. 개선으로 채택하지 않았다. g4b 자체의 과거 early stopping에는 gold3-dev가 쓰였으므로 pristine 평가라고 부르지 않는다.
+- 입력 반복은 selection token 수가 1.86배였다. 한 번의 selection 처리 시간은 22.01→34.41초(토큰화/로딩 제외, collate·forward·logit 복사 포함). production latency 수치로 쓰지 않는다.
+- 새 입력 실험 테스트 6개 통과. prefill의 BPE 경계 오류를 검사로 발견해 prefix 뒤 줄바꿈으로 수정했다. 첫 실패 run을 보존하고 수정 후 전체 후보를 search-v2에서 다시 실행했다. 신규 학습·JEVal restricted 추가 평가는 없다.
+- [수치 기록](other-methods-results.json); 원문별 예측·prior·고정 후보·confirmation ID는 `runs/inputs/search-v2/`.
+
+## 2026-10-19 — LM Head 대체 readout과 MLP
+
+- `readout.py`·`readout_experiment.py`에 code 대조군, 새 선형, 새 MLP(1024→512→255), 기존 출력에서 시작한 512폭 residual MLP, 선택지별 공유 선형/MLP scorer를 구현했다. 새 MLP·공유 option scorer는 기존 LM 출력 행을 사용하지 않는다. warm MLP는 출력 행도 함께 학습해 이전 128폭·출력 고정 FFN과 구분했다.
+- gold3 원문 앞 32,768행 중 길이 조건을 통과한 30,548행/48출처를 학습했다. 동일한 frozen 특징에서 6종×학습률 2개×seed 2개 = 24개 조합, batch 128×1,024 update를 비교했다. 선택용은 기존 1,474문항/47출처와 같은 토큰·target이다.
+- 각 종류 최선의 선택용 두 seed 평균: code 재학습 79.12%, 새 선형 78.56%, 새 MLP 78.70%, warm MLP 79.05%, option 선형 78.39%, option MLP 78.46%(기본 78.82%). 선형 .001, warm MLP 1e-5, code .0001을 고정했다.
+- 고정한 3계열×2seed에서 마지막 두 층 39,908,000 parameter와 head를 batch 16×128 update로 학습했다(backbone lr 1e-6). 6개 중 warm MLP seed 73만 step 64가 선택됐고 나머지 5개는 step 0(head-only)이 최선이었다.
+- 새로운 확인 문서는 이전 architecture·Pointer·입력 실험 노출 문서 그룹을 제외해 추출했다. 원래 gold3 전체 399,978 학습 행의 추가 감사에서 같은 지문을 공유한 OpenBookQA 확인 문항 1개를 발견해, **확인 점수를 보기 전에** 그 문서 그룹을 제외했다. 최종 2,027문항/34출처/1,967그룹, 원문 ID·state·정규화 state·item·명시 document key 공유 0개. 감사·제외 코드도 `readout_audit.py`에 보존했다.
+- 최종 두 seed 평균: 기본 79.40%, code 재학습 78.79%, 새 선형 77.97%, warm MLP 79.28%(head-only 79.34%). MLP seed 41/73의 기본 대비 차이는 −0.29/+0.04%p, 95% 구간 [−0.83,+0.27]/[−0.82,+0.91]%p였다. 기존 모델 대비 개선을 확인하지 못해 채택하지 않았다.
+- 6개 run 모두 cache/live 예측 불일치 0개. 저장한 head/tail로 각 selection 1,474문항을 재실행해 재로딩 불일치도 모두 0개였다. 테스트 6개, py_compile, diff whitespace 검사 통과. 기존 모델 파일 SHA 유지, 신규 JEVal restricted 평가는 없다.
+- [설계·해석](readout-mlp.md), [수치·검증](readout-mlp-results.json), 원문 예측·loss·별도 가중치는 `runs/readout/search-v1/`.
+
+## 2026-10-19 — 완료된 g6·g3 조합의 로컬 재구성
+
+- 별도 LoRA/순열 일관성 실험 중 Hub revision `a0b44b4d531145ecb30136cea886381205132d93`의 새 완료본(08:19:27 UTC)을 발견했다. g6 전체 학습은 이 채팅에서 수행하지 않았다. 업로드된 고정 recipe `g6 .67 + g3 epoch-2 .33`을 원래 Qwen 기준의 기존 `merge.py`로 재구성했다.
+- g6 best=last(step 21,874), g3 best=epoch-2(step 12,500)를 metadata로 확인했다. 원래 Qwen·두 입력 가중치와 결과의 hash 및 Hub revision을 기록했다. 결과 checkpoint는 `runs/robust/rebuilt-g6w67-g3e2/`, SHA256 `c90f56aea77f0dfa5fc4c50b7fe08cbe1ca5a168eefa8648ee97b5d15b18ac2c`.
+- fresh-v1의 16출처 1,335문항을 같은 tokenizer·입력 token·BF16 SDPA·batch 경로로 직접 실행했다. GoEmotions 제외 15출처 1,235문항의 출처 평균 정확도: g4b best **66.24%**, g6 **66.73%**, g3 **63.51%**, 조합 **70.36%**. g4b 대비 **+4.11%p**, 117회 회복·61회 악화, 문서 bootstrap 95% 구간 [+2.01,+6.18]%p. 사후 구성요소 비교 3개에 Bonferroni를 적용해도 조합과 각 대조군 차이의 구간 하한은 양수였다.
+- upstream이 이미 평가한 recipe와 fresh-v1의 재측정이다. 새로운 독립 확인셋에서 발견한 성공으로 부르지 않는다. upstream 16출처 정확도 70.18%와 로컬 70.46%는 완전히 일치하지 않았으며 원인을 분리하지 않았다. 이번 비교는 같은 로컬 경로에서 양쪽을 직접 잰 값이다.
+- 기존 `engine.Scorer` API로 전체 1,335문항을 다시 실행해 예측 불일치 **0개**, 최대 확률 차이 1.53e-7, 334배치에 text forward **334회**를 확인했다. `orders=1`, 추가 모델·후보 재평가 없이 단일 checkpoint로 사용한다. 기존 가중치와 serving 기본값은 유지한다.
+- [설명·사용·한계](g6-soup-replication.md), [수치·provenance·엔진 검증](g6-soup-replication-results.json). 원문별 예측·확률·구성요소 대조는 `runs/robust/reference-comparison/`.
+
+### 고정한 67:33 조합의 새 문항 확인
+
+- 이미 관찰된 fresh-v1 재측정에 그치지 않고, 같은 공식 validation/test 원천의 미사용 문항을 따로 준비했다. 기존 fresh-v1, 전체 로컬 JEVal, g3/g4b/g6의 실제 학습 파일 199,981/399,978/699,960행(합계 1,299,919행)과 gold dev를 감사했다. 학습·dev hash가 모델 manifest와 맞는지 확인했다. 지문은 소문자·구두점/공백·JSON 표현을 정규화했고, 연결된 지문 그룹 전체를 제외했다. 모든 의미 근사 중복 탐지라고 주장하지 않는다.
+- 모델 예측을 보지 않고, 미사용 그룹이 20개 이상 남은 모든 비-GoEmotions 출처에서 고정 hash 순서로 최대 200그룹을 골랐다. 같은 지문에서 하나씩, 최종 **1,847문항/10출처**. recipe는 기존 **g6 .67 + g3 .33**과 같은 모델 SHA로 고정했다. 원래 tokenizer 파일도 양쪽에서 같았다.
+- 새 문항의 출처 평균 정확도: g4b **65.39%**, 조합 **71.97%**, 차이 **+6.58%p**, 문서 bootstrap 5,000회 95% 구간 **[+4.61,+8.58]%p**. 182개 회복·57개 악화였다. 기존 평가에 없는 새 문항에서 차이를 확인했으며, 모든 새로운 과제의 우월함으로 일반화하지 않는다. 이 확인셋도 이제 관찰한 자료다.
+- [평가 파일 hash·공식 원문 snapshot·전 학습 감사·예측 수치](g6-soup-holdback-results.json), 실제 입력·문항별 예측 `runs/robust/fresh-v2-holdback/`. 공개 원문 snapshot 복원은 `download_fresh_sources.py`, 준비·확인은 `fresh_holdback.py`에 남겼다. 추가 teacher label·rationale는 없다.
+
+## 2026-10-19 — 원본 보존 adapter·일관성·추론 조합
+
+- rank-8/alpha-16 LoRA를 text 24층의 186개 projection에 적용했다(5,411,328 parameter). 입력 임베딩·기존 code head·norm·conv는 고정했다. CE와 CE+순열 JSD(.5)를 seed 41/73에서 각각 256 update·semantic batch16으로 학습했다. 같은 두 순열 view·draw·계산 예산이었다. 준비 16,384개 중 run당 4,096 draw를 읽었고, 128/256 update를 저장했다.
+- 두 seed의 BA 업데이트를 평균하고 원본 혼합 .5/1.0을 selection 1,474문항에서 비교했다. 단일 최선은 JSD step128/.5의 **79.22%**(기본 78.82%). cyclic 최선은 CE step128/.5 **79.69%**, top-4 cyclic 재비교 .5 **78.89%**였다. 모든 family·가중치·확인 ID hash를 공유 확인셋 평가 전에 고정했다.
+- 이전 실험 노출 문서와 원래 전체 gold3 학습의 공유 key를 제외한 **2,998문항/39출처/2,505그룹**, 최대4,096토큰에서 기본 **80.83%**, 단일 adapter soup **80.64%**, cyclic soup **81.14%**, shortlist **81.06%**. 차이 −.20/+.31/+.23%p, Bonferroni 98.3333% 구간은 [−.72,+.29]/[−.49,+1.20]/[−.15,+.62]%p로 모두 0을 포함했다. 이 세 방법의 개선은 확인하지 못했다.
+- gold memory는 schema별 kNN과 기본 확률 혼합을 6설정 비교했다. 27schema/3,797학습 사례였으나 selection 지원은 99문항뿐이었다. 최선이 기본과 같은 78.82%로 사전 +.25%p gate를 통과하지 못해 확인하지 않았다.
+- 단일·cyclic·shortlist 모두 파일/recipe 재로딩 selection 예측 불일치 0개. 기본 대비 prompt 계산 수는 2,998 / 9,213 / (2,998+7,914)였다. GPU 공유 wall time을 latency로 쓰지 않는다. 전체 학습·평가 종료와 기존 모델 SHA 보존을 확인했다. 테스트 10개, py_compile, diff whitespace 검사 통과.
+- [논문·계획·해석](robust-combinations.md), [수치·보정 구간·학습·hash](robust-combinations-results.json). 원본 run `runs/robust/search-v1/`. 이 소규모 추가 방법의 실패와, 별도 g6/g3 조합의 새 문항 개선을 구분한다.
+
+## 2026-10-19 — Transformer 내부 블록 반복과 전체 백본 대조 학습
+
+- 가중치 평균을 요청한 구조 변경의 답으로 제시한 범위를 바로잡고, 중간 `[16:20]`의 hybrid Transformer 4개 블록을 같은 가중치로 다시 실행하는 경로를 구현했다. 실행 블록 수는 24→28이다. 0 초기화 FP32 채널 게이트 1,024개가 `h + tanh(g)*(Block(h)-h)`를 학습한다. LM head·prompt·255코드 체계는 유지한다. 별도 모델이나 seed의 가중치/예측 평균은 없다.
+- 같은 g4b SHA에서 기본·반복 구조 모두 언어 백본과 tied embedding/head 전체를 학습했다. 준비된 12,290문항/100출처에서 같은 8,192개 표본·512 update·배치16을 사용했다. 전 512스텝 입력 hash가 일치했다. body LR 3e-6, 새 gate LR .001, 32스텝 warmup·cosine, FP32 master AdamW다.
+- gold2/3/6 학습 **1,299,919행**, 이전 gold3 dev·fresh-v1/v2·전체 JEVal의 공유 문서/입력 그룹을 제외했다. 모델 선택/확인 추론 전 추가 JEVal 교차 검사에서 44그룹을 제거하고 채우지 않았다. 최종 selection 4,147문항/77출처/1,758그룹, confirmation **8,823문항/77출처/4,413그룹**이다. 의미적 모든 근사 중복까지 검사한 것은 아니다.
+- 초기 selection 예측/확률 차이는 0이었다. 기본의 step0/256/512는 71.43/73.94/75.74%, 반복은 71.43/73.82/75.60%였다. 각자 step512를 고르고 모델·구조 파일 SHA와 확인 입력 SHA를 동결했다.
+- confirmation 출처 평균 정확도는 기본 **75.20%**, 반복 **75.29%**였다. 차이 **+0.10%p**, 출처를 유지한 문서 bootstrap 5,000회 95% 구간 **[−0.20,+0.45]%p**. 40문항 회복·35문항 악화이며, 이번 단일 seed 비교에서 구조의 개선은 확인되지 않았다. 확인셋을 이용한 재선택·재학습은 하지 않는다.
+- 같은 3,645,308 token·8,823 prompt의 inference는 기본 143.39초, 반복 165.29초로 **15.27% 증가**했다. 학습/선택셋 평가/저장 총시간 873.19/1,023.80초, 최대 CUDA allocated memory 13.89/13.90GB였다. 동일 update/data 비교이며 동일 FLOPs 비교는 아니다. 두 저장 모델 모두 전체 selection 재로딩 예측 불일치 0개였다.
+- 실제 추가 경로가 포함된 체크포인트는 `runs/recurrent/internal4-v1/recurrent/step-512/`. 기존 `engine.Scorer`는 구조 manifest를 감지해 추가 경로를 복원한다. [구현·측정·한계](recurrent-depth.md), [최종 수치](recurrent-depth-results.json). raw 입력·예측·확률·고정 source·모델은 `runs/recurrent/internal4-v1/`에 보존했다.
+- 기존 엔진 128문항에서 예측 불일치 0개·최대 확률 차이 1.89e-7. 33배치 각각 text forward 1회와 내부 블록 28회 실행을 확인했다. 게이트 RMS .01006, 이 표본의 추가 경로 변화 norm은 입력 대비 .367%였다. 추가 학습 전 원래 g4b는 같은 확인셋 71.67%이며, 기본 구조의 추가 학습만으로 75.20%가 되는 차이를 구조 이득으로 세지 않는다.
+
+## 2026-10-19 — 후보별 판정 Query: 구조 가설과 학습 전 비용 확인
+
+- 추가 반복 대신 기존 마지막 full-attention 층의 계산을 후보별 근거 읽기에 재배치하는 구조를 구현했다. 앞 23개 hybrid 층은 원래 prompt를 한 번 읽는다. 마지막 층은 전체 K/V를 유지하면서 Q·출력 projection·FFN을 T개 모든 토큰 대신 K개 후보 Query에만 적용한다. 마지막 층의 attention·FFN·LM head 가중치를 그대로 쓴다.
+- 새 Query는 원래 판정 벡터의 복사로 초기화하고, 질문·후보의 비선형 결합을 학습할 262,144 parameter adapter를 0 출력으로 둔다. 새 Query의 학습은 아직 하지 않았다. 기존 Pointer처럼 최종 벡터 간 점수만 바꾸는 것이 아니라 후보별 token-level evidence attention을 바꾸는 가설이다.
+- 이미 노출된 selection에서 고정 hash로 512문항/73출처를 뽑아 **수치·비용만** 검사했다. 211,134토큰/136배치, 후보 수 중앙값3, 실제 범위2–151이었다. 기존 가중치를 고정한 초기 후보 Query에서 선택 불일치 0/512, BF16 최대 logit 차이 .0833·최대 확률 차이 .00465였다. 모든 확률의 bitwise 일치는 주장하지 않는다.
+- 준비된 GPU 입력, BF16 SDPA, microbatch4/4096토큰, 경로별 warmup 후 3회 순서 회전·동기화 측정의 중앙값: native **8.1799초**, 판정 Query1개 **8.0171초**, 후보 Query **8.0502초**. 후보 경로는 이 환경·표본에서 약1.59% 짧았다. 전체 서비스의 일반적인 속도 향상이나 정확도 개선으로 부르지 않는다.
+- 초기 출력·패딩·공유 백본/새 adapter gradient·native 복구·Q/FFN K행과 K/V T행 처리 테스트 3개, py_compile, diff whitespace 검사를 통과했다. 배포용 저장 포맷/기존 엔진 연결은 아직 없는 feasibility prototype이다.
+- Jeva의 독립 후보 메모리·coverage 설계, DUMA의 후보/질문별 근거 matching, Poly-encoders의 interaction 절충을 검토했다. Jeva의 coverage gate만으로는 closed-choice 후보 argmax를 바꿀 수 없으며, 전체 Jeva 결과는 4B·별도 대규모/일부 teacher 학습 조건이다. 우리 정확도 개선을 보증하는 근거로 쓰지 않는다.
+- [제안·문헌·한계·다음 비교 기준](decision-native-next.md), [수치](decision-tail-feasibility-results.json), 실행/원문 `runs/decision-tail/feasibility-v1/`. 이 probe에서는 새 독립 확인셋을 열거나 accuracy 후보를 고르지 않았다.
+
+## 2026-10-19 — 후보별 판정 Query의 실제 전체 백본 학습
+
+- 후보별 Query와 단일 Query를 실제 0.8B에서 각각 512스텝 학습했다. 같은 g4b, gold6 풀 12,290문항/100출처, 배치16의 같은 8,192개 입력, 언어 백본+tied head 전체 학습이다. body LR 3e-6, 후보 adapter LR 3e-4/rank64, warmup32·cosine, FP32 master AdamW를 고정했다. 기본 구조 대조군은 직전 recurrent 실험의 동일 native fit을 데이터/recipe/source/가중치와 함께 검증해 재사용했다. 새 두 fit의 512개 prompt hash가 모두 이 대조군과 일치했다. 모델/seed 조합은 없다.
+- 기존 4,147문항/77출처 선택셋에서 세 arm 모두 step512를 골랐다. 선택 정확도는 기본75.7419%, 단일75.8381%, 후보75.7200%다. 이전에 노출된 dev·fresh·recurrent 선택/확인·JEVal과 전체 gold2/3/6 학습 1,299,919행을 대조해 새 **3,394문항/35출처/2,022문서 그룹**을 준비했다. 최종 확인 전에 모델/adapter/구조 파일 hash를 고정했다.
+- 새 확인셋 출처 평균: 기본 **70.6993%**, 단일 **70.7203%**, 후보 **70.7453%**. 후보 대 기본 **+0.04595%p**, 문서 paired bootstrap 5,000회 95% 구간 **[−0.3280,+0.4116]%p**, 28회복/25악화다. 단일 대 기본 +0.02100%p, 구간 [−0.1873,+0.2357]%p. **정확도 개선은 확인하지 못했다.** 문항 전체 정확도도 기본67.6783%, 단일67.8845%, 후보67.7666%로 차이가 작았다. 출처 도메인은 공유하며 의미상 paraphrase를 모두 검출했다는 주장은 아니다.
+- 후보 학습+선택 평가+저장 907.20초/최대 CUDA allocation13.894GB, 단일872.22초/13.890GB였다. 후보의 추가 parameter는262,144개다. 초기 실전 3스텝에서 모든 trainable parameter의 유한 gradient와 adapter의 nonzero gradient, 저장 후 확률 차이0을 확인했다. 관련 테스트51개를 통과했다.
+- 원래24층의 stock weights와 `decision_tail.safetensors`/`decision_architecture.json`을 함께 저장한다. 기존 `engine.Scorer`가 후보/단일 Query 경로를 자동 복원한다. 최종 후보는 `runs/decision-tail/trained-v1/candidates/step-512/`. [설계·통제·결과](decision-native-next.md), 원시 계획·입력·source snapshot·학습 로그·확률·모델은 `runs/decision-tail/trained-v1/`에 보존했다.
+- 학습 후512문항/73출처의 준비된 GPU 입력 세 번 중앙값은 후보가 약1.30% 짧았지만, 엔진 전체 호출은 약0.85% 길었다. 같은 후보 가중치로 경로를 번갈아 실행한 별도512문항 비교도 native8.5873초→후보8.6548초로 약0.79% 느렸다. tokenization/offset/padding/전송/확률을 포함하고 loading은 제외했다. 정확도·전체 호출 비용 양쪽의 우위를 확인하지 못했다.
+- 저장 모델의 전체 selection4,147문항 예측 불일치0/확률 차이0. 기존 엔진 독립 로딩128문항에서도 예측 불일치0/최대 확률 차이1.53e-7, 35배치당 백본1회·블록24회, 마지막Q의 K행·K/V의 T행 처리를 검증했다. [전체 결과·provenance·엔진/비용 검증](decision-tail-trained-results.json).
+
+## 2026-10-19 — 중간 블록 변화량을 다시 읽는 depth routing
+
+- **채택 후보에서 제외:** 2026-10-19 사용자 요청으로 이 구조를 폐기했다. 정확도 개선 미확인·전체 호출 지연 증가가 근거다. 아래 결과·코드·체크포인트는 실패 실험의 증거로 보존한다.
+- 마지막 readout/후보 Query 대신 Transformer 안의 깊이 방향 정보 전달을 바꿨다. 원래24개 hybrid 층을 4개씩 묶고, 각 블록의 `delta = output - input`을 토큰별로 보관한다. 다음 블록에 들어가기 전에 RMS-normalized delta key와 학습한 Query로 과거 delta·고정 zero source에 softmax를 적용하고, 선택한 변화량을 `h + tanh(gate)*selected_delta`로 더한다. 게이트·Query는 각1024차원, 5경로 총10,240개 파라미터다. native24층은 각각1회만 실행하며 LM head·입력·후보별 점수 체계는 그대로다.
+- [Delta Attention Residuals](https://arxiv.org/abs/2605.18855)의 additive delta retrieval에서 출발한 별도 retrofit이며 논문의 정확한 재현은 아니다. 논문은 Qwen3-0.6B·FineWeb-Edu20K스텝의 8개 downstream 평균에서 native FT55.0%, Delta Block55.6%를 보고했다. 우리 모델/정답 CE/짧은 학습 예산의 이득을 보증하지 않는다. [Attention Residuals 공식 자료](https://github.com/MoonshotAI/Attention-Residuals)의 전체 누적 상태 교체와 달리, 원래 residual을 유지하고 새 게이트를 정확히0으로 초기화한다.
+- 순환 hook에 중간 상태를 저장하지 않고, 각 그룹의 입력/출력 tensor에 delta bank를 명시적으로 전달한다. 그룹 전체 checkpoint 재계산 때도 같은 입력이 전달되며 요청 간 bank가 남지 않는다. stock24층 가중치 + `delta_memory.safetensors` + 구조 manifest를 저장하고 기존 `engine.Scorer`가 자동 복원한다. 일반 Transformers 로딩만으로는 새 경로가 복원되지 않는다.
+- 실제0.8B 초기 logits 최대 차이0, 3스텝에서 모든 trainable parameter의 유한 gradient 및 새 gate의 nonzero gradient, 저장/복원 확률 차이0을 확인했다. 작은 모델의 초기 출력/기존 gradient 보존·checkpoint 재계산·요청 독립성·저장/복원·hybrid padding 테스트4개를 포함해 관련55개 테스트를 통과했다.
+- 같은 g4b·학습 풀12,290문항/100출처·512 update·배치16·body LR3e-6에서 언어 백본+tied head를 학습한다. 새 query/gate LR.003, weight decay0, 나머지는 이전 동일 native fit과 같은 FP32 master AdamW·warmup32·cosine·정답 CE·순열 draw다. 기본 대조군은 이미 완료한 동일 fit을 source/data/가중치와 함께 검증해 재사용한다. 단계별 prompt hash가 같아야 학습이 진행된다. 동일 데이터/업데이트 예산이며 wall-clock/FLOPs 일치 비교는 아니다.
+- 선택은 기존4,147문항/77출처에서 step256/512 중 정한다. 새 확인은 **2,220문항/18출처**, 공식 validation/test 미사용1,869개와 남은 gold6-dev351개다. 각 출처에 미사용 문서20개 이상이 남을 때 고정 hash로 최대256그룹·그룹당1문항을 골랐다. 원문 upstream ID·state·정규화 state·명시적 문서 연결의 그룹 전체를 이전 gold3 dev/fresh/recurrent/후보 Query 확인/JEVal과 full gold2/3/6 학습1,299,919행에 대조했다. 공식 문항은 모든 gold2/3/6 dev와도 겹치지 않는다. 의미상 paraphrase나 foundation 사전학습 전체의 비노출을 보증하는 감사는 아니다.
+- 구현 [delta_memory.py](../../qwen_decision/v3/delta_memory.py), 비교 [delta_memory_experiment.py](../../qwen_decision/v3/delta_memory_experiment.py), 실제 엔진/비용 검증 [delta_memory_audit.py](../../qwen_decision/v3/delta_memory_audit.py). 계획·고정 source snapshot·입력·학습 로그·가중치는 `runs/delta-memory/block4-v1/`에 보존한다.
+- 초기 전체 selection4,147문항은 기본 대조군과 예측 불일치0·최대 확률 차이0이었다. step256 출처 평균은 새 구조73.9962% 대 기본73.9417%(+0.0546%p), step512는 새 구조75.6124% 대 기본75.7419%(−0.1296%p)였다. 각 arm에서 step512를 선택하고 모델/라우터/구조 파일 hash를 고정했다. 새 구조의 전체512개 prompt hash가 기존 대조군과 일치했다. 전체 학습·선택 평가·저장은928.68초, 최대 CUDA allocation15.409GB였다.
+- 새2,220문항/18출처/2,220그룹에서 출처 평균 기본 **65.6993%**, 새 구조 **65.8533%**, 차이 **+0.15398%p**, 문서 paired bootstrap5,000회 95% 구간 **[−0.2817,+0.5762]%p**였다. **정확도 개선을 확인하지 못했다.** 오답19개를 고치고 정답13개를 새로 틀렸다. 문항 전체 정확도는64.0090%→64.2793%였다. 기존 확인셋과 문항·출처 구성이 다르므로 이전 실험의 절대 정확도와 직접 비교하지 않는다.
+- 사전에 정의한 suite별 진단으로 공식 미사용9출처의 평균은65.3302%→65.6382%, 남은 gold6의9출처는66.0684%→66.0684%였다. 이것을 추가 확증 비교로 주장하거나 새 후보 선택에 쓰지 않았다. 한 seed·router LR.003·512 update의 결과이며, 깊이 연결 변경의 모든 설정이 실패한다는 증명은 아니다.
+- 고정512문항의 GPU 입력 세 번 중앙값은 기본8.0169초→새 구조8.5237초(+6.32%), 각 저장 모델의 엔진 전체 호출은8.5729초→9.0821초(+5.94%)였다. 같은 새 가중치에서 native/새 경로를 번갈아 실행한 별도 비교도8.5956초→9.0624초(+5.43%)였다. 모델 loading을 제외하고 토큰화·padding·전송·확률 변환을 포함했다. 최종 정확도·비용 우위를 얻지 못했다.
+- 저장 모델로 전체 selection4,147문항을 다시 평가해 예측 불일치0·확률 차이0을 확인했다. 독립적으로 불러온 기존 엔진128문항도 예측 불일치0·최대 확률 차이1.62e-7이었다. 34배치당 백본1회와 native24층 각각1회를 확인했다. 새 routing의 출력 변화 norm은 원래 블록 출력 대비0.980%, feature값66.5%가 바뀌었다. 마지막 router는 평균91.16%의 weight를 더 이른 블록의 delta에 두었다. 경로가 단순히 비활성인 것은 아니며, 이 attention/activation 진단을 정확도 개선의 근거로 쓰지는 않는다.
+- 선택셋128문항에서 모든 gate를0으로 지우면 예측1개·확률 최대.04871, 이전 delta 접근만 지우면 예측1개·확률 최대.01273이 바뀌었다. 진단 이후 후보를 재선택하거나 재학습하지 않았다. 최종 모델 `runs/delta-memory/block4-v1/delta/step-512/`, [수치·구간·데이터 감사·가중치/source hash·모델/엔진 검증](delta-memory-results.json).
+
+
+## 2026-10-19 — 중간 가설 작업공간과 가설 출구 강제
+
+- 이전 delta memory는 사용자 요청으로 채택 후보에서 제외하고 실패 근거를 보존했다. alphaXiv에서 TRM·T²MLR·LLoCoT·INTACT·LRT·BDH-CQ·Pause Tokens·RiM의 관련 원문 부분을 대조했다. 퍼즐 전용 결과·추론문 감독·외부 encoder와 우리 gold CE 조건을 구분한다. [문헌 카드](../papers/latent-workspaces.md).
+- 앞16층 뒤 각 선택지와 다른 선택지 평균의 차이를 판정 상태에 결합해 가설 상태 K개를 만든다. 새1024×1024 projection은 단위 행렬·결합강도.5로 시작한다. 상위8층의 full attention 두 곳에서 원문·가설이 함께 갱신되고, causal DeltaNet은 원문만 혼합하며 가설은 같은 native MLP를 사용한다. 기존24층 가중치를 모두 학습한다. [구현·사전 계획·해석](hypothesis-workspace.md).
+- 첫 버전은 같은g4b·512update·전체언어학습·배치16·body LR3e-6·projection LR1e-4·같은8,192개 입력이다. 전512개 prompt hash가 cached native fit과 일치했다. 이미 노출된 selection4,147문항/77출처에서 step256은74.1231% 대 기본73.9417%, step512는75.7470% 대 기본75.7419%(+0.0050%p)였다. 기준+0.5%p 미달로 채택하지 않고 새 확인셋은 열지 않았다. 512문항에서 선택지 성분을 지워도 선택이0개 바뀌어 경로 영향이 작았다. 같은 가중치의 준비된 GPU 입력 비용은약2.96% 증가했다. [수치·저장 복원·실행 경로](hypothesis-workspace-results.json).
+- 이를 보고 두 번째 버전은 원문 판정 토큰의 직접 readout을 제거했다. 최종 후보 workspace 상태와 각 후보의 원래 code row 내적만으로 score한다. 원문 출구가 없는지 gradient 검사와 잘못된 loader 거부 검사를 추가했고, 같은 초기g4b에서 별도로 학습했다. 같은256스텝에서73.1286% 대 기본73.9417%(−0.8131%p)로 사전 중단 규칙에 해당해256에서 종료했다. 모든256개 입력 hash가 native 앞256개와 일치했다. 512까지 학습한 실험으로 주장하지 않는다.
+- 두 번째의 선택지 성분 제거는512문항의 예측33개·확률 최대.29142를 바꿨다. 후보 내용이 선택에 영향을 미치는 경로는 확인했지만 정확도 이득은 없었다. 가설→원문 연결 차단만으로는 선택이 바뀌지 않았다. 같은 가중치의 준비된 GPU 입력 비용은약2.70% 늘었다. 이는 tokenization·loading을 제외한 측정이며 서비스 지연 수치가 아니다. [별도 수치·복원·개입](workspace-bottleneck-results.json).
+- 실제0.8B 두 버전의3스텝 smoke, 전체 trainable 유한 gradient·projection nonzero gradient, 내보내기/재로딩, 관련63개 테스트를 검증했다. 최종 두 저장 모델의 전체selection4,147문항 재로딩은 각각 예측·확률 차이0이었다. 각512문항의 슬롯 순서 반전도 예측 불일치0이었으나 BF16 확률은 bitwise 불변이 아니었다.
+- 모든 결과는 반복 사용한 선택셋의 선별·진단이다. 독립 확인 성공이나 workspace 계열의 일반적 실패로 주장하지 않는다. 두 번째의 초기 격차가 줄었으므로 더 긴 학습의 결과는 미확인이다. 두 run의 입력·계획·source·가중치·로그·예측은 runs/hypothesis-workspace/{middle16-v1,bottleneck16-v1}/에 보존했다. 원래 코드 head의 직접 readout과 후보별 state readout을 혼동하지 않도록 각 전용 loader/logits를 써야 한다.
+
+## 2026-10-19~20 — 상위8층을 BDH식 연상 메모리로 교체하고 고유 데이터 양 비교
+
+- 앞16개 native hybrid 층 뒤에 양수 firing feature·paired BDH RoPE·현재 입력의 연상 행렬 읽기·multiplicative coactivation을3회 반복하는 공유 코어를 구현했다. 남은8개 native 층은 frozen/CPU 보관하며 forward에서 실행하지 않는다. 제거한 첫 층의 up/gate/down projection으로 새11,010,048 parameter 코어를 초기화하고 원래 최종 norm·코드 head를 사용했다. zero gate·예측/가중치 조합은 없다.
+- 공개 BDH 소스를 commit `2b0d7a45b058d4309c84a10e0768d541fe18bdc2`에 고정했다. strictly causal 원형을 양방향/self 제외·factorized retrieval·native 폭3584에 맞춘 별도 retrofit이다. BDH-CQ 원문의 비공개 차원·상태 업데이트를 재현했다고 주장하지 않는다. 공식 코드·README·MIT license·hash를 run에 보존했다. LoLCATs/Mamba in the Llama의 별도 전환 정렬 학습도 조사했으나 이번 학습에는 정답CE만 사용했다.
+- 전체 gold6 699,960행에서 출처100개를 맞춰 작은4,096행/큰16,384행을 준비했다. 큰 풀은 작은 풀을 포함하고 출처별 수가 정확히4배다. 각1,024 update×batch16에서 작은 풀4회·큰 풀1회, 매 update의 출처 순서가 같다. 큰 데이터 native/BDH의 모든 실제 prompt hash를 맞췄다. 기존 full gold2/3/6 학습1,299,919행을 제외한 selection 감사를 계승하고 직접 train/selection ID·문서·state 분리를 추가 검사했다.
+- 같은g4b SHA에서 body LR3e-6·새 core LR1e-4·warmup64/cosine·FP32 master AdamW·정답CE로 사용 언어 파라미터 전체를 학습했다. 사전 고정한256/512/1,024 snapshot을 저장하고 세 군 모두1,024를 완료했다. 새 구조의 초기 selection54.7217% 대 native71.4304%는 이번 변경이 원래 판정 함수를 보존하지 않음을 보인다.
+- 기존 선택셋4,147문항/77출처의 고정1,024 update 정확도: **native_large75.5504%, bdh_large74.9540%, bdh_small73.2656%**. 구조 차이−0.5964%p로 정확도 개선 기준+0.5%p를 통과하지 못했다. BDH 안의 고유 문항4배 차이는+1.6884%p였다. 작은 군의 최종 학습 probe99.5778%가 큰 군91.6202%보다 높아도 selection은 더 낮았다. probe/selection의 출처 분포가 같지는 않으므로 원시 점수 차이만으로 동일분포 과적합량을 추정하지 않는다. native_small이 없는 한 seed·nested sampling3군이며 모든 구조가 충분히 학습됐다는 비교가 아니다.
+- 실제 학습 parameter는 native752,393,024/BDH597,365,632개, 최대 CUDA allocated13.883/11.082GB였다. 학습·저장·평가 포함 총시간은 native1,663.00초/BDH 큰 군1,286.49초/작은 군1,295.04초다. 같은 FLOPs·모델 용량이나 서비스 latency 비교가 아니다. 관련67개 테스트·실제0.8B3스텝 smoke·finite/nonzero core gradient·초기 저장 복원을 검증했다.
+- 새로운 확인셋은 열지 않았다. 입력·계획·원본 source snapshot·학습 로그·각 단계 체크포인트·평가 확률은 `runs/bdh-memory/data4x-v1/`에 보존한다. 전용 `bdh_memory.load`/`logits`가 필요하며 기본 엔진 로딩은 지원하지 않는다. [전체 기록](bdh-memory.md), 구현 `qwen_decision/v3/bdh_memory.py`, 실험 `bdh_experiment.py`, 최종 감사 `bdh_audit.py`.
+- 별도 감사에서 세 저장 모델 모두 전체selection4,147문항 예측 불일치0·확률 차이0으로 재현됐다. native 블록은 앞16개 각각1회/뒤8개0회이며, memory 제거 시512문항 중48개 선택이 바뀌었다. 준비된 GPU 입력512문항의3회 중앙값은 native8.5586초/BDH6.6067초(−22.81%)였다. 서비스 전체 latency 측정은 아니다. 문서 paired bootstrap5,000회95% 구간은 구조[−1.6430,+0.3801]%p, 데이터[+0.2735,+3.1205]%p다. 반복 selection의 탐색적 구간이며 독립 확인은 아니다. 사후 길이 진단에서≤512토큰 구간의 구조 차이는−0.025%p,>1,536토큰146문항에서는−8.51%p로 길이 확장 제약도 관찰했다. [최종 수치·provenance·감사](bdh-memory-results.json).
+
+## 2026-10-20 — 학습량이 부족했는지 확인하는 확대 실험 시작
+
+- 원본·BDH·내부4층 공유 반복·후보 가설 출구4종을 같은g4b에서 각각4,096 update/65,536노출로 비교한다. 이전 BDH보다4배, 반복 구조보다8배,256에서 멈췄던 가설 출구보다16배 update다. 실제고유 ID65,536행/100출처, 정규화 state62,419개다. 같은1536토큰 학습 제한과 정답CE를 유지하며 source·데이터·입력·학습률·스냅샷 계획을 고정했다. 한 seed41의 대표 구조 비교이며 역사적 모든 설정의 전수 재실험은 아니다.
+- 모든 증강 입력의 rendering/후보 위치·target/code와 schedule을 본학습 전에 생성·검사했다. 실제0.8B 네 구조에서 모델/FP32 master/Adam 상태·다음 loss/전체master hash/평가 확률의 저장 재개 일치를 확인했다. 관련69개 테스트가 최종 코드에서 통과했다. 개발 단계의 재개 LR group alias 오류와 GPU backward 비결정성은 별도 실패 기록으로 보존했고, 새 실험은 deterministic algorithms와CUBLAS workspace 설정을 공통 적용한다.
+- 초기 부진으로 정확도 조기 종료하지 않고1,024/2,048/4,096 update를 저장한다. 주 비교는 같은4,096이다. 기존 selection4,147문항을 사용하며 새 확인셋은 자동으로 열지 않는다. 원본 초기71.4304%가 재현됐고 optimizer update가 진행 중이다. 출력은 `runs/long-training/64k-4096-v1/`, 프로세스·진행 상태는 `worker.json`/`status.py`로 확인한다. 완료 결과는 아직 없다. [계획·구현·진행 상태](long-training.md).
+- **완료(2026-10-20):** 고정 4,096 update selection 출처 평균은 원본 79.14%, BDH 78.16%(−0.99%p), 블록 반복 79.05%(−0.09%p), 가설 출구 78.45%(−0.69%p)다. 사전 기준 +0.5%p를 넘은 구조는 없다. 원본 오답 795개 중 598개(75%)를 네 구조가 모두 틀렸다. [결과표](../../runs/long-training/64k-4096-v1/result.md), [원시 결과](long-training-results.json).
+
+## 2026-10-20 — Gated DeltaNet 역방향 scan
+
+- 모든 DeltaNet 층에 같은 가중치의 역방향 scan을 0 게이트로 더해 4,096 update 학습했다. selection 79.14% → 78.64%, −0.51%p, 문서 bootstrap 95% [−1.34, +0.19]%p, 72회복/82악화. 별도 확인 후보로 올리지 않았다. [수치](reverse-scan-results.json), `runs/reverse-scan/64k-4096-v1/`.
+
+## 2026-10-21 — MNTP 전환 학습 (중단)
+
+- 원본·역방향 × 정답 CE·MNTP 요인 설계를 시작했으나 사용자 요청으로 중단했다. `reverse_mntp-seed41`만 완료, `reverse_ce-seed41`은 4,952/5,120 update에서 멈췄다. 비교 결과는 없다. [상태](mntp-conversion.md).
+
+## 2026-10-22 — DUMA 공동 매칭·Theseus 점진 교체, 증거 쌍 손실
+
+- DUMA/Theseus 3종을 4,096 update로 학습했다. selection은 dual 78.93%, gradual 78.24%, self 78.78%로 원본 79.14%를 넘지 못했다. [표](dual-theseus.md).
+- CONDAQA·VitaminC 증거 변화 쌍에 짝 손실을 더한 원본/dual × CE/쌍 요인 실험(8 fit): 원본의 쌍 효과 +0.20%p, dual의 쌍 효과 +1.66%p, 상호작용 +1.46%p였으나 모든 구간이 0을 포함했고 진행 기준을 넘지 못했다. [수치](evidence-pairs-results.json).
+
+## 2026-10-23 — 단일 forward 의미 매칭, Talking-Heads
+
+- 의미 구간 잔차 매칭(4 arm × 3 seed): 주 평가 정확도 native 78.91%, generic 78.70%, semantic 78.96%, self 79.14%. semantic−native +0.05%p(계층 95% [−0.42, +0.49]). 경로를 꺼도 차이가 없었다. [수치](single-forward-semantic-results.json).
+- 마지막 두 full-attention 층의 head 혼합(4 조건 × 3 seed): talking−stock +0.18%p, talking−native −0.03%p, 모든 구간이 0 포함. [결과](talking-heads.md).
+
+## 2026-10-23 — 학습 레시피 변경 (EMA·구간 평균·학습률)
+
+- 4,096 update native와 같은 캐시 입력·순서에서 레시피만 바꿨다. EMA −0.54%p, 마지막 1/4 구간 평균 −0.57%p, body LR 1e-5 −3.76%p. 사전 규칙상 확인셋 비교 후보가 없었다. 2,048 step에서 재개한 원래 가중치는 native와 비트 단위로 같았다. [설계·해석](recipe-ema-lr.md).
+
+## 2026-10-23 — 디스크 정리
+
+- 사용자 승인으로 smoke·실패 디렉터리의 가중치와 완료된 run의 `optimizer.pt` 80개(약 492GB)를 지웠다. 디스크 95% → 43%. 결과 JSON·예측·로그·최종 모델은 남겼다. 지운 체크포인트는 `complete.json`의 해시 검증과 학습 재개가 더 이상 되지 않는다. native seed41의 2,048/4,096 step과 MNTP run은 손대지 않았다.
+
+## 2026-10-23~24 — 장문 테스트셋, 장문 학습 풀, 질문 우선 배치(echo)
+
+- 공개 장문 데이터 5종(BABILong, QASPER, LongBench v2, DocNLI, JEVal 장문)을 평가 전용으로 만들고 학습 데이터 전체와 대조해 28문항을 제외했다. gold6만으로 25%가 1,536토큰을 넘는 32,768행 풀을 만들었다. 이전 100개 출처 목록이 짧은 행이 없는 QuALITY·MuSiQue·kv-lookup·API-Bank를 통째로 뺐다는 것을 이때 발견했다.
+- native와 echo를 같은 행·순서·선택지 순열로 2,048 update씩 3 seed 학습했다. 장문 점수 차이는 +1.59/+0.95/−0.71%p, 평균 +0.61%p, seed×문항 계층 95% [−0.84, +2.07]%p로 사전 등록한 성공 기준을 통과하지 못했다. selection은 평균 −0.11%p. 원인: native의 찾기는 이미 천장(98~100%)이고 실패는 다단계 추론·다예시 분류에 몰려 있으며, seed 잡음(차이 표준편차 약 1.2%p)이 평균 효과보다 크다. [설계·결과·원인 분석](long-context-echo.md).
+
+## 2026-10-25 — 선택지 순서 측정
+
+- 학습한 native 3개로 choice 문항을 선택지 순서 4가지로 채점해 평균했다. selection +0.68%p(3 seed 모두 양수, 답 바뀜 10.2%), JEVal 장문 −1.25%p(TREC·TREC-e 손실, 답 바뀜 22.0%), BABILong 0.00%p(답 바뀜 18.9%). 학습 때 순서를 이미 섞는데도 순서 의존성이 남았다. 선택지 격리가 줄 몫은 짧은 문항 +0.7%p 이하로 추정했다. [결과](order-probe.md).
+
+## 2026-10-24~25 — 선택지 순서 probe (선택지 격리 구조의 상한 추정)
+
+- 학습 없이 native 3 seed 모델을 선택지 순서 4가지(원래·역순·회전 2)로 채점했다(`qwen_decision/v3/order_probe.py`, `runs/long-context/order-probe-v1/`). 원래 순서 점수는 이전 평가와 일치했다.
+- 4순서 확률 평균의 이득(= 순서 불변성이 줄 수 있는 대략의 상한): selection +0.68%p(+0.59/+0.90/+0.55), JEVal 장문 −1.25%p, BABILong 16k 이하 0.00%p 안팎. 순서만 바꿨을 때 답이 바뀐 비율은 selection 10.2%, JEVal 장문 22.0%, BABILong 약 19%.
+- JEVal 장문 하락은 TREC·TREC-e(선택지 50개)에서만 나왔다(원래 순서 40.7%·36.5% → 다른 순서 30.5%·29.9%). 정답이 두 글자 코드(AA 이후) 자리에 보일 때 29.0%, 한 글자 코드(A–Z) 자리일 때 35.4%로 코드 자리 편향이 있었다. 검색 과제는 순서와 무관했다.
+- 해석: 선택지 격리가 순서 불변성으로 줄 수 있는 이득은 짧은 문항 약 +0.7%p 수준으로, 구현 기준으로 잡은 1~2%p에 못 미친다. 선택지가 많은 과제의 코드 자리 편향은 코드 대신 내용으로 점수를 매기는 구조가 겨냥할 수 있는 좁은 표적이다.
+
+### 2026-10-25~26 — 원래 Qwen에서 출발하는 구조 비교 ([상세](from-base-structures.md))
+
+- 사용자 목표 정정: 학습된 g4b에 덧붙이지 말고, 원래 Qwen3.5-0.8B에서 원본 구조와 바꾼 구조를 같은 데이터로 각각 full fine-tuning해 비교한다.
+- 구조는 causal(원본), noncausal(d3식 양방향), hop(noncausal + 결정 지점 다시 읽기, 새 파라미터 0) 세 가지다(`qwen_decision/v3/from_base_experiment.py`, `runs/from-base/structures-v1/`).
+- 데이터: v3-gold6의 104개 출처 전체에서 65,536행을 자르지 않고 뽑았다(`data/longctx/train-nocap104-64k.jsonl`). 이전 `train-nocap-64k`는 100개 출처라 QuALITY·MuSiQue·kv-lookup·API-Bank가 빠져 있었다.
+- 학습: 4,096 update × 16, LR 1e-5, warmup 128, seed 41/73/101. 매 step 입력 hash가 세 구조에서 같았다.
+- 원본을 padding 없이 묶어 학습하는 causal varlen attention을 새로 붙였다. FP32 원본과의 logit 차이는 0.373이고, 원래 BF16 구현끼리의 차이(0.435) 이내다.
+- 결과: 사전 등록한 여섯 검정을 모두 통과하지 못했다.
+  - noncausal−causal: selection +0.51 [−1.02, +2.03], 장문 −0.21 [−3.39, +2.79].
+  - hop−causal: selection +0.95/+0.46/+2.16, 평균 +1.19 [−0.18, +2.67]. 세 seed 모두 양수였지만 구간 하한이 0 아래였다.
+  - hop의 두 번째 읽기는 첫 읽기와 98.4~99.2% 같은 답을 골랐다. 차이는 −0.08%p로, 첫 결론을 입력으로 주면 모델이 그 결론을 복사한다.
+  - BABILong qa2/qa3은 세 구조 모두 30~33%/16~20%다.
+- 운영 기록: 완료 감시 명령의 `pgrep -f` 패턴이 감시 명령 자신과 일치해서 완료 알림이 오지 않았다. 다음부터는 PID로 감시한다.
+
+### 2026-10-27~28 — 학습 방식 거르기, fit당 1.6만 행 × seed 5 ([상세](training-methods.md))
+
+- 원래 Qwen에서 출발해 다섯 레시피를 비교했다: causal, noncausal, frozen(noncausal + DeltaNet token mixer 얼림), brier(noncausal + CE + 1×Brier), hoptrain(noncausal + 두 번 읽기 학습, 답은 첫 읽기). 코드는 `qwen_decision/v3/training_method_experiment.py`, 출력은 `runs/from-base/methods-v1/`이다.
+- 데이터: 104개 출처에서 16,384행(`data/longctx/train-nocap104-16k.jsonl`), 1,024 update × 16, seed 131/151/173/191/211. 주 지표는 정답 NLL이다.
+- 결과(사전 등록 규칙):
+  - frozen−noncausal selection NLL −0.036 [−0.054, −0.020] 5/5, 장문 NLL −0.098 [−0.182, −0.013] 4/5. 정답률과 Brier 보조 지표도 모두 통과했다. selection 정답률은 68.0% 대 66.6%다.
+  - hoptrain−causal selection NLL −0.038 [−0.064, −0.008] 4/5로 확인됐다. 하지만 hoptrain−noncausal은 차이가 없었다(−0.006). 그러니 이득은 양방향 attention에서 온 것이다.
+  - noncausal−causal 장문 NLL은 +0.014 [−0.085, +0.104]로, 이전 실험의 사후 신호가 재현되지 않았다.
+  - brier는 noncausal과 차이가 없었다.
+- 운영 기록: 실제 fit 시간은 smoke 추정의 1.6배였다(causal 20.8분, hoptrain 44.4분). 전체 14시간 32분이 걸렸다.
+- 다음: frozen 대 noncausal을 6.55만 행 규모로 확인한다.

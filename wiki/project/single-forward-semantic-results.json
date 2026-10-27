@@ -1,0 +1,3761 @@
+{
+  "complete": true,
+  "plan": {
+    "experiment": "single-forward-semantic-v1",
+    "arms": [
+      "native",
+      "generic",
+      "semantic",
+      "self"
+    ],
+    "seeds": [
+      41,
+      73,
+      101
+    ],
+    "steps": 512,
+    "batch_size": 16,
+    "body_lr": 3e-06,
+    "matching_lr": 0.0001,
+    "warmup": 32,
+    "initialization": "runs/long-training/64k-4096-v1/native-seed41/step-4096",
+    "new_branch": "two shared matching layers, width1024, heads8; scorer exactly zero at initialization",
+    "same_initial_function": "native backbone and tied code head start with the same weights in all arms; new-branch seed initialization matched across three controls",
+    "native": "original 24 hybrid layers and code readout",
+    "generic": "native logits + matching correction; entire state vs generic task instruction+option",
+    "semantic": "native logits + matching correction; actual evidence vs actual question/claim/hypothesis+option; fallback state/instruction for unsupported schemas",
+    "self": "same semantic spans and exact same new parameters/initial weights; self attention on their concatenation instead of cross attention",
+    "training": "all used language and tied embedding/head parameters; vision frozen; ordinary gold CE only; identical independent cases, target, code and option views per seed",
+    "data": {
+      "rows": {
+        "target-train": 4096,
+        "anchor-train": 4096,
+        "dev": 352,
+        "primary-test": 1280,
+        "retention-test": 768
+      },
+      "training_sources": {
+        "boolq-train": 820,
+        "condaqa-train": 819,
+        "mnli-train": 819,
+        "snli-train": 819,
+        "vitaminc-train": 819,
+        "abcd-train": 45,
+        "acos-train": 45,
+        "aqua-rat-train": 45,
+        "arc-train": 45,
+        "arena55k-train": 44,
+        "argq-train": 44,
+        "banking77-train": 44,
+        "chid-train": 44,
+        "civilcomments-train": 44,
+        "claimstance-train": 44,
+        "clinc-train": 44,
+        "cmrc-train": 44,
+        "code-output-gen": 44,
+        "commonsenseqa-train": 44,
+        "contractnli-train": 44,
+        "corr2cause-train": 44,
+        "cosmosqa-train": 44,
+        "creak-train": 44,
+        "cuad-train": 44,
+        "drop-train": 44,
+        "ecare-train": 44,
+        "esci-train": 44,
+        "faithdial-train": 44,
+        "fewnerd-train": 44,
+        "fewrel-train": 44,
+        "finer-train": 44,
+        "fintweet-train": 44,
+        "folio-train": 44,
+        "gap-train": 44,
+        "goemotions-train": 44,
+        "gsm8k-train": 44,
+        "habermas-train": 44,
+        "hatexplain-train": 44,
+        "headqa-train": 44,
+        "hellaswag-train": 44,
+        "helpsteer2-train": 44,
+        "helpsteer3-train": 44,
+        "hhrlhf-train": 44,
+        "hover-train": 44,
+        "humicroedit-train": 44,
+        "icl-classify": 44,
+        "infotabs-train": 44,
+        "isarcasm-train": 44,
+        "jglue-train": 44,
+        "klue-train": 44,
+        "lexglue-short-train": 44,
+        "lexglue-train": 44,
+        "logic-puzzles-gen": 44,
+        "massive-intents": 44,
+        "mathqa-train": 44,
+        "maud-train": 44,
+        "medmcqa-train": 44,
+        "mmlu-aux-train": 44,
+        "moralstories-train": 44,
+        "mtop-train": 44,
+        "multiwoz-train": 44,
+        "newyorker-matching-train": 44,
+        "nli4ct-train": 44,
+        "oasst2-train": 44,
+        "openbookqa-train": 44,
+        "paws-train": 44,
+        "phishing": 44,
+        "pubhealth-train": 44,
+        "pubmedqa-labeled": 44,
+        "quac-train": 44,
+        "quoref-train": 44,
+        "ragtruth-train": 44,
+        "redial-train": 44,
+        "ropes-train": 44,
+        "scitail-train": 44,
+        "semcor-train": 44,
+        "sentfin-train": 44,
+        "sharc-train": 44,
+        "siqa-train": 44,
+        "snips-train": 44,
+        "spartqa-train": 44,
+        "squad2-answerability": 44,
+        "stepgame-train": 44,
+        "strategyqa-train": 44,
+        "svamp-train": 44,
+        "tabfact-train": 44,
+        "taskmaster-train": 44,
+        "tatqa-train": 44,
+        "tatqa-yesno": 44,
+        "tldr-feedback-train": 44,
+        "tydiqa-train": 44,
+        "ukpconvarg-train": 44,
+        "vast-train": 44,
+        "wanli-train": 44,
+        "winogrande-train": 44,
+        "wned-el": 44,
+        "wtq-train": 44,
+        "zeshel-train": 44
+      },
+      "evaluation_sources": {
+        "condaqa-train": {
+          "dev": 32,
+          "test": 256
+        },
+        "vitaminc-train": {
+          "dev": 32,
+          "test": 256
+        },
+        "retention-boolq": {
+          "dev": 32,
+          "test": 256
+        },
+        "retention-snli": {
+          "dev": 32,
+          "test": 256
+        },
+        "retention-mnli": {
+          "dev": 32,
+          "test": 256
+        },
+        "piqa": {
+          "dev": 32,
+          "test": 128
+        },
+        "qasc": {
+          "dev": 32,
+          "test": 128
+        },
+        "goemotions": {
+          "dev": 32,
+          "test": 128
+        },
+        "ethics-commonsense": {
+          "dev": 32,
+          "test": 128
+        },
+        "swag": {
+          "dev": 32,
+          "test": 128
+        },
+        "retention-hellaswag": {
+          "dev": 32,
+          "test": 128
+        }
+      },
+      "new_prediction_files_audited": 242,
+      "inherited_audit": "runs/evidence-pairs/factorial-v1/split-audit.json",
+      "direct_independence": {
+        "dev": {
+          "rows": 352,
+          "distinct_documents": 352,
+          "train_overlap_keys": 0,
+          "previous_eval_overlap_keys": 0,
+          "previously_scored_documents": 0
+        },
+        "primary-test": {
+          "rows": 1280,
+          "distinct_documents": 1280,
+          "train_overlap_keys": 0,
+          "previous_eval_overlap_keys": 0,
+          "previously_scored_documents": 0
+        },
+        "retention-test": {
+          "rows": 768,
+          "distinct_documents": 768,
+          "train_overlap_keys": 0,
+          "previous_eval_overlap_keys": 0,
+          "previously_scored_documents": 0
+        }
+      },
+      "sampling": "one hash-selected original gold case per previously unscored document; source caps fixed before scoring",
+      "limits": [
+        "original pretraining contamination unknown",
+        "normalized exact and explicit metadata audit, not exhaustive semantic deduplication",
+        "CONDAQA groups original passages, not entire articles",
+        "fresh MNLI validation is three-way while existing training includes binary entailment judgments",
+        "targeted five-task probe plus six retention families, not the full 100-source general benchmark"
+      ]
+    },
+    "training_mix": "8 target-family cases +8 broad anchors per update; 8192 unique training IDs; no paired-example objective",
+    "objective": "mean independent-example gold CE across16 cases; no pair loss, distillation, ranking loss, ensemble, or generated labels",
+    "optimizer": "BF16 model, FP32-master AdamW(.9,.95), WD.01, clip1; warmup32 then cosine to10%",
+    "max_train_tokens": 1536,
+    "max_eval_tokens": 4096,
+    "dev_steps": [
+      0,
+      128,
+      256,
+      512
+    ],
+    "selection": "fixed final512; no accuracy early stop or best-checkpoint reselection",
+    "primary": "ordinary per-example source-macro accuracy on five new document reading/verification/NLI families",
+    "primary_contrasts": [
+      "semantic-native",
+      "semantic-generic",
+      "semantic-self"
+    ],
+    "mechanism_contrasts": [
+      "(semantic-generic) active gap minus branch-off gap",
+      "semantic question-zero harm minus same-span self-control question-zero harm"
+    ],
+    "mechanism_scope": "partial interventions AFTER the unchanged joint encoder; encoder states retain evidence and query information; not total information removal or universal proof of a single-forward limit",
+    "test_protocol": "new primary and retention documents scored only after all12 final models and exact input traces frozen; all head interventions use the same encoder states",
+    "statistics": "5000 paired document draws within source; all arm/mode comparisons share draws; also resample the three paired training seeds; familywise95 bootstrap intervals for five preregistered primary/mechanism contrasts",
+    "advance": "all five hierarchical familywise interval lower bounds >0; three architecture contrasts positive for every seed; retention one-sided95 lower bound >-1pp; exploratory gate, no automatic expansion",
+    "retention": "six separate new general families; source-macro semantic-native and one-sided95 bootstrap interval; prespecified noninferiority margin1pp",
+    "runtime": "audit exactly one language-model call and one execution of each24 backbone layers per inference batch; benchmark active scoring only with identical prepared batches; report latency/memory, no equal-FLOPs claim",
+    "resume": "final weights-only checkpoints; incomplete current fit is archived and restarted deterministically from the common base; full optimizer resume verified in separate smoke",
+    "limits": [
+      "targets a semantic aggregation hypothesis, not all possible single-forward bottlenecks",
+      "three additional-training seeds share one old seed41 initial checkpoint",
+      "bootstrap with only three training seeds has limited precision and coverage",
+      "same data/updates and matched added parameters; attention FLOPs and wall time differ",
+      "identity initialization and residual readouts were tried previously; the new hypothesis is semantic routing, not residual novelty",
+      "case accuracy is primary; no official full CONDAQA/VitaminC leaderboard reproduction",
+      "original pretraining contamination unknown",
+      "normalized exact and explicit metadata audit, not exhaustive semantic deduplication",
+      "CONDAQA groups original passages, not entire articles",
+      "fresh MNLI validation is three-way while existing training includes binary entailment judgments",
+      "targeted five-task probe plus six retention families, not the full 100-source general benchmark"
+    ]
+  },
+  "arm_mean_accuracy": {
+    "native": {
+      "primary": 0.7890625,
+      "retention": 0.6961805555555555
+    },
+    "generic": {
+      "primary": 0.7869791666666667,
+      "retention": 0.697048611111111
+    },
+    "semantic": {
+      "primary": 0.7895833333333334,
+      "retention": 0.6961805555555555
+    },
+    "self": {
+      "primary": 0.79140625,
+      "retention": 0.6957465277777778
+    }
+  },
+  "models": {
+    "native-seed41": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.78515625,
+          "macro": 0.78515625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.7265625
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8848551039700396,
+          0.8838915759697556,
+          0.8869108979706652
+        ],
+        "median_seconds": 0.8848551039700396,
+        "peak_allocated_bytes": 1725077504,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "generic-seed41": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.7859375,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.7859375,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.7859375,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.7859375,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.7859375,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5703125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7265625
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5703125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7265625
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5703125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7265625
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5703125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7265625
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5703125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7265625
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.193335292977281,
+          1.1876865189988166,
+          1.1885170789901167
+        ],
+        "median_seconds": 1.1885170789901167,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "semantic-seed41": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.7875,
+          "macro": 0.7875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.64453125
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.81640625
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.7875,
+          "macro": 0.7875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.64453125
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.81640625
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.78828125,
+          "macro": 0.78828125,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.81640625
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.7875,
+          "macro": 0.7875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.81640625
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.78828125,
+          "macro": 0.78828125,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.81640625
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.7265625
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.7265625
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.7265625
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.6953125,
+          "macro": 0.6953125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.7265625
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.7265625
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.1778296160046011,
+          1.172539262974169,
+          1.1773145429906435
+        ],
+        "median_seconds": 1.1773145429906435,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "self-seed41": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.78671875,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.78671875,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.78671875,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.78671875,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.78671875,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.6966145833333334,
+          "macro": 0.6966145833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.578125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.0686859770212322,
+          1.0670687340316363,
+          1.0680516290012747
+        ],
+        "median_seconds": 1.0680516290012747,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "native-seed73": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.78828125,
+          "macro": 0.78828125,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.7057291666666666,
+          "macro": 0.7057291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8951723010395654,
+          0.9002380070160143,
+          0.8967975720297545
+        ],
+        "median_seconds": 0.8967975720297545,
+        "peak_allocated_bytes": 1725077504,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "generic-seed73": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.784375,
+          "macro": 0.784375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.63671875
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.784375,
+          "macro": 0.784375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.63671875
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.784375,
+          "macro": 0.784375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.63671875
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.784375,
+          "macro": 0.784375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.63671875
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.784375,
+          "macro": 0.784375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.63671875
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.7096354166666666,
+          "macro": 0.7096354166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.7096354166666666,
+          "macro": 0.7096354166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.7083333333333334,
+          "macro": 0.7083333333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.7096354166666666,
+          "macro": 0.7096354166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.7096354166666666,
+          "macro": 0.7096354166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.734375
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6953125
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.1809592950157821,
+          1.186157018004451,
+          1.1796860969625413
+        ],
+        "median_seconds": 1.1809592950157821,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "semantic-seed73": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.7890625,
+          "macro": 0.7890625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.78828125,
+          "macro": 0.78828125,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.7890625,
+          "macro": 0.7890625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.7890625,
+          "macro": 0.7890625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.7890625,
+          "macro": 0.7890625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.79296875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.7057291666666666,
+          "macro": 0.7057291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6328125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.75
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.7057291666666666,
+          "macro": 0.7057291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6328125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.75
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.7057291666666666,
+          "macro": 0.7057291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6328125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.75
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.7057291666666666,
+          "macro": 0.7057291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6328125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.75
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.7057291666666666,
+          "macro": 0.7057291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6328125
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.7890625
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.75
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.1851324429735541,
+          1.1852121440460905,
+          1.183063452015631
+        ],
+        "median_seconds": 1.1851324429735541,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "self-seed73": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.8046875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.79296875,
+          "macro": 0.79296875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.8046875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.79296875,
+          "macro": 0.79296875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.8046875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.79296875,
+          "macro": 0.79296875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.8046875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.79296875,
+          "macro": 0.79296875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.8046875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.85546875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.7044270833333334,
+          "macro": 0.7044270833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.7044270833333334,
+          "macro": 0.7044270833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.7044270833333334,
+          "macro": 0.7044270833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.7044270833333334,
+          "macro": 0.7044270833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.7044270833333334,
+          "macro": 0.7044270833333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.65625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.78125
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7421875
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.0716705980012193,
+          1.0677311850013211,
+          1.067722829990089
+        ],
+        "median_seconds": 1.0677311850013211,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "native-seed101": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.66015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.8828125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78515625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.6484375
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8918056869879365,
+          0.8893407059949823,
+          0.8919400210143067
+        ],
+        "median_seconds": 0.8918056869879365,
+        "peak_allocated_bytes": 1725077504,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "generic-seed101": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.790625,
+          "macro": 0.790625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.790625,
+          "macro": 0.790625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.790625,
+          "macro": 0.790625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.790625,
+          "macro": 0.790625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.790625,
+          "macro": 0.790625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.1789349190075882,
+          1.1824648310430348,
+          1.1814486639923416
+        ],
+        "median_seconds": 1.1814486639923416,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "semantic-seed101": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.7921875,
+          "macro": 0.7921875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.79296875,
+          "macro": 0.79296875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.7890625,
+          "macro": 0.7890625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.64453125
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.77734375
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.7921875,
+          "macro": 0.7921875,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.65234375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.79140625,
+          "macro": 0.79140625,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.6484375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.80078125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.6848958333333334,
+          "macro": 0.6848958333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.1940296360407956,
+          1.191391420958098,
+          1.1874570000218228
+        ],
+        "median_seconds": 1.191391420958098,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "self-seed101": {
+      "primary": {
+        "active": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.66015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78515625
+            }
+          }
+        },
+        "branch_off": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.66015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78515625
+            }
+          }
+        },
+        "question_zero": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.66015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78515625
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.66015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78515625
+            }
+          }
+        },
+        "generic_route": {
+          "n": 1280,
+          "accuracy": 0.79375,
+          "macro": 0.79375,
+          "sources": {
+            "condaqa-train": {
+              "n": 256,
+              "accuracy": 0.66015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.796875
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.78515625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        },
+        "branch_off": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        },
+        "question_zero": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        },
+        "evidence_zero": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        },
+        "generic_route": {
+          "n": 768,
+          "accuracy": 0.6861979166666666,
+          "macro": 0.6861979166666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "goemotions": {
+              "n": 128,
+              "accuracy": 0.640625
+            },
+            "piqa": {
+              "n": 128,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 128,
+              "accuracy": 0.6796875
+            },
+            "retention-hellaswag": {
+              "n": 128,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 128,
+              "accuracy": 0.7578125
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          1.0636450379970483,
+          1.0621338989585638,
+          1.0659125249949284
+        ],
+        "median_seconds": 1.0636450379970483,
+        "peak_allocated_bytes": 1733470208,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 857182272,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    }
+  },
+  "primary_and_mechanism_contrasts": {
+    "semantic_minus_native": {
+      "delta": 0.0005208333333333334,
+      "per_seed": {
+        "41": 0.00234375,
+        "73": 0.00078125,
+        "101": -0.0015625
+      },
+      "conditional_document_95ci": [
+        -0.0023502604166666646,
+        0.0036458333333333334
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.004166666666666667,
+        0.0049479166666666664
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.00625,
+        0.006770833333333334
+      ],
+      "hierarchical_one_sided95_lower": -0.003125
+    },
+    "semantic_minus_generic": {
+      "delta": 0.0026041666666666665,
+      "per_seed": {
+        "41": 0.0015625,
+        "73": 0.0046875,
+        "101": 0.0015625
+      },
+      "conditional_document_95ci": [
+        -0.00078125,
+        0.005989583333333334
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.00234375,
+        0.007291666666666667
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.00390625,
+        0.009374999999999998
+      ],
+      "hierarchical_one_sided95_lower": -0.001302083333333333
+    },
+    "semantic_minus_self": {
+      "delta": -0.0018229166666666665,
+      "per_seed": {
+        "41": 0.00078125,
+        "73": -0.0046875,
+        "101": -0.0015625
+      },
+      "conditional_document_95ci": [
+        -0.004947916666666667,
+        0.0010416666666666669
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.006770833333333333,
+        0.002864583333333333
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.00859375,
+        0.004166666666666667
+      ],
+      "hierarchical_one_sided95_lower": -0.005729166666666666
+    },
+    "semantic_generic_gap_lost_with_branch_off": {
+      "delta": 0.0,
+      "per_seed": {
+        "41": 0.0,
+        "73": 0.00078125,
+        "101": -0.00078125
+      },
+      "conditional_document_95ci": [
+        -0.00078125,
+        0.00078125
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.0013020833333333335,
+        0.0013020833333333335
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.0015625,
+        0.0020833333333333333
+      ],
+      "hierarchical_one_sided95_lower": -0.0010416666666666667
+    },
+    "semantic_minus_self_question_path_dependence": {
+      "delta": 0.0005208333333333333,
+      "per_seed": {
+        "41": -0.00078125,
+        "73": -0.00078125,
+        "101": 0.003125
+      },
+      "conditional_document_95ci": [
+        -0.00078125,
+        0.0018229166666666665
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.0015625,
+        0.0036458333333333334
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.00234375,
+        0.005208333333333333
+      ],
+      "hierarchical_one_sided95_lower": -0.0013020833333333335
+    }
+  },
+  "retention_contrast": {
+    "semantic_minus_native": {
+      "delta": -1.4456028966473392e-19,
+      "per_seed": {
+        "41": 0.0,
+        "73": 0.0,
+        "101": 0.0
+      },
+      "conditional_document_95ci": [
+        -0.0026041666666666665,
+        0.0026041666666666665
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.00390625,
+        0.00390625
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.00390625,
+        0.00390625
+      ],
+      "hierarchical_one_sided95_lower": -0.0030381944444444445
+    }
+  },
+  "exploratory_advance_gate": false,
+  "interpretation_scope": "partial interventions AFTER the unchanged joint encoder; encoder states retain evidence and query information; not total information removal or universal proof of a single-forward limit",
+  "limits": [
+    "targets a semantic aggregation hypothesis, not all possible single-forward bottlenecks",
+    "three additional-training seeds share one old seed41 initial checkpoint",
+    "bootstrap with only three training seeds has limited precision and coverage",
+    "same data/updates and matched added parameters; attention FLOPs and wall time differ",
+    "identity initialization and residual readouts were tried previously; the new hypothesis is semantic routing, not residual novelty",
+    "case accuracy is primary; no official full CONDAQA/VitaminC leaderboard reproduction",
+    "original pretraining contamination unknown",
+    "normalized exact and explicit metadata audit, not exhaustive semantic deduplication",
+    "CONDAQA groups original passages, not entire articles",
+    "fresh MNLI validation is three-way while existing training includes binary entailment judgments",
+    "targeted five-task probe plus six retention families, not the full 100-source general benchmark"
+  ]
+}

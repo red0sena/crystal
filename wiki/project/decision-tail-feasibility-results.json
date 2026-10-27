@@ -1,0 +1,81 @@
+{
+  "base": "runs/v3/g4b-gold3-pad0/best",
+  "base_sha256": "c216eb62b5e5c46d06a2a4217be21bae426e62b284c5ebcc752f682435f78ce6",
+  "scope": "untrained zero-adapter numerical equivalence and prepared-GPU-input forward timing; not an accuracy improvement experiment",
+  "rows": 512,
+  "sources": 73,
+  "batches": 136,
+  "tokens": 211134,
+  "median_candidates": 3.0,
+  "candidate_count_histogram": {
+    "6": 5,
+    "5": 36,
+    "2": 189,
+    "4": 98,
+    "3": 89,
+    "8": 24,
+    "10": 28,
+    "30": 9,
+    "15": 2,
+    "151": 6,
+    "20": 2,
+    "60": 3,
+    "7": 10,
+    "9": 4,
+    "28": 3,
+    "55": 1,
+    "13": 1,
+    "100": 2
+  },
+  "adapter_parameters": 262144,
+  "original_weights_unchanged": true,
+  "check": {
+    "single": {
+      "prediction_mismatches": 0,
+      "max_abs_logit_delta": 0.0846395492553711,
+      "max_abs_probability_delta": 0.004272341728210449
+    },
+    "candidates": {
+      "prediction_mismatches": 0,
+      "max_abs_logit_delta": 0.08331489562988281,
+      "max_abs_probability_delta": 0.004652917385101318
+    }
+  },
+  "timings_seconds": {
+    "native": [
+      8.129712097001175,
+      8.193135296998662,
+      8.17989168299755
+    ],
+    "single": [
+      8.005159140000615,
+      8.017068065000785,
+      8.03649782499997
+    ],
+    "candidates": [
+      8.040870077002182,
+      8.05019932399955,
+      8.075226990000374
+    ]
+  },
+  "median_seconds": {
+    "native": 8.17989168299755,
+    "single": 8.017068065000785,
+    "candidates": 8.05019932399955
+  },
+  "relative_median_time": {
+    "native": 1.0,
+    "single": 0.9800946486448954,
+    "candidates": 0.9841449784393144
+  },
+  "timing_protocol": "all native weights fixed, BF16, padded SDPA, batch4/4096 tokens; warm 8 batches per mode; three rotated-order passes, synchronized; pre-tokenized/collated GPU inputs",
+  "implementation": {
+    "decision_tail_probe.py": "ab5bb06d1059555434ca0b41fde80406f9288c5cbc9e7357d30330b756135b65",
+    "decision_tail.py": "0a8203c1ee55aae723cbdf50ac8259318d80c452457846bd7105ce048dd0829f"
+  },
+  "tests": {
+    "count": 3,
+    "result": "passed",
+    "scope": "CPU tiny-native numerical, padding, full-backbone/adaptor gradients, query/memory row counts; actual hybrid 0.8B forward separately probed"
+  }
+}

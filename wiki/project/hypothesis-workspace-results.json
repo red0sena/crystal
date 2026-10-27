@@ -1,0 +1,1845 @@
+{
+  "screen": {
+    "steps": 512,
+    "seconds": 930.7215516650031,
+    "initial_workspace_gradient_norm": 0.02505292184650898,
+    "trainable_parameters": 753441600,
+    "peak_cuda_allocated_gb": 13.915017216,
+    "all_prompt_hashes_match_native": true,
+    "new_confirmation_cases_scored": 0,
+    "snapshots": [
+      {
+        "step": 256,
+        "macro": 0.7412311380825894,
+        "native_macro": 0.7394165193367062
+      },
+      {
+        "step": 512,
+        "macro": 0.7574697310639901,
+        "native_macro": 0.7574192933784724
+      }
+    ],
+    "selected": {
+      "step": 512,
+      "macro": 0.7574697310639901,
+      "native_macro": 0.7574192933784724
+    },
+    "native_selected_macro": 0.7574192933784724,
+    "selection_delta_pp": 0.005043768551771244,
+    "advance_to_fresh_confirmation": false,
+    "conclusion": "selection screen only; independent accuracy improvement is untested"
+  },
+  "manifest": {
+    "plan": {
+      "base": "runs/v3/g4b-gold3-pad0/best",
+      "arms": [
+        "cached_native",
+        "hypothesis_workspace"
+      ],
+      "seed": 41,
+      "architecture": {
+        "kind": "middle_hypothesis_workspace",
+        "start": 16,
+        "scale": 0.5,
+        "slots": "one per option, last + .5*rms(last)*identity_projection(rms(option-mean(options)))",
+        "updates": "upper full-attention blocks update context and slots jointly; upper DeltaNet updates context, shared MLP updates slots",
+        "position": "all slots use original decision position",
+        "new_parameters": 1048576,
+        "active_at_initialization": true,
+        "new_zero_gates": false
+      },
+      "training": "full language backbone and tied embedding/LM head; vision frozen",
+      "train_sampling": "lowest stable hash <=128 gold6 examples/source before length filtering",
+      "steps": 512,
+      "batch_size": 16,
+      "body_lr": 3e-06,
+      "gate_lr": null,
+      "warmup": 32,
+      "schedule": "linear warmup then cosine to 10%",
+      "snapshots": [
+        256,
+        512
+      ],
+      "selection": "old exposed selection only; independent best of trained snapshots; no step-0 fallback",
+      "optimizer": "AdamW FP32 masters, betas(.9,.95), weight decay .01, clip global norm 1",
+      "augmentation": "same per-step choice/code permutation draws in both arms; one view, CE gold only",
+      "max_training_tokens": 1536,
+      "max_eval_tokens": 4096,
+      "confirmation": "none in this screening run; a new audited holdback is required if advanced",
+      "fixed_data_update_budget": true,
+      "matched_compute_budget": false,
+      "no_model_or_seed_averaging": true,
+      "no_new_teacher_labels_or_rationales": true,
+      "micro_batch": 4,
+      "padded_token_budget": 4096,
+      "workspace_lr": 0.0001,
+      "early_stop": "stop at step256 if source macro is >0.5pp below cached step256 native",
+      "advance_threshold_pp": 0.5,
+      "comparison_scope": "same base, data, draw order, gold loss, body optimizer and updates; not matched FLOPs",
+      "validation_limit": "selection is already exposed and repeatedly reused; no confirmatory accuracy claim"
+    },
+    "files": {
+      "train.jsonl": "f921fcaea29521bcaa745954f815568aa56f37f3b711503e55d32ef94ef1b75d",
+      "selection.jsonl": "45e33aba0b043afd8f1342c74fb96225ee0db5103d93edc19c6aebe15dff3a29"
+    },
+    "implementation": {
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/hypothesis_workspace.py": "34c9fa0b6f365fd41f99d008474d6388b40565eec6505a8334383610364b55d7",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/modeling.py": "0e67919f50af2b0f0fbf297ad80bdb02f8c2d6f9ae4aba72df4d30a68bf225db",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/train.py": "1f00378cbf27744d4f68d6cadaa86a713aad791a6f4f52b61640725b33271271",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/architecture_search.py": "9e8ef879d625e3c3a4bdafe848b02dbd2f42f759336a8031411d60a42c115e62",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/decision_tail_experiment.py": "24663de7e4c64e03877a68b860dea86fde9ce5426991cca8e6301ce6f47d0e06",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/readout_experiment.py": "d467f5710d0b81e2f7a4aae4565a785fb1496949f4e35b0316f659c4eb8cd056",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/recurrent_experiment.py": "b919488f02e7a2185110c206d2bcca0201b3d1754f9dd187c870ebb44b11f7ab",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/robust_adaptation.py": "12b4184c6ae7d82c3cf34102a22aa9dcdd23f18fb24ec366533310271f06c712",
+      "/home/kyunghwan/A-Pattern/kkh_decision_model/qwen_decision/v3/hypothesis_experiment.py": "ff41399a5c9ad689348bb9e9517d498199112848e985e8191443ac3967c05097"
+    },
+    "cached_files": {
+      "runs/recurrent/internal4-v1/vanilla/train.jsonl": "91b4bdceb9d4bd75fb8dde6ff464051b0827ec2a3120bc51cccdcd08eed3f9c4",
+      "runs/recurrent/internal4-v1/vanilla/selection-256.json": "e154379b8b13ef282f6465f540ea3149cbedaab098a8f292a1b75b276d55535e",
+      "runs/recurrent/internal4-v1/vanilla/selection-256.jsonl": "070f75d9ce6f07ea9c5d7b8726db128260449d5b2fb4c66728f789de45c3f322",
+      "runs/recurrent/internal4-v1/vanilla/selection-512.json": "0e2c6f1677646e7cef3f94f22146d9d9f4cd966b3a40a893dfe7139aca2eb84c",
+      "runs/recurrent/internal4-v1/vanilla/selection-512.jsonl": "252c1b8b8c189944156b6a6c30db2ee19e456dd0fd5d4690648d5889454939b1"
+    },
+    "base_sha256": "c216eb62b5e5c46d06a2a4217be21bae426e62b284c5ebcc752f682435f78ce6",
+    "upstream_manifest_sha256": "7afe9a6b37b280b122d368bcbbb9dd1ba5630b43f343ab98dc827a4c89ac9b4e",
+    "upstream_split_audit": {
+      "blocked_after_previous_dev_and_fresh": 1006,
+      "v3-gold2": {
+        "rows": 199981,
+        "new_blocked_dev_ids": 7341
+      },
+      "v3-gold3": {
+        "rows": 399978,
+        "new_blocked_dev_ids": 4917
+      },
+      "v3-gold6": {
+        "rows": 699960,
+        "new_blocked_dev_ids": 4
+      },
+      "additional_entire_jeval_check": {
+        "selection": {
+          "before": 4162,
+          "after": 4147,
+          "removed_groups": 15
+        },
+        "confirmation": {
+          "before": 8852,
+          "after": 8823,
+          "removed_groups": 29
+        }
+      }
+    },
+    "new_confirmation_cases_scored": 0
+  },
+  "checkpoint": "runs/hypothesis-workspace/middle16-v1/workspace/step-512",
+  "audit_implementation_sha256": "59b9d1461d912902a3b63eb7491cafc85c52321b6a706403ca99bf3e679309aa",
+  "environment": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.18.0",
+    "fla": "0.5.2",
+    "triton": "3.6.0",
+    "python": "3.13.14"
+  },
+  "encoding_dependency_sha256": "6cf06e0a2d205fd7cf3168066f4368ab20d4d7b3ecd17617127715221df34eac",
+  "independently_checked_training_prompt_hashes": 512,
+  "checkpoint_files": {
+    "config.json": "7da36b70e64fe3f18344db08566751c76dffc1e0fcb292c31336fe2197d2faa3",
+    "v3_config.json": "ae7c7a92cbd403cc66433d65f58911e58222a326d6386a175c1e31221c54b070",
+    "decision_architecture.json": "12f9020ecef19732af821cdb3fd21501c4287ee7b79e07b46e35fb4b49646df3",
+    "hypothesis_workspace.safetensors": "b44259b7c168495317286e78505ad3055e90a09734c0f2e33b8e50628d9b0d0e",
+    "model.safetensors": "13d2554e8331415b77f6141e9a368f7a5a517aebaaf01bb979cdfe1d3cc9835c"
+  },
+  "reload_all_selection": {
+    "prediction_mismatches": 0,
+    "max_probability_delta": 0.0
+  },
+  "selection_metrics": {
+    "n": 4147,
+    "accuracy": 0.7668193875090427,
+    "macro": 0.7574697310639901,
+    "sources": {
+      "abcd-train": {
+        "n": 105,
+        "accuracy": 0.7047619047619048
+      },
+      "aqua-rat-train": {
+        "n": 27,
+        "accuracy": 0.48148148148148145
+      },
+      "arena55k-train": {
+        "n": 42,
+        "accuracy": 0.6190476190476191
+      },
+      "boolq-train": {
+        "n": 9,
+        "accuracy": 0.7777777777777778
+      },
+      "chid-train": {
+        "n": 32,
+        "accuracy": 0.5
+      },
+      "civilcomments-train": {
+        "n": 33,
+        "accuracy": 0.8181818181818182
+      },
+      "clinc-train": {
+        "n": 32,
+        "accuracy": 0.9375
+      },
+      "cmrc-train": {
+        "n": 94,
+        "accuracy": 0.9574468085106383
+      },
+      "commonsenseqa-train": {
+        "n": 18,
+        "accuracy": 0.7222222222222222
+      },
+      "condaqa-train": {
+        "n": 92,
+        "accuracy": 0.5760869565217391
+      },
+      "cosmosqa-train": {
+        "n": 9,
+        "accuracy": 0.7777777777777778
+      },
+      "creak-train": {
+        "n": 94,
+        "accuracy": 0.7659574468085106
+      },
+      "drop-train": {
+        "n": 227,
+        "accuracy": 0.8458149779735683
+      },
+      "ecare-train": {
+        "n": 33,
+        "accuracy": 0.696969696969697
+      },
+      "esci-train": {
+        "n": 27,
+        "accuracy": 0.6296296296296297
+      },
+      "fewnerd-train": {
+        "n": 33,
+        "accuracy": 0.7878787878787878
+      },
+      "fewrel-train": {
+        "n": 35,
+        "accuracy": 0.8571428571428571
+      },
+      "finer-train": {
+        "n": 36,
+        "accuracy": 0.7777777777777778
+      },
+      "fintweet-train": {
+        "n": 32,
+        "accuracy": 0.65625
+      },
+      "folio-train": {
+        "n": 45,
+        "accuracy": 0.4888888888888889
+      },
+      "gap-train": {
+        "n": 37,
+        "accuracy": 0.7297297297297297
+      },
+      "goemotions-train": {
+        "n": 31,
+        "accuracy": 0.7419354838709677
+      },
+      "gsm8k-train": {
+        "n": 8,
+        "accuracy": 0.125
+      },
+      "hatexplain-train": {
+        "n": 32,
+        "accuracy": 0.625
+      },
+      "headqa-train": {
+        "n": 64,
+        "accuracy": 0.4375
+      },
+      "hellaswag-train": {
+        "n": 27,
+        "accuracy": 0.8888888888888888
+      },
+      "helpsteer2-train": {
+        "n": 74,
+        "accuracy": 0.6891891891891891
+      },
+      "helpsteer3-train": {
+        "n": 38,
+        "accuracy": 0.6052631578947368
+      },
+      "hhrlhf-train": {
+        "n": 92,
+        "accuracy": 0.4782608695652174
+      },
+      "hover-train": {
+        "n": 31,
+        "accuracy": 0.8387096774193549
+      },
+      "humicroedit-train": {
+        "n": 3,
+        "accuracy": 1.0
+      },
+      "icl-classify": {
+        "n": 33,
+        "accuracy": 0.36363636363636365
+      },
+      "infotabs-train": {
+        "n": 99,
+        "accuracy": 0.6767676767676768
+      },
+      "jglue-train": {
+        "n": 97,
+        "accuracy": 0.865979381443299
+      },
+      "klue-train": {
+        "n": 56,
+        "accuracy": 0.8214285714285714
+      },
+      "lexglue-short-train": {
+        "n": 32,
+        "accuracy": 0.78125
+      },
+      "lexglue-train": {
+        "n": 9,
+        "accuracy": 0.8888888888888888
+      },
+      "massive-intents": {
+        "n": 24,
+        "accuracy": 0.9166666666666666
+      },
+      "mathqa-train": {
+        "n": 32,
+        "accuracy": 0.5
+      },
+      "medmcqa-train": {
+        "n": 18,
+        "accuracy": 0.3333333333333333
+      },
+      "mmlu-aux-train": {
+        "n": 32,
+        "accuracy": 0.75
+      },
+      "mnli-train": {
+        "n": 37,
+        "accuracy": 0.9459459459459459
+      },
+      "moralstories-train": {
+        "n": 32,
+        "accuracy": 0.96875
+      },
+      "mtop-train": {
+        "n": 76,
+        "accuracy": 0.75
+      },
+      "multiwoz-train": {
+        "n": 120,
+        "accuracy": 0.9333333333333333
+      },
+      "musique-train": {
+        "n": 19,
+        "accuracy": 0.8421052631578947
+      },
+      "oasst2-train": {
+        "n": 77,
+        "accuracy": 0.7272727272727273
+      },
+      "paws-train": {
+        "n": 82,
+        "accuracy": 0.8780487804878049
+      },
+      "phishing": {
+        "n": 10,
+        "accuracy": 1.0
+      },
+      "pubhealth-train": {
+        "n": 33,
+        "accuracy": 0.8787878787878788
+      },
+      "quac-train": {
+        "n": 86,
+        "accuracy": 0.627906976744186
+      },
+      "quoref-train": {
+        "n": 119,
+        "accuracy": 0.9411764705882353
+      },
+      "ragtruth-train": {
+        "n": 19,
+        "accuracy": 0.8947368421052632
+      },
+      "redial-train": {
+        "n": 106,
+        "accuracy": 0.9150943396226415
+      },
+      "ropes-train": {
+        "n": 108,
+        "accuracy": 0.8425925925925926
+      },
+      "scitail-train": {
+        "n": 201,
+        "accuracy": 0.8706467661691543
+      },
+      "sentfin-train": {
+        "n": 13,
+        "accuracy": 1.0
+      },
+      "siqa-train": {
+        "n": 32,
+        "accuracy": 0.90625
+      },
+      "snips-train": {
+        "n": 32,
+        "accuracy": 0.90625
+      },
+      "snli-train": {
+        "n": 39,
+        "accuracy": 0.6923076923076923
+      },
+      "spartqa-train": {
+        "n": 73,
+        "accuracy": 0.6438356164383562
+      },
+      "squad2-answerability": {
+        "n": 13,
+        "accuracy": 0.9230769230769231
+      },
+      "stepgame-train": {
+        "n": 32,
+        "accuracy": 0.4375
+      },
+      "svamp-train": {
+        "n": 23,
+        "accuracy": 0.8260869565217391
+      },
+      "tabfact-train": {
+        "n": 96,
+        "accuracy": 0.7708333333333334
+      },
+      "taskmaster-train": {
+        "n": 40,
+        "accuracy": 0.95
+      },
+      "tldr-feedback-train": {
+        "n": 99,
+        "accuracy": 0.6767676767676768
+      },
+      "tools-percall": {
+        "n": 11,
+        "accuracy": 1.0
+      },
+      "tydiqa-train": {
+        "n": 96,
+        "accuracy": 0.7916666666666666
+      },
+      "vast-train": {
+        "n": 19,
+        "accuracy": 0.8947368421052632
+      },
+      "vitaminc-train": {
+        "n": 94,
+        "accuracy": 0.7659574468085106
+      },
+      "wanli-train": {
+        "n": 32,
+        "accuracy": 0.59375
+      },
+      "when2call-train": {
+        "n": 17,
+        "accuracy": 0.8235294117647058
+      },
+      "winogrande-train": {
+        "n": 20,
+        "accuracy": 0.9
+      },
+      "wned-el": {
+        "n": 133,
+        "accuracy": 0.8421052631578947
+      },
+      "wtq-train": {
+        "n": 100,
+        "accuracy": 0.79
+      },
+      "zeshel-train": {
+        "n": 84,
+        "accuracy": 0.7380952380952381
+      }
+    },
+    "seconds": 69.56299749600294
+  },
+  "same_step_wins": 12,
+  "same_step_losses": 14,
+  "ablation_samples": 512,
+  "ablation_scope": "exposed selection, same trained weights, descriptive causal path checks; not an independent comparison",
+  "active": {
+    "n": 512,
+    "accuracy": 0.728515625,
+    "macro": 0.7294681508967223,
+    "sources": {
+      "abcd-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "aqua-rat-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "arena55k-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "boolq-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "chid-train": {
+        "n": 5,
+        "accuracy": 0.4
+      },
+      "civilcomments-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "clinc-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "cmrc-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "commonsenseqa-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "condaqa-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "cosmosqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "creak-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "drop-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "ecare-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "esci-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewnerd-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewrel-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "finer-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "fintweet-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "folio-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "gap-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "goemotions-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "gsm8k-train": {
+        "n": 6,
+        "accuracy": 0.16666666666666666
+      },
+      "hatexplain-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "headqa-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "hellaswag-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "helpsteer2-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "helpsteer3-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "hhrlhf-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "hover-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "humicroedit-train": {
+        "n": 2,
+        "accuracy": 1.0
+      },
+      "icl-classify": {
+        "n": 8,
+        "accuracy": 0.25
+      },
+      "infotabs-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "jglue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "klue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "lexglue-short-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "lexglue-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "massive-intents": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "mathqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "medmcqa-train": {
+        "n": 4,
+        "accuracy": 0.0
+      },
+      "mmlu-aux-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "mnli-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "moralstories-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "mtop-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "multiwoz-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "musique-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "oasst2-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "paws-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "phishing": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "pubhealth-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "quac-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "quoref-train": {
+        "n": 4,
+        "accuracy": 1.0
+      },
+      "ragtruth-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "redial-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "ropes-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "scitail-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "sentfin-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "siqa-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "snips-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "snli-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "spartqa-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "squad2-answerability": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "stepgame-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "svamp-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "tabfact-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "taskmaster-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "tldr-feedback-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "tools-percall": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "tydiqa-train": {
+        "n": 8,
+        "accuracy": 0.625
+      },
+      "vast-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "vitaminc-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "wanli-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "when2call-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "winogrande-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "wned-el": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "wtq-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "zeshel-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      }
+    },
+    "seconds": 9.148984231993381
+  },
+  "write_back_blocked": {
+    "n": 512,
+    "accuracy": 0.728515625,
+    "macro": 0.7294681508967223,
+    "sources": {
+      "abcd-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "aqua-rat-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "arena55k-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "boolq-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "chid-train": {
+        "n": 5,
+        "accuracy": 0.4
+      },
+      "civilcomments-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "clinc-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "cmrc-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "commonsenseqa-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "condaqa-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "cosmosqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "creak-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "drop-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "ecare-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "esci-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewnerd-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewrel-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "finer-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "fintweet-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "folio-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "gap-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "goemotions-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "gsm8k-train": {
+        "n": 6,
+        "accuracy": 0.16666666666666666
+      },
+      "hatexplain-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "headqa-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "hellaswag-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "helpsteer2-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "helpsteer3-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "hhrlhf-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "hover-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "humicroedit-train": {
+        "n": 2,
+        "accuracy": 1.0
+      },
+      "icl-classify": {
+        "n": 8,
+        "accuracy": 0.25
+      },
+      "infotabs-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "jglue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "klue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "lexglue-short-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "lexglue-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "massive-intents": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "mathqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "medmcqa-train": {
+        "n": 4,
+        "accuracy": 0.0
+      },
+      "mmlu-aux-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "mnli-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "moralstories-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "mtop-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "multiwoz-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "musique-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "oasst2-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "paws-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "phishing": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "pubhealth-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "quac-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "quoref-train": {
+        "n": 4,
+        "accuracy": 1.0
+      },
+      "ragtruth-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "redial-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "ropes-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "scitail-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "sentfin-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "siqa-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "snips-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "snli-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "spartqa-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "squad2-answerability": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "stepgame-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "svamp-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "tabfact-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "taskmaster-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "tldr-feedback-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "tools-percall": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "tydiqa-train": {
+        "n": 8,
+        "accuracy": 0.625
+      },
+      "vast-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "vitaminc-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "wanli-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "when2call-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "winogrande-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "wned-el": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "wtq-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "zeshel-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      }
+    },
+    "seconds": 9.172422319999896
+  },
+  "workspace_removed": {
+    "n": 512,
+    "accuracy": 0.728515625,
+    "macro": 0.7294681508967223,
+    "sources": {
+      "abcd-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "aqua-rat-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "arena55k-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "boolq-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "chid-train": {
+        "n": 5,
+        "accuracy": 0.4
+      },
+      "civilcomments-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "clinc-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "cmrc-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "commonsenseqa-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "condaqa-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "cosmosqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "creak-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "drop-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "ecare-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "esci-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewnerd-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewrel-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "finer-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "fintweet-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "folio-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "gap-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "goemotions-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "gsm8k-train": {
+        "n": 6,
+        "accuracy": 0.16666666666666666
+      },
+      "hatexplain-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "headqa-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "hellaswag-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "helpsteer2-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "helpsteer3-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "hhrlhf-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "hover-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "humicroedit-train": {
+        "n": 2,
+        "accuracy": 1.0
+      },
+      "icl-classify": {
+        "n": 8,
+        "accuracy": 0.25
+      },
+      "infotabs-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "jglue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "klue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "lexglue-short-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "lexglue-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "massive-intents": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "mathqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "medmcqa-train": {
+        "n": 4,
+        "accuracy": 0.0
+      },
+      "mmlu-aux-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "mnli-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "moralstories-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "mtop-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "multiwoz-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "musique-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "oasst2-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "paws-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "phishing": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "pubhealth-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "quac-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "quoref-train": {
+        "n": 4,
+        "accuracy": 1.0
+      },
+      "ragtruth-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "redial-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "ropes-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "scitail-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "sentfin-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "siqa-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "snips-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "snli-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "spartqa-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "squad2-answerability": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "stepgame-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "svamp-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "tabfact-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "taskmaster-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "tldr-feedback-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "tools-percall": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "tydiqa-train": {
+        "n": 8,
+        "accuracy": 0.625
+      },
+      "vast-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "vitaminc-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "wanli-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "when2call-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "winogrande-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "wned-el": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "wtq-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "zeshel-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      }
+    },
+    "seconds": 8.892333415002213
+  },
+  "contentless_seeds": {
+    "n": 512,
+    "accuracy": 0.728515625,
+    "macro": 0.7294681508967223,
+    "sources": {
+      "abcd-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "aqua-rat-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "arena55k-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "boolq-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "chid-train": {
+        "n": 5,
+        "accuracy": 0.4
+      },
+      "civilcomments-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "clinc-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "cmrc-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "commonsenseqa-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "condaqa-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "cosmosqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "creak-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "drop-train": {
+        "n": 5,
+        "accuracy": 1.0
+      },
+      "ecare-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "esci-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewnerd-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "fewrel-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "finer-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "fintweet-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "folio-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "gap-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "goemotions-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "gsm8k-train": {
+        "n": 6,
+        "accuracy": 0.16666666666666666
+      },
+      "hatexplain-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "headqa-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "hellaswag-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "helpsteer2-train": {
+        "n": 8,
+        "accuracy": 0.5
+      },
+      "helpsteer3-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "hhrlhf-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "hover-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "humicroedit-train": {
+        "n": 2,
+        "accuracy": 1.0
+      },
+      "icl-classify": {
+        "n": 8,
+        "accuracy": 0.25
+      },
+      "infotabs-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "jglue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "klue-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "lexglue-short-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "lexglue-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "massive-intents": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "mathqa-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "medmcqa-train": {
+        "n": 4,
+        "accuracy": 0.0
+      },
+      "mmlu-aux-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "mnli-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "moralstories-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "mtop-train": {
+        "n": 5,
+        "accuracy": 0.8
+      },
+      "multiwoz-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "musique-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "oasst2-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "paws-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "phishing": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "pubhealth-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "quac-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "quoref-train": {
+        "n": 4,
+        "accuracy": 1.0
+      },
+      "ragtruth-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "redial-train": {
+        "n": 6,
+        "accuracy": 0.8333333333333334
+      },
+      "ropes-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "scitail-train": {
+        "n": 8,
+        "accuracy": 0.875
+      },
+      "sentfin-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "siqa-train": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "snips-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "snli-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "spartqa-train": {
+        "n": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "squad2-answerability": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "stepgame-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "svamp-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "tabfact-train": {
+        "n": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "taskmaster-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "tldr-feedback-train": {
+        "n": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "tools-percall": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "tydiqa-train": {
+        "n": 8,
+        "accuracy": 0.625
+      },
+      "vast-train": {
+        "n": 6,
+        "accuracy": 1.0
+      },
+      "vitaminc-train": {
+        "n": 6,
+        "accuracy": 0.6666666666666666
+      },
+      "wanli-train": {
+        "n": 6,
+        "accuracy": 0.3333333333333333
+      },
+      "when2call-train": {
+        "n": 8,
+        "accuracy": 0.75
+      },
+      "winogrande-train": {
+        "n": 8,
+        "accuracy": 1.0
+      },
+      "wned-el": {
+        "n": 7,
+        "accuracy": 1.0
+      },
+      "wtq-train": {
+        "n": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "zeshel-train": {
+        "n": 7,
+        "accuracy": 0.8571428571428571
+      }
+    },
+    "seconds": 9.15046761699341
+  },
+  "block_write_effect": {
+    "prediction_mismatches": 1,
+    "max_probability_delta": 0.028734326362609863
+  },
+  "remove_workspace_effect": {
+    "prediction_mismatches": 1,
+    "max_probability_delta": 0.028734326362609863
+  },
+  "remove_content_effect": {
+    "prediction_mismatches": 0,
+    "max_probability_delta": 0.01762770116329193
+  },
+  "blocked_vs_native": {
+    "prediction_mismatches": 0,
+    "max_probability_delta": 0.004544377326965332
+  },
+  "projection_relative_change_from_identity": 0.041020166128873825,
+  "native_manual_forward_max_logit_delta": 0.0,
+  "slot_order_only_max_probability_delta": 0.00553208589553833,
+  "slot_order_only_prediction_mismatches": 0,
+  "mixer_execution_probe": {
+    "native_block_calls": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "mixer_rows": {
+      "0": 104,
+      "1": 104,
+      "2": 104,
+      "3": 104,
+      "4": 104,
+      "5": 104,
+      "6": 104,
+      "7": 104,
+      "8": 104,
+      "9": 104,
+      "10": 104,
+      "11": 104,
+      "12": 104,
+      "13": 104,
+      "14": 104,
+      "15": 104,
+      "16": 104,
+      "17": 104,
+      "18": 104,
+      "19": 106,
+      "20": 104,
+      "21": 104,
+      "22": 104,
+      "23": 106
+    },
+    "original_width": 104,
+    "candidate_width": 2
+  },
+  "timing": {
+    "samples": 512,
+    "batches": 145,
+    "passes": {
+      "native_same_weights": [
+        8.821128416995634,
+        8.819924376999552,
+        8.815218478994211
+      ],
+      "workspace": [
+        9.086451517003297,
+        9.081352160996175,
+        9.076372306000849
+      ]
+    },
+    "median_seconds": {
+      "native_same_weights": 8.819924376999552,
+      "workspace": 9.081352160996175
+    },
+    "overhead_percent": 2.964059246112938,
+    "scope": "same trained weights, GPU prepared padded inputs including Python/mask/slot operations; excludes tokenization/loading; no service latency claim"
+  },
+  "new_confirmation_cases_scored": 0,
+  "limits": [
+    "one seed, 512 or predeclared early stop; exposed selection is not confirmation",
+    "not a reproduction of the cited latent reasoning methods; no reasoning traces",
+    "additional tokens vs candidate content not separated by a separately trained control",
+    "prototype requires its custom load/logits; not integrated into standard engine"
+  ]
+}

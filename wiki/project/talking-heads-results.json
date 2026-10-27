@@ -1,0 +1,2999 @@
+{
+  "complete": true,
+  "plan": {
+    "experiment": "talking-heads-upper2-v1",
+    "arms": [
+      "native",
+      "diagonal",
+      "talking"
+    ],
+    "seeds": [
+      41,
+      73,
+      101
+    ],
+    "steps": 512,
+    "batch_size": 16,
+    "body_lr": 3e-06,
+    "mixing_lr": 0.001,
+    "warmup": 32,
+    "initialization": "runs/long-training/64k-4096-v1/native-seed41/step-4096",
+    "layers": [
+      19,
+      23
+    ],
+    "heads": 8,
+    "architecture": "two FP32 8x8 matrices before/after softmax in each selected existing full-attention layer; 256 new parameters; Qwen QK norms, RoPE, gate, projections and original code head preserved",
+    "native": "identity-only matrices, identical explicit attention arithmetic at layers19/23; other four full attentions stock SDPA",
+    "diagonal": "same256 stored parameters with offdiagonal entries masked out:32 effective scalars; controls head temperature/output rescaling",
+    "talking": "all256 matrix entries trainable; initially identity, exactly identical to arithmetic-matched native",
+    "numerics": "stock fused SDPA is mathematically equivalent at initialization but BF16 may differ; native SDPA deviation audited before training; controls use same explicit FP32 arithmetic",
+    "training": "all used language parameters and tied head; vision frozen; ordinary gold CE; exact same cached8192 cases/views/order per seed for every arm",
+    "optimizer": "FP32-master AdamW(.9,.95), bodyWD.01, mixingWD0, clip1; linear32warmup cosine to10%; all arms512fixed updates",
+    "data": {
+      "rows": {
+        "target-train": 4096,
+        "anchor-train": 4096,
+        "dev": 88,
+        "primary-test": 1152,
+        "retention-test": 384
+      },
+      "training_sources": {
+        "boolq-train": 820,
+        "condaqa-train": 819,
+        "mnli-train": 819,
+        "snli-train": 819,
+        "vitaminc-train": 819,
+        "abcd-train": 45,
+        "acos-train": 45,
+        "aqua-rat-train": 45,
+        "arc-train": 45,
+        "arena55k-train": 44,
+        "argq-train": 44,
+        "banking77-train": 44,
+        "chid-train": 44,
+        "civilcomments-train": 44,
+        "claimstance-train": 44,
+        "clinc-train": 44,
+        "cmrc-train": 44,
+        "code-output-gen": 44,
+        "commonsenseqa-train": 44,
+        "contractnli-train": 44,
+        "corr2cause-train": 44,
+        "cosmosqa-train": 44,
+        "creak-train": 44,
+        "cuad-train": 44,
+        "drop-train": 44,
+        "ecare-train": 44,
+        "esci-train": 44,
+        "faithdial-train": 44,
+        "fewnerd-train": 44,
+        "fewrel-train": 44,
+        "finer-train": 44,
+        "fintweet-train": 44,
+        "folio-train": 44,
+        "gap-train": 44,
+        "goemotions-train": 44,
+        "gsm8k-train": 44,
+        "habermas-train": 44,
+        "hatexplain-train": 44,
+        "headqa-train": 44,
+        "hellaswag-train": 44,
+        "helpsteer2-train": 44,
+        "helpsteer3-train": 44,
+        "hhrlhf-train": 44,
+        "hover-train": 44,
+        "humicroedit-train": 44,
+        "icl-classify": 44,
+        "infotabs-train": 44,
+        "isarcasm-train": 44,
+        "jglue-train": 44,
+        "klue-train": 44,
+        "lexglue-short-train": 44,
+        "lexglue-train": 44,
+        "logic-puzzles-gen": 44,
+        "massive-intents": 44,
+        "mathqa-train": 44,
+        "maud-train": 44,
+        "medmcqa-train": 44,
+        "mmlu-aux-train": 44,
+        "moralstories-train": 44,
+        "mtop-train": 44,
+        "multiwoz-train": 44,
+        "newyorker-matching-train": 44,
+        "nli4ct-train": 44,
+        "oasst2-train": 44,
+        "openbookqa-train": 44,
+        "paws-train": 44,
+        "phishing": 44,
+        "pubhealth-train": 44,
+        "pubmedqa-labeled": 44,
+        "quac-train": 44,
+        "quoref-train": 44,
+        "ragtruth-train": 44,
+        "redial-train": 44,
+        "ropes-train": 44,
+        "scitail-train": 44,
+        "semcor-train": 44,
+        "sentfin-train": 44,
+        "sharc-train": 44,
+        "siqa-train": 44,
+        "snips-train": 44,
+        "spartqa-train": 44,
+        "squad2-answerability": 44,
+        "stepgame-train": 44,
+        "strategyqa-train": 44,
+        "svamp-train": 44,
+        "tabfact-train": 44,
+        "taskmaster-train": 44,
+        "tatqa-train": 44,
+        "tatqa-yesno": 44,
+        "tldr-feedback-train": 44,
+        "tydiqa-train": 44,
+        "ukpconvarg-train": 44,
+        "vast-train": 44,
+        "wanli-train": 44,
+        "winogrande-train": 44,
+        "wned-el": 44,
+        "wtq-train": 44,
+        "zeshel-train": 44
+      },
+      "evaluation_sources": {
+        "condaqa-train": {
+          "dev": 8,
+          "test": 128
+        },
+        "vitaminc-train": {
+          "dev": 8,
+          "test": 256
+        },
+        "retention-boolq": {
+          "dev": 8,
+          "test": 256
+        },
+        "retention-snli": {
+          "dev": 8,
+          "test": 256
+        },
+        "retention-mnli": {
+          "dev": 8,
+          "test": 256
+        },
+        "piqa": {
+          "dev": 8,
+          "test": 64
+        },
+        "qasc": {
+          "dev": 8,
+          "test": 64
+        },
+        "goemotions": {
+          "dev": 8,
+          "test": 64
+        },
+        "ethics-commonsense": {
+          "dev": 8,
+          "test": 64
+        },
+        "swag": {
+          "dev": 8,
+          "test": 64
+        },
+        "retention-hellaswag": {
+          "dev": 8,
+          "test": 64
+        }
+      },
+      "new_prediction_files_audited": 386,
+      "inherited_audit": "runs/evidence-pairs/factorial-v1/split-audit.json",
+      "direct_independence": {
+        "dev": {
+          "rows": 88,
+          "distinct_documents": 88,
+          "train_overlap_keys": 0,
+          "previous_eval_overlap_keys": 0,
+          "previously_scored_documents": 0
+        },
+        "primary-test": {
+          "rows": 1152,
+          "distinct_documents": 1152,
+          "train_overlap_keys": 0,
+          "previous_eval_overlap_keys": 0,
+          "previously_scored_documents": 0
+        },
+        "retention-test": {
+          "rows": 384,
+          "distinct_documents": 384,
+          "train_overlap_keys": 0,
+          "previous_eval_overlap_keys": 0,
+          "previously_scored_documents": 0
+        }
+      },
+      "sampling": "one hash-selected original gold case per previously unscored document; source caps fixed before scoring",
+      "limits": [
+        "original pretraining contamination unknown",
+        "normalized exact and explicit metadata audit, not exhaustive semantic deduplication",
+        "CONDAQA groups original passages, not entire articles",
+        "fresh MNLI validation is three-way while existing training includes binary entailment judgments",
+        "targeted five-task probe plus six retention families, not the full 100-source general benchmark"
+      ],
+      "synthetic_diagnostic": {
+        "base_tasks": 128,
+        "rows": 512,
+        "distractor_counts": [
+          0,
+          8,
+          32,
+          96
+        ],
+        "labels": "deterministic unique queried record; never trained on these examples"
+      }
+    },
+    "dev_steps": [
+      0,
+      128,
+      256,
+      512
+    ],
+    "selection": "final512 only; no best-checkpoint search, no accuracy early stop",
+    "primary": "source-macro accuracy across five fresh document reading/verification/NLI families",
+    "contrasts": [
+      "talking-stock_sdpa",
+      "talking-native_matched_arithmetic",
+      "talking-diagonal",
+      "talking active-no_cross"
+    ],
+    "statistics": "5000 paired documents within source plus paired3seeds; Bonferroni4 primary/mechanism contrasts; retention one-sided95 lower>-1pp against BOTH native controls",
+    "advance": "all4 primary/mechanism familywise lower bounds>0; first3 comparisons positive in every seed; both retention lower bounds>-1pp; no automatic expansion",
+    "mechanism_scope": "no_cross removes only learned cross-head matrix entries on the SAME trained backbone; identity removes all head scaling/mixing; each intervention recomputes the entire backbone once; not a claim of universal single-forward limits",
+    "distractors": "128 deterministic programmatic entity-status tasks x0/8/32/96 irrelevant facts; same query/gold/target placement fraction across levels; evaluation only, no synthetic training; exploratory OOD retrieval diagnostic",
+    "test_protocol": "fresh documents and synthetic diagnostics scored only after all9 final models frozen; never choose checkpoints from test",
+    "runtime": "one language forward and each24 original layers once per ordinary decision; identical prepared dev batches; also benchmark original SDPA at initial smoke; explicit attention may cost more memory/time",
+    "resume": "weights-only finals; interrupted fit archived and restarted from commonbase; exact optimizer resume checked in talking smoke",
+    "limits": [
+      "three new-training seeds share one old seed41 base",
+      "same examples/updates, not equal FLOPs or wall time",
+      "small-seed bootstrap uncertainty",
+      "CONDAQA fresh pool nearly exhausted:128 test documents; other four primary sources256each; retention64each",
+      "controlled retrieval is not a natural-language reasoning benchmark",
+      "native control uses matched explicit attention arithmetic rather than stock SDPA",
+      "original pretraining contamination unknown",
+      "normalized exact and explicit metadata audit, not exhaustive semantic deduplication",
+      "CONDAQA groups original passages, not entire articles",
+      "fresh MNLI validation is three-way while existing training includes binary entailment judgments",
+      "targeted five-task probe plus six retention families, not the full 100-source general benchmark"
+    ],
+    "evaluation_arms": [
+      "stock_sdpa",
+      "native",
+      "diagonal",
+      "talking"
+    ],
+    "original_sdpa_reference": "reuse three completed native512 fits only after exact512 input/target trace, commonbase and recipe audit; fresh tests remain unopened"
+  },
+  "arm_mean_accuracy": {
+    "stock_sdpa": {
+      "primary": 0.7776041666666668,
+      "retention": 0.6440972222222222
+    },
+    "native": {
+      "primary": 0.7796875,
+      "retention": 0.6414930555555557
+    },
+    "diagonal": {
+      "primary": 0.7794270833333333,
+      "retention": 0.6449652777777778
+    },
+    "talking": {
+      "primary": 0.7794270833333332,
+      "retention": 0.6449652777777778
+    }
+  },
+  "models": {
+    "native-seed41": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8098958333333334,
+          "macro": 0.78984375,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.609375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84765625
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.82421875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.80078125
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6328125,
+          "macro": 0.6328125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.4375
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.53125
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.75
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8950141160166822,
+          0.8943209919962101,
+          0.8919382710009813
+        ],
+        "median_seconds": 0.8943209919962101,
+        "peak_allocated_bytes": 1709299712,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "diagonal-seed41": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8072916666666666,
+          "macro": 0.7875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.609375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.828125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "no_cross": {
+          "n": 1152,
+          "accuracy": 0.8072916666666666,
+          "macro": 0.7875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.609375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.828125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "identity": {
+          "n": 1152,
+          "accuracy": 0.8064236111111112,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.828125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6328125,
+          "macro": 0.6328125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.421875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.53125
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.765625
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.71875
+            }
+          }
+        },
+        "no_cross": {
+          "n": 384,
+          "accuracy": 0.6328125,
+          "macro": 0.6328125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.421875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.53125
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.765625
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.71875
+            }
+          }
+        },
+        "identity": {
+          "n": 384,
+          "accuracy": 0.6354166666666666,
+          "macro": 0.6354166666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.421875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.53125
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.765625
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "no_cross": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "identity": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8906819719704799,
+          0.8959761149599217,
+          0.8992686109850183
+        ],
+        "median_seconds": 0.8959761149599217,
+        "peak_allocated_bytes": 1709302784,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852986176,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "talking-seed41": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8064236111111112,
+          "macro": 0.7859375,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "no_cross": {
+          "n": 1152,
+          "accuracy": 0.8064236111111112,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.609375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7890625
+            }
+          }
+        },
+        "identity": {
+          "n": 1152,
+          "accuracy": 0.8064236111111112,
+          "macro": 0.78671875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.609375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7890625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6328125,
+          "macro": 0.6328125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.421875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "no_cross": {
+          "n": 384,
+          "accuracy": 0.6328125,
+          "macro": 0.6328125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.421875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.734375
+            }
+          }
+        },
+        "identity": {
+          "n": 384,
+          "accuracy": 0.6354166666666666,
+          "macro": 0.6354166666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.421875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.53125
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "no_cross": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "identity": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.885884080955293,
+          0.8855473260045983,
+          0.8861823190236464
+        ],
+        "median_seconds": 0.885884080955293,
+        "peak_allocated_bytes": 1709301760,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852986176,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "native-seed73": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.7916666666666666,
+          "macro": 0.77265625,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.8359375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6458333333333334,
+          "macro": 0.6458333333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.5
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.734375
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8881351000163704,
+          0.886913658992853,
+          0.8929614889784716
+        ],
+        "median_seconds": 0.8881351000163704,
+        "peak_allocated_bytes": 1709299712,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "diagonal-seed73": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.7899305555555556,
+          "macro": 0.77109375,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.828125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "no_cross": {
+          "n": 1152,
+          "accuracy": 0.7899305555555556,
+          "macro": 0.77109375,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.828125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "identity": {
+          "n": 1152,
+          "accuracy": 0.7899305555555556,
+          "macro": 0.7703125,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.59375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6614583333333334,
+          "macro": 0.6614583333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.5625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.734375
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "no_cross": {
+          "n": 384,
+          "accuracy": 0.6614583333333334,
+          "macro": 0.6614583333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.5625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.734375
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "identity": {
+          "n": 384,
+          "accuracy": 0.6614583333333334,
+          "macro": 0.6614583333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.5625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.734375
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "no_cross": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "identity": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8979440649854951,
+          0.8900210349820554,
+          0.8882688009762205
+        ],
+        "median_seconds": 0.8900210349820554,
+        "peak_allocated_bytes": 1709302784,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852986176,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "talking-seed73": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.7934027777777778,
+          "macro": 0.77421875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        },
+        "no_cross": {
+          "n": 1152,
+          "accuracy": 0.7925347222222222,
+          "macro": 0.77265625,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.59375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        },
+        "identity": {
+          "n": 1152,
+          "accuracy": 0.7925347222222222,
+          "macro": 0.77265625,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.59375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7734375
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.65625,
+          "macro": 0.65625,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.546875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.5
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.75
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "no_cross": {
+          "n": 384,
+          "accuracy": 0.6588541666666666,
+          "macro": 0.6588541666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.546875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.5
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.75
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.78125
+            }
+          }
+        },
+        "identity": {
+          "n": 384,
+          "accuracy": 0.6588541666666666,
+          "macro": 0.6588541666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.546875
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.5
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.75
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "no_cross": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "identity": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8996113780303858,
+          0.8939221199834719,
+          0.8956558450008743
+        ],
+        "median_seconds": 0.8956558450008743,
+        "peak_allocated_bytes": 1709301760,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852986176,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "native-seed101": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8012152777777778,
+          "macro": 0.7765625,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5546875
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83984375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.8203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7890625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6458333333333334,
+          "macro": 0.6458333333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.5
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.8125
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.89666433702223,
+          0.8956682379939593,
+          0.895161641004961
+        ],
+        "median_seconds": 0.8956682379939593,
+        "peak_allocated_bytes": 1709299712,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "diagonal-seed101": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8038194444444444,
+          "macro": 0.7796875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.8203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "no_cross": {
+          "n": 1152,
+          "accuracy": 0.8038194444444444,
+          "macro": 0.7796875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.8203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "identity": {
+          "n": 1152,
+          "accuracy": 0.8038194444444444,
+          "macro": 0.7796875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.8203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87890625
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.640625,
+          "macro": 0.640625,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.484375
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "no_cross": {
+          "n": 384,
+          "accuracy": 0.640625,
+          "macro": 0.640625,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.484375
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "identity": {
+          "n": 384,
+          "accuracy": 0.640625,
+          "macro": 0.640625,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.484375
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.796875
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "no_cross": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "identity": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8979112399974838,
+          0.8978198700351641,
+          0.8988753479789011
+        ],
+        "median_seconds": 0.8979112399974838,
+        "peak_allocated_bytes": 1709302784,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852986176,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "talking-seed101": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8020833333333334,
+          "macro": 0.778125,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.82421875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "no_cross": {
+          "n": 1152,
+          "accuracy": 0.8020833333333334,
+          "macro": 0.778125,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.82421875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        },
+        "identity": {
+          "n": 1152,
+          "accuracy": 0.8020833333333334,
+          "macro": 0.778125,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.82421875
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.8671875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.79296875
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6458333333333334,
+          "macro": 0.6458333333333334,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.5
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.8125
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "no_cross": {
+          "n": 384,
+          "accuracy": 0.6432291666666666,
+          "macro": 0.6432291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.484375
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.8125
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        },
+        "identity": {
+          "n": 384,
+          "accuracy": 0.6432291666666666,
+          "macro": 0.6432291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.484375
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.8125
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "no_cross": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "identity": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8944215949741192,
+          0.8958499119617045,
+          0.8945120790158398
+        ],
+        "median_seconds": 0.8945120790158398,
+        "peak_allocated_bytes": 1709301760,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852986176,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "stock_sdpa-seed41": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8029513888888888,
+          "macro": 0.7828125,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.6015625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.83203125
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.828125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.86328125
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.7890625
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6328125,
+          "macro": 0.6328125,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.4375
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.53125
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.65625
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.765625
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.734375
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.876833361980971,
+          0.8763382370234467,
+          0.8803373249829747
+        ],
+        "median_seconds": 0.876833361980971,
+        "peak_allocated_bytes": 1704364032,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "stock_sdpa-seed73": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.7907986111111112,
+          "macro": 0.7703125,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5859375
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.7890625
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.87109375
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.76171875
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.65625,
+          "macro": 0.65625,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.515625
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.71875
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.671875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.734375
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.78125
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.9036713989917189,
+          0.8924745650147088,
+          0.8941245310124941
+        ],
+        "median_seconds": 0.8941245310124941,
+        "peak_allocated_bytes": 1704364032,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    },
+    "stock_sdpa-seed101": {
+      "primary": {
+        "active": {
+          "n": 1152,
+          "accuracy": 0.8038194444444444,
+          "macro": 0.7796875,
+          "sources": {
+            "condaqa-train": {
+              "n": 128,
+              "accuracy": 0.5625
+            },
+            "retention-boolq": {
+              "n": 256,
+              "accuracy": 0.84375
+            },
+            "retention-mnli": {
+              "n": 256,
+              "accuracy": 0.8203125
+            },
+            "retention-snli": {
+              "n": 256,
+              "accuracy": 0.875
+            },
+            "vitaminc-train": {
+              "n": 256,
+              "accuracy": 0.796875
+            }
+          }
+        }
+      },
+      "retention": {
+        "active": {
+          "n": 384,
+          "accuracy": 0.6432291666666666,
+          "macro": 0.6432291666666666,
+          "sources": {
+            "ethics-commonsense": {
+              "n": 64,
+              "accuracy": 0.40625
+            },
+            "goemotions": {
+              "n": 64,
+              "accuracy": 0.484375
+            },
+            "piqa": {
+              "n": 64,
+              "accuracy": 0.703125
+            },
+            "qasc": {
+              "n": 64,
+              "accuracy": 0.6875
+            },
+            "retention-hellaswag": {
+              "n": 64,
+              "accuracy": 0.8125
+            },
+            "swag": {
+              "n": 64,
+              "accuracy": 0.765625
+            }
+          }
+        }
+      },
+      "distractor": {
+        "active": {
+          "n": 512,
+          "accuracy": 1.0,
+          "macro": 1.0,
+          "sources": {
+            "retrieval-decoys-0": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-32": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-8": {
+              "n": 128,
+              "accuracy": 1.0
+            },
+            "retrieval-decoys-96": {
+              "n": 128,
+              "accuracy": 1.0
+            }
+          }
+        }
+      },
+      "runtime": {
+        "cases": 64,
+        "batches": 16,
+        "seconds_three_runs": [
+          0.8797545119887218,
+          0.8828825599630363,
+          0.8812344509642571
+        ],
+        "median_seconds": 0.8812344509642571,
+        "peak_allocated_bytes": 1704364032,
+        "forward_counts_one_batch": {
+          "layer0": 1,
+          "layer1": 1,
+          "layer2": 1,
+          "layer3": 1,
+          "layer4": 1,
+          "layer5": 1,
+          "layer6": 1,
+          "layer7": 1,
+          "layer8": 1,
+          "layer9": 1,
+          "layer10": 1,
+          "layer11": 1,
+          "layer12": 1,
+          "layer13": 1,
+          "layer14": 1,
+          "layer15": 1,
+          "layer16": 1,
+          "layer17": 1,
+          "layer18": 1,
+          "layer19": 1,
+          "layer20": 1,
+          "layer21": 1,
+          "layer22": 1,
+          "layer23": 1,
+          "backbone": 1
+        },
+        "parameters": 852985920,
+        "scope": "active single-pass scoring, identical prepared device batches; excludes tokenization/loading and head interventions; no service latency claim"
+      }
+    }
+  },
+  "primary_and_mechanism_contrasts": {
+    "talking_minus_stock_sdpa": {
+      "delta": 0.0018229166666666665,
+      "per_seed": {
+        "41": 0.003125,
+        "73": 0.00390625,
+        "101": -0.0015625
+      },
+      "conditional_document_95ci": [
+        -0.0018229166666666665,
+        0.00546875
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.003906249999999999,
+        0.00703125
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.0059261067708333325,
+        0.00859375
+      ],
+      "hierarchical_one_sided95_lower": -0.002604166666666667
+    },
+    "talking_minus_native": {
+      "delta": -0.00026041666666666666,
+      "per_seed": {
+        "41": -0.00390625,
+        "73": 0.0015625,
+        "101": 0.0015625
+      },
+      "conditional_document_95ci": [
+        -0.0041666666666666675,
+        0.0033854166666666663
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.0062499999999999995,
+        0.005208333333333334
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.008009440104166664,
+        0.00625
+      ],
+      "hierarchical_one_sided95_lower": -0.0049479166666666664
+    },
+    "talking_minus_diagonal": {
+      "delta": 0.0,
+      "per_seed": {
+        "41": -0.0015625,
+        "73": 0.003125,
+        "101": -0.0015625
+      },
+      "conditional_document_95ci": [
+        -0.002864583333333333,
+        0.002604166666666667
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.0046875,
+        0.004166666666666667
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.00625,
+        0.005405273437500095
+      ],
+      "hierarchical_one_sided95_lower": -0.00390625
+    },
+    "cross_head_removal_harm": {
+      "delta": 0.00026041666666666666,
+      "per_seed": {
+        "41": -0.00078125,
+        "73": 0.0015625,
+        "101": 0.0
+      },
+      "conditional_document_95ci": [
+        -0.0013020833333333335,
+        0.0018229166666666667
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.0020833333333333337,
+        0.0026041666666666665
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.003125,
+        0.0036458333333333334
+      ],
+      "hierarchical_one_sided95_lower": -0.0015625
+    }
+  },
+  "retention_contrast": {
+    "talking_minus_stock_sdpa": {
+      "delta": 0.0008680555555555558,
+      "per_seed": {
+        "41": 0.0,
+        "73": 0.0,
+        "101": 0.0026041666666666665
+      },
+      "conditional_document_95ci": [
+        -0.006076388888888888,
+        0.0078125
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.0078125,
+        0.00954861111111111
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.009993489583333329,
+        0.010416666666666666
+      ],
+      "hierarchical_one_sided95_lower": -0.006076388888888889
+    },
+    "talking_minus_native": {
+      "delta": 0.003472222222222222,
+      "per_seed": {
+        "41": 0.0,
+        "73": 0.010416666666666666,
+        "101": 0.0
+      },
+      "conditional_document_95ci": [
+        -0.0026041666666666665,
+        0.010416666666666666
+      ],
+      "hierarchical_seed_document_95ci": [
+        -0.005208333333333333,
+        0.014756944444444446
+      ],
+      "familywise_hierarchical_95ci": [
+        -0.006944444444444444,
+        0.016493055555555556
+      ],
+      "hierarchical_one_sided95_lower": -0.004340277777777777
+    }
+  },
+  "exploratory_advance_gate": false,
+  "interpretation_scope": "no_cross removes only learned cross-head matrix entries on the SAME trained backbone; identity removes all head scaling/mixing; each intervention recomputes the entire backbone once; not a claim of universal single-forward limits",
+  "distractor_diagnostics": {
+    "levels": [
+      0,
+      8,
+      32,
+      96
+    ],
+    "mean_accuracy": {
+      "stock_sdpa": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "native": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "diagonal": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "talking": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "talking_minus_native_extra_harm_96_vs_0": 0.0,
+    "hierarchical_paired95ci": [
+      0.0,
+      0.0
+    ],
+    "interpretation": "negative extra harm favors talking; exploratory synthetic retrieval, not an advance gate"
+  },
+  "limits": [
+    "three new-training seeds share one old seed41 base",
+    "same examples/updates, not equal FLOPs or wall time",
+    "small-seed bootstrap uncertainty",
+    "CONDAQA fresh pool nearly exhausted:128 test documents; other four primary sources256each; retention64each",
+    "controlled retrieval is not a natural-language reasoning benchmark",
+    "native control uses matched explicit attention arithmetic rather than stock SDPA",
+    "original pretraining contamination unknown",
+    "normalized exact and explicit metadata audit, not exhaustive semantic deduplication",
+    "CONDAQA groups original passages, not entire articles",
+    "fresh MNLI validation is three-way while existing training includes binary entailment judgments",
+    "targeted five-task probe plus six retention families, not the full 100-source general benchmark"
+  ]
+}

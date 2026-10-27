@@ -10,6 +10,10 @@ alphaXiv 검색 결과의 기관·인기도·자동 요약만으로 성능을 �
 
 ## 검색 결과와 실제 확인을 구분
 
+- **2026-10-19 구조 전환/데이터 후속:** 공개 BDH-GPU source를 commit2b0d7a4에 고정해 실제 상위층 교체를 구현했다. BDH-CQ는 내부 update 비공개라는 원문§3.3의 제한을 기록했다. LoLCATs·Mamba in the Llama의 정렬/증류 단계도 원문과 공식 자료에서 대조했다. [적용과 데이터4배 비교 계획](../project/bdh-memory.md).
+
+- **2026-10-19 추가:** TRM·T²MLR·LLoCoT·INTACT·Latent Recurrent Thoughts·BDH-CQ·Pause Tokens·RiM은 alphaXiv 추출 원문의 설계·실험·학습 조건에서 해당 부분을 확인했다. [문헌 카드](../papers/latent-workspaces.md), [실제 workspace 구현·선별 실험](../project/hypothesis-workspace.md). 이전 residual routing·head·동일 블록 반복과 구분하며 어느 원논문의 직접 재현으로도 주장하지 않는다.
+
 - 'Prompt-based Universal Classification' 검색은 LinkPrompt 공격 논문으로 잘못 매칭되어 관련 근거에서 제외했다.
 - 'Zero-Shot Text Classification with Universal Discriminator' 검색은 ConEntail로 매칭되었다. 확인한 실제 ConEntail만 카드로 만들었고 Universal Discriminator를 읽었다고 주장하지 않는다.
 - NV-Embed·GLiNER·Deep Sets 등은 관련 후보로 언급됐지만 이 위키에는 상세 본문 조사를 완료한 카드로 추가하지 않았다.

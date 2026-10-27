@@ -1,0 +1,957 @@
+{
+  "plan": {
+    "models": {
+      "g4b": "runs/v3/g4b-gold3-pad0/best",
+      "g6w67_g3e2": "runs/robust/rebuilt-g6w67-g3e2"
+    },
+    "recipe": "0.67*g6-last + 0.33*g3-epoch-2, FP32 merge stored BF16; upstream recipe fixed before this replication",
+    "hub_model_revision": "a0b44b4d531145ecb30136cea886381205132d93",
+    "hub_data_revision": "c15b054aafa3013cb421597031aee87ee150ad4b",
+    "model_sha256": {
+      "runs/v3/g4b-gold3-pad0/best/model.safetensors": "c216eb62b5e5c46d06a2a4217be21bae426e62b284c5ebcc752f682435f78ce6",
+      "runs/robust/rebuilt-g6w67-g3e2/model.safetensors": "c90f56aea77f0dfa5fc4c50b7fe08cbe1ca5a168eefa8648ee97b5d15b18ac2c"
+    },
+    "data_sha256": "685535c3a81e0f27d56e74cbb21649b1aa715dae05ed1f7118542fd6eb42c89f",
+    "rows": 1335,
+    "max_tokens": 957,
+    "no_truncation": true,
+    "primary": "15 sources excluding GoEmotions, a training source; also report complete 16-source suite for replication",
+    "holdback": "published recipe was already evaluated on fresh-v1; this is repeat measurement, not a new untouched test",
+    "upstream_aliases": {
+      "g6-best": "last, both step 21874",
+      "g3-best": "epoch-2, selected step12500 of 6250 updates/epoch"
+    },
+    "precision": "same BF16 padded SDPA and same input token IDs for both models",
+    "timing": "GPU may be shared with the separate adaptation training; do not use these times as latency comparisons"
+  },
+  "models": {
+    "g4b": {
+      "all_16": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5434782608695652,
+            "skill": 0.08695652173913038
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.21875,
+            "skill": 0.08854166666666667
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.65,
+            "skill": 0.30000000000000004
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.7,
+            "skill": 0.3999999999999999
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.55,
+            "skill": 0.32500000000000007
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.12,
+            "skill": 0.0
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.9642857142857143,
+            "skill": 0.9464285714285713
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.89,
+            "skill": 0.78
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.77,
+            "skill": 0.54
+          },
+          "goemotions": {
+            "n": 100,
+            "accuracy": 0.71,
+            "skill": 0.6992592592592592
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.68,
+            "skill": 0.3600000000000001
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.68,
+            "skill": 0.6342857142857143
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.85,
+            "skill": 0.7
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.84,
+            "skill": 0.7866666666666666
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.48,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.665407123447205,
+        "macro_skill": 0.47794615000287555
+      },
+      "excluding_goemotions_15": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5434782608695652,
+            "skill": 0.08695652173913038
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.21875,
+            "skill": 0.08854166666666667
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.65,
+            "skill": 0.30000000000000004
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.7,
+            "skill": 0.3999999999999999
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.55,
+            "skill": 0.32500000000000007
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.12,
+            "skill": 0.0
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.9642857142857143,
+            "skill": 0.9464285714285713
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.89,
+            "skill": 0.78
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.77,
+            "skill": 0.54
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.68,
+            "skill": 0.3600000000000001
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.68,
+            "skill": 0.6342857142857143
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.85,
+            "skill": 0.7
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.84,
+            "skill": 0.7866666666666666
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.48,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.662434265010352,
+        "macro_skill": 0.4631919427191166
+      },
+      "runtime": {
+        "n": 1335,
+        "accuracy": 0.6531835205992509,
+        "macro": 0.665407123447205,
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5434782608695652
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.21875
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.65
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.7
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.55
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.12
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.9642857142857143
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.89
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.77
+          },
+          "goemotions": {
+            "n": 100,
+            "accuracy": 0.71
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.68
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.68
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.85
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.84
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.48
+          }
+        },
+        "seconds": 26.420188365002105,
+        "prompt_evaluations": 1335,
+        "batches": 334,
+        "tokens": 301024
+      }
+    },
+    "g6w67_g3e2": {
+      "all_16": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5869565217391305,
+            "skill": 0.17391304347826098
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.3125,
+            "skill": 0.19791666666666666
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.72,
+            "skill": 0.43999999999999995
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.7,
+            "skill": 0.3999999999999999
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.55,
+            "skill": 0.32500000000000007
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.36,
+            "skill": 0.04
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.9642857142857143,
+            "skill": 0.9464285714285713
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.93,
+            "skill": 0.8600000000000001
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.82,
+            "skill": 0.6399999999999999
+          },
+          "goemotions": {
+            "n": 100,
+            "accuracy": 0.72,
+            "skill": 0.7096296296296296
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.74,
+            "skill": 0.48
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.68,
+            "skill": 0.6342857142857143
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.91,
+            "skill": 0.8200000000000001
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.8,
+            "skill": 0.7333333333333334
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.48,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.7046088897515528,
+        "macro_skill": 0.525031684926386
+      },
+      "excluding_goemotions_15": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5869565217391305,
+            "skill": 0.17391304347826098
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.3125,
+            "skill": 0.19791666666666666
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.72,
+            "skill": 0.43999999999999995
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.7,
+            "skill": 0.3999999999999999
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.55,
+            "skill": 0.32500000000000007
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.36,
+            "skill": 0.04
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.9642857142857143,
+            "skill": 0.9464285714285713
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.93,
+            "skill": 0.8600000000000001
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.82,
+            "skill": 0.6399999999999999
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.74,
+            "skill": 0.48
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.68,
+            "skill": 0.6342857142857143
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.91,
+            "skill": 0.8200000000000001
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.8,
+            "skill": 0.7333333333333334
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.48,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.7035828157349897,
+        "macro_skill": 0.5127251552795031
+      },
+      "runtime": {
+        "n": 1335,
+        "accuracy": 0.695880149812734,
+        "macro": 0.7046088897515528,
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5869565217391305
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.3125
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.72
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.7
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.55
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.36
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.9642857142857143
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.93
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.82
+          },
+          "goemotions": {
+            "n": 100,
+            "accuracy": 0.72
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.74
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.68
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.91
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.8
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.48
+          }
+        },
+        "seconds": 25.184891700999287,
+        "prompt_evaluations": 1335,
+        "batches": 334,
+        "tokens": 301024
+      }
+    }
+  },
+  "primary_difference": {
+    "macro_delta": 0.041148550724637745,
+    "paired_document_bootstrap_95ci": [
+      0.020109620859213254,
+      0.06181583850931676
+    ],
+    "wins": 117,
+    "losses": 61,
+    "confirmed_improvement": true
+  },
+  "source": "runs/robust/reference-comparison",
+  "provenance": {
+    "recipe_revision": "a0b44b4d531145ecb30136cea886381205132d93",
+    "base_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "ingredients": [
+      {
+        "file": "runs/robust/hf-models-a0b44b4/runs/v3/g6-gold6-pad0/best/model.safetensors",
+        "weight": 0.67,
+        "alias": "last == best: step 21874",
+        "sha256": "30fb0d004e4d0a896e78c32055c0059329ed63c1e23be8b5abc965db7262b51d"
+      },
+      {
+        "file": "runs/robust/hf-models-a0b44b4/runs/v3/g3-gold2-ep3-lr3e-6-a0/best/model.safetensors",
+        "weight": 0.33,
+        "alias": "epoch-2 == best: step 12500",
+        "sha256": "fc195c4f4abd75307222a8eaaee9f7afbb4aeaa4c18c1ba2b12b0837977fd71f"
+      }
+    ],
+    "merge_implementation_sha256": "c977d6447db7589cd25cc904360a09f034396d388833057b8e12aaf383adc7df",
+    "evaluation_implementation_sha256": "c7ad4fae24479b2ea2d6f686941753a5936ca61dc6d92c76f39c9ff0c05620f1",
+    "original_qwen_sha256": {
+      "model.safetensors-00001-of-00001.safetensors": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696"
+    }
+  },
+  "engine_validation": {
+    "rows": 1335,
+    "prediction_mismatches": 0,
+    "max_probability_difference": 1.5247553597497188e-07,
+    "actual_text_forward_calls": 334,
+    "expected_batches": 334,
+    "one_forward_per_batch": true,
+    "orders": 1,
+    "checkpoint_sha256": "c90f56aea77f0dfa5fc4c50b7fe08cbe1ca5a168eefa8648ee97b5d15b18ac2c",
+    "decision_index_commit": "f5a6e4fd85fed05e77878dfc4966d0568bfb45ec",
+    "dependency_access": "pinned repository submodule on PYTHONPATH; original huggingface-hub 2.2.0 retained",
+    "implementation_sha256": "4d0b376b2540eb8fc9c21f465530864f2f4d28d8392b69ae066a7a3f8c7719cc"
+  },
+  "constituent_controls": {
+    "g6": {
+      "all_16": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5869565217391305,
+            "skill": 0.17391304347826098
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.25,
+            "skill": 0.125
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.6,
+            "skill": 0.19999999999999996
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.65,
+            "skill": 0.30000000000000004
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.47,
+            "skill": 0.20499999999999996
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.36,
+            "skill": 0.04
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.8928571428571429,
+            "skill": 0.8392857142857142
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.91,
+            "skill": 0.8200000000000001
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.8,
+            "skill": 0.6000000000000001
+          },
+          "goemotions": {
+            "n": 100,
+            "accuracy": 0.71,
+            "skill": 0.6992592592592592
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.73,
+            "skill": 0.45999999999999996
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.65,
+            "skill": 0.6
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.91,
+            "skill": 0.8200000000000001
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.78,
+            "skill": 0.7066666666666667
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.42,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.6699883540372671,
+        "macro_skill": 0.4743202927306188
+      },
+      "excluding_goemotions_15": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5869565217391305,
+            "skill": 0.17391304347826098
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.25,
+            "skill": 0.125
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.6,
+            "skill": 0.19999999999999996
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.65,
+            "skill": 0.30000000000000004
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.47,
+            "skill": 0.20499999999999996
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.36,
+            "skill": 0.04
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.8928571428571429,
+            "skill": 0.8392857142857142
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.91,
+            "skill": 0.8200000000000001
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.8,
+            "skill": 0.6000000000000001
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.73,
+            "skill": 0.45999999999999996
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.65,
+            "skill": 0.6
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.91,
+            "skill": 0.8200000000000001
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.78,
+            "skill": 0.7066666666666667
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.42,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.6673209109730849,
+        "macro_skill": 0.4593243616287095
+      },
+      "model_sha256": "30fb0d004e4d0a896e78c32055c0059329ed63c1e23be8b5abc965db7262b51d",
+      "descriptive_ablation_after_primary_replication": true
+    },
+    "g3": {
+      "all_16": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5652173913043478,
+            "skill": 0.13043478260869557
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.234375,
+            "skill": 0.10677083333333333
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.85,
+            "skill": 0.7
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.55,
+            "skill": 0.10000000000000009
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.52,
+            "skill": 0.28
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.17,
+            "skill": 0.0
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.6964285714285714,
+            "skill": 0.5446428571428571
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.88,
+            "skill": 0.76
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.65,
+            "skill": 0.30000000000000004
+          },
+          "goemotions": {
+            "n": 100,
+            "accuracy": 0.34,
+            "skill": 0.3155555555555556
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.74,
+            "skill": 0.48
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.64,
+            "skill": 0.5885714285714286
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.82,
+            "skill": 0.6399999999999999
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.74,
+            "skill": 0.6533333333333333
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.47,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.6166263101708075,
+        "macro_skill": 0.4124567994090752
+      },
+      "excluding_goemotions_15": {
+        "sources": {
+          "bigbench-anachronisms": {
+            "n": 46,
+            "accuracy": 0.5652173913043478,
+            "skill": 0.13043478260869557
+          },
+          "bigbench-analogical_similarity": {
+            "n": 64,
+            "accuracy": 0.234375,
+            "skill": 0.10677083333333333
+          },
+          "bigbench-entailed_polarity": {
+            "n": 29,
+            "accuracy": 1.0,
+            "skill": 1.0
+          },
+          "bigbench-epistemic_reasoning": {
+            "n": 100,
+            "accuracy": 0.85,
+            "skill": 0.7
+          },
+          "bigbench-fantasy_reasoning": {
+            "n": 40,
+            "accuracy": 0.55,
+            "skill": 0.10000000000000009
+          },
+          "bigbench-presuppositions_as_nli": {
+            "n": 100,
+            "accuracy": 0.52,
+            "skill": 0.28
+          },
+          "bigbench-timedial": {
+            "n": 100,
+            "accuracy": 0.17,
+            "skill": 0.0
+          },
+          "cb": {
+            "n": 56,
+            "accuracy": 0.6964285714285714,
+            "skill": 0.5446428571428571
+          },
+          "copa": {
+            "n": 100,
+            "accuracy": 0.88,
+            "skill": 0.76
+          },
+          "ethics-commonsense": {
+            "n": 100,
+            "accuracy": 0.65,
+            "skill": 0.30000000000000004
+          },
+          "piqa": {
+            "n": 100,
+            "accuracy": 0.74,
+            "skill": 0.48
+          },
+          "qasc": {
+            "n": 100,
+            "accuracy": 0.64,
+            "skill": 0.5885714285714286
+          },
+          "quartz": {
+            "n": 100,
+            "accuracy": 0.82,
+            "skill": 0.6399999999999999
+          },
+          "swag": {
+            "n": 100,
+            "accuracy": 0.74,
+            "skill": 0.6533333333333333
+          },
+          "wic": {
+            "n": 100,
+            "accuracy": 0.47,
+            "skill": 0.0
+          }
+        },
+        "macro_accuracy": 0.6350680641821946,
+        "macro_skill": 0.4189168823326432
+      },
+      "model_sha256": "fc195c4f4abd75307222a8eaaee9f7afbb4aeaa4c18c1ba2b12b0837977fd71f",
+      "descriptive_ablation_after_primary_replication": true
+    }
+  },
+  "joint_reference_comparisons": {
+    "g4b": {
+      "macro_delta": 0.041148550724637745,
+      "paired_document_bootstrap_95ci": [
+        0.020109620859213254,
+        0.06181583850931676
+      ],
+      "wins": 117,
+      "losses": 61,
+      "confirmed_improvement": true,
+      "paired_document_bootstrap_joint_98_333ci": [
+        0.015581435472739831,
+        0.0673641886645963
+      ]
+    },
+    "g6": {
+      "macro_delta": 0.03626190476190472,
+      "paired_document_bootstrap_95ci": [
+        0.020142559523809524,
+        0.05239538690476188
+      ],
+      "wins": 75,
+      "losses": 29,
+      "confirmed_improvement": true,
+      "paired_document_bootstrap_joint_98_333ci": [
+        0.01728556547619048,
+        0.05649449404761908
+      ]
+    },
+    "g3": {
+      "macro_delta": 0.06851475155279507,
+      "paired_document_bootstrap_95ci": [
+        0.04598526785714287,
+        0.09133640657349898
+      ],
+      "wins": 142,
+      "losses": 64,
+      "confirmed_improvement": true,
+      "paired_document_bootstrap_joint_98_333ci": [
+        0.04087174560041409,
+        0.09660742969289168
+      ]
+    }
+  },
+  "complementarity": {
+    "soup_correct_both_constituents_wrong": 17,
+    "soup_wrong_both_constituents_correct": 5
+  },
+  "constituent_ablation_implementation_sha256": "3a34ee3ed33a23baaf8b61bd56531ffdb8a3658015f32741713370d6ad3f8b05"
+}

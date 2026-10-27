@@ -1,0 +1,19 @@
+{
+  "complete": false,
+  "completed_seeds": [],
+  "scores": {},
+  "comparisons": null,
+  "audit": {},
+  "primary": "fixed final source-macro interaction (reverse_mntp-reverse_ce)-(native_mntp-native_ce), average of two paired seeds",
+  "new_confirmation_cases_scored": 0,
+  "limits": [
+    "2 seeds do not establish population training variance",
+    "no hyperparameter sweep; one frozen LR and mask recipe",
+    "matched examples and updates, not FLOPs or wall time: MNTP full-vocabulary CE and reverse scans cost more",
+    "20% fully replaced masking differs from BERT's unchanged/random replacement strategy",
+    "LLM2Vec evidence is from embedding tasks, not this hybrid 0.8B decision model",
+    "fixed train probes measure fitting, not unseen-language generalization",
+    "selection is repeatedly exposed and not independent confirmation"
+  ],
+  "plan_sha256": "51db9d5131abe6cbfec9367c28c4d6a5c3439a63f08656ca557f647aea464298"
+}
