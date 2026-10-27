@@ -151,8 +151,12 @@ class Renderer:
                 assigned = sorted(rng.sample(range(len(self.codes)), k))
                 info["code_assignment"] = "sampled"
         text = fmt.render(self.tokenizer, example["state"], question, [self.codes[c] for c in assigned], self.args.layout)
+        encoded = (fmt.encode_options(self.tokenizer, example["state"], question,
+                                      [self.codes[c] for c in assigned], self.args.layout)
+                   if getattr(self.args, "pointer_positions", False)
+                   else {"input_ids": self.tokenizer.encode(text, add_special_tokens=False)})
         hard = max(range(k), key=target.__getitem__)
-        return {"input_ids": self.tokenizer.encode(text, add_special_tokens=False),
+        return {**encoded,
                 "code_ids": [self.code_ids[c] for c in assigned], "target": target, "hard": hard,
                 "hard_code": self.codes[assigned[hard]], "id": example["id"], "kind": example["kind"],
                 "source": example["source"], **info}

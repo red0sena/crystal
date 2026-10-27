@@ -11,6 +11,7 @@ order: one generic inference rule for every request, no per-benchmark logic.
 from __future__ import annotations
 
 import time
+import json
 from pathlib import Path
 from typing import Any
 
@@ -62,6 +63,19 @@ class Scorer:
         self.device = device
         self.model = modeling.load(Path(model), attention=self.attention, deltanet=self.deltanet,
                                    dtype=torch.bfloat16, device=device)
+        self.decision_tail_mode = None
+        if (Path(model) / "decision_architecture.json").exists():
+            if self.attention != "noncausal":
+                raise ValueError("the saved decision architecture requires noncausal attention")
+            spec = json.loads((Path(model)/"decision_architecture.json").read_text())
+            if spec["kind"] == "candidate_query_tail":
+                from qwen_decision.v3.decision_tail import restore_architecture
+                self.decision_tail_mode = spec["mode"]
+            elif spec["kind"] == "gated_block_delta_memory":
+                from qwen_decision.v3.delta_memory import restore_architecture
+            else:
+                from qwen_decision.v3.recurrent import restore_architecture
+            restore_architecture(self.model, Path(model))
         self.model.eval()
         self.tokenizer = AutoTokenizer.from_pretrained(model)
         self.codes, self.code_ids = fmt.answer_codes(self.tokenizer)
@@ -70,8 +84,8 @@ class Scorer:
             raise ValueError("an untied checkpoint needs its readout.safetensors: the LM head is not part of it")
         self.batch_tokens, self.max_batch, self.orders = int(batch_tokens), int(max_batch), int(orders)
 
-    def prompts(self, state, questions: dict[str, Any]) -> list[tuple[str, list[int], list[int], int]]:
-        """(question key, token ids, code token ids, order index) for every prompt to run."""
+    def prompts(self, state, questions: dict[str, Any]) -> list[tuple]:
+        """(key, ids, codes, order), plus option positions for a query-tail model."""
         items = []
         for key, question in questions.items():
             if question["type"] not in ("choice", "noul"):
@@ -81,21 +95,32 @@ class Scorer:
                 raise Unsupported(f"question {key!r} has {k} options; this model answers 2 to {fmt.MAX_OPTIONS}")
             for index, order in enumerate(option_orders(k, self.orders)):
                 shown = reorder(question, order) if index else question
+                if self.decision_tail_mode is not None:
+                    encoded = fmt.encode_options(self.tokenizer, state, shown, self.codes[:k], self.layout)
+                    items.append((key, encoded["input_ids"], self.code_ids[:k], index,
+                                  encoded["option_positions"]))
+                    continue
                 text = fmt.render(self.tokenizer, state, shown, self.codes[:k], self.layout)
                 items.append((key, self.tokenizer.encode(text, add_special_tokens=False), self.code_ids[:k], index))
         return items
 
     @torch.no_grad()
     def forward(self, batch):
-        width = max(len(ids) for _, ids, _, _ in batch)
-        kmax = max(len(c) for _, _, c, _ in batch)
+        core = [item[:4] for item in batch]
+        width = max(len(ids) for _, ids, _, _ in core)
+        kmax = max(len(c) for _, _, c, _ in core)
         pad = self.tokenizer.pad_token_id
-        input_ids = torch.tensor([ids + [pad] * (width - len(ids)) for _, ids, _, _ in batch], device=self.device)
-        mask = torch.tensor([[1] * len(ids) + [0] * (width - len(ids)) for _, ids, _, _ in batch], device=self.device)
-        codes = torch.tensor([c + [c[0]] * (kmax - len(c)) for _, _, c, _ in batch], device=self.device)
-        code_mask = torch.tensor([[True] * len(c) + [False] * (kmax - len(c)) for _, _, c, _ in batch], device=self.device)
-        logits = modeling.code_logits(self.model, input_ids, mask, codes, code_mask, readout=self.readout)
-        return [row[:len(c)].softmax(-1).tolist() for row, (_, _, c, _) in zip(logits, batch)]
+        input_ids = torch.tensor([ids + [pad] * (width - len(ids)) for _, ids, _, _ in core], device=self.device)
+        mask = torch.tensor([[1] * len(ids) + [0] * (width - len(ids)) for _, ids, _, _ in core], device=self.device)
+        codes = torch.tensor([c + [c[0]] * (kmax - len(c)) for _, _, c, _ in core], device=self.device)
+        code_mask = torch.tensor([[True] * len(c) + [False] * (kmax - len(c)) for _, _, c, _ in core], device=self.device)
+        if self.decision_tail_mode is None:
+            logits = modeling.code_logits(self.model, input_ids, mask, codes, code_mask, readout=self.readout)
+        else:
+            from qwen_decision.v3.decision_tail import logits as tail_logits
+            positions = torch.tensor([item[4]+[0]*(kmax-len(item[4])) for item in batch], device=self.device)
+            logits = tail_logits(self.model, input_ids, mask, codes, code_mask, positions, self.decision_tail_mode)
+        return [row[:len(c)].softmax(-1).tolist() for row, (_, _, c, _) in zip(logits, core)]
 
     def batches(self, items):
         order = sorted(range(len(items)), key=lambda i: len(items[i][1]))
@@ -121,7 +146,8 @@ class Scorer:
             for i, probabilities in zip(group, outputs):
                 results[i] = probabilities
         averaged: dict[str, list[float]] = {}
-        for (key, _, codes, index), probabilities in zip(items, results):
+        for item, probabilities in zip(items, results):
+            key, _, codes, index = item[:4]
             k = len(codes)
             order = option_orders(k, self.orders)[index]
             original = [0.] * k
@@ -138,8 +164,8 @@ class Scorer:
         For offline labelling: the same prompts, forward pass and order averaging as score(), only
         the batches mix requests.
         """
-        items = [((r, key), ids, codes, index) for r, (state, questions) in enumerate(requests)
-                 for key, ids, codes, index in self.prompts(state, questions)]
+        items = [((r, item[0]), *item[1:]) for r, (state, questions) in enumerate(requests)
+                 for item in self.prompts(state, questions)]
         results: list[list[float] | None] = [None] * len(items)
         for group in self.batches(items):
             try:
@@ -150,7 +176,8 @@ class Scorer:
             for i, probabilities in zip(group, outputs):
                 results[i] = probabilities
         averaged: list[dict[str, list[float]]] = [{} for _ in requests]
-        for ((r, key), _, codes, index), probabilities in zip(items, results):
+        for item, probabilities in zip(items, results):
+            (r, key), _, codes, index = item[:4]
             k = len(codes)
             order = option_orders(k, self.orders)[index]
             total = averaged[r].setdefault(key, [0.] * k)

@@ -78,7 +78,7 @@ def answer_codes(tokenizer) -> tuple[list[str], list[int]]:
     return _CODES[key]
 
 
-def user_prompt(state: Any, question: dict[str, Any], codes: Sequence[str], layout: str = "d3") -> str:
+def _user_prompt_spans(state: Any, question: dict[str, Any], codes: Sequence[str], layout: str):
     if layout not in LAYOUTS:
         raise ValueError(f"unknown layout {layout!r}")
     _, texts = options(question)
@@ -89,8 +89,18 @@ def user_prompt(state: Any, question: dict[str, Any], codes: Sequence[str], layo
     # As in d3: only None and "" render as (empty); the kit's {} state renders as "{}".
     state_lines = ["State:", describe(state) if state not in (None, "") else "(empty)", ""]
     lines = asked + [""] if layout == "echo" else []
-    lines += state_lines + asked + ["", CLOSING_LINE]
-    return "\n".join(lines)
+    lines += state_lines + asked[:4]
+    spans = []
+    for code, text in zip(codes, texts):
+        start = sum(len(line) + 1 for line in lines) + len(f"{code}: ")
+        lines.append(f"{code}: {text}")
+        spans.append((start, start + len(text)))
+    lines += ["", CLOSING_LINE]
+    return "\n".join(lines), spans
+
+
+def user_prompt(state: Any, question: dict[str, Any], codes: Sequence[str], layout: str = "d3") -> str:
+    return _user_prompt_spans(state, question, codes, layout)[0]
 
 
 def render(tokenizer, state: Any, question: dict[str, Any], codes: Sequence[str], layout: str = "d3") -> str:
@@ -98,6 +108,32 @@ def render(tokenizer, state: Any, question: dict[str, Any], codes: Sequence[str]
         [{"role": "system", "content": SYSTEM_PROMPT},
          {"role": "user", "content": user_prompt(state, question, codes, layout)}],
         tokenize=False, add_generation_prompt=True, enable_thinking=False)
+
+
+def encode_options(tokenizer, state: Any, question: dict[str, Any], codes: Sequence[str], layout: str = "d3"):
+    """Unchanged v3 input ids and the last content token of each final option line.
+
+    Fast-tokenizer offsets avoid separately tokenizing prefixes (BPE merges can change at
+    boundaries). In echo layout the final occurrence is used. State/instructions may themselves
+    contain option-like text; no search for individual option strings is involved.
+    """
+    if not tokenizer.is_fast:
+        raise ValueError("Pointer positions require a fast tokenizer with character offsets")
+    user, spans = _user_prompt_spans(state, question, codes, layout)
+    text = render(tokenizer, state, question, codes, layout)
+    start = text.rfind(user)
+    if start < 0:
+        raise ValueError("chat template must preserve the user content for Pointer offsets")
+    encoded = tokenizer(text, add_special_tokens=False, return_offsets_mapping=True)
+    positions = []
+    for lo, hi in spans:
+        # Empty descriptions still have a choice key (options()), except malformed noul input.
+        hits = [i for i, (a, b) in enumerate(encoded["offset_mapping"])
+                if a < start + hi and b > start + lo and b > a]
+        if not hits:
+            raise ValueError("option has no content tokens")
+        positions.append(hits[-1])
+    return {"input_ids": encoded["input_ids"], "option_positions": positions}
 
 
 def to_answer(question: dict[str, Any], probabilities: Sequence[float]) -> dict[str, Any]:
