@@ -25,7 +25,7 @@ ICLR 2020. ConvAI2, DSTC7, Ubuntu V2, Wikipedia Article Search의 4개 응답 �
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** Qwen이 읽은 문맥을 여러 벡터로 압축하고 후보별 작은 Attention과 scorer를 붙이는 설계의 참고다. 긴 문서의 세부 근거가 압축 중 소실되는지 검증해야 한다.
+**아래는 적용 제안이며 미구현이다.** 가까운 시험(g4b 위, 10-19): [Pointer head](../project/pointer-pilot.md) −5.05%p, [대체 readout·MLP](../project/readout-mlp.md)와 [잔차 Set Transformer](../project/architecture-search.md)는 개선 없음, [후보별 판정 Query](../project/decision-native-next.md) +0.05%p [−0.33, +0.41]. 이 제안 그대로는 미구현이다. Qwen이 읽은 문맥을 여러 벡터로 압축하고 후보별 작은 Attention과 scorer를 붙이는 설계의 참고다. 긴 문서의 세부 근거가 압축 중 소실되는지 검증해야 한다.
 
 ## 연결 문서
 

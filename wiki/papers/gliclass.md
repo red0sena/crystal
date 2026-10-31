@@ -25,7 +25,7 @@ Joint encoder라고 해서 label 순열 대칭성을 자동으로 보장하지 �
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** 분야·감정·문의 의도를 같은 가변 후보 인터페이스로 처리하는 데 적합한 참고다. Qwen 뒤에 candidate encoder와 공유 scorer를 붙이거나 제한된 공동 비교층을 두는 실험을 제안한다.
+**아래는 적용 제안이며 미구현이다.** 가까운 시험(g4b 위, 10-19): [Pointer head](../project/pointer-pilot.md) −5.05%p, [대체 readout·MLP](../project/readout-mlp.md)와 [잔차 Set Transformer](../project/architecture-search.md)는 개선 없음, [후보별 판정 Query](../project/decision-native-next.md) +0.05%p [−0.33, +0.41]. 이 제안 그대로는 미구현이다. 분야·감정·문의 의도를 같은 가변 후보 인터페이스로 처리하는 데 적합한 참고다. Qwen 뒤에 candidate encoder와 공유 scorer를 붙이거나 제한된 공동 비교층을 두는 실험을 제안한다.
 
 ## 연결 문서
 

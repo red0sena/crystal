@@ -25,7 +25,7 @@ Jina-embedding-v3(570M)+RoBERTa-base(110M), 합계 약 680M. 뉴스 기반 학�
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** Qwen 본문 표현과 독립 후보 표현을 작은 위치 없는 Transformer에서 비교하는 새 판단층의 가장 직접적인 참고다. 여러 토큰 후보 encoder와 다중 문맥 벡터로 확장하는 것은 우리의 제안이며 논문 결과와 구분한다.
+**아래는 적용 제안이며 미구현이다.** 가까운 시험(g4b 위, 10-19): [Pointer head](../project/pointer-pilot.md) −5.05%p, [대체 readout·MLP](../project/readout-mlp.md)와 [잔차 Set Transformer](../project/architecture-search.md)는 개선 없음, [후보별 판정 Query](../project/decision-native-next.md) +0.05%p [−0.33, +0.41]. 이 제안 그대로는 미구현이다. Qwen 본문 표현과 독립 후보 표현을 작은 위치 없는 Transformer에서 비교하는 새 판단층의 가장 직접적인 참고다. 여러 토큰 후보 encoder와 다중 문맥 벡터로 확장하는 것은 우리의 제안이며 논문 결과와 구분한다.
 
 ## 연결 문서
 

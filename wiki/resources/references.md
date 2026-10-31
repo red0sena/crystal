@@ -19,7 +19,7 @@
 |---|---|---|
 | [WiSE-FT](../papers/wise-ft.md) (Wortsman 외, CVPR 2022) | 카드 | 원본과 섞기(`interpolate.py`, `merge.py`) |
 | [L2-SP](../papers/l2-sp.md) (Li 외, ICML 2018) | 카드 | `train.py --anchor`(구현, 미평가) |
-| [LoRA Learns Less and Forgets Less](../papers/lora-learns-less.md) (Biderman 외, TMLR 2024) | 카드 | 망각 해석, LoRA 후보 |
+| [LoRA Learns Less and Forgets Less](../papers/lora-learns-less.md) (Biderman 외, TMLR 2024) | 카드 | 망각 해석. 전 층 LoRA r16이 지금까지 최선 레시피다(10-29, [LoRA 위치 비교](../project/lora-placement.md)) |
 | [LP-FT](../papers/lp-ft.md) (Kumar 외, ICLR 2022) | 카드 | MLP head 반대 근거, 출력층 이동 해석 |
 | [LiNeS](../papers/lines.md) (Wang 외, ICLR 2025) | 카드 | 층별 섞기 |
 | [Model Stock](../papers/model-stock.md) (Jang 외, ECCV 2024) | 카드 | `merge.py --stock` |
@@ -31,12 +31,12 @@
 | Do Fine-tuned Commonsense LMs Really Generalize? (Kejriwal & Shen) | 검색 | 데이터셋 간 일반화 약함 |
 | SAM for LM (Bahri 외 2022), SAM OOD (2412.05169) | 검색 | 미룸(학습 비용 2배) |
 | Revisiting Few-sample BERT Fine-tuning (Zhang 외, ICLR 2021) | 검색 | 층별 학습률·재초기화 우선순위 낮춤 |
-| PoE / Debiased focal loss (Utama 외 2020), PoE NLI (2604.19069) | 검색 | 방침 확인 필요로 보류 |
+| PoE / Debiased focal loss (Utama 외 2020), PoE NLI (2604.19069) | 검색 | 방침 확인 필요로 보류. 일반 focal(γ 2)은 10-31에 시험했고 짧은 문항이 나빠졌다([Loss 비교](../project/loss-screen.md)) |
 | MoFO (2407.20999) | 검색 | 미구현 후보 |
-| Calibrate Before Use (Zhao 외 2021) | 검색 | 편향 보정은 규칙상 마지막 |
+| Calibrate Before Use (Zhao 외 2021) | 원문 §5 | 10-19 g4b에서 prior 보정 α .25/.5/1을 시험했다: −0.39/−0.72/−4.69%p([다른 방법](../project/other-methods.md)) |
 | AdaMerging (ICLR 2024), AIM (2502.02421), Locate-then-Merge (2505.16703), Model Breadcrumbs (ECCV 2024), TSV (CVPR 2025), TIES, DARE | 검색·초록 | 병합 후보 검토, 미실행 |
 | LM-Cocktail, WARP, Safeguard FT (2412.19512) | 검색 | 원본 보간의 LLM 사례 |
-| FINCH (2605.20005), 재노출 연구 (2512.22337), 문항별 망각 (2510.17776), mSFT (2603.21606), FLOW (2502.02797), FastMix (2606.14971), Post-Training Science (2609.01244), 불완전 학습 (2604.10079), Prism-1 (2610.22066), Label smoothing (Müller 외 2019) | 인용만 | 외부 검토 근거. 수치를 우리 근거로 쓰지 않음 |
+| FINCH (2605.20005), 재노출 연구 (2512.22337), 문항별 망각 (2510.17776), mSFT (2603.21606), FLOW (2502.02797), FastMix (2606.14971), Post-Training Science (2609.01244), 불완전 학습 (2604.10079), Prism-1 (2610.22066), Label smoothing (Müller 외 2019) | 인용만 | 외부 검토 근거. 수치를 우리 근거로 쓰지 않음. label smoothing 자체는 10-31에 시험했고 CE와 같았다([Loss 비교](../project/loss-screen.md)) |
 | ProLong (Gao 외, ACL 2025) | 검색 | **정정:** 장문 붕괴 진단 근거로 쓴 것은 잘못이었다 |
 
 ## 평가·편향
@@ -52,7 +52,7 @@
 
 ## 학습 데이터 (원본·라이선스)
 
-출처별 manifest(`data/phase2/<출처>.manifest.json`)에 revision, 라이선스, 버린 수가 있다. 아래는 2026-10-17 이후 추가한 출처다. 그 전 출처는 [데이터 출처 표](../designs/phase2-data-sources.md)에 있다.
+출처별 manifest(`data/phase2/<출처>.manifest.json`, 지금 로컬에 없다. `data/`는 Hugging Face `Kyunghwan-kim/kkh-decision-data`에 있다)에 revision, 라이선스, 버린 수가 있다. 아래는 2026-10-17 이후 추가한 출처다. 그 전 출처는 [데이터 출처 표](../designs/phase2-data-sources.md)에 있다.
 
 | 데이터 | 논문 | 라이선스(확인 위치) |
 |---|---|---|
@@ -96,5 +96,5 @@
 | KLUE · ChID · CMRC2018 / DRCD · JGLUE · TyDi QA | Park 외 2021 · Zheng 외 2019 · Cui 외 2019 / Shao 외 2018 · Kurihara 외 2022 · Clark 외 2020 | CC-BY-SA-4.0 · Apache-2.0 · CC-BY-SA-4.0 / CC-BY-SA-3.0 · CC-BY-SA-4.0 · Apache-2.0 |
 
 - **평가 전용(fresh-v1):** PIQA, QASC, QuaRTz, Balanced COPA, SuperGLUE CB·WiC, GoEmotions validation, ETHICS, SWAG, BigBench 7개 과제. 일부는 비상업 라이선스라 학습에는 쓰지 않는다.
-- **6차 후보 검증:** `runs/analysis/phase6-candidates-vetted.json`(70개: 포함 50·보류 11·제외 9, 라이선스 원문 위치와 다운로드 경로). 포함 판정이어도 평가셋과 원문을 공유할 수 있는 MultiHiertt·TAT-DQA(FinQA와 같은 연차보고서), Re-DocRED(HotpotQA 문단), Social Chemistry·Scruples(ETHICS와 같은 AITA 글)는 쓰지 않는다. 받은 코드를 실행해야 하는 MBPP, 평가 전용인 Belebele도 뺐다. 외부 제안 목록(`additional-dataset-candidates-20261019.json`)의 Qasper는 LongBench 하위 과제라 제외 대상이다.
-- **제외:** SciQ, ANLI, Financial PhraseBank(비상업), FiQA(접근 제한), SHP(공개 라이선스 없음), Zeshel(당시 "공식 배포 경로 없음"으로 뺐으나 **틀렸다**: [공식 README](https://github.com/lajanugen/zeshel)에 Google Drive 배포 링크와 CC-BY-SA 표기가 있다. 2026-10-19 정정, 후보로 재검토), FinQA·FEVER·TREC·AIDA·HaluEval(JEVal과 같은 데이터셋).
+- **6차 후보 검증:** `runs/analysis/phase6-candidates-vetted.json`(지금 로컬에 없다. 70개: 포함 50·보류 11·제외 9, 라이선스 원문 위치와 다운로드 경로). 포함 판정이어도 평가셋과 원문을 공유할 수 있는 MultiHiertt·TAT-DQA(FinQA와 같은 연차보고서), Re-DocRED(HotpotQA 문단), Social Chemistry·Scruples(ETHICS와 같은 AITA 글)는 쓰지 않는다. 받은 코드를 실행해야 하는 MBPP, 평가 전용인 Belebele도 뺐다. 외부 제안 목록(`additional-dataset-candidates-20261019.json`, 로컬에 없다)의 Qasper는 LongBench 하위 과제라 제외 대상이다.
+- **제외:** SciQ, ANLI, Financial PhraseBank(비상업), FiQA(접근 제한), SHP(공개 라이선스 없음), Zeshel(당시 "공식 배포 경로 없음"으로 뺐으나 **틀렸다**: [공식 README](https://github.com/lajanugen/zeshel)에 Google Drive 배포 링크와 CC-BY-SA 표기가 있다. 2026-10-19 정정 후 5차에 넣었다(zeshel-train)), FinQA·FEVER·TREC·AIDA·HaluEval(JEVal과 같은 데이터셋).

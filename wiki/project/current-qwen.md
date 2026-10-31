@@ -22,7 +22,7 @@ MMLU-Pro official test를 자체 분할하여 학습에 일부 사용했으므�
 
 ## 현재 파일 상태
 
-v1/v2 시절의 모델·원시 데이터·체크포인트·가상환경은 사용자 요청에 따라 삭제됐고 코드·작은 설정/결과 기록·재현 문서는 보존됐다([재현 안내](../../docs/reproduce_ko.md)). **v3(2026-10-16~)는 새로 만든 환경이다:** `.venv-di`, `models/qwen3.5-0.8b`·`models/d3-lite`, 학습 결과 `runs/v3/`, 데이터 `data/phase2/`·`data/mix/`. 학습과 GPU 평가는 v3에서 수행했다([v3 요약](v3-summary.md)).
+v1/v2 시절의 모델·원시 데이터·체크포인트·가상환경은 사용자 요청에 따라 삭제됐고 코드·작은 설정/결과 기록·재현 문서는 보존됐다([재현 안내](../../docs/reproduce_ko.md)). **v3(2026-10-16~)는 새로 만든 환경이다.** 10-31 현재 로컬에는 가상환경 `.venv`, 모델 `models/qwen3.5-0.8b`, 데이터 `data/mix/`(v3-gold2·3·6)·`data/longctx/`·`data/jeval/`·`data/fresh/`, 학습 결과 `runs/`가 있다. 처음에 쓰던 `.venv-di`, `models/d3-lite`, `data/phase2/`는 지금 없다. g1~g7 학습의 best·final checkpoint와 일부 섞기 모델은 Hugging Face `Kyunghwan-kim/kkh-decision-model`에 있다. 10-19 이후 실험 run 폴더와 로컬에서 다시 만든 g6/g3 조합 가중치는 이 기계에만 있다([v3 요약](v3-summary.md)).
 
 ## v3 (2026-10-16~)
 
@@ -39,9 +39,15 @@ v1/v2 시절의 모델·원시 데이터·체크포인트·가상환경은 사�
 - 선택: 출처별 정답 dev 정확도 평균으로 best를 고른다. `--epochs`이면 에폭마다 저장하고, `--anchor`이면 원본 가중치 쪽으로 당긴다(분리형 L2-SP).
 - 학습 셋은 `qwen_decision/v3/mix.py`가 만든다(원본 항목·문서·근사 중복 단위 dev 분할, 누수 시 빌드 실패).
 
+**원래 Qwen에서 출발하는 비교(2026-10-25~)의 학습 경로**는 `train.py` 위에 얹은 실험 모듈이다.
+- full FT 비교: `from_base_experiment.py`(구조), `training_method_experiment.py`(causal, noncausal, DeltaNet 얼리기 등).
+- LoRA: `lora_experiment.py`(attention), `lora_placement_experiment.py`(위치). 지금까지 최선은 양방향 + 전체 LoRA r16(alpha 32, dropout 0.05, LR 2e-4, 1,024 update × 16행, cosine)이다([LoRA 위치 비교](lora-placement.md)).
+- loss: `loss_experiment.py`. CE를 이긴 loss는 없었다([Loss 비교](loss-screen.md)).
+- 학습 정답은 gold 라벨만 쓰고, 학습 데이터는 토큰을 자르지 않는다.
+
 결과와 진행 상황은 [작업 기록](v3-log.md)에 있다. 같은 날 루트의 스크립트는 `qwen_decision/` 패키지(core, prepare, train, evaluate, audit, analysis, sources)로 옮겨졌다. 위 링크의 `scorer_v2.py`는 `qwen_decision/core/scorer_v2.py`에 있다.
 
 ## 아직 구현하지 않은 것
 
-가변 후보 content encoder, candidate별 공유 scalar head, 위치 없는 Set Attention, 새로운 reasoning distillation은 문헌 기반 제안이다. [설계안](../designs/qwen-next.md) v3에서 구현한 구조 변경(양방향 attention, 역방향 DeltaNet, echo 레이아웃)은 [전략](../designs/beat-d3-lite.md)에 정리했다.
+가변 후보 content encoder, 위치 없는 Set Attention을 주 경로로 쓰는 구조, 새로운 reasoning distillation은 문헌 기반 제안으로 남아 있다([설계안](../designs/qwen-next.md)). 가까운 것들은 g4b 위에서 작게 시험했고 개선이 없었다: Pointer head([결과](pointer-pilot.md)), 잔차 Set Transformer([구조 검색](architecture-search.md)), 대체 readout·MLP([결과](readout-mlp.md)), 후보별 판정 Query([결과](decision-native-next.md)). v3에서 구현한 구조 변경 전체는 [위키 홈](../README.md)의 6~27번에 있다.
 

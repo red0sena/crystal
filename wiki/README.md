@@ -2,13 +2,21 @@
 
 생성 없이 가변 선택지의 점수·확률을 반환하는 모델을 만들기 위한 논문과 설계 기록이다. 우리 Qwen3.5-0.8B 실험과 연결해 읽을 수 있다.
 
-**조사 기준일: 2026-10-13(망각·편향 문헌은 2026-10-17 추가). v3 기록은 2026-10-16부터.** alphaXiv에서 논문을 검색하고 PDF 본문을 확인한 내용을 정리했다. 2026년 연구는 공개 프리프린트 결과로 취급하며 학회 심사·독립 재현을 확인했다고 주장하지 않는다. 자료에 등장하는 정확도·속도는 해당 논문 조건의 결과이며 우리 모델 성능이 아니다.
+**조사 기준일: 2026-10-13(망각·편향 문헌은 2026-10-17, 학습 레시피·loss 문헌은 2026-10-26~30 추가). v3 기록은 2026-10-16부터, 마지막 갱신은 2026-10-31.** alphaXiv에서 논문을 검색하고 PDF 본문을 확인한 내용을 정리했다. 2026년 연구는 공개 프리프린트 결과로 취급하며 학회 심사·독립 재현을 확인했다고 주장하지 않는다. 자료에 등장하는 정확도·속도는 해당 논문 조건의 결과이며 우리 모델 성능이 아니다.
 
 ## v3: Jev Decision Index 도전 (2026-10-16~)
 
 목표는 우리 Qwen3.5-0.8B로 [Jev Decision Index](https://huggingface.co/spaces/multimodalart/jev-decision-index)에서 `vllm-sr/d3-lite`(0.8B, Full 32.33)를 넘는 것이다.
 
-0. **[쉬운 정리: 지금까지와 앞으로](project/v3-easy-guide.md)** (2026-10-25): 한 일, 안 된 이유, 앞으로 할 수 있는 것(추천 순서 포함)을 쉬운 말로 정리했다. 처음엔 이것부터 읽는다.
+**지금 상태(2026-10-31)**
+- **대리 평가에서는 d3-lite와 같거나 높은 모델이 이미 있다.** 10-21에 Hugging Face에 올라간 g6 + g7 섞기(wise80)가 d3-lite와 같은 문항에서 공개 샘플 44.95 대 39.65, JEVal dev 0.489 대 0.482, fresh 0.541 대 0.509였다(아래 33번). 이 위키는 10-31에야 기록했다. 후보 70여 개를 같은 셋으로 골랐고 구간과 최종 확인(JEVal restricted)은 아직 없다.
+- 위키에서 따로 확인한 최선은 g6 67% + g3 33% 섞기다(새 1,847문항에서 g4b 대비 +6.58%p, 아래 11번).
+- 10-25부터는 학습 전 원래 Qwen에서 출발해 구조와 학습 방식을 같은 데이터로 비교한다(27~32번). 구조를 바꾼 것은 모두 원본을 넘지 못했다.
+- 지금까지 가장 좋은 레시피는 **양방향 + MLP를 포함한 전체 LoRA r16 + CE**다. 1.6만 행에서 짧은 문항 69.4%, 장문 63.1%로 양방향 full FT(66.6%, 58.3%)보다 높다. loss를 바꿔도 CE를 이긴 것은 없었다.
+- 사용자 결정 대기: g6 + g7 섞기 후보 하나를 고정해 구간 계산과 JEVal restricted로 최종 확인, 6.55만 행 확인(전체 LoRA 대 DeltaNet 얼리기), attention rank 160의 rank 대 scale 구분, self-EMA teacher 허용 여부.
+
+0. **[쉬운 정리: 지금까지와 앞으로](project/v3-easy-guide.md)** (2026-10-25 작성, 10-31 갱신): 한 일, 안 된 이유, 앞으로 할 수 있는 것(추천 순서 포함)을 쉬운 말로 정리했다. 처음엔 이것부터 읽는다.
+   - **[지금까지의 인사이트](project/insights.md)** (2026-10-31): 구조, 학습 방식, 평가에서 배운 것과 열린 질문을 한 페이지로 모았다.
    - [v3 전체 요약](project/v3-summary.md): 방침, 데이터 버전, 학습 실험(g1·g3·g4b), 가중치 섞기, 진단, 현재 최선 후보를 수치와 함께 정리한 상세판.
 1. [목표와 리더보드 규칙](project/jev-index.md): 점수 산식, d3-lite 구조와 약점, 0.8B 경쟁 모델, 제출·오염 규칙.
 2. [작업 기록](project/v3-log.md): 시간순 상세 기록이다. 측정값만 적는다. 주요 내용은 다음과 같다.
@@ -18,7 +26,8 @@
    - 데이터: 내부 dev 누수 수정, 3·4차 데이터(사람 정답, 라이선스 확인), dev 분할 규칙 개정(검정력 기준).
    - 학습: g3(3에폭), g4b(새 데이터 40만, 패딩 없음), fresh-v1 평가셋.
    - 섞기: g4b/g3 이력에 이어 완료된 g6/g3 67:33 조합을 로컬 재구성·평가했다(아래 11번).
-3. [전략](designs/beat-d3-lite.md): 수단의 우선순위와 상태, 지금까지 알게 된 것, 다음 단계.
+   - 원래 Qwen에서 출발한 비교(10-25~31): 구조 비교, 학습 방식 거르기, LoRA 위치, loss 비교(아래 27~32번).
+3. [전략](designs/beat-d3-lite.md): 수단의 우선순위와 상태, 지금까지 알게 된 것, 다음 단계(10-31 갱신).
 4. [학습 데이터 출처](designs/phase2-data-sources.md): 108개 출처 194만 문항(v3-gold6이 104개 사용). 정답 출처(사람/프로그램/모델), 학습 셋 사용량, 라이선스, 오염 함정을 정리했다.
 5. [참고 문헌과 데이터](resources/references.md): v3에서 참고한 논문과 데이터셋, 확인 수준(카드/초록/검색/인용만)과 쓰인 곳.
 6. [Pointer head 소규모 비교](project/pointer-pilot.md): v3 backbone을 유지하는 코드 head/Pointer 학습·평가 실험과 실행 방법.
@@ -39,12 +48,16 @@
 21. 증거 쌍 손실([수치](project/evidence-pairs-results.json)): CONDAQA·VitaminC 짝 손실, 모든 효과 구간이 0 포함.
 22. 단일 forward 의미 매칭([수치](project/single-forward-semantic-results.json)): semantic−native +0.05%p, 3 seed 계층 구간 0 포함.
 23. [Talking-Heads](project/talking-heads.md): 마지막 두 full-attention 층 head 혼합, 3 seed에서 차이 없음.
-24. [학습 레시피: EMA·구간 평균·학습률](project/recipe-ema-lr.md): EMA −0.54%p, 구간 평균 −0.57%p, LR 1e-5 −3.76%p. 개선 없음.
+24. [학습 레시피: EMA·구간 평균·학습률](project/recipe-ema-lr.md): EMA −0.54%p, 구간 평균 −0.56%p, LR 1e-5 −3.76%p. 개선 없음.
 25. **[장문 테스트셋과 질문 우선 배치(echo)](project/long-context-echo.md)**: 공개 장문 5종을 평가 전용으로 만들고 25% 장문 풀로 native/echo를 3 seed 비교했다. 장문 점수 +0.61%p, seed×문항 95% [−0.84, +2.07]로 구조 효과 입증 실패. 찾기는 이미 천장이고 실패는 추론·다예시 분류에 있으며, seed 잡음이 효과보다 크다는 원인 분석을 함께 기록했다.
-26. [선택지 순서 측정](project/order-probe.md): 학습 없이 4순서 평균. selection +0.68%p(답 바뀜 10%), JEVal 장문 −1.25%p(22%), BABILong 0(19%). 선택지 격리가 줄 몫은 짧은 문항 +0.7%p 이하로 추정.
+26. [선택지 순서 측정](project/order-probe.md): 학습 없이 4순서 평균. selection +0.68%p(답 바뀜 10%), JEVal 장문 −1.25%p(22%), BABILong 0(19%). 선택지 격리가 줄 몫은 짧은 문항 +0.7%p 안팎으로 추정(앙상블 효과 포함).
 27. **[원래 Qwen에서 출발하는 구조 비교](project/from-base-structures.md)** (완료 10-26): 원본(causal)·양방향·결정 지점 반복 읽기(hop)를 학습 전 가중치에서 같은 104개 출처 65,536행으로 각각 full fine-tuning해 3 seed로 비교했다. 사전 등록한 여섯 검정을 모두 통과하지 못했다. 양방향−원본은 selection +0.51, 장문 −0.21이다. hop의 두 번째 읽기는 첫 읽기와 98~99% 같은 답을 골라 다시 읽기가 작동하지 않았다. hop−원본 selection은 세 seed 모두 양수(+1.19)였지만 구간 하한이 −0.18이었다.
 28. **[우리 평가가 맞나: 구조 변경 논문들의 평가 방식과 비교](project/evaluation-validity.md)** (10-26): Gated Attention·Ettin·LLM2Vec·Pause tokens·Retrofitted recurrence·Coconut·Candidate-independent attention·LoLCATs와 Signal and Noise·DataDecide를 비교했다. 우리 평가는 엄격하지만 둔감했다. seed 3개와 정답률로는 짧은 문항 약 2.5점, 장문 약 7점 미만의 효과를 잡지 못하는데, 문헌상 구조 효과는 0.5~3점이다. 같은 9개 모델을 정답 NLL로 사후 재분석하면 hop−원본 짧은 문항과 양방향−원본 장문이 기준을 넘는다. hop의 이득은 다시 읽기가 아니라 학습 방식에서 나왔다.
-29. **[학습 방식 거르기](project/training-methods.md)** (완료 10-28: DeltaNet 얼리기만 통과, 6.55만 행 확인 대기): 원래 Qwen에서 출발해 다섯 레시피(causal, noncausal, DeltaNet 얼리기, CE+Brier, hop식 두 번 읽기 학습)를 fit당 16,384행 × seed 5로 비교한다. 주 지표는 정답 NLL이다. 근거 논문은 [판정 모델 학습 레시피 묶음](papers/decision-training-recipes.md)에 정리했다.
+29. **[학습 방식 거르기](project/training-methods.md)** (완료 10-28: DeltaNet 얼리기만 통과. 10-29에 MLP를 포함한 LoRA r16이 이를 넘었다): 원래 Qwen에서 출발해 다섯 레시피(causal, noncausal, DeltaNet 얼리기, CE+Brier, hop식 두 번 읽기 학습)를 fit당 16,384행 × seed 5로 비교했다. 주 지표는 정답 NLL이다. 근거 논문은 [판정 모델 학습 레시피 묶음](papers/decision-training-recipes.md)에 정리했다.
+30. **[Attention-only LoRA](project/lora-attention.md)** (완료 10-28: 짧은 문항은 full FT와 같고, 장문은 +4~5점. DeltaNet 얼리기 대비 짧은 문항 −2.2, 장문 +2.6): 논문(arXiv 2604.22127) 설정 그대로 attention q/k/v/o에만 LoRA r16을 붙이고 나머지는 모두 얼렸다. 거르기와 같은 데이터·seed로 full FT(causal, noncausal, frozen)와 비교했다.
+31. **[LoRA 위치 비교](project/lora-placement.md)** (완료 10-29: MLP를 포함한 LoRA r16이 DeltaNet 얼리기를 짧은 문항과 장문 둘 다 이김. attention만은 짧은 문항이 가장 약하고, attention rank 160은 장문이 full FT 수준으로 떨어짐): 양방향 구조에서 LoRA를 DeltaNet / MLP / attention+MLP / 전체에 붙이고, 전체와 파라미터 수를 맞춘 attention rank 160을 대조군으로 넣어 '위치 대 양'을 갈랐다. 학습 전 Qwen 점수도 함께 쟀다(짧은 문항 47.9%, 장문 49.1%).
+32. **[Loss 비교](project/loss-screen.md)** (완료 10-31: 사전 등록 검정 16개 중 CE를 이긴 것이 없다. focal은 짧은 문항 정답률 −1.5점으로 나쁨. 두 순서 + 일관성 벌점(consist)은 보고 비교에서 짧은 문항 NLL −0.023(4/5 seed)이지만 계산량이 2배라 확인이 필요하다. MNTP는 효과 없음): 전체 LoRA r16(양방향)을 그대로 두고 loss만 바꿨다. label smoothing, focal, CE + Brier, 두 입력 CE, 순서 일관성(Jensen-Shannon), 가린 토큰 맞히기(MNTP) 보조 손실을 CE와 비교했다.
+33. **[g7과 g6·g7 섞기: Hugging Face에만 있던 결과](project/hub-g7-merges.md)** (10-19~21 학습·평가, 10-31 기록): v3-gold7(100만 행, 113개 출처) 3 epoch 학습한 g7과 g6·g7 섞기 70여 개를 공개 샘플, JEVal dev, fresh에서 d3-lite와 같은 문항으로 채점한 결과다. wise80 g6+g7e2가 세 평가 모두 d3-lite와 같거나 높았다. 선택에 쓴 셋이라 확인이 필요하다.
 
 ## 처음 읽을 문서
 
@@ -71,6 +84,7 @@
 | 난이도·품질 등급 및 확률 | [Ordinal scale bias](papers/ordinal-scale-bias.md), [Temperature scaling](papers/temperature-scaling.md) |
 | Encoder 전환과 주변 연구 | [LLM2Vec](papers/llm2vec.md), [dQwen3.5](papers/dqwen35.md) |
 | 통합 분류 데이터·점수 손실 | [ConEntail](papers/conentail.md), [RankT5](papers/rankt5.md) |
+| CE 대신 다른 loss를 쓸지 | [CE가 정말 최선인가: loss 문헌 검토](papers/loss-alternatives.md), [판정 모델 학습 레시피](papers/decision-training-recipes.md) |
 
 ## 전체 논문 색인
 
@@ -108,6 +122,7 @@
 | [TRM·T²MLR·RiM·LLoCoT 등 잠재 작업공간](papers/latent-workspaces.md) | 2025–2026 | 반복·가설 상태·학습 조건 대조 |
 | [BDH·BDH-CQ, LoLCATs·Mamba in the Llama](papers/latent-workspaces.md) | 2024–2026 | 연상 메모리·공개 구현 한계·구조 전환 정렬 |
 | [판정 모델 학습 레시피 묶음: LoRA placement·NDM·DKnown-Jev·Jeff·LLM-as-Jev·Signal and Noise](papers/decision-training-recipes.md) | 2025–2026 | Qwen3.5 DeltaNet 학습 위치 / Brier 손실 / 학습·평가 규모 / 연속 지표 |
+| [CE가 정말 최선인가: Beyond Log Likelihood·Proper scoring rules·CV losses·DFT·GenCE·PA-GRPO](papers/loss-alternatives.md) | 2023–2026 | loss 선택 조건 / 사전 지식 강도 / 순서 일관성 |
 
 ## 구현 자료와 기존 실험
 
@@ -117,10 +132,12 @@
   - 학습: `train.py`(에폭별 저장, 원본 당기기 포함).
   - 평가: `proxy_eval.py`(JEVal), `board_check.py`(공개 샘플), `fresh_eval.py`(fresh-v1), `bias_eval.py`, `forget_report.py`, `format_probe.py`.
   - 섞기·분석: `merge.py`(WiSE·LiNeS·Model Stock·평균), `interpolate.py`, `weight_drift.py`, `check_packed.py`(회귀 검사), `bench_train.py`.
-  - 실행 스크립트: `runs/v3/queue/`.
+  - g1~g4b 실행 스크립트는 `runs/v3/queue/`에 있었지만, 지금은 로컬에 없다.
+  - 원래 Qwen에서 출발한 비교(10-25~): `from_base_experiment.py`(구조), `training_method_experiment.py`(학습 방식), `lora_experiment.py`(attention LoRA), `lora_placement_experiment.py`(LoRA 위치), `loss_experiment.py`(loss). 출력은 `runs/from-base/`다.
+  - 그 밖의 `*_experiment.py`는 g4b에서 출발한 구조 실험(10-19~24)이다.
 - [조사 범위와 인용 규칙](resources/research-notes.md): 완독·재현 여부와 검색 오매칭 기록.
 - [v1 실험 보고서](../docs/experiment_report_ko.md), [v2 실험 보고서](../docs/experiment_report_v2_ko.md).
-- [재현 안내](../docs/reproduce_ko.md): v1/v2 재현 문서다. 당시 모델·원시 데이터·가상환경은 요청에 따라 삭제됐다. v3 환경(`.venv-di`, `models/`)은 따로 있다.
+- [재현 안내](../docs/reproduce_ko.md): v1/v2 재현 문서다. 당시 모델·원시 데이터·가상환경은 요청에 따라 삭제됐다. v3 환경은 `.venv`와 `models/qwen3.5-0.8b`다. g1~g7 학습의 best·final checkpoint와 일부 섞기 모델은 Hugging Face `Kyunghwan-kim/kkh-decision-model`에 있다. 10-19 이후 실험 run 폴더(`runs/`의 실험별 폴더)와 로컬에서 다시 만든 g6/g3 조합 가중치는 이 기계에만 있다.
 - [기계가 읽을 수 있는 출처 색인](sources.json).
 
 ## 유지 방식

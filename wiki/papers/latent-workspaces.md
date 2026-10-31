@@ -13,11 +13,11 @@
 | [Think before you speak: Training Language Models With Pause Tokens](https://arxiv.org/abs/2310.02226), Sachin Goyal 외 | 초록 및 저자 PDF의 사전학습/후학습 조건 | pause pretraining+finetuning의 이득과 기존 pretrained 모델에 pause만 추가한 경우를 구분해야 한다. |
 | [Unlocking the Working Memory of Large Language Models for Latent Reasoning](https://arxiv.org/abs/2605.30343), Lukas Aichberger·Sepp Hochreiter | RiM의 고정 memory block·single forward, Figure1/2, 두 단계 학습 | 먼저 reasoning-step 감독으로 workspace를 grounding하고, 이후 answer refinement만 학습한다. 전역 중간 상태에 후보별 가설을 주입하는 이번 구현과는 다르지만 단일 forward의 작업공간이라는 가까운 선행연구다. |
 
-작업공간·추가 토큰·반복 계산 각각은 기존 연구가 있는 요소다. 이를 우리 모델에 조합한 것만으로 최초 발명이라고 주장하지 않는다. [이번 설계와 사전 고정한 선별 조건](../project/hypothesis-workspace.md)에서 원문과의 차이, 실제 구현과 검증 상태를 별도로 기록한다.
+작업공간·추가 토큰·반복 계산 각각은 기존 연구가 있는 요소다. 이를 우리 모델에 조합한 것만으로 최초 발명이라고 주장하지 않는다. [이번 설계와 사전 고정한 선별 조건](../project/hypothesis-workspace.md)에서 원문과의 차이, 실제 구현과 검증 상태를 별도로 기록한다(10-19 결과: 채택 안 함).
 
 ## 2026-10-19 후속: 구조 전환과 학습 데이터
 
-- [The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain](https://arxiv.org/abs/2509.26507): 초록·[공개 BDH-GPU 코드](https://github.com/pathwaycom/bdh/blob/2b0d7a45b058d4309c84a10e0768d541fe18bdc2/bdh.py)·license를 확인했다. 공개 코드는 양수 feature, Q=K의 RoPE linear retrieval, multiplicative coactivation, shared refinement를 구현한다. [우리 적용](../project/bdh-memory.md)은 양방향/self 제외·native projection 재사용의 별도 설정이다.
+- [The Dragon Hatchling: The Missing Link between the Transformer and Models of the Brain](https://arxiv.org/abs/2509.26507): 초록·[공개 BDH-GPU 코드](https://github.com/pathwaycom/bdh/blob/2b0d7a45b058d4309c84a10e0768d541fe18bdc2/bdh.py)·license를 확인했다. 공개 코드는 양수 feature, Q=K의 RoPE linear retrieval, multiplicative coactivation, shared refinement를 구현한다. [우리 적용](../project/bdh-memory.md)은 양방향/self 제외·native projection 재사용의 별도 설정이다(10-19~20 결과: native 대비 −0.60%p, 채택 안 함).
 - [LoLCATs: On Low-Rank Linearizing of Large Language Models](https://arxiv.org/abs/2410.10254): 원문에서 softmax attention 출력과의 MSE attention transfer 후 LoRA로 적응하는 두 단계를 확인했다. 구조 교체에서 정렬 학습의 중요성을 보여주는 관련 근거이며 우리 BDH 결과를 보증하지 않는다.
 - [The Mamba in the Llama: Distilling and Accelerating Hybrid Models](https://arxiv.org/abs/2408.15237): 원문 및 공식 repo에서 projection 재사용·단계별 정렬·distillation을 구분하는 recipe를 확인했다. 우리 gold-only CE 실험에 같은 단계를 적용한 것으로 주장하지 않는다.
 

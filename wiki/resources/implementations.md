@@ -24,7 +24,7 @@
 | Sieve-0.8B | 블록 1–16만 사용. state를 한 번 인코딩해 옵션별로 복제(option fork), scalar head로 순서 불변. 학습 문항의 17%가 index 데이터셋의 train/dev | [model](https://huggingface.co/sthanika-ai/Sieve-0.8B) |
 | autotrust JEV | Jev 1.13 분포로 증류(LoRA r16 + 24슬롯 head). 사용한 코퍼스가 `SargeDev/jev-distill-corpus-v3`(Apache-2.0, Jev soft label 49.8만 행) | [model](https://huggingface.co/autotrust/JEV), [corpus](https://huggingface.co/datasets/SargeDev/jev-distill-corpus-v3) |
 
-d3-lite 구조는 우리 엔진으로 재현해 확인했다. 결정 일치율은 JEVal 360문항에서 98.6%, 공개 suite 샘플에서 99.36%다([작업 기록](../project/v3-log.md)).
+d3-lite 구조는 우리 엔진으로 재현해 확인했다. 결정 일치율은 JEVal 360문항에서 처음 98.6%였고, d3의 `readout.safetensors`를 읽게 한 뒤 100%가 됐다. 공개 suite 샘플에서는 99.36%다([작업 기록](../project/v3-log.md)). d3-lite 가중치는 지금 로컬에 없다.
 
 ## d1-3B와 d1-omni를 구분
 

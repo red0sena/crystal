@@ -25,7 +25,9 @@ COLM 2024. Llama·Mistral 등에서 단어 수준 과제와 MTEB 문장 표현 �
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** Qwen3.5의 일부 full Attention을 양방향으로 바꾸는 실험은 가능하지만 순환·convolution 계층이 여전히 causal하다. 전체 Encoder로 전환했다고 부르면 안 된다. 추가 적응 학습과 별도 비교가 필요하다.
+**2026-10-26~31 시험함.** full attention 6층만 양방향으로 바꾸고(`noncausal`) 원래 Qwen에서 full FT로 비교했다. 원본 대비 selection +0.51, 장문 −0.21로 정답률 검정은 통과하지 못했다([구조 비교](../project/from-base-structures.md)). 정답 NLL로는 짧은 문항에서 작지만 일관된 이득이 있어, 지금까지 최선 레시피에 들어 있다. 학습 없이 켜기만 해도 원본보다 높았다(1회 측정, [LoRA 위치 비교](../project/lora-placement.md)). MNTP 전환 학습은 10-21에 중단했고([MNTP 전환](../project/mntp-conversion.md)), MNTP 보조 loss는 답에 효과가 없었다([Loss 비교](../project/loss-screen.md)). DeltaNet 역방향 scan은 −0.51%p였다.
+
+순환·convolution 계층은 여전히 causal하므로 전체 Encoder로 전환했다고 부르면 안 된다.
 
 ## 연결 문서
 

@@ -25,7 +25,7 @@ full fine-tuning은 분포 안에서는 linear probing보다 낫지만 분포 �
 
 ## 우리 Qwen에 대한 의미
 
-g1의 코드 행은 원본에서 4.5% 이동했고 d3-lite readout은 1.1%였다. 출력층을 먼저 맞추는 단계는 미구현 후보다.
+g1의 코드 행은 원본에서 4.5% 이동했고 d3-lite readout은 1.1%였다. 출력층을 먼저 맞추는 단계는 10-19 g4b 위에서 "head 먼저 → 마지막 두 층" 순서로 했다. 6개 설정 중 5개가 추가 학습 전이 최선이었다([대체 readout](../project/readout-mlp.md), [Pointer](../project/pointer-pilot.md)). 원래 Qwen에서 LP-FT는 하지 않았다. 지금 LoRA 레시피는 코드 readout을 얼리므로 출력층이 움직이지 않는다.
 
 ## 연결 문서
 

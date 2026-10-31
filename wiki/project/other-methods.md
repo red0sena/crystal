@@ -20,7 +20,7 @@ alphaXiv 검색 2회와 14편의 PDF 본문으로 입력 표현, 학습 목표, 
 
 ## 학습 자체를 바꾸는 후보
 
-**우선 검토할 것은 기존 gold 쌍을 함께 학습하는 목표다.** 현재 gold5/6은 VitaminC의 한 case와
+**당시(10-19) 우선 후보는 기존 gold 쌍을 함께 학습하는 목표였다.** 현재 gold5/6은 VitaminC의 한 case와
 CONDAQA의 원문·편집본을 같은 item으로 보존하지만, 일반 CE는 각 행을 따로 처리한다.
 다음은 검증된 우리 모델 개선이 아니라, 추가 비교가 필요한 설계다.
 
@@ -34,6 +34,8 @@ pair 목표를 비교한다면 같은 새 gold 데이터·draw 순서·backbone 
 CE+view consistency**를 두 seed로 비교하는 것이 다음 실험이다. 이전 연구에서 작은 readout을 바꾼
 것과 달리 attention·FFN까지 학습시키는 adapter 또는 full fine-tuning을 공통으로 사용해야 한다.
 추론 코드만 바꾸면 학습 목표의 효과를 검증할 수 없다.
+
+> **10-31 갱신:** 셋 다 했다. 순열 JSD는 [조합 실험](robust-combinations.md)(10-19), 쌍 margin은 [증거 쌍 손실](evidence-pairs-results.json)(10-22), 원래 Qwen에서의 순서 일관성(consist)은 [Loss 비교](loss-screen.md)(10-31)에서 쟀다. 모두 CE를 확실히 넘지 못했다.
 
 ## 실제 구조를 더 크게 바꾸는 방향
 

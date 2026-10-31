@@ -25,7 +25,9 @@ PriDe는 추론 보정 방식이다. 선택지 섞기 학습이나 새로운 con
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** 내용 순서와 코드 매핑을 독립적으로 교차 변경하고 canonical option ID로 결과를 비교하는 진단의 근거다.
+내용 순서와 코드 매핑을 독립적으로 교차 변경하고 canonical option ID로 결과를 비교하는 진단의 근거다.
+
+**측정함:** `bias_eval.py`(10-17)가 4순서 뒤집힘과 위치 쏠림(RStd)을 따로 잰다. 위치 쏠림은 작았다(g1 0.025, d3-lite 0.020, [두 요인 카드](option-bias-two-factors.md)). 10-25 순서 측정에서 selection 답 바뀜은 10.2%였고, 코드 자리 편향은 선택지 50개 과제에서만 보였다([순서 측정](../project/order-probe.md)). PriDe는 하지 않았다. 비슷한 prior 보정은 10-19에 −0.39~−4.69%p였다([다른 방법](../project/other-methods.md)).
 
 ## 연결 문서
 

@@ -10,7 +10,7 @@ alphaXiv 검색 결과의 기관·인기도·자동 요약만으로 성능을 �
 
 ## 검색 결과와 실제 확인을 구분
 
-- **2026-10-19 구조 전환/데이터 후속:** 공개 BDH-GPU source를 commit2b0d7a4에 고정해 실제 상위층 교체를 구현했다. BDH-CQ는 내부 update 비공개라는 원문§3.3의 제한을 기록했다. LoLCATs·Mamba in the Llama의 정렬/증류 단계도 원문과 공식 자료에서 대조했다. [적용과 데이터4배 비교 계획](../project/bdh-memory.md).
+- **2026-10-19 구조 전환/데이터 후속:** 공개 BDH-GPU source를 commit2b0d7a4에 고정해 실제 상위층 교체를 구현했다. BDH-CQ는 내부 update 비공개라는 원문§3.3의 제한을 기록했다. LoLCATs·Mamba in the Llama의 정렬/증류 단계도 원문과 공식 자료에서 대조했다. [적용과 결과](../project/bdh-memory.md): native 대비 −0.60%p로 채택하지 않았다.
 
 - **2026-10-19 추가:** TRM·T²MLR·LLoCoT·INTACT·Latent Recurrent Thoughts·BDH-CQ·Pause Tokens·RiM은 alphaXiv 추출 원문의 설계·실험·학습 조건에서 해당 부분을 확인했다. [문헌 카드](../papers/latent-workspaces.md), [실제 workspace 구현·선별 실험](../project/hypothesis-workspace.md). 이전 residual routing·head·동일 블록 반복과 구분하며 어느 원논문의 직접 재현으로도 주장하지 않는다.
 
@@ -24,7 +24,7 @@ alphaXiv 검색 결과의 기관·인기도·자동 요약만으로 성능을 �
 - **논문 방식/결과:** 출처가 실제 구현·실험한 부분.
 - **공개 구현:** model card·소스코드가 보여주는 동작. 학습 recipe 전체 공개와 다름.
 - **우리 제안:** 기존 요소를 Qwen3.5-0.8B에 조합하는 미구현 가설.
-- **우리 실험:** v1/v2 보고서의 데이터·설정·결과. 논문과 같은 조건이라는 뜻이 아님.
+- **우리 실험:** v1/v2 보고서와 v3 실험 페이지(`project/`)의 데이터·설정·결과. 논문과 같은 조건이라는 뜻이 아님.
 
 새로운 structure는 새 scorer, information flow, encoder/candidate decomposition, Backbone primitive의 변경 수준으로 나누어 기록한다. '새 구조가 없다'와 '완전히 새로운 Backbone은 이번 조사에서 찾지 못했다'는 다르다.
 
@@ -41,7 +41,7 @@ alphaXiv 검색 결과의 기관·인기도·자동 요약만으로 성능을 �
 - **초록만 확인, 카드 없음:**
   - PA-GRPO(arXiv 2603.21016, 순열 일관성을 보상하는 GRPO).
   - Punching Above Their Weight(arXiv 2607.03801): Qwen3 0.6B~8B에서 LoRA 분류 head가 라벨 생성보다 2~3% 높다. 후보마다 입력을 따로 처리하는 구조라 우리 255행 readout과 다르다.
-  - Calibrate Before Use(Zhao et al. 2021, contextual calibration).
+  - Calibrate Before Use(Zhao et al. 2021, contextual calibration). 10-19 [다른 방법](../project/other-methods.md)에서 원문 §5를 확인했다.
   - MoFO(arXiv 2407.20999, 모멘텀 큰 파라미터만 업데이트).
 - **외부 검토가 인용, 우리가 본문·초록 미확인:** FINCH(2605.20005), 공개 텍스트 재노출 연구(2512.22337), 문항별 망각 측정(2510.17776), FastMix(2606.14971), Post-Training Science(2609.01244), 불완전 학습 진단(2604.10079). 이 위키에서 이 논문들의 수치를 근거로 쓰지 않는다.
 - **정정 기록:**
@@ -53,4 +53,4 @@ alphaXiv 검색 결과의 기관·인기도·자동 요약만으로 성능을 �
 
 - 카드를 썼다: [Model Stock](../papers/model-stock.md), [LiNeS](../papers/lines.md). 둘 다 arXiv 본문에서 식을 확인했다.
 - 검색 요약으로 확인하고 카드를 썼다: [체크포인트 평균](../papers/checkpoint-averaging.md), [In-the-Wild 병합](../papers/merging-in-the-wild.md), [Dataset Cartography](../papers/dataset-cartography.md), [검정력](../papers/power-analysis.md). 수치는 요약에 나온 것만 옮겼다.
-- 전체 목록과 확인 수준은 [참고 문헌과 데이터](references.md)에 있다.
+- 10-18까지의 목록과 확인 수준은 [참고 문헌과 데이터](references.md)에 있다. 10-19 이후 문헌은 [구조 검색](../project/architecture-search.md), [다른 방법](../project/other-methods.md), [조합 실험](../project/robust-combinations.md), [평가 점검](../project/evaluation-validity.md), [학습 레시피 묶음](../papers/decision-training-recipes.md), [loss 문헌 검토](../papers/loss-alternatives.md)에 있다.

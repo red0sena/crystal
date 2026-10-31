@@ -25,7 +25,9 @@ Safety·sentiment 과제에서 Llama3.2-3B, GPT-OSS-20B, Qwen3-30B-A3B를 평가
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** 마지막 hidden state 병목을 조사하기 위한 대조군이다. 처음에는 일부 층과 후보 score 위치만 수집하는 작은 집계층부터 비교하는 것을 제안한다.
+**2026-10-19 g4b 위에서 시험했고 채택하지 않았다.** 토큰·층 scoring gate(코드 head 유지, residual)는 selection 79.19% 대 기본 78.82%였지만, confirmation에서 −0.04%p [−0.34, +0.27], JEVal restricted 짧은 문맥에서 −0.16%p였다([구조 검색](../project/architecture-search.md)). 원래 Qwen에서 출발한 비교는 하지 않았다.
+
+처음 제안(기록): 마지막 hidden state 병목을 조사하기 위한 대조군이다. 처음에는 일부 층과 후보 score 위치만 수집하는 작은 집계층부터 비교하는 것을 제안한다.
 
 ## 연결 문서
 

@@ -2,7 +2,12 @@
 
 [위키 홈](../README.md) · [평가 계획](evaluation.md)
 
-**상태: 미구현·미학습·미평가.** 아래는 조사한 요소를 조합한 우리의 실험안이다. 단일 논문이 이 조합의 성능을 검증한 것은 아니다.
+**상태: 이 조합 그대로는 미구현이다(10-31 갱신).** 아래는 조사한 요소를 조합한 우리의 실험안이다. 단일 논문이 이 조합의 성능을 검증한 것은 아니다.
+- 가까운 요소는 v3에서 g4b 위에 작게 시험했고, 모두 기존 code readout을 넘지 못했다.
+  - A에 가까운 것: [후보별 판정 Query](../project/decision-native-next.md)(+0.05%p, 구간이 0 포함), [Pointer head](../project/pointer-pilot.md)(−5.05%p).
+  - B에 가까운 것: [잔차 Set Transformer](../project/architecture-search.md)(selection +0.37%p였지만 동점 규칙으로 확인셋에 가지 않아 채택 안 함), [대체 readout·MLP](../project/readout-mlp.md).
+  - C: teacher 증류는 10-17 방침으로 하지 않는다.
+- 선택지 격리의 기대 이득은 작다. 학습 없이 4순서 평균으로 잰 이득이 짧은 문항 +0.7%p다(앙상블 효과 포함, 상한으로 단정하지 않음)([순서 측정](../project/order-probe.md)).
 
 ## A. 후보 독립 branch + 공유 scorer
 

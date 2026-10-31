@@ -25,7 +25,7 @@ Qwen3.5-4B와 Qwen3.8-27B에서 InnerJev를 학습. JEVal은 영어·중국어 1
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** 기존 readout을 그대로 둔 증류 대조군으로 유용하다. embedding·LM Head는 고정하고 언어 계층 projection을 full-rank 또는 LoRA로 학습한 논문 방식과, 우리의 v1 full language/tied embedding 학습을 구분한다. 0.8B의 자기 reasoning 품질을 먼저 평가한다.
+기존 readout을 그대로 둔 증류 대조군으로 유용하다. embedding·LM Head를 고정하고 언어 계층을 LoRA로 학습하는 논문 설정은 지금 우리 최선 레시피(10-28~, 전체 LoRA r16)와 같다. teacher 분포 증류는 10-17 정답 전용 방침으로 하지 않는다. 0.8B 자기 reasoning을 teacher로 쓸지는 사용자 결정 대기다.
 
 ## 연결 문서
 

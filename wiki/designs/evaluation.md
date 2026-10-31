@@ -29,7 +29,15 @@
 | 선택지 형식 민감도 (10-18) | 같은 문항을 자리표시 키(opt_k: 내용)와 내용 키로 채점해 비교(차이 0.4%p로 원인 아님) | `format_probe.py` |
 | dev 크기 (10-18) | 출처당 min(300, 10%), 행 비례 그룹 추출. 짝지은 비교로 출처 5점·매크로 0.7점 감지([검정력](../papers/power-analysis.md)) | `mix.hold_out` |
 
-checkpoint 선택은 공개 점수가 아니라 대리셋과 맞대결로 한다. 아래 원래 계획 중 순서 대칭성은 `bias_eval.py`로 일부 측정했다(코드와 위치를 교차한 분리 측정은 아직 아니다). 후보 수와 장문 축은 따로 측정하지 않았다.
+checkpoint 선택은 공개 점수가 아니라 대리셋과 맞대결로 한다. 아래 원래 계획 중 순서 대칭성은 `bias_eval.py`로 일부 측정했다(코드와 위치를 교차한 분리 측정은 아직 아니다). 후보 수 축은 따로 측정하지 않았다.
+
+2026-10-23 이후 추가된 평가:
+
+| 평가 | 내용 | 코드 |
+|---|---|---|
+| 장문 테스트 (10-23) | 공개 장문 5종(BABILong, JEVal 장문, QASPER, DocNLI 장문, LongBench v2)을 평가 전용으로 만들었다. 장문 점수는 앞의 4셋 평균이다 | `long_context_experiment.py`, [장문 테스트](../project/long-context-echo.md) |
+| 선택지 순서 측정 (10-25) | 학습 없이 4순서 평균. 선택지 격리가 줄 몫의 대략적 추정(앙상블 효과 포함) | [순서 측정](../project/order-probe.md) |
+| 원래 Qwen 비교의 판정 (10-26~) | 주 지표는 정답 NLL(selection 4,147문항의 출처 평균, 장문 4셋 평균). seed 5개 중 4개 이상이 같은 방향이고 계층 bootstrap 95% 구간이 0을 넘어야 "나음". 검정은 첫 fit 전에 `plan.json`으로 고정한다 | `training_method_experiment.py` 등, [평가 점검](../project/evaluation-validity.md) |
 
 ## 비교할 축
 

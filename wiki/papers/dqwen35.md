@@ -25,7 +25,7 @@ Diffusion 출력은 여러 denoising forward를 사용하는 생성 방식이다
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** Qwen3.5를 양방향으로 만드는 논의를 위한 주변 근거로만 사용한다. 이번 text decision 실험에 diffusion 모델을 도입하자는 추천은 아니다.
+Qwen3.5를 양방향으로 만드는 논의를 위한 주변 근거로만 사용한다. 같은 hybrid 방식(full attention 6층만 양방향, DeltaNet은 causal)은 v3 `noncausal`로 구현했다(d3-lite와 같다). 원래 Qwen 비교(10-26)에서 정답률 검정은 통과하지 못했지만, 지금까지 최선 레시피에 들어 있다([구조 비교](../project/from-base-structures.md)). 이번 text decision 실험에 diffusion 모델을 도입하자는 추천은 아니다.
 
 ## 연결 문서
 

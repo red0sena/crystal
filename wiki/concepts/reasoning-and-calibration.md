@@ -6,9 +6,9 @@
 
 | 방법 | 배우거나 바꾸는 것 | 추론 출력 | 정답 선택이 바뀔 수 있는가 |
 |---|---|---|---|
-| 현재 CE 학습 | 후보 정답 점수 | 후보 분포 | 가능 |
-| [Dual-Head](../papers/dual-head-reasoning-distillation.md) | 분류와 교사 설명의 공동 감독 | 분류층만 사용 | 가능 |
-| [InnerJev](../papers/innerjev.md) | reasoning 이후 teacher 후보 분포 | 첫 답 위치 readout | 가능 |
+| 현재 CE 학습 | 후보 정답 점수 | 후보 분포 | 가능. 10-31 loss 비교에서 대안 6종 중 CE를 이긴 것이 없었다([Loss 비교](../project/loss-screen.md)) |
+| [Dual-Head](../papers/dual-head-reasoning-distillation.md) | 분류와 교사 설명의 공동 감독 | 분류층만 사용 | 가능. 10-17 정답 전용 방침으로 보류 |
+| [InnerJev](../papers/innerjev.md) | reasoning 이후 teacher 후보 분포 | 첫 답 위치 readout | 가능. 10-17 정답 전용 방침으로 보류 |
 | [Temperature scaling](../papers/temperature-scaling.md) | 별도 dev에서 양수 T 적합 | softmax(z/T) | 같은 후보에 동일 T면 argmax 불변 |
 
 ## 기본 선택 loss

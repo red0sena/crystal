@@ -4,7 +4,7 @@
 
 **한국어 요약(2026-10-16).** 비공개 same-skills와 new-domains에 대응하려고, index 시험 문항이 아닌 같은 역량의 공개 데이터를 골랐다. 아래 영문 본문은 조사 단계의 계획 문서다. 데이터셋별로 index와 JEVal이 실제로 쓰는 split, 라이선스, 오염 함정을 다룬다. 이 계획에 따라 **실제로 만든 출처**는 다음과 같다. 빌더는 `qwen_decision/v3/sources/`, 데이터는 `data/phase2/`에 있다. 모든 출처가 [오염 필터](../project/v3-log.md)를 거쳤다. "버림"은 필터가 뺀 수이고, 출처별 manifest에 사유 예시가 있다.
 
-**갱신(2026-10-19):** 아래 표는 `data/phase2/` manifest 60개에서 다시 뽑았다. 처음 37개 이후 다음이 추가됐다.
+**갱신(2026-10-19, 경로 10-31):** 데이터는 Hugging Face `Kyunghwan-kim/kkh-decision-data`의 `data/phase2/`에 있다(로컬에는 없다). 아래 표는 `data/phase2/` manifest에서 뽑았다(60개 시점 이후 5·6차를 더해 지금 108개). 처음 37개 이후 다음이 추가됐다.
 - 실제 장문(lexglue·cuad·quality·musique), 키-값 찾기(kv-lookup), API-Bank 재구성.
 - 금융(SEntFiN·TAT-QA).
 - 3차(Social IQa, Cosmos QA, MultiNLI, FaithDial, Moral Stories, e-CARE, GoEmotions).
@@ -12,7 +12,7 @@
 - 5차(2026-10-19, `phase5.py`): TabFact, CondaQA, ROPES, FOLIO, ABCD, HelpSteer2, FiNER-139, Zeshel, Few-NERD, DROP, Taskmaster-1.
 - 6차(2026-10-19, `phase6_{pref,reason,domain,lang}.py`): 선호·판단 9, 읽기·추론 11, 전문 분야·대화 9, 개체·언어 8. 상세는 [작업 기록](../project/v3-log.md).
 
-"정답 출처"는 `mix.SOURCES`의 label_origin이고, "v3-gold6 사용"은 다음 학습 셋의 행 수다(g3는 v3-gold2, g4b는 v3-gold3을 썼다; 각 manifest 참조). 2026-10-19에 4차 출처 4개(tatqa-yesno, icl-classify, vitaminc-train, fintweet-train)를 감사 결과대로 다시 만들었다([작업 기록](../project/v3-log.md)의 "v3-gold4 데이터 감사 반영"). 이전 파일은 `data/phase2/archive/gold4-build/`에 있다.
+"정답 출처"는 `mix.SOURCES`의 label_origin이고, "v3-gold6 사용"은 g6 학습 셋(v3-gold6)의 행 수다(g3는 v3-gold2, g4b는 v3-gold3을 썼다; 각 manifest 참조). 2026-10-19에 4차 출처 4개(tatqa-yesno, icl-classify, vitaminc-train, fintweet-train)를 감사 결과대로 다시 만들었다([작업 기록](../project/v3-log.md)의 "v3-gold4 데이터 감사 반영"). 이전 파일은 `data/phase2/archive/gold4-build/`에 있다.
 HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 개 파일과 manifest는 `data/phase2/archive/`에 있다.
 
 | 출처 | 문항 | 버림 | 필터 모드 | 정답 출처 | v3-gold6 사용 | 라이선스(manifest) |
@@ -126,7 +126,7 @@ HellaSwag·WinoGrande는 2026-10-18부터 train 전체를 쓴다. 이전 1.5만 
 | wtq-train | 11,889 | 369 | strict; table text by shingles only | human | 5,411 | CC-BY-SA-4.0 (repository LICENSE) |
 | zeshel-train | 48,896 | 369 | strict | human | 11,080 | CC-BY-SA (Fandom wikis) |
 
-처음 만든 37개 출처의 합계는 410,337문항이었고, 60개 출처 시점(2026-10-19 감사 반영)의 합계는 864,090문항이었다. 5·6차 출처를 더한 현재 108개 출처의 합계는 1,944,489문항이다(v3-gold6이 그중 104개를 쓴다. MT-Bench 사람 판정·ConditionalQA는 `mix.EXCLUDED`). SciQ는 비상업(CC-BY-NC) 라이선스라, 합성 장문 `long-context`는 실제 장문 출처로 대체해서 혼합에서 뺀다. 모델이 정답을 만든 출처(ToolACE·Glaive의 tools-percall, When2Call, API-Bank 학습셋)는 도구 영역에 한해 허용하고, phishing의 GPT 생성 이메일(LLMGen)은 뺀다(2026-10-17 결정, [작업 기록](../project/v3-log.md)). 라이선스 파일이 없거나 확인되지 않은 출처(ACOS, VAST, NLI4CT, Humicroedit, OpenBookQA)는 비교 실험에만 쓰고, 공개 모델에 쓸지는 제출 전에 검토한다. xLAM은 gated라 ToolACE와 Glaive로 대체했다.
+처음 만든 37개 출처의 합계는 410,337문항이었고, 60개 출처 시점(2026-10-19 감사 반영)의 합계는 864,090문항이었다. 5·6차 출처를 더한 현재 108개 출처의 합계는 1,944,489문항이다(v3-gold6이 그중 104개를 쓴다. MT-Bench 사람 판정·ConditionalQA는 `mix.EXCLUDED`). SciQ는 비상업(CC-BY-NC) 라이선스라, 합성 장문 `long-context`는 실제 장문 출처로 대체해서 혼합에서 뺀다. 모델이 정답을 만든 출처(ToolACE·Glaive의 tools-percall, When2Call, API-Bank 학습셋)는 도구 영역에 한해 허용하고, phishing의 GPT 생성 이메일(LLMGen)은 뺀다(2026-10-17 결정, [작업 기록](../project/v3-log.md)). 라이선스 파일이 없거나 확인되지 않은 출처(ACOS, VAST, NLI4CT, Humicroedit, OpenBookQA)는 비교 실험에만 쓰고, 공개 모델에 쓸지는 제출 전에 검토한다. (10-31: 원래 Qwen에서 출발한 비교도 104개 출처를 모두 쓴다. 아직 미해결.) xLAM은 gated라 ToolACE와 Glaive로 대체했다.
 
 주요 함정(측정됨): ToolRet 시험 질의가 xLAM·ToolACE 등에서 왔다. SATA-Bench 일부가 MultiRC train에서 나왔다. MASSIVE에 JEVal nlu-eval-68 발화가 들어 있다. New Yorker의 다른 fold에 시험 콘테스트가 있다. GSM8K train 문제가 index의 RouterBench·BRIGHT 행 안에 들어 있다. FinEntity, BFCL, BRIGHT, HLE, GPQA, MuSR, SATA, CRUXEval, POP909, PhishNChips core, BPoMP는 전부 제외한다.
 
@@ -138,7 +138,7 @@ Date: 2026-10-16. Scope: Decision Index 0.3 (37 scored benchmarks, 5 areas). JEV
 
 ## How this was checked
 
-- **Index sources and splits**: `external/decision-index/docs/suite.md`, plus the builders in `decision_index/suite/build/*.py` and the raw pinned sources under `external/decision-index/work/artifacts/benchmark-suite/raw/`. I read the builder code to see which file and split each benchmark actually uses.
+- **Index sources and splits** (`work/`는 로컬·HF 모두 없어 업스트림에서 다시 받아야 한다, 10-31): `external/decision-index/docs/suite.md`, plus the builders in `decision_index/suite/build/*.py` and the raw pinned sources under `external/decision-index/work/artifacts/benchmark-suite/raw/`. I read the builder code to see which file and split each benchmark actually uses.
 - **JEVal splits**: `data/jeval/data/test.parquet` (column `source_item_id` and the parquet metadata `jeval.sources`). Each JEVal source records `records_available` and the sampled indices.
 - **Licences and sizes**: Hugging Face API and datasets-server, the GitHub API, and the dataset cards.
 - **Overlap checks marked "measured"**: I downloaded the data and compared normalised text. Anything not checked this way is marked *(unverified)*.
@@ -235,7 +235,7 @@ Exclude completely from Knowledge: GPQA (all configs), HLE, MuSR release, SATA-B
 | L11 | RAGTruth train | `github.com/ParticleMedia/RAGTruth` `response.jsonl` (split=train) | MIT annotations; contexts are MS MARCO (NC) and Yelp (no redistribution) | train | 15,090 responses / 2,515 sources | noul: "contains content not supported by the context"; can also be split per sentence or span | 0 source overlap with test (measured). Rebuild locally and do not republish. |
 | L12 | RAGBench | `rungalileo/ragbench` | CC-BY-4.0 | train + validation, **excluding the `cuad` and `finqa` configs** | ~80k *(unverified total)* | noul adherence / unsupported-claim | `cuad` comes from CUAD (JEVal cuad) and `finqa` from FinQA (JEVal finqa-yes-no). Dedupe the `msmarco` config against RAGTruth test questions (shared MS MARCO source). |
 | L13 | FAVA / MiniCheck synthetic / SummEdits | `fava-uw/fava-data`; `lytang/C2D-and-D2C-MiniCheck`; `Salesforce/summedits` | CC-BY-4.0 / MIT / CC-BY-4.0 | train / c2d+d2c / all | 30k / 14.4k / 6.3k | noul "claim supported by document?" | Low risk. **Do not use** LLM-AggreFact (it includes the RAGTruth test set; CC-BY-**ND**), HaluBench (includes HaluEval; NC) or HaluEval (all of it is in JEVal). |
-| L14 | Long-context decision | QuALITY (`emozilla/quality` or nyu-mll/quality); QASPER (`allenai/qasper`) | per-article licences (QuALITY); CC-BY-4.0 | train + dev | ~2.5k + 2.1k questions; 888 + 281 papers | 4-way choice; yes / no / unanswerable | Not in the index or JEVal. **Avoid LongBench and HELMET (JEVal).** |
+| L14 | Long-context decision | QuALITY (`emozilla/quality` or nyu-mll/quality); QASPER (`allenai/qasper`) | per-article licences (QuALITY); CC-BY-4.0 | train + dev | ~2.5k + 2.1k questions; 888 + 281 papers | 4-way choice; yes / no / unanswerable | Not in the index or JEVal. **Avoid LongBench and HELMET (JEVal).** QASPER는 2026-10-23부터 장문 평가 전용이다(학습 금지, [장문 테스트](../project/long-context-echo.md)). |
 
 Exclude completely from Language: FinEntity, ANLI test, ContractNLI test, NLI4CT test and gold_test, VAST test and test-sentswap, iSarcasm test and third-party annotations, HellaSwag validation/test, ACOS test, SemEval-16 restaurant test (and derivatives), HaluEval, LLM-AggreFact, HaluBench.
 
@@ -298,18 +298,20 @@ Exclude completely from Arts: the BPoMP release and OEDILF scrapes, POP909 and P
 
 ## 6. New-domain yes/no judgment (30% private: broad knowledge plus knowing when to answer yes or no)
 
+> **2026-10-19 이후:** ETHICS, WiC, QASC(그리고 COPA, PIQA, SWAG, QuaRTz)는 fresh 평가 출처다. 학습에 넣지 않는다.
+
 | # | Dataset | HF id | Licence | Split | ~Size | Cast | Risk and mitigation |
 |---|---|---|---|---|---|---|---|
 | N1 | BoolQ | `google/boolq` | CC-BY-SA-3.0 | train + validation **minus the 200 JEVal items** | 12,697 | passage yes/no | JEVal boolq samples from the full 12,697 pool, so dedupe by question and passage. |
 | N2 | StrategyQA | `ChilleD/StrategyQA` | MIT | train | 1,603 | implicit multi-hop yes/no (no passage, so it tests broad knowledge) | Not in the index or JEVal. |
 | N3 | PubMedQA | `qiaojin/PubMedQA` | MIT | pqa_artificial (+ pqa_labeled) | 211k (+1k) | yes / no (/ maybe) | Not in the index or JEVal. |
-| N4 | SQuAD 2.0 answerability / QASPER / MuSiQue-answerable | `rajpurkar/squad_v2`; `allenai/qasper`; `bdsaglam/musique` (answerable config) | CC-BY-SA-4.0 / CC-BY-4.0 / CC-BY-4.0 *(unverified)* | train | 130k / ~5k Qs / 20k+ | noul: "the context answers the question" (abstain-or-answer judgement) | Low risk. |
+| N4 | SQuAD 2.0 answerability / QASPER / MuSiQue-answerable | `rajpurkar/squad_v2`; `allenai/qasper`; `bdsaglam/musique` (answerable config) | CC-BY-SA-4.0 / CC-BY-4.0 / CC-BY-4.0 *(unverified)* | train | 130k / ~5k Qs / 20k+ | noul: "the context answers the question" (abstain-or-answer judgement) | Low risk. QASPER는 2026-10-23부터 장문 평가 전용이다(학습 금지, [장문 테스트](../project/long-context-echo.md)). |
 | N5 | ETHICS | `hendrycks/ethics` | MIT | train | ~95k | yes/no acceptability (commonsense, justice, deontology, virtue) | Not in the index or JEVal. |
 | N6 | Safety / refusal judgement | `nvidia/Aegis-AI-Content-Safety-Dataset-2.0`; `allenai/wildguardmix` (wildguardtrain) | CC-BY-4.0 / ODC-BY (gated) | train | 30k / 87k *(unverified)* | noul: unsafe prompt? should the assistant refuse? is the response harmful? | **AgentHarm is JEVal**, so do not use it. BeaverTails is CC-BY-NC. |
 | N7 | Contrastive fact checks | `tals/vitaminc`; FEVER train | CC-BY-SA-3.0 | train | 371k / 145k | yes/no | Dedupe against JEVal fever. |
 | N8 | Paraphrase / sense yes/no | `google-research-datasets/paws` (labeled_final); WiC (SuperGLUE) | PAWS: free with attribution (?); WiC: CC-BY-NC-4.0 | train | 49k / 5.4k | yes/no | Low risk. |
 | N9 | Commonsense / science MCQ for breadth | CommonsenseQA train, ARC train, QASC, OpenBookQA train (licence "unknown" on HF), MedMCQA | MIT / CC-BY-SA / CC-BY / ? / Apache | train | 9.7k / 3.4k / 8.1k / 5k / 183k | choice; or per-option yes/no to train calibrated "no" | JEVal uses CommonsenseQA **dev** and ARC **test**, so train is fine. |
-| N10 | jev-distill-v3 (already local) | `data/jev-distill-v3` | Apache-2.0 (Open-Jev stream CC0) | train | 656k | native noul/choice/score | The openjev_v2 domains are synthetic games and workflows (checked), with no index overlap. yuri_v1 uses HotpotQA, PubMedQA, MLQA, NarrativeQA and similar, which are not index sources. |
+| N10 | jev-distill-v3 | `data/jev-distill-v3` (로컬에 없음, HF data repo에만 있음) | Apache-2.0 (Open-Jev stream CC0) | train | 656k | native noul/choice/score | The openjev_v2 domains are synthetic games and workflows (checked), with no index overlap. yuri_v1 uses HotpotQA, PubMedQA, MLQA, NarrativeQA and similar, which are not index sources. **2026-10-17부터 쓰지 않는다(교사 soft label).** |
 
 Never use for training (JEVal held-out): BBQ, TruthfulQA, HaluEval (all four), AgentHarm, PRISM-alignment, Anthropic global-opinions, CUAD test (and RAGBench-cuad), LexGLUE test splits, MedQA test, GoEmotions test, FinanceBench, FinQA yes/no, LongBench, HELMET, C-Eval/CMMLU/CMB/CMExam test, CommunityBench, ComPred, DISC-Law, AIDA-testc, decider, jevforge, jevbench, and GPQA/MMLU-Pro (all of both, which are also index items).
 

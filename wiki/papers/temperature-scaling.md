@@ -25,7 +25,7 @@ ICML 2017. 현대 neural classifier의 calibration 및 temperature scaling을 �
 
 ## 우리 Qwen에 적용한다면
 
-**아래는 적용 제안이며 미구현·미검증이다.** 모델 선택용 dev와 calibration용 dev를 분리하고 NLL·Brier·ECE를 test에서 보고한다. 후보 수·질문 유형별 T는 우리 v2 설계이며 논문의 기본 scalar 설정과 구분한다.
+v2에서는 질문 유형·후보 수별 T를 dev에 적합해 썼다([현재 Qwen](../project/current-qwen.md)). 논문의 기본 scalar 설정과는 다르다. v3와 지금 레시피는 d3 계약대로 T=1이고 calibration용 dev가 없다. 10-26부터 주 지표가 정답 NLL이라 비교에 보정 차이가 섞인다. T를 적합한 뒤 NLL을 비교하는 것은 하지 않았다.
 
 ## 연결 문서
 

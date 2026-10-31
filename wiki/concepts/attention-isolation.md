@@ -25,7 +25,7 @@ Attention(Q,K,V)=softmax(QKᵀ/√d + M)V.
 
 ## Qwen3.5 hybrid의 추가 조건
 
-**아래는 구현 제안이며 이 wiki에 구현 코드가 포함되어 있지 않다.**
+**아래는 구현 제안이며 이 wiki에 구현 코드가 포함되어 있지 않다.** 10-25 순서 측정에서 학습 없이 4순서 평균한 이득이 짧은 문항 +0.7%p 안팎이라, 구현하지 않기로 했다([순서 측정](../project/order-probe.md)).
 
 Qwen3.5는 Attention 외에 Gated DeltaNet recurrence와 causal convolution으로 이전 token 정보를 전달한다. Attention 경로만 차단하면 앞 후보 정보가 다른 경로로 넘어갈 수 있다.
 
@@ -38,9 +38,9 @@ Qwen3.5는 Attention 외에 Gated DeltaNet recurrence와 causal convolution으�
 
 안전한 첫 대조군은 각 후보를 같은 prefix 종료 상태에서 독립적으로 처리하는 것이다. 또는 packed sequence에서 모든 hybrid 계층의 상태 reset·분기 semantics를 직접 구현해야 한다. prefix가 candidate 내용을 이미 포함했다면 그 경로를 통해 후보가 섞일 수 있으므로 prefix 정의도 확인한다.
 
-현재 v2는 **여러 질문**의 suffix를 독립적으로 처리하는 상태 공유 코드다. 그것은 한 질문 안의 **선택지별 branch head**를 학습한 것과 다르다. [현재 구현](../project/current-qwen.md)
+v2(지금은 쓰지 않음)는 **여러 질문**의 suffix를 독립적으로 처리하는 상태 공유 코드였다. v3와 지금 레시피는 d3 계약대로 질문당 forward 1회이고 상태를 공유하지 않는다. 그것은 한 질문 안의 **선택지별 branch head**를 학습한 것과 다르다. [현재 구현](../project/current-qwen.md)
 
 ## 한계
 
-독립 후보는 다른 후보의 내용에 의존하는 '가장 저렴한 것', '위 조건 중 어느 것도 아님' 등을 충분히 판단하지 못할 수 있다. [Set Transformer](../papers/set-transformer.md)식 집합 비교를 추가하는 확장과 순서 대칭성·정확도를 함께 비교한다.
+독립 후보는 다른 후보의 내용에 의존하는 '가장 저렴한 것', '위 조건 중 어느 것도 아님' 등을 충분히 판단하지 못할 수 있다. [Set Transformer](../papers/set-transformer.md)식 집합 비교를 추가하는 확장과 순서 대칭성·정확도를 함께 비교한다. g4b 위 잔차 Set Transformer는 10-19에 selection +0.37%p였지만 채택하지 않았다.
 

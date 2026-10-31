@@ -152,6 +152,8 @@ shortlist는 top-4 cyclic .5를 고정했다. 가중치·후보 hash와 모든 f
 출처·길이 구성이 다르므로 두 열의 절대 점수 차이를 학습 효과로 해석하지 않는다.
 g4b 자체의 과거 early stopping에 전체 gold3-dev가 쓰인 한계도 남는다.
 
+> **10-31 갱신:** g4b에 붙인 r8 LoRA와 달리, 원래 Qwen에서 시작한 전 층 LoRA r16은 지금까지 최선 레시피다([LoRA 위치 비교](lora-placement.md)). 순서 일관성도 원래 Qwen에서 다시 쟀다([Loss 비교](loss-screen.md)). 출발점, rank, 예산이 달라 모순은 아니다.
+
 confirmation의 실제 prompt 계산 수는 기본·단일 soup 각각 **2,998개**, cyclic soup **9,213개**였다.
 shortlist는 기본 2,998개에 **7,914개를 추가**했다. token 수는 각각 3,075,185,
 cyclic 9,043,742, shortlist 합계 10,215,233이었다. GPU를 다른 평가와 일부 공유했으므로

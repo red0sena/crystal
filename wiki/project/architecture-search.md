@@ -84,7 +84,7 @@ class attention의 key/value는 층별 세 summary다. 원 논문의 모든 토�
 
 `prepare`는 새 디렉터리를 요구한다. cached 학습은 train/selection만 읽고 confirmation 점수는 마지막 단계에서만 계산한다.
 새 구조의 identity 초기화·단일 실행 summary·padding·checkpoint gradient·원문 분할을
-`tests/test_v3_architecture.py`에서 검증한다. 실측 결과는 완료 후 아래에 기록한다.
+`tests/test_v3_architecture.py`에서 검증한다. 실측 결과는 아래에 있다.
 
 Qwen3.5에서 층을 생략·교환할 때는 `layer_types`와 `num_hidden_layers`도 이동한 실제 layer에 맞춘다.
 원래 순서의 mask dispatch를 두면 attention과 DeltaNet에 서로 다른 종류의 mask가 들어가므로, 이 경로도 작은 hybrid 모델로 검증했다.

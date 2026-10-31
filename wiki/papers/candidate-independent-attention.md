@@ -27,6 +27,8 @@ Open-Jev의 Gemma3-1B, Qwen3-1.7B, Qwen3-4B 비교. Qwen3-1.7B 테스트 정확�
 
 **아래는 적용 제안이며 미구현·미검증이다.** Qwen3.5는 일반 Qwen3와 달리 DeltaNet과 causal convolution을 포함한다. Attention mask만 변경해서는 후보 독립성을 보장하지 못한다. 공통 문맥 종료 상태를 각 후보에 복제하고 KV·recurrent·conv 상태를 모두 분리하는 구현을 제안한다. 아직 구현·평가하지 않았다.
 
+**2026-10-25 순서 측정:** 학습 없이 4순서 평균한 이득이 selection +0.68%p, JEVal 장문 −1.25%p였다. 기대 이득이 작아 우선순위에서 뺐다([순서 측정](../project/order-probe.md)).
+
 ## 연결 문서
 
 - [attention-isolation ](../concepts/attention-isolation.md)

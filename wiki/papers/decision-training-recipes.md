@@ -1,6 +1,6 @@
 # 판정 모델 학습 레시피 논문 묶음 (2026-10-26~27 조사)
 
-[위키 홈](../README.md) · [학습 방식 비교 실험](../project/training-methods.md) · [평가 점검](../project/evaluation-validity.md)
+[위키 홈](../README.md) · [학습 방식 비교 실험](../project/training-methods.md) · [평가 점검](../project/evaluation-validity.md) · [loss 문헌 검토](loss-alternatives.md)
 
 사용자가 가져온 요약을 원문(arXiv 초록과 HTML)으로 다시 확인했다. 확인하지 못한 항목은 그렇다고 적었다. 모두 2026년 공개 프리프린트이고, 우리가 재현한 결과가 아니다.
 
@@ -13,10 +13,22 @@
 | [LLM-as-Jev](https://arxiv.org/abs/2610.02076) | Qwen3.5-4B, Qwen3-0.6B | 구조는 유지하고 listwise loss + KL anchor. 9천~3만 문항(최대 9.5만), 1 epoch 이하, seed 1 | 0.6B: 학습 전 JevBench 56.7, full FT 58.0, LoRA 61.0 (231문항이라 ±3점은 잡음 범위) | KL·L2-SP anchor는 우선순위 낮음 |
 | [Signal and Noise](https://arxiv.org/abs/2508.13144) | 1B 사전학습 | 벤치마크의 신호 대 잡음 측정 | 정답률 대신 정답 likelihood 지표를 쓰면 작은 규모 결정 정확도가 77.0% → 83.7% | **주 지표를 정답 NLL로** |
 
-## 우리 실험에서 확인한 결과 (10-28, [학습 방식 거르기](../project/training-methods.md))
+**LoRA placement 세부(원문 HTML, 10-28 확인)**
 
-- **LoRA placement → frozen: 통과.** full FT에서 DeltaNet token mixer만 얼렸더니, 양방향 대비 selection 정답률 +1.4점(5/5 seed), 장문 +2.3점(4/5 seed)이었다. 논문의 "DeltaNet을 학습시키면 해롭다"와 같은 방향이다. 다만 1.6만 행 결과라 과적합 감소 효과와 아직 구분되지 않는다.
-- **NDM·DKnown-Jev → brier: 효과 없음.** CE + 1×Brier는 양방향과 NLL·정답률·Brier 모두 차이가 없었다.
+- 설정: r16, α32, dropout 0.05, LR 2e-4 cosine, 유효 batch 16, 3 epoch, 1,024토큰, 8-bit Adam, seed 3407 하나.
+- Qwen3.5 크기는 0.8B 하나만 실험했다. 비교 모델은 병렬형 hybrid인 Falcon-H1-0.5B다. 이쪽에서는 순환 경로를 학습시키는 것이 오히려 +8.6점 도움이 됐다.
+- GSM8K 학습 Table 5에서는 softmax_plus_mlp도 0.148로 gdn_only와 같았다. GSM8K 평가가 128~256문항이라 이 칸들의 잡음이 크다.
+- 이 설정을 그대로 옮긴 실험: [Attention-only LoRA](../project/lora-attention.md).
+
+## 우리 실험에서 확인한 결과 (10-28~29, [학습 방식 거르기](../project/training-methods.md))
+
+- **LoRA placement → frozen: 통과.** full FT에서 DeltaNet token mixer만 얼렸더니, 양방향 대비 selection 정답률 +1.4점(5/5 seed), 장문 +2.3점(4/5 seed)이었다. 논문의 "DeltaNet을 학습시키면 해롭다"와 같은 방향이다. 다만 1.6만 행 결과라 과적합 감소 효과와 아직 구분되지 않는다. 아래 위치 비교에서 DeltaNet LoRA가 해롭지 않아, 이 해석은 약해졌다.
+- **Attention-only LoRA(softmax_only) 재현:** 짧은 문항은 full FT와 같았고, 장문은 +4.8점이었다([상세](../project/lora-attention.md)).
+- **위치 비교(10-29, [상세](../project/lora-placement.md)): 논문과 달랐다.**
+  - 논문에서는 attention-only가 가장 좋았다. 우리 과제에서는 r16 위치 중 짧은 문항이 가장 낮았다. gdn_only, mlp_only, softmax_plus_mlp, all_layers 모두 selection NLL이 attention-only보다 나았다(5/5 seed). 장문은 차이가 없었다.
+  - DeltaNet에 붙인 LoRA(gdn_only)도 해롭지 않았다. 그러니 frozen의 이득은 "DeltaNet 학습이 해롭다"보다 "full FT가 너무 많이 바꾼다"로 보인다.
+  - mlp_only, softmax_plus_mlp, all_layers는 frozen을 짧은 문항과 장문 둘 다 이겼다(보고만 한 비교).
+- **NDM·DKnown-Jev → brier: 효과 없음.** CE + 1×Brier는 양방향과 NLL·정답률·Brier 모두 차이가 없었다. 전체 LoRA r16에서도 CE와 차이가 없었다(10-29, [Loss 비교](../project/loss-screen.md)).
 - **Signal and Noise → 정답 NLL 주 지표: 유효.** 정답률만 봤다면 seed 3개로는 잡기 어려운 1점대 차이를, seed 5개와 NLL로 판정할 수 있었다.
 
 ## 가져오지 않은 것과 이유

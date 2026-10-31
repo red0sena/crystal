@@ -7,15 +7,17 @@
 | 변경 수준 | 대표 연구 | 달라지는 부분 | 그대로 남는 부분 |
 |---|---|---|---|
 | 출력 계산·학습 목표 | [LLM-as-Jev](../papers/llm-as-jev.md), [InnerJev](../papers/innerjev.md) | 코드 확률 점수화·증류·regularization | 기존 causal Backbone·LM Head |
-| 판단 readout 추가 | [Token·Layer probe](../papers/token-layer-readout.md), [Dual-Head](../papers/dual-head-reasoning-distillation.md) | pooling·MLP·보조 학습 | 기존 Backbone 계산 블록 |
+| 판단 readout 추가 | [Token·Layer probe](../papers/token-layer-readout.md), [Dual-Head](../papers/dual-head-reasoning-distillation.md) | pooling·MLP·보조 학습 | 기존 Backbone 계산 블록. 우리: 토큰·층 gate와 readout·MLP를 10-19에 g4b 위에서 시험, 개선 없음([구조 검색](../project/architecture-search.md)) |
 | 후보 내용 기반 scorer | [GLiClass](../papers/gliclass.md), [MetaEncoder](../papers/metaencoder.md) | 본문·라벨 표현 및 shared scorer | 사전학습 Encoder/Decoder 기반 |
 | 후보의 정보 흐름 변경 | [Candidate-independent Attention](../papers/candidate-independent-attention.md) | block mask·local position | 기본 Transformer block |
 | 판단 아키텍처 재조합 | [Soft Contextualized Encoder](../papers/soft-contextualized-encoder.md), [Poly-encoders](../papers/poly-encoders.md) | query encoder·label set·Attention의 배치와 상호작용 | 기존 신경망 구성 요소 |
-| 양방향 적응 | [LLM2Vec](../papers/llm2vec.md), [dQwen3.5](../papers/dqwen35.md) | Attention visibility 및 적응 목표 | 사전학습 가중치; hybrid의 causal 순환 계층은 별도 문제 |
-| 중간 잠재 작업공간 | [latent reasoning 대조](../papers/latent-workspaces.md), [우리 구현](../project/hypothesis-workspace.md) | 중간에 선택지 상태 추가, 상위 full attention에서 원문·가설 공동 갱신 | native24층 가중치·기존 판정 head; DeltaNet은 원문만 혼합 |
-| post-Transformer memory | [공개 BDH 기반 실제 retrofit](../project/bdh-memory.md) | native 상위8층을 positive feature·연상 행렬·coactivation3회로 교체 | 앞16층·코드 head 재사용; 비공개 BDH-CQ의 재현은 아님 |
+| 양방향 적응 | [LLM2Vec](../papers/llm2vec.md), [dQwen3.5](../papers/dqwen35.md) | Attention visibility 및 적응 목표 | 사전학습 가중치; hybrid의 causal 순환 계층은 별도 문제. 우리: `noncausal`로 구현. 원래 Qwen 비교에서 정답률 검정은 미통과, 지금 최선 레시피에 포함([구조 비교](../project/from-base-structures.md)) |
+| 중간 잠재 작업공간 | [latent reasoning 대조](../papers/latent-workspaces.md), [우리 구현](../project/hypothesis-workspace.md) | 중간에 선택지 상태 추가, 상위 full attention에서 원문·가설 공동 갱신 | native24층 가중치·기존 판정 head; DeltaNet은 원문만 혼합. 10-19 시험, 채택 안 함 |
+| post-Transformer memory | [공개 BDH 기반 실제 retrofit](../project/bdh-memory.md) | native 상위8층을 positive feature·연상 행렬·coactivation3회로 교체 | 앞16층·코드 head 재사용; 비공개 BDH-CQ의 재현은 아님. 10-19~20 시험, native 대비 −0.60%p로 채택 안 함 |
 
 새로운 판단 아키텍처는 확인했다. 하지만 이번 조사에서는 Transformer·DeltaNet의 기본 계산 블록을 처음부터 대체하는 Decision 전용 Backbone을 검증한 근거까지 확보하지 않았다. 문헌 전체에 그런 연구가 없다는 결론은 아니다.
+
+우리 실험에서는 구조보다 "어디를 얼마나 학습하나"가 더 컸다([인사이트](../project/insights.md)).
 
 ## 후보를 비교하는 네 방식
 

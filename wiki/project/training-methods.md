@@ -4,7 +4,7 @@
 
 **상태: 완료(2026-10-27 14:01 ~ 10-28 04:33 KST).** 판정 규칙은 첫 fit 전에 `plan.json`으로 고정했다. 판정은 `runs/from-base/methods-v1/report.json`이다.
 
-**한 줄 결론:** DeltaNet token mixer를 얼린 frozen이 거르기 6개 지표를 모두 통과했다. 6.55만 행 확인 실험으로 넘어간다. brier와 hoptrain은 noncausal과 차이가 없었다.
+**한 줄 결론:** DeltaNet token mixer를 얼린 frozen이 거르기 6개 지표를 모두 통과했다. brier와 hoptrain은 noncausal과 차이가 없었다. 이후 10-29 [LoRA 위치 비교](lora-placement.md)에서 MLP를 포함한 LoRA r16이 frozen을 짧은 문항과 장문 모두 넘었다. 그래서 6.55만 행 확인 후보는 "전체(또는 MLP) LoRA 대 frozen"으로 바뀌었다(아직 안 돌림).
 
 ## 결과: 5 seed 평균
 
@@ -50,8 +50,8 @@ seed별 selection 정답률(131/151/173/191/211)은 다음과 같다.
   - 지표 6개(NLL·정답률·Brier × selection·장문)가 모두 같은 방향이다.
   - 장문의 이득은 주로 JEVal 장문(정답률 +6.5점)에서 나왔다. BABILong과 QASPER는 차이가 작다.
   - 학습 메모리도 16.7GB에서 14.0GB로 줄었다.
-  - LoRA placement 논문의 "Qwen3.5-0.8B에서 DeltaNet을 학습시키면 해롭다"와 같은 방향이다.
-  - 다만 1.6만 행에서의 결과다. 이득이 "DeltaNet을 건드리면 해롭다"에서 오는지, "적은 데이터에서 파라미터를 줄이면 과적합이 준다"에서 오는지는 아직 구분하지 못한다. 그래서 6.55만 행 확인이 필요하다.
+  - LoRA placement 논문의 "Qwen3.5-0.8B에서 DeltaNet을 학습시키면 해롭다"와 같은 방향으로 보였다.
+  - 하지만 10-29 [위치 비교](lora-placement.md)에서 DeltaNet에 붙인 LoRA는 해롭지 않았다. 그러니 이득은 "DeltaNet을 건드리면 안 된다"보다 "full FT가 너무 많이 바꾼다"에 가깝다.
 - **hoptrain−causal은 확인됐지만, hop 학습의 효과가 아니다.**
   - hoptrain은 noncausal과 차이가 없다(selection −0.006).
   - 사전 등록 검정이 아닌 noncausal−causal selection NLL도 −0.032 [−0.054, −0.005], 4/5 seed다.
@@ -60,9 +60,10 @@ seed별 selection 정답률(131/151/173/191/211)은 다음과 같다.
 - **noncausal−causal 장문 NLL은 재현되지 않았다.** seed별 차이가 −0.156 ~ +0.150으로 흔들렸다. 이전 실험의 장문 신호는 seed 운이었을 가능성이 크다. 장문 평가(특히 JEVal 장문)는 seed마다 크게 흔들린다. 예를 들어 noncausal의 JEVal 장문 정답률은 seed에 따라 55~71%다.
 - **brier는 효과가 없었다.** 확률 보정 지표(Brier)도 noncausal과 차이가 없었다.
 
-## 다음
+## 이후 (10-31 기준)
 
-- **frozen 6.55만 행 확인 실험**(사전 등록된 다음 단계): frozen 대 noncausal, 원래 Qwen에서 출발한다.
+- 아래 "frozen 대 noncausal 6.55만 행 확인"은 돌리지 않았다. 10-29에 LoRA가 frozen을 넘어서, 남은 후보는 "전체(또는 MLP) LoRA 대 frozen"이다. d3-lite 맞대결과 함께 사용자 결정 대기다.
+- 10-28 당시 계획(기록): **frozen 6.55만 행 확인 실험**, frozen 대 noncausal, 원래 Qwen에서 출발한다.
   - 거르기와 같은 평가셋을 쓰고, 새 seed를 쓴다.
   - fit 하나에 약 1시간 40분이 든다. 학습이 약 1.5시간이고(이전 6.55만 행 실험에서 noncausal 1.53시간), 평가가 약 8분이다.
   - seed 3개면 6 fit, 약 10시간이다. seed 5개면 10 fit, 약 17시간이다.
