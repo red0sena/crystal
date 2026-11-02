@@ -4,6 +4,75 @@
 
 **목표(2026-10-16 설정):** 우리 Qwen3.5-0.8B 모델로 [Jev Decision Index](https://huggingface.co/spaces/multimodalart/jev-decision-index)에서 `vllm-sr/d3-lite`(0.8B)를 넘는다. 아래 수치는 2026-10-15 생성된 보드(Decision Index 0.3.2) 데이터 파일 `data/index.json`, `own.json`, `v03.json`, `methodology.json`(보드 Space의 파일이고 이 저장소에는 없다)을 내려받아 확인한 값이다. 보드는 계속 바뀐다.
 
+## 갱신(2026-11-02): 보드 0.4.1, 공개 점수는 Full에서 빠졌다
+
+Space revision `c130faf`의 `data/index.json`(10-29 생성)과 `methodology.json`을 내려받아 확인했다.
+
+**산식 변경**
+- **v0.4(10-19):** Full = 0.60 × 비공개 same-skills + 0.40 × 비공개 new-domains다. 둘 다 조정하지 않은 stock 모델로 공개 척도에 맞춘다.
+  - **공개 벤치마크는 계속 돌려 보여 주지만 Full에는 들어가지 않는다.** 순위는 "아무도 학습할 수 없는 시험"으로만 정한다.
+  - 1등과 0.9점 안이면 같은 순위다.
+- **v0.4.1(10-21):** 비공개 new-domains 과제를 넓히고 바꿨다. 더 어려워져서 new 점수가 전체적으로 낮아졌다.
+- 아래 "점수 구조"와 d3-lite 32.33은 0.3.2 기준이라 지금과 다르다.
+
+**1B 이하 Full 순위**(served parameters 기준)
+
+| 모델 | 바탕 | 방식 | Full | 공개 | same | new |
+|---|---|---|---:|---:|---:|---:|
+| GLiClass v4 edge (0.4B) | DeBERTa-v3-large | encoder | **31.21** | 47.49 | **42.16** | 10.53 |
+| OneJev1.6-0.8B | Qwen3.5-0.8B | 생성형 | 29.58 | 48.76 | 40.49 | 9.28 |
+| crystal-0.8b | Qwen3.5-0.8B | 생성형 | 29.37 | 42.79 | 39.31 | 10.29 |
+| vLLM-SR vela3-fast (0.4B) | UltraBERT-380M | encoder | 29.27 | 50.36 | 40.22 | 8.96 |
+| Crivo-1B | ettin-reranker-1b | encoder | 29.25 | 47.77 | 38.75 | 10.75 |
+| StartLux-Decision v1.1 | Qwen3.5-0.8B | 생성형 | 28.88 | **53.79** | 41.29 | 6.86 |
+| Saina Helm 2 Omni | Qwen3.5-0.8B | 생성형 | 26.54 | 37.44 | 35.21 | 9.59 |
+| **vLLM-SR d3-lite** | Qwen3.5-0.8B | 생성형 | **26.16** | 36.93 | 34.81 | 9.33 |
+| Amber 0.4B | ModernBERT-large | encoder | 26.00 | 49.74 | 35.73 | 7.86 |
+| jiwo 0.8B v2 | Qwen3.5-0.8B | 생성형 | 25.81 | 29.58 | 30.66 | **13.71** |
+
+**encoder와 생성형 비교**
+- 1B 이하 56개 중 encoder가 29개(GLi 계열 3개 별도), 생성형이 24개다.
+- 상위 5개 평균은 encoder가 Full 27.9, 생성형이 28.1로 같다. 공개 점수만 encoder가 높다(47.0 대 43.9).
+- d3-lite를 만든 vLLM-SR도 Vela 3.0을 encoder(UltraBERT)로 냈다.
+
+**우리 모델: crystal-0.8b = wise80 g6+g7e2**
+- 보드의 `crystal-0.8b`(PR 278, [HF `Kyunghwan-kim/crystal-0.8b`](https://huggingface.co/Kyunghwan-kim/crystal-0.8b))가 wise80이다.
+  - `crystal_config.json`: base + 0.8 × (0.5 × (g6 − base) + 0.5 × (g7 epoch2 − base)), 추가 학습 없음.
+- **공식 Full은 29.37로 1B 이하 3위이고, d3-lite(26.16)보다 3.2점 높다.** 공개 42.79, same 39.31, new 10.29다.
+
+**GLiClass v4 edge와의 차이 분해**(보드 `index.json`의 벤치마크별 값)
+- Full 차이 1.84의 거의 전부가 same-skills에서 나온다.
+  - same: S 41.59 대 38.72. 0.6 × 2.87 = 1.72점이다.
+  - new: O 15.64 대 15.35로 거의 같다. 0.4 × 0.29 = 0.12점이다.
+- 벤치마크별 `combined`를 영역·gold 가중치로 합치면 보드 S와 0.5~0.7점 안으로 맞는다. 그래서 이 값을 벤치마크별 비공개 same 점수로 봤다(필드 정의는 문서에 없다).
+- S 차이 2.87을 벤치마크별로 나누면 다음과 같다(합 2.88).
+
+| GLiClass가 앞선 곳 | S 기여 | 우리 / GLiClass 비공개 | | 우리가 앞선 곳 | S 기여 | 우리 / GLiClass 비공개 |
+|---|---:|---|---|---|---:|---|
+| PhishNChips | +1.88 | 0.0 / 62.0 | | ACOS | −0.88 | 49.7 / 21.0 |
+| WinoGrande | +0.96 | 15.9 / 49.2 | | GSM8K | −0.71 | 31.9 / 2.4 |
+| iSarcasmEval | +0.95 | 0.0 / 30.8 | | BFCL | −0.61 | 85.8 / 70.8 |
+| HellaSwag | +0.51 | 47.8 / 61.7 | | When2Call | −0.60 | 61.1 / 43.3 |
+| NLI4CT | +0.37 | 52.3 / 64.2 | | CRUXEval | −0.35 | 24.4 / 9.8 |
+| POP909 | +0.36 | 0.0 / 17.8 | | SATA-Bench | −0.26 | 21.0 / 10.2 |
+
+**세 셋이 전체 차이보다 크다(3.79).** 우리 모델이 한쪽 답으로 쏠린다.
+- **PhishNChips:**
+  - 공개 정답률 0.52, 비공개 0.50으로 우연 수준이다. d3-lite도 비공개 0.75다.
+  - 우리 공개 샘플 40행에서 판정 질문은 80/80 "legitimate", 행동 질문은 40/40 "click"이었다. noul P(phishing)은 모두 0.5 아래였다. **한 번도 phishing이라고 하지 않았다.**
+  - 보드 문항은 회사 메일처럼 다듬어진 본문에 `link_url`이 붙은 형식이다.
+  - 우리 학습 출처 `phishing`(aura corpus, 사람 라벨)은 텍스트 dev 정답률 1.0이다. 겉모양 단서로 풀리는 쉬운 셋으로 보인다(미확인).
+- **iSarcasm:**
+  - 비꼼 클래스 F1이 0.238로, 우연(0.223)과 같다.
+  - 공개 샘플에서 yes는 116개 중 24개뿐이었다.
+- **WinoGrande:** 공개 정답률 0.69, 비공개 skill 15.9다. 텍스트 dev(winogrande-train)는 0.96이라 차이가 크다.
+- **GLiClass 설계와의 관계:** 그쪽은 양성 0.75 / 음성 0.25로 가중한 BCE, recall·F1 보상 RL, 쌍별 bias 보정을 쓴다. 모두 "음성 쪽으로 쏠림"을 막는 장치다([GLiClass](../papers/gliclass.md)).
+- **우리에게 남은 여지:** PhishNChips만 d3-lite의 비공개 수준(약 50)으로 올려도 S +1.5, 즉 Full +0.9다.
+
+**목표에 대한 뜻**
+- d3-lite는 지금 1B 이하 8위(26.16)다. 1등은 GLiClass(31.21)다. **wise80(crystal-0.8b)은 공식 보드에서 이미 d3-lite를 넘었다.**
+- 공개 train split 학습은 Full에 직접 이득이 없다. 비공개 same-skills로 옮겨 가는 만큼만 의미가 있다. 그래서 대리 지표는 공개 샘플보다 JEVal same·new와 fresh가 맞다.
+
 ## 점수 구조
 
 Full = 20% 공개 벤치마크 + 50% 비공개 same-skills + 30% 비공개 new-domains. 비공개 두 파트는 21개 stock 모델로 공개 척도에 맞춰진다(equating). `own.json`의 계수로 역산하면 다음과 같다. Jev 1.13의 공개 수치로 검산했다.

@@ -2,18 +2,30 @@
 
 생성 없이 가변 선택지의 점수·확률을 반환하는 모델을 만들기 위한 논문과 설계 기록이다. 우리 Qwen3.5-0.8B 실험과 연결해 읽을 수 있다.
 
-**조사 기준일: 2026-10-13(망각·편향 문헌은 2026-10-17, 학습 레시피·loss 문헌은 2026-10-26~30 추가). v3 기록은 2026-10-16부터, 마지막 갱신은 2026-10-31.** alphaXiv에서 논문을 검색하고 PDF 본문을 확인한 내용을 정리했다. 2026년 연구는 공개 프리프린트 결과로 취급하며 학회 심사·독립 재현을 확인했다고 주장하지 않는다. 자료에 등장하는 정확도·속도는 해당 논문 조건의 결과이며 우리 모델 성능이 아니다.
+**조사 기준일: 2026-10-13(망각·편향 문헌은 2026-10-17, 학습 레시피·loss 문헌은 2026-10-26~30 추가). v3 기록은 2026-10-16부터, 마지막 갱신은 2026-11-02.** alphaXiv에서 논문을 검색하고 PDF 본문을 확인한 내용을 정리했다. 2026년 연구는 공개 프리프린트 결과로 취급하며 학회 심사·독립 재현을 확인했다고 주장하지 않는다. 자료에 등장하는 정확도·속도는 해당 논문 조건의 결과이며 우리 모델 성능이 아니다.
 
 ## v3: Jev Decision Index 도전 (2026-10-16~)
 
-목표는 우리 Qwen3.5-0.8B로 [Jev Decision Index](https://huggingface.co/spaces/multimodalart/jev-decision-index)에서 `vllm-sr/d3-lite`(0.8B, Full 32.33)를 넘는 것이다.
+목표는 우리 Qwen3.5-0.8B로 [Jev Decision Index](https://huggingface.co/spaces/multimodalart/jev-decision-index)에서 `vllm-sr/d3-lite`(0.8B, Full 32.33)를 넘는 것이다. **갱신(11-02):** 보드 0.4(10-19)부터 Full은 비공개 same 60% + new 40%이고, 공개 점수는 빠졌다. 지금 d3-lite Full은 26.16(1B 이하 8위)이고, 1등은 GLiClass v4 edge(DeBERTa encoder, 31.21)다([목표와 규칙](project/jev-index.md)). **우리 wise80은 `crystal-0.8b`로 올라가 Full 29.37(1B 이하 3위)로 d3-lite를 넘었다.** GLiClass와의 차이는 거의 PhishNChips, WinoGrande, iSarcasm 세 셋에서 나온다.
 
-**지금 상태(2026-10-31)**
-- **대리 평가에서는 d3-lite와 같거나 높은 모델이 이미 있다.** 10-21에 Hugging Face에 올라간 g6 + g7 섞기(wise80)가 d3-lite와 같은 문항에서 공개 샘플 44.95 대 39.65, JEVal dev 0.489 대 0.482, fresh 0.541 대 0.509였다(아래 33번). 이 위키는 10-31에야 기록했다. 후보 70여 개를 같은 셋으로 골랐고 구간과 최종 확인(JEVal restricted)은 아직 없다.
-- 위키에서 따로 확인한 최선은 g6 67% + g3 33% 섞기다(새 1,847문항에서 g4b 대비 +6.58%p, 아래 11번).
-- 10-25부터는 학습 전 원래 Qwen에서 출발해 구조와 학습 방식을 같은 데이터로 비교한다(27~32번). 구조를 바꾼 것은 모두 원본을 넘지 못했다.
-- 지금까지 가장 좋은 레시피는 **양방향 + MLP를 포함한 전체 LoRA r16 + CE**다. 1.6만 행에서 짧은 문항 69.4%, 장문 63.1%로 양방향 full FT(66.6%, 58.3%)보다 높다. loss를 바꿔도 CE를 이긴 것은 없었다.
-- 사용자 결정 대기: g6 + g7 섞기 후보 하나를 고정해 구간 계산과 JEVal restricted로 최종 확인, 6.55만 행 확인(전체 LoRA 대 DeltaNet 얼리기), attention rank 160의 rank 대 scale 구분, self-EMA teacher 허용 여부.
+**지금까지의 성과(2026-11-02)**
+
+| 항목 | 우리 | d3-lite | 비고 |
+|---|---:|---:|---|
+| 보드 Full(비공개 same 60% + new 40%) | **29.37** (`crystal-0.8b` = wise80, 1B 이하 3위) | 26.16 | 1위 GLiClass v4 edge 31.21 |
+| 보드 공개 vision(10개, 키트 runner) | 49.05(텍스트만) → **49.9~51.0**(이미지 LoRA, 겹침 뺌) | 47.19 | 이미지 LoRA 대비 d3-lite +2.7~3.8, 구간이 0을 벗어난다 |
+| 처음 보는 vision 벤치마크 17개 | 50.91(텍스트만) → 52.4 | 51.86 | d3-lite와 같다(구간이 0을 포함한다) |
+
+- **텍스트(목표 지표): d3-lite를 넘었다.** g6과 g7 2에폭을 섞고 원본 쪽으로 당긴 wise80이 보드에 `crystal-0.8b`로 올라가 Full 29.37이 됐다. GLiClass와의 차이는 거의 PhishNChips, WinoGrande, iSarcasm에서 나온다([목표와 규칙](project/jev-index.md)).
+- **이미지: wise80에 ViT를 얼린 LoRA를 얹었다(37번).**
+  - 겹침을 빼기 전의 58.15는 보드 셋의 train split과 원본에서 온 점수라 성과로 쓰지 않는다.
+  - 평가와 겹치는 출처를 뺀 학습 세 번이 보드 49.9~51.0, 시험셋 51.9~52.4였다. wise80 대비로는 보드 +0.8~+1.9, 시험셋 +1.0~+1.5다.
+  - 개수·웹 보강과 분야 21개 추가를 해 봤지만, 처음 보는 벤치마크 전체는 오르지 않았다. 텍스트 dev는 분야를 넓힌 학습에서 0.848로 거의 지켰다.
+- **배운 것**([인사이트](project/insights.md)):
+  - 학습한 분포에서는 이미지 dev가 +7.4점인데, 처음 보는 분포에서는 정답률이 +0.5점이다. 시험셋의 변화는 seed 잡음과 크기가 비슷하다.
+  - 텍스트 학습이 이미지 시험셋을 +10점 올린 것은 고르는 형식 덕이다. 0.8B에서는 텍스트든 이미지든 과제별 몫이 새 분야로 잘 안 옮겨 간다. 보드의 0.8B 미세조정 19개에서 same과 new의 상관은 0.09다.
+  - 구조 변경은 모두 원본을 넘지 못했다. 가장 좋은 레시피는 양방향 + MLP 포함 LoRA r16 + CE다(27~32번).
+- **남은 일:** 이미지 LoRA 모델을 vision 트랙 후보로 둘지 정하기, PhishNChips 음성 클래스 붕괴 분석(GLiClass와의 차이), seed 반복으로 이미지 학습 차이 확인.
 
 0. **[쉬운 정리: 지금까지와 앞으로](project/v3-easy-guide.md)** (2026-10-25 작성, 10-31 갱신): 한 일, 안 된 이유, 앞으로 할 수 있는 것(추천 순서 포함)을 쉬운 말로 정리했다. 처음엔 이것부터 읽는다.
    - **[지금까지의 인사이트](project/insights.md)** (2026-10-31): 구조, 학습 방식, 평가에서 배운 것과 열린 질문을 한 페이지로 모았다.
@@ -29,6 +41,7 @@
    - 원래 Qwen에서 출발한 비교(10-25~31): 구조 비교, 학습 방식 거르기, LoRA 위치, loss 비교(아래 27~32번).
 3. [전략](designs/beat-d3-lite.md): 수단의 우선순위와 상태, 지금까지 알게 된 것, 다음 단계(10-31 갱신).
 4. [학습 데이터 출처](designs/phase2-data-sources.md): 108개 출처 194만 문항(v3-gold6이 104개 사용). 정답 출처(사람/프로그램/모델), 학습 셋 사용량, 라이선스, 오염 함정을 정리했다.
+   - [이미지 학습 데이터 출처 후보](designs/vision-data-sources.md) (10-31, 조사만): 보드 vision 능력 10개별 후보 약 40개(Cauldron, GQA, SAT, ImageCoDe 등), 정답·라이선스·중복 위험, 권장 규모(풀 30만~35만, 거르기 1.6만, 본 학습 6.5만).
 5. [참고 문헌과 데이터](resources/references.md): v3에서 참고한 논문과 데이터셋, 확인 수준(카드/초록/검색/인용만)과 쓰인 곳.
 6. [Pointer head 소규모 비교](project/pointer-pilot.md): v3 backbone을 유지하는 코드 head/Pointer 학습·평가 실험과 실행 방법.
 7. [논문 기반 구조 검색](project/architecture-search.md): 99개 설정·seed 조합, 별도 confirmation·JEVal 검증. 이번 범위에서 개선은 확인되지 않았다.
@@ -58,6 +71,16 @@
 31. **[LoRA 위치 비교](project/lora-placement.md)** (완료 10-29: MLP를 포함한 LoRA r16이 DeltaNet 얼리기를 짧은 문항과 장문 둘 다 이김. attention만은 짧은 문항이 가장 약하고, attention rank 160은 장문이 full FT 수준으로 떨어짐): 양방향 구조에서 LoRA를 DeltaNet / MLP / attention+MLP / 전체에 붙이고, 전체와 파라미터 수를 맞춘 attention rank 160을 대조군으로 넣어 '위치 대 양'을 갈랐다. 학습 전 Qwen 점수도 함께 쟀다(짧은 문항 47.9%, 장문 49.1%).
 32. **[Loss 비교](project/loss-screen.md)** (완료 10-31: 사전 등록 검정 16개 중 CE를 이긴 것이 없다. focal은 짧은 문항 정답률 −1.5점으로 나쁨. 두 순서 + 일관성 벌점(consist)은 보고 비교에서 짧은 문항 NLL −0.023(4/5 seed)이지만 계산량이 2배라 확인이 필요하다. MNTP는 효과 없음): 전체 LoRA r16(양방향)을 그대로 두고 loss만 바꿨다. label smoothing, focal, CE + Brier, 두 입력 CE, 순서 일관성(Jensen-Shannon), 가린 토큰 맞히기(MNTP) 보조 손실을 CE와 비교했다.
 33. **[g7과 g6·g7 섞기: Hugging Face에만 있던 결과](project/hub-g7-merges.md)** (10-19~21 학습·평가, 10-31 기록): v3-gold7(100만 행, 113개 출처) 3 epoch 학습한 g7과 g6·g7 섞기 70여 개를 공개 샘플, JEVal dev, fresh에서 d3-lite와 같은 문항으로 채점한 결과다. wise80 g6+g7e2가 세 평가 모두 d3-lite와 같거나 높았다. 선택에 쓴 셋이라 확인이 필요하다.
+34. **[공개 Vision 보드 기준점](project/vision-baseline.md)** (10-31, 이미지 학습 전): Winoground를 뺀 10개 벤치마크(11,410행)에서 원래 Qwen과 wise80을 쟀다. 텍스트로만 학습한 wise80이 49.05로 원래 Qwen 32.66보다 16.4점 높다(95% [+14.5, +18.2]). 비전 텐서는 원래 Qwen과 같다. 약 4점은 원래 Qwen의 글자 편향이 사라진 몫이다. 학습 효과와 양방향 attention 효과는 아직 가르지 못했다.
+35. **[다른 벤치마크 vision 시험셋](project/vision-heldout.md)** (10-31): 학습 출처와 보드 셋에 없는 벤치마크 17개에서 4,772문항을 뽑았다. 이미지 학습 전 원래 Qwen 40.40, wise80 50.91(+10.51, 95% [+8.0, +12.6]). 이미지 학습 후보는 이것으로 고르고 보드 셋은 마지막에 쓴다.
+36. **[이미지 LoRA 학습 속도](project/vision-train-speed.md)** (11-01): 이미지 학습 경로 `vision_train.py`를 새로 만들었다. 이미지 행 packing(M-RoPE), ViT varlen, 동결 ViT `no_grad`, 데이터 worker, 8k 토큰 microbatch(체크포인팅 없음)를 넣었다. transformers 기본 경로보다 3.4배 빠르다(step 4.66s → 1.30s, 3090). 기본 경로와 BF16 수준으로 일치하고, 행 사이 누출이 0이다. ViT LoRA는 1.7배 느리다(2.23s). 1.6만 행 거르기는 약 22분이다.
+37. **[이미지 학습 셋과 첫 LoRA 학습](project/vision-train-screen.md)** (11-01~02): 받은 출처 58개를 보드와 같은 객관식으로 바꾸고(14.3만 문항, 평가 이미지와 겹치는 0.9% 제거), 분야 15개에 똑같이 나눠 텍스트를 1/3 섞었다. 16k 거르기에서 ViT 동결이 ViT LoRA를 이겼다(시험셋 +2.56). 65k 본 학습(ViT 동결)으로 보드 공개 vision 지수가 49.05 → 58.15(+9.1, 95% [+7.7, +10.5])로 올랐다. 보드 train split이 없는 6개만 봐도 +4.6이고 BLINK가 +0.14다. 다른 벤치마크 시험셋은 +1.1(구간이 0을 포함)이고, 텍스트 dev는 −0.020이다.
+   - **d3-lite 실측(11-02):** 같은 행으로 재니 보드 공개 vision은 d3-lite 47.19(보드 공식 47.9와 맞음) 대 본 학습 58.15(+11.0, 95% [+9.3, +12.5])다. 다른 벤치마크 시험셋은 51.86 대 51.97로 같다.
+   - **겹침을 뺀 재학습(11-02):** 평가 벤치마크의 train split과 원본 12개 출처를 빼고 다시 학습하니 보드 공개 vision이 50.12다. wise80보다 +1.07(95% [−0.20, +2.35]), d3-lite보다 +2.94다. 본 학습의 +9.1은 대부분 겹친 출처에서 왔다. 시험셋(51.89)과 텍스트 dev는 그대로다.
+   - **개수·웹 페이지 보강(11-02):** 겹침 뺀 학습에 개수 크롭(1~12개)과 SeeClick 웹 페이지 출처를 넣었다. CountBench 5~7개(+13.1)와 VisualWebBench action_prediction(+13.0)은 돌아왔지만, 옆 문항(CountBench 8~10개, element_ground)이 내려 전체는 거의 그대로다. 보드 50.96(+0.83, 구간이 0을 포함), wise80 대비 +1.91 [+0.72, +3.20], 시험셋 52.44, 텍스트 dev 0.839다.
+   - **이득이 작은 원인(11-02):** 학습한 분포의 dev는 +7.4점인데 시험셋 정답률은 +0.5점이다. 시험셋에서는 확신 없던 문항이 seed 잡음과 비슷한 크기로 흔들릴 뿐이다(얻은 301, 잃은 278). 확신하고 틀린 오답 30%는 거의 안 고쳐진다(6%, dev에서는 38%). 데이터를 4배로 늘려도 시험셋은 그대로였다.
+   - **분야 넓히기(11-02):** 새 분야(질감, 표지판, 기종, 위성, 의료, 글자 읽기, 거리·3D, 위치)와 새 형식(여러 장 고르기, 바뀐 점, 개수 비교, 다음 화면) 출처 21개를 넣고 출처마다 같은 몫으로 섞었다. 시험셋 52.40(보강 대비 −0.03), 보드 49.89(−1.07, 구간 0 근처)로 전체는 그대로다. 텍스트 dev는 0.848로 돌아왔고, train split 없는 6개는 wise80 대비 +2.18 [+0.38, +4.00]이다. VQA-RAD는 MathVista 시험 이미지와 겹쳐 뺐다.
+   - **텍스트와 비교(11-02):** 텍스트도 새 분야로는 잘 안 옮겨 간다. 보드의 0.8B 미세조정 19개에서 same-skills와 new-domains의 상관은 0.09다. 텍스트 학습이 이미지 시험셋을 +10.4 올린 것은 고르는 형식(보기 A 편향 제거 약 3점과 나머지)이라, 모든 문항에 쓰인다. 이미지 학습에는 과제별 몫만 남았다.
 
 ## 처음 읽을 문서
 
@@ -85,6 +108,7 @@
 | Encoder 전환과 주변 연구 | [LLM2Vec](papers/llm2vec.md), [dQwen3.5](papers/dqwen35.md) |
 | 통합 분류 데이터·점수 손실 | [ConEntail](papers/conentail.md), [RankT5](papers/rankt5.md) |
 | CE 대신 다른 loss를 쓸지 | [CE가 정말 최선인가: loss 문헌 검토](papers/loss-alternatives.md), [판정 모델 학습 레시피](papers/decision-training-recipes.md) |
+| 이미지 능력을 어떻게 얹을지(텍스트는 그대로, 이미지는 LoRA) | [모달리티별 학습 방식 문헌 검토](papers/vlm-modality-finetuning.md), [Vision 기준점](project/vision-baseline.md) |
 
 ## 전체 논문 색인
 
@@ -123,6 +147,7 @@
 | [BDH·BDH-CQ, LoLCATs·Mamba in the Llama](papers/latent-workspaces.md) | 2024–2026 | 연상 메모리·공개 구현 한계·구조 전환 정렬 |
 | [판정 모델 학습 레시피 묶음: LoRA placement·NDM·DKnown-Jev·Jeff·LLM-as-Jev·Signal and Noise](papers/decision-training-recipes.md) | 2025–2026 | Qwen3.5 DeltaNet 학습 위치 / Brier 손실 / 학습·평가 규모 / 연속 지표 |
 | [CE가 정말 최선인가: Beyond Log Likelihood·Proper scoring rules·CV losses·DFT·GenCE·PA-GRPO](papers/loss-alternatives.md) | 2023–2026 | loss 선택 조건 / 사전 지식 강도 / 순서 일관성 |
+| [모달리티별 학습 방식: Phi-4-multimodal·Llama 3.2·CogVLM·Partial LoRA·Image-LoRA·Idefics2·X-Reasoner·Prismatic·Cambrian](papers/vlm-modality-finetuning.md) | 2023–2026 | 언어 모델 동결 + 이미지 LoRA / ViT 학습 여부 / 텍스트→이미지 전이 / 망각 |
 
 ## 구현 자료와 기존 실험
 

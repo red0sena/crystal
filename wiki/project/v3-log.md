@@ -974,3 +974,148 @@ g3의 격차 분석(같은 역량에서 덜 일반화, 빈 역량)과 fresh-v1 �
 - 평균이 가장 좋은 팔은 consist다. selection 0.727(69.9%), 장문 0.937(63.8%)이고, all은 0.750(69.4%), 0.952(63.1%)다.
 - 학습 성분: 두 순서의 Jensen-Shannon은 twoview 0.010, consist 0.008이다. CE가 이미 선택지 순서를 섞어 학습하므로 일관성 벌점이 할 일이 거의 없었다. MNTP loss는 1.88까지 내렸지만 답에는 옮겨지지 않았다.
 - 주의: 두 번 forward하는 팔은 학습 시간이 2배(25분 → 50분)다. consist의 이득이 계산량 때문인지 확인하려면 같은 계산량의 대조군이 필요하다.
+
+### 2026-10-31 — 공개 Vision 보드 기준점 ([상세](vision-baseline.md))
+
+- 사용자 요청: 이미지 학습 전에 원래 Qwen과 wise80을 공개 vision 셋에서 잰다. RTX 3090에서 이미지 LoRA 학습이 들어가는지도 먼저 확인했다(4장 × 1.6MP, ViT LoRA 포함 최대 4.0GB, 항목당 2.2초).
+- 셋: 키트 `suite rebuild --vision`(commit `f5a6e4f`). Winoground는 gated라 받지 못했다(계정 약관 미동의). 나머지 10개 셋, 11,410행은 고정 해시와 맞았다. Mind2Web은 글꼴 차이로 이미지 바이트만 다르다.
+- 엔진: `qwen_decision/v3/vision_engine.py`(chat = 보드 `vllm-vl` 기준 경로를 transformers로, decide = v3 형식), 실행 스크립트 `qwen_decision/v3/vision_baseline.py`. 실행당 약 29분, 네 실행 모두 오류 0.
+- 결과("있는 것만" 지수): 원래 Qwen chat 32.66, decide 29.76 / wise80 decide 49.05, chat 49.14.
+  - wise80 decide − 원래 Qwen chat: +16.39 [+14.49, +18.24]. 구간은 벤치마크 안에서 행을 다시 뽑는 bootstrap이다.
+  - 위치별 평균 logit을 빼는 분석용 보정 후 36.53 대 50.14다. 차이 중 약 4점은 원래 Qwen의 글자 편향(BLINK에서 87%를 "A")이다.
+- 확인: wise80의 비전 텐서 153개는 원래 Qwen과 원소 단위로 같다. 차이는 언어 모델과 attention 방향에서 나온다. 둘은 아직 가르지 못했다.
+- 운영: 빌드 완료를 `pgrep -f`로 기다린 루프가 자기 명령줄과 일치해 끝나지 않았다(10-29와 같은 실수). 멈추고 기다림 없이 다시 시작했다.
+
+### 2026-10-31 — 이미지 학습 데이터 출처 조사 ([상세](../designs/vision-data-sources.md))
+
+- 사용자 요청: 이미지 데이터를 모으고 적당한 문항 수를 정한다. 이번에는 조사만 했고 내려받지 않았다.
+- HF API로 후보 약 40개의 split, 행 수, 크기, 라이선스 태그를 확인했다. The Cauldron(50개 셋 train, 169GB, 이미지 188만 장)이 중심이고, GQA balanced(질문 94.3만), SAT(17.2만), VSR, ImageCoDe, RICO-ScreenQA, 영수증 KIE 셋을 더했다.
+- 뺀 것: 모델이 만든 라벨(PixMo-Count train은 검출기, ChartQA machine 20,901개는 T5, GPT 지시 데이터), 평가 split 전부.
+- 중복 위험: CV-Bench 이미지가 COCO 805, ADE20K 633, Omni3D 600장이다. GQA, VSR, TallyQA, COCO 캡션이 같은 이미지 풀을 쓰므로 이미지 해시와 pHash로 뺀다.
+- 권장 규모: 출처당 상한 약 1만으로 풀 30만~35만, 거르기 16,384행, 본 학습 65,536행. 텍스트 판정 데이터는 25~50% 섞는다.
+- 결정 대기: 보드 벤치마크 train split(InfographicVQA, CORD, FUNSD, Mind2Web, Hateful Memes) 사용 여부, 비상업 라이선스 출처를 비교 실험에 쓸지.
+
+### 2026-10-31 — 약한 vision 분야 보강 출처, 이미지 학습의 텍스트 영향 조사
+
+- 사용자 요청: 부족한 분야를 더 채우고, 텍스트 약점이 이미지 학습으로 개선될지 본다.
+- 보강 후보 14개를 HF API로 확인해 [데이터 출처](../designs/vision-data-sources.md)에 더했다. 공간·깊이(FSC-147, SPAR-7M, MegaDepth, Hypersim, CO3D, nuScenes-QA), 웹·앱(OS-Atlas, AITW, AndroidControl, WebLINX), 밈(Memotion, 텍스트 혐오 gold를 사진에 얹기), 기하(Geometry3K, GeoQA+)다.
+- 텍스트 약점(공개 샘플, 벤치마크당 40문항이라 잡음이 크다): d3-lite보다 낮은 것은 GSM8K 0.338 대 0.475, VAST 0.434 대 0.669, HellaSwag 0.750 대 0.900, CLadder 0.625 대 0.750, NLI4CT 0.665 대 0.747이다. HLE, POP909-CL, ChessBench는 둘 다 거의 우연 수준이다. 출처: 모델 저장소 revision `a93659f`의 `runs/board/score-*/benchmark-summary.json`.
+- 문헌([모달리티별 학습 방식](../papers/vlm-modality-finetuning.md) 7절): 이미지 학습은 CommonsenseQA를 올렸지만(LLaVA-1.6-Mistral +5.3) GSM8K(−6.7)와 HellaSwag(−6.3)는 내렸다. 우리 약점(수학, 문장 이어 쓰기, 입장, 의료 NLI, 인과)은 이미지로 오를 쪽이 아니다.
+
+### 2026-10-31 — 이미지 데이터 받기 시작, 다른 벤치마크 시험셋 ([시험셋](vision-heldout.md), [출처](../designs/vision-data-sources.md))
+
+- 사용자 요청: 보강한 출처까지 다 받고, 시험셋은 아예 다른 벤치마크에서 뽑아 평가한다.
+- `qwen_decision/v3/vision_sources.py`: 학습 출처 31개와 시험 벤치마크 17개를 등록하고 받는다. 받은 revision과 크기는 `data/raw/vision-manifest.jsonl`에 남는다. 보드 train split은 포함했고(제출 때 공개), 비상업 출처는 비교 실험에만 쓴다.
+  - 너무 큰 저장소는 일부만 받는다: CO3D 5.3TB 중 3GB, OS-Atlas 816GB 중 데스크톱·모바일, AITW 494GB 중 13.6GB.
+  - 운영: MME-RealWorld가 HF 뷰어 표시(4.9GB)와 달리 140GB라서 받기를 멈추고 70 shard 중 7개로 줄여 다시 시작했다. What'sUp은 필요한 Controlled 부분 대신 저장소 전체 10.8GB를 받았다(패턴은 고쳐 두었다).
+- `qwen_decision/v3/vision_heldout.py`: 17개 벤치마크, 4,772문항. MMStar의 AI2D·ScienceQA·MMMU 문항, MathVista의 학습 벤치마크 출처 문항, 3DSRBench의 좌우 반전 문항을 뺐다. Memotion과 WildReceipt는 학습에서 빼고 시험에 넣었다.
+  - 바로잡음: POPE의 질문 번호가 세 범주에서 겹쳐 이미지가 덮어써졌다. 키에 범주를 붙여 다시 만들었다.
+- 결과(이미지 학습 전): 원래 Qwen chat 40.40, wise80 decide 50.91, 차이 +10.51 [+8.01, +12.55]. 둘 다 거의 우연 수준인 곳은 Memotion, 3DSRBench, ChartQAPro다.
+
+### 2026-11-01 — 이미지 LoRA 학습 경로와 속도 ([상세](vision-train-speed.md))
+
+- 사용자 요청: LoRA 이미지 학습에 속도 최적화가 적용돼 있는지 확인하고, 웹 검색으로 찾은 방안을 적용한다.
+- 확인: 텍스트 학습 경로는 최적화돼 있었지만 이미지 학습 코드는 없었다(`vision_engine.py`는 한 행씩 도는 추론 전용).
+- `qwen_decision/v3/vision_train.py`(새 파일, 고정 파일은 import만):
+  - 이미지 행 packing: M-RoPE 위치를 CPU에서 만들고, 행마다 0부터 다시 시작한다.
+  - ViT 이미지 전체를 `varlen_attn` 한 번으로 계산하고, ViT 보조 텐서는 미리 계산한다.
+  - 동결 ViT는 `no_grad`로 돌린다.
+  - DataLoader worker 8개가 디코딩·1.6MP 제한·처리기·packing을 맡는다.
+  - LoRA는 `LoRALinear`이고 LM은 attn-mlp, ViT LoRA는 선택이다.
+- 검사(`check`, 12행·이미지 14장):
+  - M-RoPE 위치가 `get_rope_index`와 정확히 같다.
+  - ViT 차이는 BF16 반올림 수준이다(FP32 기준 두 경로 모두 cosine 0.99697).
+  - logit 최대 차이는 0.10이다. 답이 다른 1행은 1·2위 차이 0.061인 동점 근처다.
+  - 다른 행으로 가는 기울기는 정확히 0이다.
+- 속도(3090, step당 16행·이미지 18.7장): transformers 기본 경로 4.66s → 새 경로 1.30s(3.4배).
+  - 기여: 데이터 worker −36%, 체크포인팅 끄기(8k microbatch) −22%, compile −17%.
+  - ViT varlen은 1% 미만이었다.
+  - ViT LoRA는 4k microbatch에서 2.23s다.
+  - 0.8MP는 −26%, 0.4MP는 −52%지만, 모델이 보는 것이 바뀌어 기본값에서 뺐다.
+- 바로잡음:
+  - 처음 기본값(16k, 체크포인팅 없음)은 3090에서 메모리가 부족했다. 예산·체크포인팅을 훑어 8k·없음으로 정했다.
+  - 분석 스크립트 이름을 `profile.py`로 지었더니 표준 라이브러리 `profile`을 가려 transformers import가 실패했다. 이름을 바꿨다.
+
+### 2026-11-01~02 — 이미지 학습 셋과 첫 LoRA 학습 ([상세](vision-train-screen.md))
+
+- 사용자 요청: 이미지 다운로드가 끝나면 바로 학습한다. 어떻게 학습할지 설명한다.
+- 다운로드: 모두 끝났다. Hypersim은 305,531파일, 70.9GB다. MegaDepth는 HF 파일 하나가 403을 내서 다시 실패했다.
+- `qwen_decision/v3/vision_mix.py`(새 파일): 문항 형식과 검증, 이미지 저장, 평가 이미지와의 중복 제거, 분야별로 똑같이 섞기를 맡는다.
+  - 변환 모듈 4개: `vision_convert_cauldron.py`, `_spatial.py`, `_screen.py`, `_misc.py`.
+  - 출처 58개, 142,993문항. 중복 제거로 1,229개를 뺐다.
+  - HPatches는 BLINK 시각 대응의 원본이라 학습에서 뺐다.
+- `vision_train.py`에 `fit`, `eval-base`, `merge`, `report`를 더했다. 평가는 학습과 같은 packed forward다.
+  - 학습 전 wise80의 시험셋 지수가 50.83이다. 키트 runner의 50.91과 같다.
+- 거르기(16k, seed 3개씩): ViT 동결 52.24, ViT LoRA 49.66, 기본 50.83이다.
+  - ViT 동결 − 기본: +1.39 [+0.07, +2.58].
+  - ViT LoRA − ViT 동결: −2.56 [−3.60, −1.61]. ViT LoRA는 seed에 따라 47.9~52.0으로 흔들렸다.
+- 본 학습(65k, ViT 동결): 보드 공개 vision 49.05 → 58.15(+9.10 [+7.70, +10.47], 키트 runner).
+  - 다른 벤치마크 시험셋은 +1.14 [−0.64, +2.91]이다.
+  - 텍스트 dev는 0.870 → 0.849다.
+  - CountBench와 VisualWebBench가 떨어졌다.
+- 바로잡음:
+  - 학습 뒤 평가에서 fork한 DataLoader worker가 멈췄다. 평가 loader를 spawn으로 바꿨다.
+  - JSONL을 `splitlines()`로 나눠 U+2028에서 줄이 끊겼다. `split("\n")`으로 바꿨다.
+
+### 2026-11-02 — d3-lite vision 실측 ([상세](vision-train-screen.md#d3-lite와-비교-11-02-실측))
+
+- d3-lite(revision `03560c26`)를 보드 공개 vision 11,410행과 다른 벤치마크 시험셋 4,772행에서 같은 키트로 쟀다.
+  - 엔진은 `qwen_decision/v3/vision_d3.py`다. D3Engine을 감싸서 `image_root`와 prompt 힌트를 처리한다.
+  - 환경은 `.venv-di`로, `requirements-v3.lock`에서 다시 만들었다.
+- 보드 공개 vision(10개): d3-lite 47.19, wise80 49.05, 본 학습 58.15. 본 학습 − d3-lite = +10.97 [+9.27, +12.54]이다. train split이 없는 6개만 보면 +8.09 [+5.83, +10.25]다.
+- Winoground(README 57.0)를 더하면 48.19로, 보드 공식 공개 점수 47.9와 맞는다. README 벤치마크별 숫자의 † 셋 4개는 실제보다 높았다.
+- 다른 벤치마크 시험셋: d3-lite 51.86, wise80 50.91, 본 학습 51.97. 차이는 구간 안이다.
+
+### 2026-11-02 — 겹침을 뺀 이미지 재학습 ([상세](vision-train-screen.md#결과-겹침을-뺀-학습-clean-frozen-11-02-1029--1244))
+
+- 사용자 요청: "학습한 거하고 평가하는 거하고 겹치지 않게 해야지 다시 정리해 봐."
+- 평가 벤치마크의 train split과 원본 12개 출처를 `vision_mix.EVAL_PARENTS`로 묶었다. `mix --clean`으로 `clean-65k`를 만들었다(행 수는 본 학습과 같다, 이미지 출처 45개, 분야 11개).
+- 같은 레시피(ViT 동결, seed 1)로 `clean-frozen`을 학습했다(85분).
+- 보드 공개 vision(10개): **50.12**. 본 학습 58.15보다 −8.03 [−9.44, −6.64], wise80 49.05보다 +1.07 [−0.20, +2.35], d3-lite 47.19보다 +2.94 [+1.33, +4.55].
+  - 줄어든 8.03점 중 6.06점이 Mind2Web·KIE·Hateful Memes(train split)다. KIE와 Hateful Memes는 wise80 점수로 그대로 돌아갔다.
+  - BLINK 53.1 → 41.7. 의미·시각·기능 대응 상승이 SPair-71k를 빼자 사라졌다. 상대 깊이(+6.5)와 다시점(+12.0)은 남았다.
+  - RealWorldQA 45.6 → 41.2(wise80 42.0).
+- 다른 벤치마크 시험셋: 51.89(본 학습 51.97, d3-lite 51.86). WildReceipt −6.6과 3DSRBench −6.8, MathVista +6.8과 CountBench +4.9가 엇갈렸다.
+- 텍스트 dev: 0.850(본 학습 0.849).
+- 바로잡음: d3-lite 비교 표의 본 학습 열 일부를 키트 `vision-scores.json` 값으로 고쳤다(지수는 그대로).
+
+### 2026-11-02 — 개수·웹 페이지 보강 이미지 학습 ([상세](vision-train-screen.md#결과-개수웹-페이지-보강-clean-fix-11-02-1323--1539))
+
+- 사용자 요청: "한번해봐". 겹침 뺀 학습에서 내려간 CountBench 5~7개와 VisualWebBench action_prediction을 메울 출처를 넣었다.
+- 새 출처(정답은 사람 주석 또는 프로그램):
+  - `fsc147_crop`: FSC-147 train 사진에서 물체 1~12개 창을 잘랐다(2,046개). 개수가 고르다.
+  - `seeclick_ground`, `seeclick_name`: SeeClick 웹 페이지 2,800장(분할 zip에서 범위 요청으로 읽음). name은 빨간 상자 안의 글자를 고른다(1,358개, 1,311개).
+- `clean-fix-65k`(겹침 뺀 학습과 같은 행 수와 분야 몫)로 `clean-fix`를 학습했다(ViT 동결, seed 1, 86분).
+- 노린 문항: CountBench 5~7개 57.6 → 70.7(+13.1 [+5.1, +21.2]), action_prediction 78 → 91(+13.0 [+5.0, +21.0]).
+- 옆 문항이 내렸다: CountBench 8~10개 81.2 → 69.3(−11.9), element_ground 83 → 75(−8.0). 8~10개에서 많게 세는 비율이 늘었다.
+- 보드 공개 vision: **50.96**. 겹침 뺀 학습 대비 +0.83 [−0.34, +2.05], wise80 대비 +1.91 [+0.72, +3.20], d3-lite 대비 +3.77 [+2.28, +5.34].
+  - RealWorldQA 41.2 → 46.2, Mind2Web 50.7 → 53.1. BLINK 41.7 → 38.1.
+- 다른 벤치마크 시험셋: 52.44(겹침 뺀 학습 대비 +0.55 [−1.03, +2.09]). V* +8.4, What'sUp +3.3이 올랐다.
+- 텍스트 dev: 0.839(−1.10 [−2.17, 0.00]). seed 하나라 전체 차이는 seed 편차 안이다.
+
+### 2026-11-02 — 이미지 학습 이득이 작은 원인 ([상세](vision-train-screen.md#원인-분석-처음-보는-벤치마크에서-이득이-작은-이유-11-02))
+
+- 사용자 요청: "흠 웰케 이득이 적지 ㅠ 원인부터 파악해봐." 새 학습 없이 9개 모델의 문항별 결과로 쟀다.
+- 학습한 분포의 이미지 dev는 wise80 70.0 → 보강 77.3(+7.4)인데, 시험셋 정답률은 70.2 → 70.7(+0.5)이다. 이미지 학습 6번 모두 69.9~71.2%다.
+- 시험셋 변화는 seed 잡음 크기다. seed 1 → 2는 9.7%가 바뀌었고(232 대 232), wise80 → 보강은 12.1%가 바뀌었다(301 대 278). 6번 모두 고친 문항은 38개, 모두 망친 문항은 35개다.
+- 움직이는 것은 wise80 확신 0.7 미만 문항이다. 확신 0.5 미만 문항은 dev에서 35.0 → 52.9로 올랐지만, 시험셋에서는 35.4 → 37.0(6번 평균)이다.
+- 확신하고 틀린 문항은 시험셋 오답의 30%(422개)다. 보강은 그중 6%를 고쳤다(dev에서는 38%).
+- 보드에서 방향이 있는 것은 학습 분포와 맞는 Mind2Web(순 +78)과 CV-Bench(+43)뿐이다.
+- 데이터 4배(16k → 65k)에도 시험셋은 그대로였다. 9개 모델 중 하나라도 맞힌 문항은 89.9%라, 여지가 없는 것은 아니다.
+
+### 2026-11-02 — 텍스트 학습은 일반화가 잘 됐나 ([상세](vision-train-screen.md#원인-분석-처음-보는-벤치마크에서-이득이-작은-이유-11-02))
+
+- 사용자 질문: "원래 그런가? 텍스트는 일반화가 잘 된 거 같은데."
+- 보드 `data/index.json`(10-29)의 Qwen3.5-0.8B 미세조정 19개: 공개와 same-skills의 상관은 0.97, same-skills와 new-domains의 상관은 0.09다. new-domains는 5.0~13.7에 머문다. 텍스트도 새 분야로는 잘 안 옮겨 간다.
+- 텍스트 학습의 이미지 시험셋 이득(+10.4)은 고르는 형식이다. 원래 Qwen은 보기 2개 문항의 75%에서 A를 골랐고, 정답 없이 글자 편향만 지워도 40.40 → 43.34다. wise80 chat 경로 49.14 = decide 49.05라 이득은 가중치에 있다.
+- 문헌(FLAN 작은 모델, LIMA, Vision-Flan, 2505.21538, 2511.18787)을 [모달리티별 학습 방식 §8-1](../papers/vlm-modality-finetuning.md#8-1-텍스트-학습은-왜-옮겨-간-것처럼-보였나-11-02-추가)에 정리했다.
+
+### 2026-11-02 — 이미지 학습 분야 넓히기 ([상세](vision-train-screen.md#결과-분야-넓히기-clean-div-11-02-1638--1845))
+
+- 사용자 요청: "그러면 최대한 다양한 분야로 하는 게 좋겠네 데이터를 그렇게 조절해봐."
+- 새 출처 21개를 받아 바꿨다(`vision_sources`에 18개 추가, `vision_convert_diverse.py`, `cauldron/spot_the_diff`). 질감, 교통 표지판, 기종, 위성·항공, 의료(병리, 망막, PathVQA), 글자 읽기(숫자, 그림 속 문장, 손글씨), 거리·3D, 위치, 여러 장 고르기, 바뀐 점, 개수 비교, 다음 화면이다.
+- KITTI·nuScenes는 평가 원본이라 받지 않았다. VQA-RAD는 MathVista testmini 이미지 2장과 sha256이 같아 `EVAL_PARENTS`에 넣었다(첫 학습은 32 step에서 멈추고 다시 했다).
+- `vision_mix mix --balance source`를 추가했다. 출처마다 같은 몫이다(69개 출처, 534~635행).
+- `clean-div`(ViT 동결, seed 1, 76분): 시험셋 52.40(보강 대비 −0.03 [−1.67, +1.65]), 보드 49.89(−1.07 [−2.34, +0.11]), 6개 47.73(wise80 대비 +2.18 [+0.38, +4.00]), 텍스트 dev 0.848.
+- 시험셋에서 SugarCrepe +3.3, WildReceipt +3.0이 오르고, What'sUp −5.7(공간 몫 4,088 → 2,538행), MathVista −9.3이 내렸다. 보드에서는 BLINK +4.6, KIE −3.4, Hateful Memes −4.3이다.
+- 분야를 넓혀도 처음 보는 벤치마크 전체는 오르지 않았다. 두 가지를 한꺼번에 바꿨고 seed 하나라, 차이는 모두 seed 편차 안이다.

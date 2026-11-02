@@ -39,6 +39,18 @@
 | FINCH (2605.20005), 재노출 연구 (2512.22337), 문항별 망각 (2510.17776), mSFT (2603.21606), FLOW (2502.02797), FastMix (2606.14971), Post-Training Science (2609.01244), 불완전 학습 (2604.10079), Prism-1 (2610.22066), Label smoothing (Müller 외 2019) | 인용만 | 외부 검토 근거. 수치를 우리 근거로 쓰지 않음. label smoothing 자체는 10-31에 시험했고 CE와 같았다([Loss 비교](../project/loss-screen.md)) |
 | ProLong (Gao 외, ACL 2025) | 검색 | **정정:** 장문 붕괴 진단 근거로 쓴 것은 잘못이었다 |
 
+## VLM 학습 방식 (2026-10-31 추가)
+
+| 논문 | 확인 | 쓰인 곳 |
+|---|---|---|
+| Phi-4-multimodal (2503.01743), Image-LoRA (2512.19219), Idefics2 (2405.02246), X-Reasoner (2505.03981), Fine-tuning MLLMs Without Forgetting (2603.14493), Prismatic VLMs (2402.07865 §4.1), Cambrian-1 (2406.16860) | 원문 | [모달리티별 학습 방식](../papers/vlm-modality-finetuning.md). 이미지 LoRA 설계(위치, ViT 팔, 학습률, 데이터 섞기) |
+| CogVLM (2311.03079), InternLM-XComposer2 Partial LoRA (2401.16420), Why are VLMs bad at image classification (2405.18415), EMT (2309.10313) | 초록 | 같은 곳 |
+| Llama 3.2 Vision (Meta 블로그), Wings (2406.03496), Bring Reason to Vision (2505.05464), SmolVLM (2504.05299) | 검색 | 같은 곳 |
+| Testing the Limits of Fine-Tuning for Visual Cognition (2502.15678), SFT Memorizes RL Generalizes (2501.17161), Hidden in plain sight (2506.08008), MoCLE (2312.12379), Qwen-VL (2308.12966 Table 3) | 원문 | [모달리티별 학습 방식 §8](../papers/vlm-modality-finetuning.md#8-이미지-학습이-처음-보는-벤치마크로-안-옮겨-가는-이유-11-02-추가). 이미지 학습이 처음 보는 벤치마크로 안 옮겨 가는 이유(11-02) |
+| Eyes Wide Shut (2401.06209), AURORA (2412.03548), Synthetic Stimuli Real Gains (2511.11440), SPRITE (2512.16237), SITUATE (2602.00108) | 검색 | 같은 곳 |
+| FLAN (2109.01652), LIMA (2305.11206), Caption This Reason That (2505.21538), Understanding Task Transfer in VLMs (2511.18787) | 초록 | [모달리티별 학습 방식 §8-1](../papers/vlm-modality-finetuning.md#8-1-텍스트-학습은-왜-옮겨-간-것처럼-보였나-11-02-추가). 텍스트 학습이 옮겨 간 것처럼 보인 이유(11-02) |
+| Vision-Flan (2402.11690) | 검색 | 같은 곳 |
+
 ## 평가·편향
 
 | 논문 | 확인 | 쓰인 곳 |
