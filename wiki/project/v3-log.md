@@ -1140,3 +1140,11 @@ g3의 격차 분석(같은 역량에서 덜 일반화, 빈 역량)과 fresh-v1 �
   - `TRAINING_DATA.md`에 이미지 출처 69개(행 수, 라이선스, 라벨)와 뺀 평가 원본을 더했다.
   - `examples/request_image.json`과 `shapes.png`를 넣었다(직접 그린 그림).
 - 새로 받은 Hub 사본에서 Quickstart(텍스트, 이미지)가 돈다.
+
+### 2026-11-03 — 디스크 정리: 로컬 데이터와 실험 가중치
+
+- 사용자 요청으로 다운로드 원본·변환된 학습/평가 데이터·실험 가중치·optimizer 상태·입력 캐시를 정리했다. 1차 원본 정리 약 195GiB에 이어 약 474GiB를 더 확보했다. 디스크 사용률은 처음 95%에서 20%, 여유 공간은 약 716GiB가 됐다.
+- 코드·문서·가상환경과 출처/분할 manifest·실험 설정·학습 곡선·평가 예측·결과를 남겼다. 보존 파일 4,927개는 삭제 전후 SHA256이 일치했다. 출처 기록 101개는 [압축본](../../docs/cleanup-2026-11-03-sources.tar.gz)으로도 보관했고 원본과 해시를 대조했다.
+- 배포한 `clean-div` 가중치는 Hub `Kyunghwan-kim/crystal-0.8b` revision `cd943da732d0c26d88ae6dfd7daaacb7a86c8bdd`와 SHA256 `ec0b2fce3f7ea33036a850ce25062d8b21ee0fbc4b27a9d303b8d2626aa0b624`가 일치함을 확인한 뒤 로컬 사본을 삭제했다. 이전 평가 모델도 태그 `decision-index-0.4.1`(revision `befc98ecaf858a5e4cafc11b8921fea709092943`)에 남아 있음을 확인했다.
+- **현재 로컬 상태:** 학습·평가를 다시 실행하려면 데이터와 가중치를 먼저 복원해야 한다. 공개하지 않은 실험 가중치는 재학습해야 하며, 삭제한 optimizer로 학습을 재개하거나 `complete.json`의 가중치 해시를 로컬에서 확인할 수 없다. 이전 항목의 “보존”은 이 정리 이전 상태다.
+- 삭제 범위·배포본 복원 명령·원본/기본 모델의 전체 revision은 [정리 기록](../../docs/cleanup-2026-11-03-full.json)에 남겼다. 파일별 삭제 목록과 보존 해시 목록은 `runs/cleanup/2026-11-03-full-*.gz`에 있다. `vision_sources download`는 과거 성공 기록을 보고 건너뛰므로, 원본을 다시 받을 때는 기록된 revision으로 직접 복원해야 한다.

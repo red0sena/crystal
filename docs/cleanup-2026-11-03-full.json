@@ -1,0 +1,742 @@
+{
+  "date": "2026-11-03",
+  "status": "complete",
+  "project": "/home/kyunghwan/A-Pattern/kkh_decision_model",
+  "authorization": "User explicitly expanded cleanup to all local training data and experimental models because source and experiment records are retained.",
+  "categories": {
+    "data": {
+      "files": 866487,
+      "allocated_bytes": 181414309888
+    },
+    "experiment_input_data": {
+      "files": 94,
+      "allocated_bytes": 2072137728
+    },
+    "weights_or_tensor_cache": {
+      "files": 427,
+      "allocated_bytes": 325227188224
+    },
+    "cache": {
+      "files": 2652,
+      "allocated_bytes": 148688896
+    }
+  },
+  "files_selected": 869660,
+  "filesystem_free_bytes_before": 259608489984,
+  "hub_backups": {
+    "repository": "Kyunghwan-kim/crystal-0.8b",
+    "deployed_revision": "cd943da732d0c26d88ae6dfd7daaacb7a86c8bdd",
+    "verified_weights": [
+      {
+        "file": "model.safetensors",
+        "sha256": "ec0b2fce3f7ea33036a850ce25062d8b21ee0fbc4b27a9d303b8d2626aa0b624",
+        "bytes": 1706030528
+      }
+    ],
+    "previous_evaluated_tag": "decision-index-0.4.1",
+    "previous_evaluated_revision": "befc98ecaf858a5e4cafc11b8921fea709092943",
+    "previous_weights": [
+      {
+        "file": "model.safetensors",
+        "bytes": 1706030528,
+        "sha256": "3623fa4f31f21e1006b3ed63c87a3b8a16c7e58c578d088050e02652fd15b044"
+      }
+    ]
+  },
+  "preserved": "Repository source and documents, dataset provenance/manifests/reports/split metadata, experiment settings/manifests/status/results, training metrics, evaluation predictions, model configs/tokenizers, Python environments.",
+  "source_archive": {
+    "path": "docs/cleanup-2026-11-03-sources.tar.gz",
+    "sha256": "211207bbd402b79bac2c0fc9f72c8b181edc756bea718db1e31f4b0ed199b045",
+    "verified_files": 101
+  },
+  "removed_inventory": {
+    "path": "runs/cleanup/2026-11-03-full-removed-files.jsonl.gz",
+    "sha256": "72c83055388961cf10fd7e30a96984c063c349a989e12d0566659278d1880cc7"
+  },
+  "preserved_hash_inventory": {
+    "path": "runs/cleanup/2026-11-03-full-preserved-files.json.gz",
+    "sha256": "f4b153c6fa792520ef6550180248b47623e3103aa854096b282011d6b2e75aaf",
+    "files": 4927
+  },
+  "limitations": [
+    "Unpublished experimental model weights and optimizer states require retraining; exact bitwise recreation and checkpoint resume are no longer available.",
+    "Local training and evaluation require restoring datasets and model weights first; existing manifest paths and complete.json weight hashes describe removed historical artifacts.",
+    "vision_sources download skips historical status=ok sources; restore pinned snapshots directly using data/raw/vision-manifest.jsonl, which is also in the source archive."
+  ],
+  "restore_deployed_model": ".venv/bin/hf download Kyunghwan-kim/crystal-0.8b --revision cd943da732d0c26d88ae6dfd7daaacb7a86c8bdd --local-dir runs/vision-train/clean-div/model",
+  "preserved_sha256_verification": true,
+  "removed_files_absent": true,
+  "files_removed": 869660,
+  "filesystem_free_bytes_after": 768583610368,
+  "filesystem_free_bytes_reclaimed": 508975120384,
+  "completed_at": "2026-11-03T14:42:56.048344+09:00",
+  "additional_download_revision_records": {
+    "models": [
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/d3_kernels.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "31cb79b7d5dee117c8fec5a820db5a2cc7c8f229",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "31cb79b7d5dee117c8fec5a820db5a2cc7c8f229",
+          "1793573708.3553889"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/pipeline_d3.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "21fd672f2ef50e9db0646c7ab6a1bceb44df2974",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "21fd672f2ef50e9db0646c7ab6a1bceb44df2974",
+          "1793573709.2591755"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/d3_engine.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "24a3ebb4152f3dcde5e9403baff2323c7380b214",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "24a3ebb4152f3dcde5e9403baff2323c7380b214",
+          "1793573707.7291243"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/MODEL_MANIFEST.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "4914d0597f46a4d3d6cf8ebd00703ec8e6aef3b8",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "4914d0597f46a4d3d6cf8ebd00703ec8e6aef3b8",
+          "1793573707.131922"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/NOTICE.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "21dc79cb6fe3ee9b2c58c79e66b5f2af2e383aa9",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "21dc79cb6fe3ee9b2c58c79e66b5f2af2e383aa9",
+          "1793573707.0110736"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/merges.txt.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "a494e019ca1502219fd0128658b979e5f05ae8e8",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "a494e019ca1502219fd0128658b979e5f05ae8e8",
+          "1793573709.17802"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/model-00001-of-00001.safetensors.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "ca6222dbf2b72899ae45580ed84d26d1f0e69a8de212edda295072000e34a4c2",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "ca6222dbf2b72899ae45580ed84d26d1f0e69a8de212edda295072000e34a4c2",
+          "1793573728.5930748"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/tokenizer.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "1793573718.4990308"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/readout.safetensors.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "fe11cfac5c79b6a83e35b707581b1260214279bb22b003c215c62719186ef629",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "fe11cfac5c79b6a83e35b707581b1260214279bb22b003c215c62719186ef629",
+          "1793573710.4065223"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/d3_runtime.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "18cfc31416a6df520fba4d4881ef1b878f7ab472",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "18cfc31416a6df520fba4d4881ef1b878f7ab472",
+          "1793573708.3480632"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/decision_config.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "5bf6f72adb66002996fcf44a04947687eb2c2034",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "5bf6f72adb66002996fcf44a04947687eb2c2034",
+          "1793573708.8675463"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/LICENSE.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "1793573707.129529"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/d3_fast.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "02b5e7811c901ebe1f8d33f44b4a4a67dde4ed2a",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "02b5e7811c901ebe1f8d33f44b4a4a67dde4ed2a",
+          "1793573707.8570342"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/modeling_d3.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "b327030a25153668a0a34914a517c857946798f7",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "b327030a25153668a0a34914a517c857946798f7",
+          "1793573709.148111"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/README.md.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "22d3cadcca5992401c39d93f37760ace35ff9ac4",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "22d3cadcca5992401c39d93f37760ace35ff9ac4",
+          "1793573706.979433"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/d3_format.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "18a97be8b097d3bf9eda82be649666175a9e4f59",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "18a97be8b097d3bf9eda82be649666175a9e4f59",
+          "1793573708.2709594"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/chat_template.jinja.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "0ef09f214eaa6d9bca297988afc1454b5827b2c7",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "0ef09f214eaa6d9bca297988afc1454b5827b2c7",
+          "1793573707.6377947"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/video_preprocessor_config.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+          "1793573709.9264889"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/requirements.txt.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "06295a2ec746f4f9a3f8d166e36f1a7e740eb860",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "06295a2ec746f4f9a3f8d166e36f1a7e740eb860",
+          "1793573709.4831045"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/vocab.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+          "1793573711.0260897"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/.gitattributes.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "da5aa4e7e4bddaa35477da20e4b7e9c69c3ce67a",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "da5aa4e7e4bddaa35477da20e4b7e9c69c3ce67a",
+          "1793573707.00028"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/preprocessor_config.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+          "1793573709.217771"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/d3_server.py.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "36657b7fb605dfacfd88bf5a027574a0ab2f6b35",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "36657b7fb605dfacfd88bf5a027574a0ab2f6b35",
+          "1793573708.4652493"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/tokenizer_config.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "fae3ce993e07c092ad024dde45e592379fde91bb",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "fae3ce993e07c092ad024dde45e592379fde91bb",
+          "1793573709.916603"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/model.safetensors.index.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "e69d803dea3ab777681fc08e1e26bca18596bf6c",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "e69d803dea3ab777681fc08e1e26bca18596bf6c",
+          "1793573709.0622249"
+        ]
+      },
+      {
+        "local_metadata_path": "models/d3-lite/.cache/huggingface/download/config.json.metadata",
+        "revision": "03560c26f5199c3c04129a2ccb38960c913635e0",
+        "etag": "fdc4f45ab464793cdf8121af141f782c8db44482",
+        "download_metadata": [
+          "03560c26f5199c3c04129a2ccb38960c913635e0",
+          "fdc4f45ab464793cdf8121af141f782c8db44482",
+          "1793573707.7292259"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/tokenizer.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "1792398753.6019106"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/model.safetensors-00001-of-00001.safetensors.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696",
+          "1792398790.462673"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/video_preprocessor_config.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "3ba673a5ad7d4d13f54155ecd38b2a94a6dac8fe",
+          "1792398748.6133075"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/vocab.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+          "1792398749.0167658"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/preprocessor_config.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "2ea84a437d448ff71b08df68fdd949d5cc4ebb64",
+          "1792398748.1932302"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/tokenizer_config.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "fae3ce993e07c092ad024dde45e592379fde91bb",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "fae3ce993e07c092ad024dde45e592379fde91bb",
+          "1792398748.557507"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/model.safetensors.index.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "f691cefdb79d73270895ebd6d9594ddcecfc1838",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "f691cefdb79d73270895ebd6d9594ddcecfc1838",
+          "1792398747.9757557"
+        ]
+      },
+      {
+        "local_metadata_path": "models/qwen3.5-0.8b/.cache/huggingface/download/config.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "715f0448b9d38103211f0ad88bbb4d6e4f4be8c9",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "715f0448b9d38103211f0ad88bbb4d6e4f4be8c9",
+          "1792398748.1475945"
+        ]
+      },
+      {
+        "local_metadata_path": "models/pointer-test-tokenizer/.cache/huggingface/download/merges.txt.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "a494e019ca1502219fd0128658b979e5f05ae8e8",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "a494e019ca1502219fd0128658b979e5f05ae8e8",
+          "1792385525.8488615"
+        ]
+      },
+      {
+        "local_metadata_path": "models/pointer-test-tokenizer/.cache/huggingface/download/tokenizer.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+          "1792385527.7871628"
+        ]
+      },
+      {
+        "local_metadata_path": "models/pointer-test-tokenizer/.cache/huggingface/download/chat_template.jinja.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "0ef09f214eaa6d9bca297988afc1454b5827b2c7",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "0ef09f214eaa6d9bca297988afc1454b5827b2c7",
+          "1792385525.7880423"
+        ]
+      },
+      {
+        "local_metadata_path": "models/pointer-test-tokenizer/.cache/huggingface/download/vocab.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "0aa0ce0658d60ac4a5d609f4eadb0e8e43514176",
+          "1792385525.8760123"
+        ]
+      },
+      {
+        "local_metadata_path": "models/pointer-test-tokenizer/.cache/huggingface/download/tokenizer_config.json.metadata",
+        "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+        "etag": "fae3ce993e07c092ad024dde45e592379fde91bb",
+        "download_metadata": [
+          "2fc06364715b967f1860aea9cf38778875588b17",
+          "fae3ce993e07c092ad024dde45e592379fde91bb",
+          "1792385525.777945"
+        ]
+      }
+    ],
+    "datasets": [
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-diabetic_retinopathy@95099a42d579",
+        "revision": "95099a42d579451ad5a9b112fb733224c68b7a9a"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-pcam@502695fe1a14",
+        "revision": "502695fe1a141108650e3c5b91c8b5e0ff84ed49"
+      },
+      {
+        "dataset_directory": "data/raw/lmms-lab-encoder__POPE@4db1276663df",
+        "revision": "4db1276663dfa5eb8ad16a52d24c31a09e470896"
+      },
+      {
+        "dataset_directory": "data/raw/ritianyu__Hypersim@1b10f85c2774",
+        "revision": "1b10f85c2774bf9653b3b5492d521152fa8946af"
+      },
+      {
+        "dataset_directory": "data/raw/FlagEval__EmbSpatial-Bench@3c0e6b34b632",
+        "revision": "3c0e6b34b632de666a51091727c0128d07a54a6a"
+      },
+      {
+        "dataset_directory": "data/raw/BennoKrojer__ImageCoDe@b7b7a73dbc74",
+        "revision": "b7b7a73dbc74b681b384048716232b243ad25a99"
+      },
+      {
+        "dataset_directory": "data/raw/osunlp__Multimodal-Mind2Web@1b4c6a8cf9f7",
+        "revision": "1b4c6a8cf9f77b7a5e0d641959935c80c4a05889"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-svhn@d6a7f60bb3cc",
+        "revision": "d6a7f60bb3cc618822299cc0d0e1951f104204df"
+      },
+      {
+        "dataset_directory": "data/raw/derek-thomas__ScienceQA@f18b0a70359e",
+        "revision": "f18b0a70359ebfb41f658fd564208d0355b013f4"
+      },
+      {
+        "dataset_directory": "data/raw/OS-Copilot__OS-Atlas-data@e3a4c90c5f61",
+        "revision": "e3a4c90c5f6129c25efdaa0671b08a11f7cb8f3f"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-smallnorb_label_elevation@94364b7e2860",
+        "revision": "94364b7e28609635de90d0a5f6275134db487229"
+      },
+      {
+        "dataset_directory": "data/raw/Ahren09__MMSoc_Memotion@cdb15b61d84d",
+        "revision": "cdb15b61d84d56db73e0e59535dfea81ea3c22f4"
+      },
+      {
+        "dataset_directory": "data/raw/BaiqiL__NaturalBench@ba41a7d56487",
+        "revision": "ba41a7d564877a9b64c094b08015ca493cc3e54b"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_replace_att@e9c00ca14c70",
+        "revision": "e9c00ca14c706c43a44a86ca81737ec056743154"
+      },
+      {
+        "dataset_directory": "data/raw/hiyouga__geometry3k@fd21e533e1e5",
+        "revision": "fd21e533e1e50d0662a2bf7b223e60511bd5f8b7"
+      },
+      {
+        "dataset_directory": "data/raw/AILab-CVC__SEED-Bench-2-plus@e8d1c8211718",
+        "revision": "e8d1c82117180837f921604d827ad148efa63999"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-dmlab@b59ea17fa4e4",
+        "revision": "b59ea17fa4e49b5e8adf06da7591f8b74432e2b9"
+      },
+      {
+        "dataset_directory": "data/raw/smolagents__android-control@3631ac3bc10a",
+        "revision": "3631ac3bc10a54e0ce579fb9b0d690b29eda1bcc"
+      },
+      {
+        "dataset_directory": "data/raw/nkirschi__oxford-flowers@a37b1891609c",
+        "revision": "a37b1891609c0376fa81eced756e7863e1bd873b"
+      },
+      {
+        "dataset_directory": "data/raw/KevinNotSmile__nuscenes-qa-mini@0536018fe71c",
+        "revision": "0536018fe71cf604889fed7bc990412adce7b602"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_swap_obj@6f221a45bed4",
+        "revision": "6f221a45bed4d0a497ba1039d4260559759d4146"
+      },
+      {
+        "dataset_directory": "data/raw/visualwebbench__VisualWebBench@9dace8acebf2",
+        "revision": "9dace8acebf210929bd47256d7ded44439377946"
+      },
+      {
+        "dataset_directory": "data/raw/naver-clova-ix__cord-v2@7f0115a4b758",
+        "revision": "7f0115a4b758a71d6473b8d085751692da2fef98"
+      },
+      {
+        "dataset_directory": "data/raw/flaviagiammarino__vqa-rad@bcf91e7654fb",
+        "revision": "bcf91e7654fb9d51c8ab6a5b82cacf3fafd2fae9"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_add_obj@769e1dd77648",
+        "revision": "769e1dd77648f20b2c0263f046620485ed8bbc76"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_add_att@a75d095cb4b2",
+        "revision": "a75d095cb4b2b8700a69cf258c07fdb22fba1092"
+      },
+      {
+        "dataset_directory": "data/raw/AI4Math__MathVista@2b6ad69445fb",
+        "revision": "2b6ad69445fbb5695c9b165475e8decdbeb97747"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__the_cauldron@847a98a779b1",
+        "revision": "847a98a779b1652d65111daf20c972dfcd333605"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_renderedsst2@66b9a461eda0",
+        "revision": "66b9a461eda025201dd147e5f390f5984c33643a"
+      },
+      {
+        "dataset_directory": "data/raw/tanganke__gtsrb@ea889fff70dd",
+        "revision": "ea889fff70dda7b09e94a4b207dded438deca549"
+      },
+      {
+        "dataset_directory": "data/raw/tanganke__stanford_cars@9abf6cf7d6df",
+        "revision": "9abf6cf7d6dfa7b95152a0d6e791ea9435b47a40"
+      },
+      {
+        "dataset_directory": "data/raw/yerevann__coco-karpathy@448fdb1bc7b2",
+        "revision": "448fdb1bc7b2d09e46881c4541a14d796a3d41e8"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_swap_att@1c6e96d83cca",
+        "revision": "1c6e96d83ccac5e47cebf55586dbb4a10067575f"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__ChartQA@b605b6e08b57",
+        "revision": "b605b6e08b57faf4359aeb2fe6a3ca595f99b6c5"
+      },
+      {
+        "dataset_directory": "data/raw/ccvl__3DSRBench@5c90e422b68d",
+        "revision": "5c90e422b68d0484d50a3ff06b3096ea7d288026"
+      },
+      {
+        "dataset_directory": "data/raw/ServiceNow__whatsup_all@9416df56e5d6",
+        "revision": "9416df56e5d6f73b754095c05d6258c309eb2856"
+      },
+      {
+        "dataset_directory": "data/raw/flaviagiammarino__path-vqa@168583288333",
+        "revision": "1685832883334b5bb5beaf4e4b333fdeecaa4ad9"
+      },
+      {
+        "dataset_directory": "data/raw/ethz__food101@83488de741c1",
+        "revision": "83488de741c1bd1ce27aa6a2b33e19c7bdf92ca9"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_replace_rel@a25bac0c31f5",
+        "revision": "a25bac0c31f53f60c69c08eee35fb9ae298bf404"
+      },
+      {
+        "dataset_directory": "data/raw/sayakpaul__nyu_depth_v2@50579a0b5914",
+        "revision": "50579a0b591445f91bf7269b28611ad1cc6a05d2"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-dsprites_label_orientation@3973569a4a58",
+        "revision": "3973569a4a586fd6d77a6c3650cb0579383f58ea"
+      },
+      {
+        "dataset_directory": "data/raw/Yuting6__geoqa_plus@5bfcaebb62f2",
+        "revision": "5bfcaebb62f26c7713363b493b0622c3696c128c"
+      },
+      {
+        "dataset_directory": "data/raw/isentropic__FSC147@3e420cb6537e",
+        "revision": "3e420cb6537e803dd6d4516623ce82a79c0317b8"
+      },
+      {
+        "dataset_directory": "data/raw/Lin-Chen__MMStar@bc98d668301d",
+        "revision": "bc98d668301da7b14f648724866e57302778ab27"
+      },
+      {
+        "dataset_directory": "data/raw/Teklia__IAM-line@fbdad97500ce",
+        "revision": "fbdad97500ce54635c0d1ba306bf535cb40656cf"
+      },
+      {
+        "dataset_directory": "data/raw/mutou0308__co3dv2@9ba8906d619f",
+        "revision": "9ba8906d619fd16c58f97f0326a38e06abf373c0"
+      },
+      {
+        "dataset_directory": "data/raw/lmms-lab-encoder__GQA@a6e72d6e1b91",
+        "revision": "a6e72d6e1b912da88af8b2f9eba05d5ea8ec2dd8"
+      },
+      {
+        "dataset_directory": "data/raw/tanganke__dtd@d2afa97d9f33",
+        "revision": "d2afa97d9f335b1a6b3b09c637aef667f98f966e"
+      },
+      {
+        "dataset_directory": "data/raw/vikhyatk__CountBenchQA@76d600309e9d",
+        "revision": "76d600309e9d6147bd3713b4cd431518ac1206c8"
+      },
+      {
+        "dataset_directory": "data/raw/vbalnt__hpatches@594f211e80b7",
+        "revision": "594f211e80b75081ad84a396c93960c8653235f8"
+      },
+      {
+        "dataset_directory": "data/raw/array__SAT@bda5dde942d7",
+        "revision": "bda5dde942d7f7b41bff7935f086ed9a9e348ae3"
+      },
+      {
+        "dataset_directory": "data/raw/HuggingFaceM4__SugarCrepe_replace_obj@046cdaeb365f",
+        "revision": "046cdaeb365fa00467cbee1bee89e0e03fa5cda1"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_fgvc_aircraft@bd35bca4c724",
+        "revision": "bd35bca4c724d2e238552c6ced7fc331d749e3ef"
+      },
+      {
+        "dataset_directory": "data/raw/craigwu__vstar_bench@d9ae62c903da",
+        "revision": "d9ae62c903da0c98336e85c5ee89cd863b04b4da"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_country211@1699f138f055",
+        "revision": "1699f138f0558342a1cbf99f7cf36b4361bb5ebc"
+      },
+      {
+        "dataset_directory": "data/raw/tanganke__eurosat@43750fc422c7",
+        "revision": "43750fc422c7fbd4289e2df3f7473617a5937acc"
+      },
+      {
+        "dataset_directory": "data/raw/bevaya__RICO-ScreenQA@44c8508ea528",
+        "revision": "44c8508ea528b4d4e035cc06e28d7baf8db09ec6"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-smallnorb_label_azimuth@7816890a8a29",
+        "revision": "7816890a8a29e3da28910514ac1a36177dd51355"
+      },
+      {
+        "dataset_directory": "data/raw/ljnlonoljpiljm__places365-256px@2bcb4953a4cd",
+        "revision": "2bcb4953a4cd2081ace0c81c97081891551128a2"
+      },
+      {
+        "dataset_directory": "data/raw/clip-benchmark__wds_vtab-clevr_closest_object_distance@ec9c04224a95",
+        "revision": "ec9c04224a95836ca0344a6000ec8d8bc8a6d4f2"
+      },
+      {
+        "dataset_directory": "data/raw/yifanzhang114__MME-RealWorld-Lmms-eval@f157390129e8",
+        "revision": "f157390129e8d2b60757eb68d340aade9446b52b"
+      },
+      {
+        "dataset_directory": "data/raw/timm__oxford-iiit-pet@089695c834a7",
+        "revision": "089695c834a7deb60505b7cc506672db1c31a6aa"
+      },
+      {
+        "dataset_directory": "data/raw/nielsr__funsd@7e7eeeedd84c",
+        "revision": "7e7eeeedd84ce86540eb83cbbf7c75a3fcc7c7a5"
+      },
+      {
+        "dataset_directory": "data/raw/vctvct123__Megadepth@feab0736faa8",
+        "revision": "feab0736faa81feb54ca57bc12d3ce457e9d62b3"
+      },
+      {
+        "dataset_directory": "data/raw/leosltl__Android-in-the-Wild@89110e13fa41",
+        "revision": "89110e13fa4186f2f0903673e733b31d3a369c47"
+      },
+      {
+        "dataset_directory": "data/raw/ahmed-masry__ChartQAPro@e27c28748258",
+        "revision": "e27c2874825874d6767d2bbc538ed4f0dc2c64c2"
+      },
+      {
+        "dataset_directory": "data/raw/MMVP__MMVP@37eafecab8a3",
+        "revision": "37eafecab8a3940c50c2ade5b36de69dbc99a8cf"
+      },
+      {
+        "dataset_directory": "data/raw/tanganke__resisc45@5c484982a196",
+        "revision": "5c484982a196dcb501b8e79c6cf4680dc6f2ccdf"
+      }
+    ]
+  },
+  "previous_cleanup_record": "runs/cleanup/2026-11-03.json"
+}
