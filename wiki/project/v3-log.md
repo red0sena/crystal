@@ -1119,3 +1119,24 @@ g3의 격차 분석(같은 역량에서 덜 일반화, 빈 역량)과 fresh-v1 �
 - `clean-div`(ViT 동결, seed 1, 76분): 시험셋 52.40(보강 대비 −0.03 [−1.67, +1.65]), 보드 49.89(−1.07 [−2.34, +0.11]), 6개 47.73(wise80 대비 +2.18 [+0.38, +4.00]), 텍스트 dev 0.848.
 - 시험셋에서 SugarCrepe +3.3, WildReceipt +3.0이 오르고, What'sUp −5.7(공간 몫 4,088 → 2,538행), MathVista −9.3이 내렸다. 보드에서는 BLINK +4.6, KIE −3.4, Hateful Memes −4.3이다.
 - 분야를 넓혀도 처음 보는 벤치마크 전체는 오르지 않았다. 두 가지를 한꺼번에 바꿨고 seed 하나라, 차이는 모두 seed 편차 안이다.
+
+### 2026-11-02 — HF `crystal-0.8b` 갱신: 이미지 학습 가중치와 카드
+
+- 사용자 요청: "이 모델도 업데이트하고 싶은데 이번에 LoRA 덧대서 이미지 학습한 걸로. 설명도 Jev Decision Index에 수락된 것을 바탕으로."
+- 사용자가 고른 것: 다양화 학습(`clean-div`) 가중치를 main에 올린다. 보드가 평가한 이전 revision은 태그로 남긴다.
+- [`Kyunghwan-kim/crystal-0.8b`](https://huggingface.co/Kyunghwan-kim/crystal-0.8b) commit `cd943da`:
+  - 가중치를 `runs/vision-train/clean-div/model`로 바꿨다(sha256 `ec0b2fce…`).
+  - 보드가 평가한 `befc98e`는 태그 `decision-index-0.4.1`로 남겼다.
+  - 이미지 처리기 설정 2개(`preprocessor_config.json`, `video_preprocessor_config.json`)를 원래 Qwen에서 복사해 넣었다.
+- 런타임(`crystal/`)이 이미지를 받는다.
+  - `system_one(..., images=[...])`로 넘긴 이미지가 state가 된다. 키트 엔진은 vision suite도 돈다(`decision_index vision run --engine crystal.engine:CrystalEngine`).
+  - 이미지 토큰 수와 픽셀 수를 raw로 돌려준다. 키트가 이것으로 실제 이미지 예산을 보고한다(최대 1,637,624 px).
+  - 텍스트 경로는 이전 런타임과 확률이 똑같다(차이 0.0).
+  - 이미지 경로는 우리 VisionEngine과 확률이 똑같다(24행 차이 0.0, 키트 runner 100행 일치 100).
+- 카드:
+  - 보드 Full 29.37(1B 이하 3위, Qwen3.5-0.8B 중 2위, d3-lite 26.16)을 넣었다. 이 점수가 태그 revision의 것이라고 적었다.
+  - 새 가중치는 텍스트 dev가 0.848로 이전(0.870)보다 낮고, 보드 텍스트 suite를 다시 돌리지 않았다고 적었다.
+  - Images 절을 새로 넣었다. 보드 공개 vision은 49.89(d3-lite 47.19, 텍스트만 49.05), 시험셋 17개는 52.40이다. paired 구간과 벤치마크별 skill도 실었다.
+  - `TRAINING_DATA.md`에 이미지 출처 69개(행 수, 라이선스, 라벨)와 뺀 평가 원본을 더했다.
+  - `examples/request_image.json`과 `shapes.png`를 넣었다(직접 그린 그림).
+- 새로 받은 Hub 사본에서 Quickstart(텍스트, 이미지)가 돈다.
