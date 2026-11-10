@@ -23,3 +23,7 @@ __pycache__/
 docs/archive/data/
 docs/archive/results/
 docs/archive/training/
+
+# Third-party leader clones (GLiClass af82d42, QEV 3884103), pinned in runs/champion-v1/leader-compare-v1
+/external/leader-gliclass/
+/external/leader-qev/
