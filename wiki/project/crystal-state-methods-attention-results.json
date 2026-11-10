@@ -1,0 +1,415 @@
+{
+  "complete": true,
+  "state_transfer_noncausal": {
+    "untrained": {
+      "image_mean_only": {
+        "seen": {
+          "macro_accuracy": 0.25900429511550227,
+          "macro_nll": 6.2867135266086835,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.21756835369400815,
+              "nll": 8.381936443746422,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.3091190108191654,
+              "nll": 5.936737981940396,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.2503255208333333,
+              "nll": 4.541466154139234,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.26972724771020223,
+          "macro_nll": 5.532819931407893,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.18803418803418803,
+              "nll": 9.369844491883812,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.3581267217630854,
+              "nll": 3.3846096661315537,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.2630208333333333,
+              "nll": 3.8440056362083133,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "image_rotation": {
+        "seen": {
+          "macro_accuracy": 0.48811836387565677,
+          "macro_nll": 2.8450749280195278,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3589296102385107,
+              "nll": 3.429229515161769,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.3730036063884596,
+              "nll": 4.246372395654741,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.732421875,
+              "nll": 0.859622873242072,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3076174772197499,
+          "macro_nll": 5.324906808861539,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.17435897435897435,
+              "nll": 8.926632349952623,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.30578512396694213,
+              "nll": 4.209817814682012,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.4427083333333333,
+              "nll": 2.838270261949983,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "text_reference": {
+        "seen": {
+          "macro_accuracy": 0.7615730051929687,
+          "macro_nll": 0.5216134184332778,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.6451425247236766,
+              "nll": 0.7505354090897568,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.6434827408552293,
+              "nll": 0.7875742524610866,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.99609375,
+              "nll": 0.026730593748989912,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3065540217883968,
+          "macro_nll": 3.473065016829304,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.20854700854700853,
+              "nll": 5.469532282711464,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.18181818181818182,
+              "nll": 2.274554593529624,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.529296875,
+              "nll": 2.675108174246823,
+              "questions": 512
+            }
+          }
+        }
+      }
+    },
+    "crystal": {
+      "image_mean_only": {
+        "seen": {
+          "macro_accuracy": 0.2371654436871693,
+          "macro_nll": 8.260286109245133,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.23346907116540624,
+              "nll": 10.452174153051145,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.2668727460072128,
+              "nll": 10.727845016226242,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.2111545138888889,
+              "nll": 3.600839158458012,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.24935913378148225,
+          "macro_nll": 8.520228213483206,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.249002849002849,
+              "nll": 8.274949606739362,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.28466483011937554,
+              "nll": 10.80689117218346,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.2144097222222222,
+              "nll": 6.478843861526789,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "image_rotation": {
+        "seen": {
+          "macro_accuracy": 0.4502598724895008,
+          "macro_nll": 5.4757929972090045,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.37211557106845067,
+              "nll": 7.1696051757137775,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.41301734501116266,
+              "nll": 7.627054390442039,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.5656467013888888,
+              "nll": 1.6307194254711936,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.28645001270474757,
+          "macro_nll": 11.254687971584481,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.21823361823361825,
+              "nll": 15.871790990249275,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.27089072543618,
+              "nll": 13.239308287549106,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.3702256944444444,
+              "nll": 4.65296463695506,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "text_reference": {
+        "seen": {
+          "macro_accuracy": 0.847543804117462,
+          "macro_nll": 0.3527104368299831,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.7678883071553229,
+              "nll": 0.5154298149435362,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.7913446676970634,
+              "nll": 0.4715213579722327,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.9833984375,
+              "nll": 0.07118013757418035,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3167585706766578,
+          "macro_nll": 5.880889803107007,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.20626780626780628,
+              "nll": 6.36286126980773,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.22773186409550047,
+              "nll": 7.725381482014256,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.5162760416666666,
+              "nll": 3.5544266574990373,
+              "questions": 512
+            }
+          }
+        }
+      }
+    }
+  },
+  "alignment_noncausal": {
+    "untrained": {
+      "image_mean_only": {
+        "paired_cosine": 0.22921016381713347,
+        "retrieval_R1": 0.3203125,
+        "retrieval_R5": 0.74609375
+      },
+      "image_rotation": {
+        "paired_cosine": 0.6697179684624334,
+        "retrieval_R1": 0.51953125,
+        "retrieval_R5": 0.9140625
+      }
+    },
+    "crystal": {
+      "image_mean_only": {
+        "paired_cosine": 0.2789372432496498,
+        "retrieval_R1": 0.3411458333333333,
+        "retrieval_R5": 0.83203125
+      },
+      "image_rotation": {
+        "paired_cosine": 0.6867121026703766,
+        "retrieval_R1": 0.6888020833333334,
+        "retrieval_R5": 0.98828125
+      }
+    }
+  },
+  "crystal_minus_untrained_ci95": {
+    "image_mean_only": {
+      "seen": {
+        "accuracy": {
+          "delta": -0.021838851428332973,
+          "ci95": [
+            -0.05625840104300192,
+            0.009174467847662652
+          ]
+        },
+        "nll": {
+          "delta": 1.9735725826364492,
+          "ci95": [
+            0.46821052849727246,
+            3.4074629894639834
+          ]
+        }
+      },
+      "unseen": {
+        "accuracy": {
+          "delta": -0.020368113928719983,
+          "ci95": [
+            -0.06447115493046286,
+            0.0217517647903629
+          ]
+        },
+        "nll": {
+          "delta": 2.9874082820753127,
+          "ci95": [
+            0.3241480191596782,
+            6.374978188428577
+          ]
+        }
+      }
+    },
+    "image_rotation": {
+      "seen": {
+        "accuracy": {
+          "delta": -0.03785849138615599,
+          "ci95": [
+            -0.08917761148788915,
+            0.011118418086892621
+          ]
+        },
+        "nll": {
+          "delta": 2.6307180691894767,
+          "ci95": [
+            1.8043173250356435,
+            3.3817948156510966
+          ]
+        }
+      },
+      "unseen": {
+        "accuracy": {
+          "delta": -0.021167464515002343,
+          "ci95": [
+            -0.06593241894078795,
+            0.022307068592738753
+          ]
+        },
+        "nll": {
+          "delta": 5.929781162722942,
+          "ci95": [
+            4.277903894248777,
+            7.72121205933945
+          ]
+        }
+      }
+    },
+    "text_reference": {
+      "seen": {
+        "accuracy": {
+          "delta": 0.08597079892449333,
+          "ci95": [
+            0.036983368212809,
+            0.14469197879508697
+          ]
+        },
+        "nll": {
+          "delta": -0.1689029816032947,
+          "ci95": [
+            -0.2939291216817508,
+            -0.07532996642577619
+          ]
+        }
+      },
+      "unseen": {
+        "accuracy": {
+          "delta": 0.010204548888261,
+          "ci95": [
+            -0.04903093513883776,
+            0.05858251293485097
+          ]
+        },
+        "nll": {
+          "delta": 2.4078247862777036,
+          "ci95": [
+            -0.05471796145834118,
+            6.3621062905147445
+          ]
+        }
+      }
+    }
+  }
+}

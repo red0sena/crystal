@@ -1,0 +1,468 @@
+{
+  "complete": true,
+  "checks": {
+    "ce": {
+      "401": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 5.915668353395631e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.21096294150331155,
+        "independent_mutual10NN": 0.14375000000000004,
+        "selected_validation_seen_accuracy": 0.9944795370101929
+      },
+      "419": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 6.576677137104525e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.18652516045954365,
+        "independent_mutual10NN": 0.130859375,
+        "selected_validation_seen_accuracy": 1.0
+      },
+      "443": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 5.738636659202712e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.28825491318938384,
+        "independent_mutual10NN": 0.16484375,
+        "selected_validation_seen_accuracy": 0.9729532599449158
+      }
+    },
+    "bad": {
+      "401": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 5.230453609783581e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.28384313084621426,
+        "independent_mutual10NN": 0.19140625,
+        "selected_validation_seen_accuracy": 0.9342485666275024
+      },
+      "419": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 3.7066456428647143e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.3260960802292287,
+        "independent_mutual10NN": 0.228125,
+        "selected_validation_seen_accuracy": 0.9154573678970337
+      },
+      "443": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 5.740701539025395e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.27429586531620903,
+        "independent_mutual10NN": 0.157421875,
+        "selected_validation_seen_accuracy": 0.99947589635849
+      }
+    },
+    "good": {
+      "401": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 5.150919434981915e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.36220136382359525,
+        "independent_mutual10NN": 0.251953125,
+        "selected_validation_seen_accuracy": 0.9094383120536804
+      },
+      "419": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 5.444905966101032e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.48408062894258375,
+        "independent_mutual10NN": 0.33203125,
+        "selected_validation_seen_accuracy": 0.8646478652954102
+      },
+      "443": {
+        "replayed_decisions": 76800,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 4.8831608410182525e-06,
+        "max_saved_state_error": 0.0,
+        "independent_biased_CKA": 0.3734981211646846,
+        "independent_mutual10NN": 0.21835937500000002,
+        "selected_validation_seen_accuracy": 1.0
+      }
+    }
+  },
+  "headlines": {
+    "ce": {
+      "text": {
+        "seen": {
+          "macro_accuracy": 0.987876001231351,
+          "macro_nll": 0.030071915927967457
+        },
+        "unseen": {
+          "macro_accuracy": 0.7017533287419652,
+          "macro_nll": 2.031098252536404
+        }
+      },
+      "raw": {
+        "seen": {
+          "macro_accuracy": 0.4014644723635721,
+          "macro_nll": 4.219957711259936
+        },
+        "unseen": {
+          "macro_accuracy": 0.3579336672376445,
+          "macro_nll": 3.9326724551352084
+        }
+      },
+      "mean": {
+        "seen": {
+          "macro_accuracy": 0.44466260858052514,
+          "macro_nll": 2.882931087654424
+        },
+        "unseen": {
+          "macro_accuracy": 0.3921894314649996,
+          "macro_nll": 2.9202405987069278
+        }
+      },
+      "rotation": {
+        "seen": {
+          "macro_accuracy": 0.4636380368934769,
+          "macro_nll": 2.5336392333427615
+        },
+        "unseen": {
+          "macro_accuracy": 0.4061229647877376,
+          "macro_nll": 2.652712784814696
+        }
+      },
+      "similarity": {
+        "seen": {
+          "macro_accuracy": 0.4584489603957002,
+          "macro_nll": 2.2060210439793067
+        },
+        "unseen": {
+          "macro_accuracy": 0.4048797267547268,
+          "macro_nll": 2.3618489199677377
+        }
+      },
+      "shuffle": {
+        "seen": {
+          "macro_accuracy": 0.22076241447686776,
+          "macro_nll": 5.740729985494973
+        },
+        "unseen": {
+          "macro_accuracy": 0.2202360581337853,
+          "macro_nll": 5.491438553495873
+        }
+      }
+    },
+    "bad": {
+      "text": {
+        "seen": {
+          "macro_accuracy": 0.9521265286568594,
+          "macro_nll": 0.12893488684340276
+        },
+        "unseen": {
+          "macro_accuracy": 0.6418788334981517,
+          "macro_nll": 2.4024778023279976
+        }
+      },
+      "raw": {
+        "seen": {
+          "macro_accuracy": 0.39546052095012585,
+          "macro_nll": 1.5067895189716989
+        },
+        "unseen": {
+          "macro_accuracy": 0.3074095228214547,
+          "macro_nll": 1.627535200412212
+        }
+      },
+      "mean": {
+        "seen": {
+          "macro_accuracy": 0.35048404930619054,
+          "macro_nll": 2.194912724296829
+        },
+        "unseen": {
+          "macro_accuracy": 0.28110271199759834,
+          "macro_nll": 2.35857062523497
+        }
+      },
+      "rotation": {
+        "seen": {
+          "macro_accuracy": 0.42772200384267084,
+          "macro_nll": 1.6576752777358312
+        },
+        "unseen": {
+          "macro_accuracy": 0.3470895213792941,
+          "macro_nll": 1.8984822566647332
+        }
+      },
+      "similarity": {
+        "seen": {
+          "macro_accuracy": 0.5072463816981405,
+          "macro_nll": 1.6484884244756983
+        },
+        "unseen": {
+          "macro_accuracy": 0.406993540445245,
+          "macro_nll": 1.9657788221841095
+        }
+      },
+      "shuffle": {
+        "seen": {
+          "macro_accuracy": 0.2214246860097949,
+          "macro_nll": 3.0666708278814396
+        },
+        "unseen": {
+          "macro_accuracy": 0.21338555370870724,
+          "macro_nll": 3.1102713604212724
+        }
+      }
+    },
+    "good": {
+      "text": {
+        "seen": {
+          "macro_accuracy": 0.9370957287951223,
+          "macro_nll": 0.144729433893425
+        },
+        "unseen": {
+          "macro_accuracy": 0.5671578106237197,
+          "macro_nll": 3.019605283378682
+        }
+      },
+      "raw": {
+        "seen": {
+          "macro_accuracy": 0.4905427015402602,
+          "macro_nll": 1.2376874103980795
+        },
+        "unseen": {
+          "macro_accuracy": 0.35007637564455746,
+          "macro_nll": 1.4651492777511157
+        }
+      },
+      "mean": {
+        "seen": {
+          "macro_accuracy": 0.44626899990604146,
+          "macro_nll": 1.5837940089782399
+        },
+        "unseen": {
+          "macro_accuracy": 0.3044410266711403,
+          "macro_nll": 2.0358933749849446
+        }
+      },
+      "rotation": {
+        "seen": {
+          "macro_accuracy": 0.5251449421510775,
+          "macro_nll": 1.1933910948199595
+        },
+        "unseen": {
+          "macro_accuracy": 0.38293635289373923,
+          "macro_nll": 1.6495421892598046
+        }
+      },
+      "similarity": {
+        "seen": {
+          "macro_accuracy": 0.5809645786569492,
+          "macro_nll": 1.3622841534500765
+        },
+        "unseen": {
+          "macro_accuracy": 0.41558857808857813,
+          "macro_nll": 2.022380415014069
+        }
+      },
+      "shuffle": {
+        "seen": {
+          "macro_accuracy": 0.21730940369495033,
+          "macro_nll": 2.804197156593588
+        },
+        "unseen": {
+          "macro_accuracy": 0.21299959089731804,
+          "macro_nll": 2.8925086113060487
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "good-minus-ce:text": {
+      "ci95_group_metric": [
+        [
+          [
+            -0.11567128789332991,
+            -0.05424637323850178
+          ],
+          [
+            -0.614850589673329,
+            -2.501192207794271
+          ]
+        ],
+        [
+          [
+            0.0248329320462885,
+            0.25717218854224
+          ],
+          [
+            0.40424201967354767,
+            4.213907318117938
+          ]
+        ]
+      ],
+      "bootstrap_draws_recomputed": 5000,
+      "comparison_scope": "recomputed CI endpoints match saved CI; primary per-draw values were not saved"
+    },
+    "good-minus-ce:rotation": {
+      "ci95_group_metric": [
+        [
+          [
+            -0.055496463479097626,
+            -2.0818989705723965
+          ],
+          [
+            -0.1162354060794847,
+            -1.4666041882636525
+          ]
+        ],
+        [
+          [
+            0.16923248631133844,
+            -0.3648968594906494
+          ],
+          [
+            0.079948171319284,
+            -0.5061938057406887
+          ]
+        ]
+      ],
+      "bootstrap_draws_recomputed": 5000,
+      "comparison_scope": "recomputed CI endpoints match saved CI; primary per-draw values were not saved"
+    },
+    "good-minus-bad:text": {
+      "ci95_group_metric": [
+        [
+          [
+            -0.040713928230872075,
+            -0.05011179277531053
+          ],
+          [
+            -0.15591251788340169,
+            -0.03693666924322023
+          ]
+        ],
+        [
+          [
+            0.002837946846964416,
+            0.08968817279593633
+          ],
+          [
+            0.01093296054981172,
+            1.4016216965766422
+          ]
+        ]
+      ],
+      "bootstrap_draws_recomputed": 5000,
+      "comparison_scope": "recomputed CI endpoints match saved CI; primary per-draw values were not saved"
+    },
+    "good-minus-bad:rotation": {
+      "ci95_group_metric": [
+        [
+          [
+            0.06637956692158152,
+            -0.7123723253223565
+          ],
+          [
+            -0.035161223839997785,
+            -0.607563702133534
+          ]
+        ],
+        [
+          [
+            0.1282325418561779,
+            -0.25457125313750095
+          ],
+          [
+            0.1087320579846584,
+            0.05401810429677768
+          ]
+        ]
+      ],
+      "bootstrap_draws_recomputed": 5000,
+      "comparison_scope": "recomputed CI endpoints match saved CI; primary per-draw values were not saved"
+    }
+  },
+  "source_and_input_hashes": {
+    "runs/rotation-state/plain-qwen-v2/scenes.json": "6ff91c30056083cf417c50c9066bfe41b1afa560f6eaf1f5300768e20a9a410e",
+    "runs/rotation-state/plain-qwen-v2/query-specs.json": "40af8a882c92db7a1e71c63fba2c7d0d53d69499db70013bbd2d6b3dded89747",
+    "runs/rotation-state/plain-qwen-v2/test-items.json": "4f2798a1f49f0a057b6319bba187b328bd29d814c9dd5d2138cac327ef885221",
+    "qwen_decision/v3/modeling.py": "0e67919f50af2b0f0fbf297ad80bdb02f8c2d6f9ae4aba72df4d30a68bf225db",
+    "qwen_decision/v3/state_rotation.py": "19a098a09aeb6a8d404d052af8469972334f55e9ab7f4ce713737ded15fc58a4",
+    "runs/rotation-state/jepa-decision-v1/prepare-source.py": "8bb53a898bcd8ad3536e83e6e177b5736522a45d22dfdcbbfe019661647acea4",
+    "runs/rotation-state/jepa-decision-v1/text-tokens.pt": "4a1619ad627b8a18893dea839800e9a84be11b8857a3048dbe62f14584d97c6e",
+    "runs/rotation-state/jepa-decision-v1/image-tokens.pt": "48e927eb051fa506e4d5dd4c7a2a888588d7af296ef4c11cf464324d8029de96",
+    "models/qwen3.5-0.8b/tokenizer_config.json": "49e2b6e395f959f077f1e992b338919c0d4a9732fc6e613995e06557f843500c",
+    "models/qwen3.5-0.8b/config.json": "b90b86f35c8e6925ef74ee04d0e758f0a845c83a42089ad82bbaa948de9b4204",
+    "models/qwen3.5-0.8b/preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "models/qwen3.5-0.8b/tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "models/qwen3.5-0.8b/model.safetensors-00001-of-00001.safetensors": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696",
+    "models/qwen3.5-0.8b/model.safetensors.index.json": "d8a08838a613b025eb7952ed9db11696213e57e76a375661ef5c12f9dd5dcf4e",
+    "models/qwen3.5-0.8b/video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "models/qwen3.5-0.8b/vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+  },
+  "verifier_source_sha256": "8d302d18920126a9cba2ffad5f5ba944228226e1f1928c3608f6e7cd803cc9a9",
+  "report_sha256": "055c147d2d78c054545e9f66db03635e0305afdf4dbe1796c280c78154893f57",
+  "official_loss_check": {
+    "official_source_sha256": "54099fe163ae8d3d994af71192c25972f1eee16b80e32e5417f08b1817d66a86",
+    "official_url": "https://github.com/galilai-group/stable-pretraining/blob/ab836bf/stable_pretraining/methods/lejepa.py",
+    "adaptation": "both implementations configured with 128 slices",
+    "ours": [
+      0.5195206999778748,
+      0.49606525897979736,
+      1.1727728843688965
+    ],
+    "official": [
+      0.5195206999778748,
+      0.49606525897979736,
+      1.1727728843688965
+    ],
+    "max_gradient_absolute_error": 2.9103830456733704e-11,
+    "complete": true
+  },
+  "input_audit": {
+    "worlds": 1536,
+    "train_worlds": 1024,
+    "text_views": 4096,
+    "caption_facts_checked": 12288,
+    "identical_bad_text_pairs": 113,
+    "bad_text_pairs_total": 2048,
+    "original_question_counts": {
+      "train": {
+        "seen": 8922,
+        "unseen": 3366
+      },
+      "validation": {
+        "seen": 2251,
+        "unseen": 821
+      },
+      "test": {
+        "seen": 2244,
+        "unseen": 828
+      }
+    },
+    "text_length_histogram": {
+      "17": 88,
+      "18": 411,
+      "19": 856,
+      "20": 1063,
+      "21": 980,
+      "22": 484,
+      "23": 214,
+      "28": 1536
+    },
+    "image_length_histogram": {
+      "64": 5632
+    },
+    "text_padding_zero": true,
+    "image_padding_zero": true
+  },
+  "oracle_preflight": {
+    "oracle_questions": 3072,
+    "correct": 3072,
+    "max_scene_task_nll": 1.4999999584397402e-07,
+    "purpose": "independent verifier preflight; oracle states are never used for model training/evaluation"
+  },
+  "scope": "all saved canonical states, train-only maps, all test gold, all 25 decision conditions/run, all headline scores and 5000 paired seed x scene bootstrap draws/comparison",
+  "not_independently_repeated": "frozen Qwen frontend feature-bank generation; bank, frontend sources and base weights are checked by hashes"
+}

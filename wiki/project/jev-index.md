@@ -1,5 +1,7 @@
 # 목표: Jev Decision Index에서 d3-lite 넘기
 
+> **2026-11-04 목표 확대:** d3-lite를 넘은 기존 기록을 보존한다. 현재 목표와 실행 방침은 [1B 이하 텍스트·비전 1위 프로젝트](champion-v1.md)에 있다. 새 학습은 원본 가중치에서 시작하고, 아래 연구·실험 지식은 이어받는다.
+
 [위키 홈](../README.md) · [작업 기록](v3-log.md) · [전략](../designs/beat-d3-lite.md)
 
 **목표(2026-10-16 설정):** 우리 Qwen3.5-0.8B 모델로 [Jev Decision Index](https://huggingface.co/spaces/multimodalart/jev-decision-index)에서 `vllm-sr/d3-lite`(0.8B)를 넘는다. 아래 수치는 2026-10-15 생성된 보드(Decision Index 0.3.2) 데이터 파일 `data/index.json`, `own.json`, `v03.json`, `methodology.json`(보드 Space의 파일이고 이 저장소에는 없다)을 내려받아 확인한 값이다. 보드는 계속 바뀐다.
@@ -122,3 +124,21 @@ Full ≈ 0.2·public + 0.506·same + 0.404·new − 3.04
 - **오염:** index 시험 문항으로 학습하면 그 문항이 오답 처리된다(감사로 적발된 사례: Lumma, JevK5, reflex 4B 퇴출). 데이터셋의 train/dev split 사용은 공개하면 허용된다.
 - 지연시간 median·mean·p80이 각각 1초 이하여야 한다. 점수에는 반영되지 않는다.
 - 제출: 공개 0.3 suite 전체 실행(`complete: true`) → 결과를 Hub에 업로드 → `apolinario/decision-index`에 PR. 연구실이 비공개 시험을 우리 서빙 코드로 실행하고, 결정 일치율(BF16 98.5%)을 확인한다. 가중치는 Hub에 공개해야 한다.
+
+## 갱신(2026-11-07): 1B 이하 선두 교체 확인
+
+[보드 미러 데이터](https://huggingface.co/datasets/multimodalart/decision-index-leaderboard)(11-06 09:05Z 생성)를 받아 확인했다. 텍스트 1B 이하 순위는 다음과 같다.
+
+| 순위 | 모델 | Full | same | new | public |
+|---:|---|---:|---:|---:|---:|
+| 1 | [GLiDE 0.8B](https://huggingface.co/fastino/GLiDE-0.8B) (Fastino, qwen3_5) | 36.36 | 49.66 | 16.40 | 54.32 |
+| 2 | GLiDE 0.4B (encoder) | 33.84 | 46.41 | 15.00 | 51.10 |
+| 3 | GLiClass v4 edge | 31.21 | 41.59 | 15.64 | 47.49 |
+| 4 | PKU-KCL-Meteor-0.8B | 30.94 | 43.50 | 12.11 | 58.77 |
+| 6 | crystal-0.8b (우리) | 29.37 | 38.72 | 15.35 | 42.79 |
+
+GLiDE 카드는 학습 방법을 공개하지 않는다.
+
+1B 이하 모델들 사이의 상관은 Full~same 0.99, Full~new 0.64, public~same 0.96, public~new 0.40이다. 표준편차는 same 12.7, new 3.4다. 순위는 사실상 same에서 갈린다.
+
+비전 1B 이하는 QEV-0.8B 44.81, Valen-0.8B 43.69, d3-lite 42.11 순이다. 비전 Full은 공개와 비공개 점수의 평균이고, 1B 이하에서 둘의 상관은 0.96이다.

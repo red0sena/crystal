@@ -1,0 +1,3698 @@
+{
+  "complete": true,
+  "decision": {
+    "ce": {
+      "text": {
+        "seen": {
+          "macro_accuracy": 0.987876001231351,
+          "macro_nll": 0.030071915927967447,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.9895287958115183,
+              "nll": 0.03538229895105807,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.987120041215868,
+              "nll": 0.036123657350012967,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.9869791666666666,
+              "nll": 0.0187097914828313,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.7017533287419652,
+          "macro_nll": 2.031098252536405,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.5333333333333333,
+              "nll": 2.757323183434167,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.743801652892562,
+              "nll": 1.0340487850025766,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.828125,
+              "nll": 2.301922789172472,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "raw": {
+        "seen": {
+          "macro_accuracy": 0.4014644723635721,
+          "macro_nll": 4.219957711259937,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.35020360674810935,
+              "nll": 4.422384529911636,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.34312210200927357,
+              "nll": 4.182189406477874,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.5110677083333334,
+              "nll": 4.055299197390301,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3579336672376445,
+          "macro_nll": 3.93267245513521,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.2393162393162393,
+              "nll": 4.839314863073992,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.3305785123966942,
+              "nll": 3.126512162139532,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.50390625,
+              "nll": 3.8321903401921076,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "mean": {
+        "seen": {
+          "macro_accuracy": 0.44466260858052514,
+          "macro_nll": 2.882931087654424,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.37347294938917974,
+              "nll": 3.296396077903541,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.371973209685729,
+              "nll": 2.9377700176507164,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.5885416666666666,
+              "nll": 2.4146271674090145,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3921894314649996,
+          "macro_nll": 2.9202405987069304,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.2512820512820513,
+              "nll": 3.7420635794172976,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.371900826446281,
+              "nll": 2.4033497378944237,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.5533854166666666,
+              "nll": 2.61530847880907,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "rotation": {
+        "seen": {
+          "macro_accuracy": 0.4636380368934769,
+          "macro_nll": 2.5336392333427624,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3967422920302502,
+              "nll": 2.8853298876594335,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.39000515198351365,
+              "nll": 2.567856711188594,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.6041666666666666,
+              "nll": 2.147731101180259,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.4061229647877376,
+          "macro_nll": 2.6527127848146974,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.24615384615384617,
+              "nll": 3.328070770725951,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.39669421487603307,
+              "nll": 2.1104413863039215,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.5755208333333334,
+              "nll": 2.5196261974142193,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "similarity": {
+        "seen": {
+          "macro_accuracy": 0.4584489603957002,
+          "macro_nll": 2.2060210439793058,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.38917975567190227,
+              "nll": 2.5114875511911245,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.3956723338485317,
+              "nll": 2.2611051432378013,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.5904947916666666,
+              "nll": 1.8454704375089914,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.4048797267547268,
+          "macro_nll": 2.361848919967738,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.252991452991453,
+              "nll": 2.934948012727287,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.3939393939393939,
+              "nll": 1.8618569096315902,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.5677083333333334,
+              "nll": 2.2887418375443374,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "shuffle": {
+        "seen": {
+          "macro_accuracy": 0.22076241447686754,
+          "macro_nll": 5.740729985494969,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.16887725421756825,
+              "nll": 5.316264162282197,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.2489438433797011,
+              "nll": 4.029463335551302,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.24446614583333326,
+              "nll": 7.876462458651408,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.22023605813378544,
+          "macro_nll": 5.491438553495871,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.16564102564102567,
+              "nll": 4.6562962461351125,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.25027548209366396,
+              "nll": 3.793464100534623,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.24479166666666666,
+              "nll": 8.024555313817876,
+              "questions": 512
+            }
+          }
+        }
+      }
+    },
+    "bad": {
+      "text": {
+        "seen": {
+          "macro_accuracy": 0.9521265286568593,
+          "macro_nll": 0.12893488684340274,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.9627690517742873,
+              "nll": 0.14070664022164564,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.9294178258629573,
+              "nll": 0.1997618025696524,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.9641927083333334,
+              "nll": 0.046336217738910196,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.6418788334981517,
+          "macro_nll": 2.4024778023279962,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.46495726495726497,
+              "nll": 3.7358346253590144,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.6143250688705234,
+              "nll": 1.94104392804613,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.8463541666666666,
+              "nll": 1.5305548535788442,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "raw": {
+        "seen": {
+          "macro_accuracy": 0.39546052095012585,
+          "macro_nll": 1.5067895189716995,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3833624200116347,
+              "nll": 1.5501579800382261,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.36682122617207624,
+              "nll": 1.388740827470785,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.4361979166666667,
+              "nll": 1.5814697494060868,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3074095228214546,
+          "macro_nll": 1.6275352004122112,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.20854700854700853,
+              "nll": 1.8632493116852906,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.2644628099173554,
+              "nll": 1.5117425331319894,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.44921875,
+              "nll": 1.5076137564193537,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "mean": {
+        "seen": {
+          "macro_accuracy": 0.35048404930619054,
+          "macro_nll": 2.1949127242968283,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3368237347294939,
+              "nll": 1.954684881067107,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.32921174652241114,
+              "nll": 1.7806498550328378,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.3854166666666667,
+              "nll": 2.8494034367905403,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.28110271199759834,
+          "macro_nll": 2.3585706252349685,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.18461538461538463,
+              "nll": 2.5796214747940085,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.25895316804407714,
+              "nll": 1.708327680123504,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.3997395833333333,
+              "nll": 2.7877627207873927,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "rotation": {
+        "seen": {
+          "macro_accuracy": 0.42772200384267095,
+          "macro_nll": 1.657675277735832,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3862710878417685,
+              "nll": 1.805152249176559,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.3910355486862442,
+              "nll": 1.5650241092905595,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.505859375,
+              "nll": 1.602849474740377,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3470895213792941,
+          "macro_nll": 1.8984822566647324,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.20683760683760685,
+              "nll": 2.3337120064041654,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.30578512396694213,
+              "nll": 1.650968842754571,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.5286458333333334,
+              "nll": 1.7107659208354609,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "similarity": {
+        "seen": {
+          "macro_accuracy": 0.5072463816981405,
+          "macro_nll": 1.6484884244756979,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.44851657940663175,
+              "nll": 1.9649951706404023,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.4482225656877898,
+              "nll": 1.6551341804239432,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.625,
+              "nll": 1.3253359223627486,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.406993540445245,
+          "macro_nll": 1.9657788221841102,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.24957264957264957,
+              "nll": 2.3844774081557474,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.3581267217630854,
+              "nll": 2.0379725978935497,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.61328125,
+              "nll": 1.4748864605030327,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "shuffle": {
+        "seen": {
+          "macro_accuracy": 0.22142468600979473,
+          "macro_nll": 3.0666708278814396,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.15878417684700408,
+              "nll": 2.7233736670506783,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.24806800618238026,
+              "nll": 2.0796573678722083,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.25742187499999997,
+              "nll": 4.396981448721432,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.21338555370870713,
+          "macro_nll": 3.1102713604212737,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.15427350427350434,
+              "nll": 2.8524608199830643,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.23829201101928374,
+              "nll": 1.9271297339946536,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.2475911458333333,
+              "nll": 4.551223527286104,
+              "questions": 512
+            }
+          }
+        }
+      }
+    },
+    "good": {
+      "text": {
+        "seen": {
+          "macro_accuracy": 0.9370957287951223,
+          "macro_nll": 0.14472943389342466,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.9557882489819662,
+              "nll": 0.1256391667800404,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.9258114374034003,
+              "nll": 0.18932049387932726,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.9296875,
+              "nll": 0.11922864102090636,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.5671578106237197,
+          "macro_nll": 3.0196052833786897,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.4307692307692308,
+              "nll": 4.91751844918337,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.4738292011019284,
+              "nll": 2.76781584306366,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.796875,
+              "nll": 1.3734815578890391,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "raw": {
+        "seen": {
+          "macro_accuracy": 0.4905427015402602,
+          "macro_nll": 1.237687410398079,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.5154159394997091,
+              "nll": 1.2177747976866347,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.4796496651210716,
+              "nll": 1.1769240861627275,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.4765625,
+              "nll": 1.3183633473448753,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.35007637564455746,
+          "macro_nll": 1.465149277751116,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.2564102564102564,
+              "nll": 1.6738261092207545,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.325068870523416,
+              "nll": 1.3604928632643665,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.46875,
+              "nll": 1.3611288607682275,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "mean": {
+        "seen": {
+          "macro_accuracy": 0.44626899990604146,
+          "macro_nll": 1.5837940089782403,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.47469458987783597,
+              "nll": 1.4085021059247436,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.4240082431736218,
+              "nll": 1.419064069854651,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.4401041666666667,
+              "nll": 1.923815851155326,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.3044410266711403,
+          "macro_nll": 2.035893374984944,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.24957264957264957,
+              "nll": 2.109837246306322,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.256198347107438,
+              "nll": 1.9529797524232897,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.4075520833333333,
+              "nll": 2.0448631262252213,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "rotation": {
+        "seen": {
+          "macro_accuracy": 0.5251449421510775,
+          "macro_nll": 1.1933910948199589,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.5072716695753345,
+              "nll": 1.3044354890789198,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.482225656877898,
+              "nll": 1.256228682939004,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.5859375,
+              "nll": 1.0195091124419526,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.38293635289373923,
+          "macro_nll": 1.6495421892598034,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3042735042735043,
+              "nll": 1.8821025626505532,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.22865013774104684,
+              "nll": 2.0413769782772575,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.6158854166666666,
+              "nll": 1.0251470268515996,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "similarity": {
+        "seen": {
+          "macro_accuracy": 0.5809645786569492,
+          "macro_nll": 1.3622841534500765,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.5945317044793484,
+              "nll": 1.4123907271780543,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.5188047398248326,
+              "nll": 1.4749501137408647,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.6295572916666666,
+              "nll": 1.199511619431311,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.41558857808857813,
+          "macro_nll": 2.022380415014068,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.3282051282051282,
+              "nll": 2.352454089147579,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.2727272727272727,
+              "nll": 2.522063470452628,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.6458333333333334,
+              "nll": 1.1926236854419978,
+              "questions": 512
+            }
+          }
+        }
+      },
+      "shuffle": {
+        "seen": {
+          "macro_accuracy": 0.21730940369495041,
+          "macro_nll": 2.8041971565935877,
+          "questions": 2244,
+          "by_task": {
+            "color": {
+              "accuracy": 0.16471785922047702,
+              "nll": 2.597723219617811,
+              "questions": 573
+            },
+            "shape": {
+              "accuracy": 0.24850592478104075,
+              "nll": 1.889405861628235,
+              "questions": 647
+            },
+            "relation": {
+              "accuracy": 0.23870442708333342,
+              "nll": 3.925462388534717,
+              "questions": 1024
+            }
+          }
+        },
+        "unseen": {
+          "macro_accuracy": 0.2129995908973182,
+          "macro_nll": 2.8925086113060487,
+          "questions": 828,
+          "by_task": {
+            "color": {
+              "accuracy": 0.16059829059829067,
+              "nll": 2.546592602552891,
+              "questions": 195
+            },
+            "shape": {
+              "accuracy": 0.250275482093664,
+              "nll": 2.101200559128479,
+              "questions": 121
+            },
+            "relation": {
+              "accuracy": 0.22812499999999994,
+              "nll": 4.029732672236776,
+              "questions": 512
+            }
+          }
+        }
+      }
+    }
+  },
+  "alignment": {
+    "ce": [
+      {
+        "paired_cosine": 0.4493748722229338,
+        "retrieval_R1": 0.19921875,
+        "retrieval_R5": 0.42578125,
+        "biased_linear_CKA": 0.21096294150331155,
+        "centered_cosine_mutual10NN": 0.14375000000000002,
+        "train_only_global_scale": 0.7729573717520749
+      },
+      {
+        "paired_cosine": 0.3928829773015772,
+        "retrieval_R1": 0.1171875,
+        "retrieval_R5": 0.29296875,
+        "biased_linear_CKA": 0.18652516045954362,
+        "centered_cosine_mutual10NN": 0.130859375,
+        "train_only_global_scale": 0.6373731815924293
+      },
+      {
+        "paired_cosine": 0.4814816652523882,
+        "retrieval_R1": 0.3046875,
+        "retrieval_R5": 0.59765625,
+        "biased_linear_CKA": 0.2882549131893838,
+        "centered_cosine_mutual10NN": 0.16484375,
+        "train_only_global_scale": 0.7650672858859984
+      }
+    ],
+    "bad": [
+      {
+        "paired_cosine": 0.4552508024452018,
+        "retrieval_R1": 0.265625,
+        "retrieval_R5": 0.56640625,
+        "biased_linear_CKA": 0.2838431308462142,
+        "centered_cosine_mutual10NN": 0.19140625,
+        "train_only_global_scale": 2.308369268751899
+      },
+      {
+        "paired_cosine": 0.5154661744983695,
+        "retrieval_R1": 0.3671875,
+        "retrieval_R5": 0.73828125,
+        "biased_linear_CKA": 0.3260960802292288,
+        "centered_cosine_mutual10NN": 0.22812500000000002,
+        "train_only_global_scale": 2.329175980166955
+      },
+      {
+        "paired_cosine": 0.44146206267900084,
+        "retrieval_R1": 0.28125,
+        "retrieval_R5": 0.5546875,
+        "biased_linear_CKA": 0.274295865316209,
+        "centered_cosine_mutual10NN": 0.15742187500000002,
+        "train_only_global_scale": 2.1430603458976076
+      }
+    ],
+    "good": [
+      {
+        "paired_cosine": 0.5989015667751134,
+        "retrieval_R1": 0.4140625,
+        "retrieval_R5": 0.765625,
+        "biased_linear_CKA": 0.3622013638235952,
+        "centered_cosine_mutual10NN": 0.251953125,
+        "train_only_global_scale": 2.6682550856639793
+      },
+      {
+        "paired_cosine": 0.6911288741021344,
+        "retrieval_R1": 0.4453125,
+        "retrieval_R5": 0.9140625,
+        "biased_linear_CKA": 0.48408062894258375,
+        "centered_cosine_mutual10NN": 0.33203125,
+        "train_only_global_scale": 2.9422365315220875
+      },
+      {
+        "paired_cosine": 0.5246175103152078,
+        "retrieval_R1": 0.38671875,
+        "retrieval_R5": 0.6953125,
+        "biased_linear_CKA": 0.37349812116468467,
+        "centered_cosine_mutual10NN": 0.21835937500000002,
+        "train_only_global_scale": 2.692104609619568
+      }
+    ]
+  },
+  "diagnostics": {
+    "ce": [
+      {
+        "text": {
+          "rms": 7.766629386010272,
+          "mean_coordinate_std": 7.346164040533321,
+          "effective_rank": 13.248408171450526
+        },
+        "image": {
+          "rms": 6.0109695867499715,
+          "mean_coordinate_std": 4.3409816174761175,
+          "effective_rank": 10.797888526716015
+        }
+      },
+      {
+        "text": {
+          "rms": 7.85689287968648,
+          "mean_coordinate_std": 6.803601933946429,
+          "effective_rank": 12.472042973902468
+        },
+        "image": {
+          "rms": 6.540319664178311,
+          "mean_coordinate_std": 4.4474639387712696,
+          "effective_rank": 7.358904978966288
+        }
+      },
+      {
+        "text": {
+          "rms": 6.383779636058136,
+          "mean_coordinate_std": 6.210004819098797,
+          "effective_rank": 17.2983396143116
+        },
+        "image": {
+          "rms": 5.57282383279772,
+          "mean_coordinate_std": 3.9782457987257,
+          "effective_rank": 14.99916216594041
+        }
+      }
+    ],
+    "bad": [
+      {
+        "text": {
+          "rms": 4.975447551675942,
+          "mean_coordinate_std": 4.868163655850761,
+          "effective_rank": 17.299603922563488
+        },
+        "image": {
+          "rms": 1.0274293046296235,
+          "mean_coordinate_std": 1.0160252942252612,
+          "effective_rank": 22.707360780901702
+        }
+      },
+      {
+        "text": {
+          "rms": 4.615632827078148,
+          "mean_coordinate_std": 4.505756548884069,
+          "effective_rank": 16.711803860718074
+        },
+        "image": {
+          "rms": 1.0187872042568797,
+          "mean_coordinate_std": 1.0075406210300502,
+          "effective_rank": 22.389139868004975
+        }
+      },
+      {
+        "text": {
+          "rms": 5.017629816952889,
+          "mean_coordinate_std": 4.661206294679351,
+          "effective_rank": 15.601015128043368
+        },
+        "image": {
+          "rms": 1.033926748646909,
+          "mean_coordinate_std": 1.0199849216914496,
+          "effective_rank": 20.955355075188905
+        }
+      }
+    ],
+    "good": [
+      {
+        "text": {
+          "rms": 4.812046747922222,
+          "mean_coordinate_std": 4.709282729245853,
+          "effective_rank": 15.28178067125433
+        },
+        "image": {
+          "rms": 1.0558719844171585,
+          "mean_coordinate_std": 1.0340619488197242,
+          "effective_rank": 17.77099869949178
+        }
+      },
+      {
+        "text": {
+          "rms": 4.368295353922815,
+          "mean_coordinate_std": 4.294674780886613,
+          "effective_rank": 18.001647052223696
+        },
+        "image": {
+          "rms": 0.9963481314419518,
+          "mean_coordinate_std": 0.9798243831755444,
+          "effective_rank": 17.78450178831814
+        }
+      },
+      {
+        "text": {
+          "rms": 5.17020391625047,
+          "mean_coordinate_std": 4.909221844551993,
+          "effective_rank": 15.678567836712613
+        },
+        "image": {
+          "rms": 1.0273072009576236,
+          "mean_coordinate_std": 1.0141866414564547,
+          "effective_rank": 17.309176038568477
+        }
+      }
+    ]
+  },
+  "comparisons": {
+    "good-minus-ce:text": {
+      "point": [
+        [
+          -0.050780272436228735,
+          0.11465751796545721
+        ],
+        [
+          -0.13459551811824544,
+          0.9885070308422845
+        ]
+      ],
+      "ci95_group_metric": [
+        [
+          [
+            -0.11567128789332991,
+            -0.05424637323850182
+          ],
+          [
+            -0.614850589673329,
+            -2.501192207794271
+          ]
+        ],
+        [
+          [
+            0.0248329320462885,
+            0.2571721885422399
+          ],
+          [
+            0.40424201967354767,
+            4.213907318117936
+          ]
+        ]
+      ]
+    },
+    "good-minus-ce:rotation": {
+      "point": [
+        [
+          0.061506905257600664,
+          -1.3402481385228036
+        ],
+        [
+          -0.023186611893998343,
+          -1.003170595554894
+        ]
+      ],
+      "ci95_group_metric": [
+        [
+          [
+            -0.055496463479097626,
+            -2.081898970572395
+          ],
+          [
+            -0.1162354060794847,
+            -1.466604188263651
+          ]
+        ],
+        [
+          [
+            0.16923248631133844,
+            -0.36489685949064893
+          ],
+          [
+            0.079948171319284,
+            -0.5061938057406886
+          ]
+        ]
+      ]
+    },
+    "good-minus-bad:text": {
+      "point": [
+        [
+          -0.015030799861737054,
+          0.015794547050021923
+        ],
+        [
+          -0.07472102287443194,
+          0.6171274810506935
+        ]
+      ],
+      "ci95_group_metric": [
+        [
+          [
+            -0.04071392823087186,
+            -0.050111792775310665
+          ],
+          [
+            -0.15591251788340169,
+            -0.0369366692432202
+          ]
+        ],
+        [
+          [
+            0.002837946846964416,
+            0.08968817279593633
+          ],
+          [
+            0.01093296054981172,
+            1.4016216965766417
+          ]
+        ]
+      ]
+    },
+    "good-minus-bad:rotation": {
+      "point": [
+        [
+          0.09742293830840659,
+          -0.46428418291587303
+        ],
+        [
+          0.03584683151444512,
+          -0.2489400674049289
+        ]
+      ],
+      "ci95_group_metric": [
+        [
+          [
+            0.06637956692158152,
+            -0.712372325322357
+          ],
+          [
+            -0.035161223839997785,
+            -0.6075637021335347
+          ]
+        ],
+        [
+          [
+            0.1282325418561779,
+            -0.25457125313750184
+          ],
+          [
+            0.1087320579846584,
+            0.054018104296777274
+          ]
+        ]
+      ]
+    }
+  },
+  "matched_step_orders": true,
+  "per_seed_decision": {
+    "ce": {
+      "401": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 0.9911580094462021,
+            "macro_nll": 0.029198063000302307,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.9842931937172775,
+                "nll": 0.036906281531809436,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.9891808346213292,
+                "nll": 0.0506643412155154,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 2.3566253582088465e-05,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.5878281834957971,
+            "macro_nll": 3.2316147082913056,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.38974358974358975,
+                "nll": 4.298073454326552,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.6198347107438017,
+                "nll": 1.1623851289054852,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.75390625,
+                "nll": 4.23438554164188,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.40672423199031105,
+            "macro_nll": 4.766375286345471,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3612565445026178,
+                "nll": 4.747661816222812,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.3276661514683153,
+                "nll": 4.726972568862626,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.53125,
+                "nll": 4.824491473950975,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3397355327753055,
+            "macro_nll": 4.531110423810943,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.17435897435897435,
+                "nll": 4.643264385596319,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.30578512396694213,
+                "nll": 4.270369411808889,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.5390625,
+                "nll": 4.679697474027619,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.4388369314329887,
+            "macro_nll": 3.3601537237919046,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.38045375218150085,
+                "nll": 3.6196150751923257,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.3462132921174652,
+                "nll": 3.417180063113216,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.58984375,
+                "nll": 3.0436660330701706,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.4367807224341315,
+            "macro_nll": 3.3174686980494386,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2358974358974359,
+                "nll": 4.1358856664267725,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.5041322314049587,
+                "nll": 2.1474873787423188,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.5703125,
+                "nll": 3.6690330489792253,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.4691300908430461,
+            "macro_nll": 2.64056685846247,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3961605584642234,
+                "nll": 2.897105608380431,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.401854714064915,
+                "nll": 2.6507635159464766,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.609375,
+                "nll": 2.3738314510605023,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.44061644636928726,
+            "macro_nll": 2.844337159705996,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2205128205128205,
+                "nll": 3.092319121639007,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.49586776859504134,
+                "nll": 1.9690226049412232,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.60546875,
+                "nll": 3.471669752537758,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.4689614329948804,
+            "macro_nll": 2.32651736934155,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.387434554973822,
+                "nll": 2.55801061317384,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.40030911901081917,
+                "nll": 2.390739605469873,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.619140625,
+                "nll": 2.030801889380937,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.42635489510489516,
+            "macro_nll": 2.5527850708782287,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.23076923076923078,
+                "nll": 2.7593620176528537,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.45454545454545453,
+                "nll": 1.6657063892988826,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.59375,
+                "nll": 3.2332868056829502,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.2231973645620633,
+            "macro_nll": 5.8317092639498425,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.17364746945898774,
+                "nll": 5.485505624581981,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.2564914992272022,
+                "nll": 4.177398993662968,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.23945312499999988,
+                "nll": 7.832223173604578,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.21700823797414706,
+            "macro_nll": 5.664211422254662,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.17615384615384616,
+                "nll": 4.444810590803741,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.2404958677685951,
+                "nll": 4.113830554427412,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.23437499999999994,
+                "nll": 8.433993121532833,
+                "questions": 512
+              }
+            }
+          }
+        }
+      },
+      "419": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 1.0,
+            "macro_nll": 0.00033896978855257567,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 1.0,
+                "nll": 0.0008097032986468431,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 1.0,
+                "nll": 0.00020217019941882973,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 5.035867592054214e-06,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.9493819312001129,
+            "macro_nll": 0.20538268262371587,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.8564102564102564,
+                "nll": 0.5799256978551777,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.9917355371900827,
+                "nll": 0.036201213288626195,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 2.113672734372258e-05,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.3853511499915033,
+            "macro_nll": 3.7333007394124738,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.29842931937172773,
+                "nll": 4.439901839097464,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.3029366306027821,
+                "nll": 3.868475371367436,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.5546875,
+                "nll": 2.8915250077725205,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.39311802465211554,
+            "macro_nll": 2.9973218772545542,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28717948717948716,
+                "nll": 3.990137790126122,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.3140495867768595,
+                "nll": 2.781326316839206,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.578125,
+                "nll": 2.2205015247983337,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.3782991723614966,
+            "macro_nll": 3.341205999651603,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2670157068062827,
+                "nll": 4.039027830618785,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.2936630602782071,
+                "nll": 3.403620456141544,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.57421875,
+                "nll": 2.580969712194479,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3928613605460196,
+            "macro_nll": 2.7828072681218194,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28205128205128205,
+                "nll": 3.4852432805662446,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.32231404958677684,
+                "nll": 2.6088385752164363,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.57421875,
+                "nll": 2.2543399485827758,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.3949042110665595,
+            "macro_nll": 3.048667957082712,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2949389179755672,
+                "nll": 3.6464715484795596,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.2921174652241113,
+                "nll": 3.105800427951373,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.59765625,
+                "nll": 2.3937318948172033,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.4201082613724659,
+            "macro_nll": 2.531378148482218,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28205128205128205,
+                "nll": 3.443600194498755,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.3884297520661157,
+                "nll": 2.0161869286348217,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.58984375,
+                "nll": 2.1343473223130784,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.38275252909679347,
+            "macro_nll": 2.6486040383763014,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2914485165794066,
+                "nll": 3.1350235859340807,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.30602782071097373,
+                "nll": 2.710176317676069,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.55078125,
+                "nll": 2.100612211518755,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.41921349641520095,
+            "macro_nll": 2.3321640964530146,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28717948717948716,
+                "nll": 3.0759188395079047,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.3884297520661157,
+                "nll": 1.9078961895257391,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.58203125,
+                "nll": 2.0126772603253995,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.21806781561012786,
+            "macro_nll": 6.353317101715088,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.1650087260034904,
+                "nll": 5.815779265513855,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.24505409582689325,
+                "nll": 4.463251954442113,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.2441406249999999,
+                "nll": 8.780920085189294,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.2259269569603377,
+            "macro_nll": 6.178882560899669,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.17102564102564097,
+                "nll": 5.339152178350681,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.26280991735537196,
+                "nll": 4.500242431927158,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.24394531250000015,
+                "nll": 8.697253072421168,
+                "questions": 512
+              }
+            }
+          }
+        }
+      },
+      "443": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 0.9724699942478509,
+            "macro_nll": 0.060678714995047456,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.9842931937172775,
+                "nll": 0.06843091202271795,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.9721792890262752,
+                "nll": 0.05750446063510467,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.9609375,
+                "nll": 0.056100772327319755,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.5680498715299852,
+            "macro_nll": 2.656297366694195,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.35384615384615387,
+                "nll": 3.393970398120773,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.6198347107438017,
+                "nll": 1.903560012813618,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.73046875,
+                "nll": 2.6713616891481924,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.41231803510890197,
+            "macro_nll": 4.160197108021866,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.39092495636998253,
+                "nll": 4.079589934414633,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.3987635239567233,
+                "nll": 3.951120279203559,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.447265625,
+                "nll": 4.449881110447408,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.34094744428551244,
+            "macro_nll": 4.269585064340134,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2564102564102564,
+                "nll": 5.884542413499534,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.371900826446281,
+                "nll": 2.3278407577705007,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.39453125,
+                "nll": 4.596372021750369,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.5168517219470902,
+            "macro_nll": 1.9474335395197648,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.47294938917975565,
+                "nll": 2.2305453278995095,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4760432766615147,
+                "nll": 1.9925095336973904,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.6015625,
+                "nll": 1.6192457569623948,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.34692621141484775,
+            "macro_nll": 2.6604458299495337,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2358974358974359,
+                "nll": 3.6050617912588776,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.2892561983471074,
+                "nll": 2.4537232597245158,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.515625,
+                "nll": 1.9225524388652078,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.5268798087708249,
+            "macro_nll": 1.911682884483105,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.49912739965095987,
+                "nll": 2.112412506118309,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4760432766615147,
+                "nll": 1.9470061896679338,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.60546875,
+                "nll": 1.6756299576630718,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3576441866214593,
+            "macro_nll": 2.5824230462558777,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2358974358974359,
+                "nll": 3.4482929960400917,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.30578512396694213,
+                "nll": 2.3461146253357192,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.53125,
+                "nll": 1.9528615173918218,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.5236329190954269,
+            "macro_nll": 1.6429417242200657,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.4886561954624782,
+                "nll": 1.8414284544654524,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4806800618238022,
+                "nll": 1.6823995065674617,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.6015625,
+                "nll": 1.4049972116272822,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3690707887440842,
+            "macro_nll": 2.200597592571971,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.24102564102564103,
+                "nll": 2.969563181021102,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.33884297520661155,
+                "nll": 2.0119681500701487,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.52734375,
+                "nll": 1.6202614466246628,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.22102206325841148,
+            "macro_nll": 5.0371635908199766,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.16797556719022672,
+                "nll": 4.647507596750756,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.24528593508500776,
+                "nll": 3.447739058548825,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.24980468749999996,
+                "nll": 7.016244117160349,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.21777297946687155,
+            "macro_nll": 4.631221677333282,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.1497435897435899,
+                "nll": 4.184925969250914,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.24752066115702476,
+                "nll": 2.7663193152493015,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.25605468749999993,
+                "nll": 6.942419747499629,
+                "questions": 512
+              }
+            }
+          }
+        }
+      }
+    },
+    "bad": {
+      "401": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 0.9341734394626203,
+            "macro_nll": 0.21441046294549704,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.944153577661431,
+                "nll": 0.22680928636332506,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.8778979907264297,
+                "nll": 0.3897335790342793,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.98046875,
+                "nll": 0.02668852343888671,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.532842741223423,
+            "macro_nll": 3.1355515905610023,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.24102564102564103,
+                "nll": 6.101796116425738,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.5371900826446281,
+                "nll": 1.6712607542375184,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.8203125,
+                "nll": 1.6335979010197519,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.3452454038861736,
+            "macro_nll": 1.7508849851382255,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.387434554973822,
+                "nll": 1.5880874660991513,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.33384853168469864,
+                "nll": 1.4459499233912352,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.314453125,
+                "nll": 2.218617565924291,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.26362880333050787,
+            "macro_nll": 1.8146503436086163,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.18974358974358974,
+                "nll": 1.9790520889380958,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.2066115702479339,
+                "nll": 1.4250378381087168,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.39453125,
+                "nll": 2.039861103779036,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.30809846585192496,
+            "macro_nll": 2.349430153578665,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28272251308900526,
+                "nll": 2.023783220407876,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.2704791344667697,
+                "nll": 1.7019908054517412,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.37109375,
+                "nll": 3.322516434876378,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.24920031830543196,
+            "macro_nll": 2.3895622968774544,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.14871794871794872,
+                "nll": 2.4181445523318743,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.1652892561983471,
+                "nll": 1.7187149304435005,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.43359375,
+                "nll": 3.0318274078569893,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.4390227955742618,
+            "macro_nll": 1.437764112821142,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.4048865619546248,
+                "nll": 1.705763166512816,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.42194744976816073,
+                "nll": 1.3369773189671927,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.490234375,
+                "nll": 1.2705518529834174,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3586824870205552,
+            "macro_nll": 1.5999431713870746,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.18461538461538463,
+                "nll": 2.0096063170437786,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.371900826446281,
+                "nll": 1.436913514587886,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.51953125,
+                "nll": 1.3533096825295594,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.518431037682983,
+            "macro_nll": 1.590800869564988,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.46596858638743455,
+                "nll": 1.949159006093484,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4760432766615147,
+                "nll": 1.5103669162578464,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.61328125,
+                "nll": 1.3128766863436332,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.4414123203185703,
+            "macro_nll": 1.7664059376275827,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2564102564102564,
+                "nll": 2.4004101171172603,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.45454545454545453,
+                "nll": 1.5839556625386244,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.61328125,
+                "nll": 1.3148520332268632,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.22230929084194476,
+            "macro_nll": 2.867230251086312,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.15706806282722513,
+                "nll": 2.7450794303052373,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.24853168469860903,
+                "nll": 1.8692318748119132,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.2613281250000001,
+                "nll": 3.987379448141786,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.22626249933778342,
+            "macro_nll": 2.7382015220278837,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.1561538461538462,
+                "nll": 2.483455003420061,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.24958677685950412,
+                "nll": 1.6898211709785529,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.2730468749999999,
+                "nll": 4.041328391685036,
+                "questions": 512
+              }
+            }
+          }
+        }
+      },
+      "419": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 0.9222061465079577,
+            "macro_nll": 0.17173577594613063,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.944153577661431,
+                "nll": 0.19503841245413756,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.910355486862442,
+                "nll": 0.2078576410663915,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.912109375,
+                "nll": 0.1123112743178628,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.42090706011160556,
+            "macro_nll": 3.9937861406117743,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.20512820512820512,
+                "nll": 5.002919719744444,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.33884297520661155,
+                "nll": 4.020380563080154,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.71875,
+                "nll": 2.9580581390107246,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.48161320556549087,
+            "macro_nll": 1.2327149794930483,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.47643979057591623,
+                "nll": 1.3492810366738897,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4605873261205564,
+                "nll": 1.252615601502823,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.5078125,
+                "nll": 1.0962483003024328,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.29133522727272726,
+            "macro_nll": 1.549979238319743,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2,
+                "nll": 1.7367015216290889,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.18181818181818182,
+                "nll": 1.7905140722579143,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.4921875,
+                "nll": 1.1227221210722258,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.40521847236720604,
+            "macro_nll": 1.4148727175781843,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.38394415357766143,
+                "nll": 1.551554599819581,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.38639876352395675,
+                "nll": 1.4139932131960316,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.4453125,
+                "nll": 1.27907033971894,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.2991026413611641,
+            "macro_nll": 1.6005006720243458,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.24102564102564103,
+                "nll": 1.7730574260529561,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.21487603305785125,
+                "nll": 1.7632021593945508,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.44140625,
+                "nll": 1.2652424306255305,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.4651554933305191,
+            "macro_nll": 1.2130878643494678,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.4258289703315881,
+                "nll": 1.401038861570713,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4188562596599691,
+                "nll": 1.2676132666366324,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.55078125,
+                "nll": 0.970611464841058,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3445507853888536,
+            "macro_nll": 1.4517142463816224,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.26153846153846155,
+                "nll": 1.7737982026379657,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.19008264462809918,
+                "nll": 1.7240378869003523,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.58203125,
+                "nll": 0.8573066496065489,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.5506948515090232,
+            "macro_nll": 1.1817716739371618,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.5305410122164049,
+                "nll": 1.3290771126903298,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4945904173106646,
+                "nll": 1.3113442863386098,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.626953125,
+                "nll": 0.9048936227825459,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.34083067343010526,
+            "macro_nll": 1.9718358378372622,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2512820512820513,
+                "nll": 2.1970969602314763,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.17355371900826447,
+                "nll": 2.701173035302558,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.59765625,
+                "nll": 1.017237517977752,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.21311066746340335,
+            "macro_nll": 2.5084283904189912,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.15680628272251304,
+                "nll": 2.3809762540625066,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.2547913446676971,
+                "nll": 1.7486143726625092,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.2277343749999999,
+                "nll": 3.3956945445319575,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.2079087449009324,
+            "macro_nll": 2.3418910218553357,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.15538461538461545,
+                "nll": 2.121091509435158,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.23181818181818184,
+                "nll": 1.6657686285448265,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.23652343749999996,
+                "nll": 3.238812927586022,
+                "questions": 512
+              }
+            }
+          }
+        }
+      },
+      "443": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 1.0,
+            "macro_nll": 0.0006584216385806269,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 1.0,
+                "nll": 0.0002722218474743059,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 1.0,
+                "nll": 0.0016941876082864793,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 8.855459981095836e-06,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.9718866991594264,
+            "macro_nll": 0.078095675811212,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.9487179487179487,
+                "nll": 0.10278803990686201,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.9669421487603306,
+                "nll": 0.13149046682071777,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 8.520706056227103e-06,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.35952295339871315,
+            "macro_nll": 1.536768592283824,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2862129144851658,
+                "nll": 1.7131054373416381,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.30602782071097373,
+                "nll": 1.467656957518297,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.486328125,
+                "nll": 1.4295433819915366,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3672645378611288,
+            "macro_nll": 1.5179760193082747,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2358974358974359,
+                "nll": 1.8739943244886872,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.4049586776859504,
+                "nll": 1.3196756890293377,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.4609375,
+                "nll": 1.3602580444067989,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.3381352096994406,
+            "macro_nll": 2.8204353017336365,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.343804537521815,
+                "nll": 2.2887168229738637,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.33075734157650694,
+                "nll": 2.225965546450741,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.33984375,
+                "nll": 3.9466235357763035,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.29500517632619905,
+            "macro_nll": 3.085648906803106,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.1641025641025641,
+                "nll": 3.547662445997197,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.39669421487603307,
+                "nll": 1.643065950532461,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.32421875,
+                "nll": 4.066218323879659,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.3789877226232317,
+            "macro_nll": 2.3221738560368856,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.32809773123909247,
+                "nll": 2.3086547194461486,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.3323029366306028,
+                "nll": 2.0904817422678534,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.4765625,
+                "nll": 2.5673851063966553,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3380352917284735,
+            "macro_nll": 2.6437893522255007,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.17435897435897435,
+                "nll": 3.217731499530752,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.35537190082644626,
+                "nll": 1.7919551267754754,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.484375,
+                "nll": 2.9216814303702745,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.45261325590241536,
+            "macro_nll": 2.172892729924944,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.34904013961605584,
+                "nll": 2.6167493931373924,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.3740340030911901,
+                "nll": 2.143691338675374,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.634765625,
+                "nll": 1.7582374579620668,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.43873762758705936,
+            "macro_nll": 2.159094691087485,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.24102564102564103,
+                "nll": 2.5559251471185056,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.4462809917355372,
+                "nll": 1.8287890958394664,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.62890625,
+                "nll": 2.0925698303044835,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.22885409972403617,
+            "macro_nll": 3.8243538421390153,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.16247818499127406,
+                "nll": 3.044065316784291,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.24088098918083461,
+                "nll": 2.621125856142203,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.28320312499999994,
+                "nll": 5.807870353490552,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.20598541688740557,
+            "macro_nll": 4.250721537380603,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.15128205128205133,
+                "nll": 3.9528359470939733,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.23347107438016526,
+                "nll": 2.425799402460581,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.23320312500000007,
+                "nll": 6.373529262587255,
+                "questions": 512
+              }
+            }
+          }
+        }
+      }
+    },
+    "good": {
+      "401": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 0.9293819153212391,
+            "macro_nll": 0.17143249630052873,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.9616055846422339,
+                "nll": 0.13326789005715436,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.8948995363214838,
+                "nll": 0.26142767102910885,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.931640625,
+                "nll": 0.11960192781532294,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3869640460549551,
+            "macro_nll": 4.540915424840002,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.1794871794871795,
+                "nll": 7.5702574193130125,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.23140495867768596,
+                "nll": 3.941238247067285,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.75,
+                "nll": 2.1112506081397076,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.5498881647143302,
+            "macro_nll": 1.049081432607999,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.5636998254799301,
+                "nll": 1.1102408587082695,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.5332302936630603,
+                "nll": 1.0774612255946199,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.552734375,
+                "nll": 0.9595422135211075,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.31646292470156107,
+            "macro_nll": 1.4031071227769092,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.26666666666666666,
+                "nll": 1.5825569801025436,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.19834710743801653,
+                "nll": 1.6014079051383572,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.484375,
+                "nll": 1.025356483089827,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.4774786604736094,
+            "macro_nll": 1.219775310922008,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.4781849912739965,
+                "nll": 1.273718875441886,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4327666151468315,
+                "nll": 1.250367790200946,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.521484375,
+                "nll": 1.135239267123192,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.28244182427421066,
+            "macro_nll": 1.4782893279594767,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2153846153846154,
+                "nll": 1.6788029509478344,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.19834710743801653,
+                "nll": 1.5810799595189606,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.43359375,
+                "nll": 1.1749850734116345,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.5445056277608743,
+            "macro_nll": 1.0291106087070496,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.5619546247818499,
+                "nll": 1.0713456095805824,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.5285935085007728,
+                "nll": 1.0600423920621962,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.54296875,
+                "nll": 0.9559438244783705,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.33691482128982125,
+            "macro_nll": 1.3876802258373264,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28205128205128205,
+                "nll": 1.6482145934484005,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.18181818181818182,
+                "nll": 1.616839745940332,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.546875,
+                "nll": 0.8979863381232472,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.6246176367602115,
+            "macro_nll": 1.0638917303182225,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.6858638743455497,
+                "nll": 0.9698287198577399,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.598145285935085,
+                "nll": 1.0001076457621838,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.58984375,
+                "nll": 1.2217388253347432,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3538419046231546,
+            "macro_nll": 1.9074812464977908,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.28205128205128205,
+                "nll": 2.0088358237478157,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.18181818181818182,
+                "nll": 2.5944942909292954,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.59765625,
+                "nll": 1.1191136248162614,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.2098717972060606,
+            "macro_nll": 2.584351963214232,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.15732984293193722,
+                "nll": 2.5833233691867186,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.24103554868624436,
+                "nll": 1.7614924589998866,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.23125000000000023,
+                "nll": 3.4082400614560924,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.2113807077549975,
+            "macro_nll": 2.384955022729596,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.15564102564102572,
+                "nll": 2.1928093716153727,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.25330578512396684,
+                "nll": 1.6021254590837286,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.22519531249999994,
+                "nll": 3.359930237489687,
+                "questions": 512
+              }
+            }
+          }
+        }
+      },
+      "419": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 0.8819052710641273,
+            "macro_nll": 0.26194444351779494,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.9057591623036649,
+                "nll": 0.2433750970679732,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.8825347758887172,
+                "nll": 0.3043856069781675,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.857421875,
+                "nll": 0.23807262650724403,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.32647519778201595,
+            "macro_nll": 4.4875172642774155,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.14871794871794872,
+                "nll": 7.094032741385132,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.19008264462809918,
+                "nll": 4.359335939575214,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.640625,
+                "nll": 2.0091831118719012,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.5788237830714859,
+            "macro_nll": 0.9393159813905325,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.6492146596858639,
+                "nll": 0.8951004017773455,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.5579598145285936,
+                "nll": 1.0534362709358756,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.529296875,
+                "nll": 0.8694112714583767,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.38167470156106525,
+            "macro_nll": 1.2456801744959407,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.26666666666666666,
+                "nll": 1.6432583273634338,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.34710743801652894,
+                "nll": 1.2408470175480728,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.53125,
+                "nll": 0.8529351785763158,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.5371994929162475,
+            "macro_nll": 1.0641618437837466,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.5794066317626527,
+                "nll": 1.1178570501426646,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.4853168469860896,
+                "nll": 1.1750323450834261,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.546875,
+                "nll": 0.899596136125149,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3556405952002543,
+            "macro_nll": 1.5253173031051839,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.27692307692307694,
+                "nll": 1.900819899248434,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.23140495867768596,
+                "nll": 1.8373521708223497,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.55859375,
+                "nll": 0.8377798392447684,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.5695996101564657,
+            "macro_nll": 0.9615925712784176,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.5933682373472949,
+                "nll": 1.0554217125306338,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.517774343122102,
+                "nll": 1.0831093342824576,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.59765625,
+                "nll": 0.7462466670221615,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3671899281274282,
+            "macro_nll": 1.515955892411676,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.30256410256410254,
+                "nll": 1.8255712841073688,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.18181818181818182,
+                "nll": 1.9849678321115298,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.6171875,
+                "nll": 0.737328561016129,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.6443637634722571,
+            "macro_nll": 0.9849390638441963,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.7364746945898778,
+                "nll": 0.7536534336260423,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.5950540958268934,
+                "nll": 1.1673762849498102,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.6015625,
+                "nll": 1.0337874729567362,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3867207366497139,
+            "macro_nll": 2.197836148241647,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3384615384615385,
+                "nll": 2.598296961317438,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.2396694214876033,
+                "nll": 2.8274467431652623,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.58203125,
+                "nll": 1.167764740242241,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.21590248932036757,
+            "macro_nll": 2.3654294457999003,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.16666666666666669,
+                "nll": 2.343442287424803,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.2441267387944359,
+                "nll": 1.6921685037566734,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.2369140625000001,
+                "nll": 3.0606775462182245,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.21484024577064353,
+            "macro_nll": 2.3087473698232883,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.14743589743589752,
+                "nll": 2.249093946519366,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.24669421487603324,
+                "nll": 1.674436682774892,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.25039062499999987,
+                "nll": 3.0027114801756065,
+                "questions": 512
+              }
+            }
+          }
+        }
+      },
+      "443": {
+        "text": {
+          "seen": {
+            "macro_accuracy": 1.0,
+            "macro_nll": 0.0008113618619503623,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 1.0,
+                "nll": 0.0002745132149936232,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 1.0,
+                "nll": 0.0021482036307053976,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 1.1368740152066466e-05,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.9880341880341881,
+            "macro_nll": 0.03038316101865252,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.9641025641025641,
+                "nll": 0.08826518685196667,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 1.0,
+                "nll": 0.0028733425484821517,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 1.0,
+                "nll": 1.0953655508742945e-05,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "raw": {
+          "seen": {
+            "macro_accuracy": 0.3429161568349648,
+            "macro_nll": 1.7246648171957055,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3333333333333333,
+                "nll": 1.6479831325742882,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.34775888717156106,
+                "nll": 1.399874761957687,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.34765625,
+                "nll": 2.126136557055142,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.3520915006710461,
+            "macro_nll": 1.7466605359804983,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2358974358974359,
+                "nll": 1.795663020196285,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.4297520661157025,
+                "nll": 1.239223667106669,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.390625,
+                "nll": 2.20509492063854,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "mean": {
+          "seen": {
+            "macro_accuracy": 0.32412884632826766,
+            "macro_nll": 2.4674448722289664,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.36649214659685864,
+                "nll": 1.8339303921896803,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.35394126738794435,
+                "nll": 1.831792074279581,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.251953125,
+                "nll": 3.7366121502176375,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.27524066053895596,
+            "macro_nll": 3.104073493890173,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.2564102564102564,
+                "nll": 2.749888888722698,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.33884297520661155,
+                "nll": 2.440507126928559,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.23046875,
+                "nll": 4.121824466019261,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "rotation": {
+          "seen": {
+            "macro_accuracy": 0.46132958853589257,
+            "macro_nll": 1.5894701044744093,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.36649214659685864,
+                "nll": 1.7865391451255435,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.40030911901081917,
+                "nll": 1.6255343224723584,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.6171875,
+                "nll": 1.3563368458253258,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.44470430926396837,
+            "macro_nll": 2.044990449530408,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3282051282051282,
+                "nll": 2.17252181039589,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.32231404958677684,
+                "nll": 2.5223233567799106,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.68359375,
+                "nll": 1.440126181415423,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "similarity": {
+          "seen": {
+            "macro_accuracy": 0.47391233573837904,
+            "macro_nll": 2.0380216661878117,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3612565445026178,
+                "nll": 2.5136900280503807,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.36321483771251933,
+                "nll": 2.2573664105106004,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.697265625,
+                "nll": 1.3430085600024533,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.5062030929928657,
+            "macro_nll": 1.9618238503027674,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.3641025641025641,
+                "nll": 2.450229482377484,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.39669421487603307,
+                "nll": 2.1442493772633267,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.7578125,
+                "nll": 1.2909926912674912,
+                "questions": 512
+              }
+            }
+          }
+        },
+        "shuffle": {
+          "seen": {
+            "macro_accuracy": 0.22615392455842306,
+            "macro_nll": 3.4628100607666297,
+            "questions": 2244,
+            "by_task": {
+              "color": {
+                "accuracy": 0.17015706806282718,
+                "nll": 2.8664040022419117,
+                "questions": 573
+              },
+              "shape": {
+                "accuracy": 0.26035548686244203,
+                "nll": 2.2145566221281445,
+                "questions": 647
+              },
+              "relation": {
+                "accuracy": 0.24794921874999995,
+                "nll": 5.307469557929833,
+                "questions": 1024
+              }
+            }
+          },
+          "unseen": {
+            "macro_accuracy": 0.21277781916631358,
+            "macro_nll": 3.9838234413652613,
+            "questions": 828,
+            "by_task": {
+              "color": {
+                "accuracy": 0.1787179487179488,
+                "nll": 3.1978744895239353,
+                "questions": 195
+              },
+              "shape": {
+                "accuracy": 0.2508264462809919,
+                "nll": 3.0270395355268165,
+                "questions": 121
+              },
+              "relation": {
+                "accuracy": 0.20878906250000004,
+                "nll": 5.726556299045033,
+                "questions": 512
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "text_capability_gates": {
+    "ce": {
+      "seen95": true,
+      "unseen90": false
+    },
+    "bad": {
+      "seen95": true,
+      "unseen90": false
+    },
+    "good": {
+      "seen95": false,
+      "unseen90": false
+    }
+  }
+}

@@ -32,6 +32,35 @@ alphaXiv 검색 결과의 기관·인기도·자동 요약만으로 성능을 �
 
 상대 Markdown 링크를 사용하여 GitHub·일반 Markdown viewer에서 탐색할 수 있다. sources.json은 문헌 색인이며 benchmark prediction 또는 paper 본문의 복제 파일이 아니다. 후속 논문은 원문 ID와 실제 반환 title을 대조하고 주요 절·한계를 확인한 뒤 추가한다.
 
+## 2026-11-04: PRH·JEPA와 고정 Qwen 회전 정렬
+
+- [논문 카드](../papers/platonic-jepa.md): arXiv:2610.39302v1의 본문과 부록 A–C에서 정리·가정·증명 구조·설정·한계를 대조했다.
+  공식 구현은 `a2b9949fa907d4fbe562742d4b1ffa7205ab7427`에 고정해 정적 검토했다.
+  저자 학습의 독립 재현·공식 테스트 전체 실행·형식 증명 검증을 했다는 뜻은 아니다.
+- [우리 실험](../project/rotation-alignment.md): 같은 VLM의 마지막 판정 표현에 적합한 직교 사상을 적용한 합성 pilot다.
+  독립 인코더 동치·JEPA 정리 재현·무학습·pair-free·자연 이미지 전이로 부르지 않는다.
+- [사후 감사](../project/rotation-alignment-audit.json): 원 기록 SHA256,672문항 gold·이미지 중복,
+  모든 test logits의 독립 재계산, 층화 bootstrap, 평균 방향 대조, 중심화·회전 불변 지표를 확인했다.
+  추가 대조와 exact McNemar 검정은 원 test를 본 뒤의 분석이며 새 확인 실험이 아니다.
+- 정정한 해석: 높은 대응 cosine과 내부 기하 정렬은 다른 지표다. 평균·공통 방향이 원인이라는 설명도
+  처음에는 가설이었으므로 사후 대조의 실제 관측과 구분했다. 마지막 표현의 회전은 효과적인 출력 head 변경과 같다.
+- 원 run과 원 보고서는 보존하고 사후 감사 JSON을 별도로 뒀다. 원문 전체나 외부 코드는 위키에 복제하지 않았다.
+- **수정 설계 실제 실행:** [질문 없는 상태 회전 v2](../project/state-rotation-v2.md).
+  세 물체1,536장, train 전용 평균/PCA64/직교 사상, text-only 조건부 MLP3seed를 사용했다.
+  원래 code head를 회전하는 실험과 분리했다. 새 장면·seen 질문에서 일부 전이를 관찰했고,
+  의미 조합을 뺀 unseen 질문은 text 기준선부터 실패했다. 이 실패를 회전 자체의 실패로 귀속하지 않는다.
+- **같은 데이터의 학습법 비교:** [Crystal full FT 후속](../project/crystal-state-methods.md).
+  원본에서 출발해 같은8,922개 텍스트 seen 문항을 한 번씩, causal·Crystal 각3seed로 학습했다.
+  모든 학습 입력 해시를 맞추고 causal 공통 평가와 정상 noncausal 평가를 모두 보존했다.
+  정상 noncausal의 검색R@1은51.95%→68.88%, 회전 판정 전이는48.81%→45.03%(정확도 차이 구간0포함)였다.
+  native 이미지 seen 정확도는올랐지만 NLL은 나빠졌다. 검색·별도모듈 전이·native 판정을 혼동하지 않는다.
+- **실제 상태 경로의 표현 학습:** [CE+LeJEPA 비교](../project/jepa-decision.md).
+  고정 Qwen 토큰→학습하는 공유64D상태→동일 판정기에서 CE/bad/good를 각3seed·200epoch로 비교했다.
+  good의 CKA는 CE 대비.229→.407, 회전 이미지 seen은46.36%→52.51%이나 차이 구간은0을 포함했다.
+  bad 대비는+9.74%p [+6.64,+12.82]였다. CE 대비 이미지 NLL은 좋아졌지만 text seen과 unseen 능력은 안정적으로 보존하지 못했다.
+  별도 수식으로691,200건을 재계산해 장면·과제별 집계를 대조했고, 상태·사상·기하·bootstrap 구간도 검산했다.
+  공유 adapter·구조화된 질문·canonical text의 정규화 차이를 명시했다. 독립 JEPA 인코더 정리의 재현이 아니다.
+
 
 ## 2026-10-17 추가 조사 (망각·편향·데이터)
 

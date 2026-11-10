@@ -1,0 +1,1019 @@
+{
+  "checked_date_kst": "2026-11-04",
+  "source_sha256": {
+    "qwen_decision/v3/champion_audit.py": "c057ec10445458e3d7f3620a5d9003e24445ffa15e718a73e826e0af6506e95f",
+    "wiki/project/insights.md": "84018a712593eb32ff1415a294bf6eaa88188d4d3d6b926469f3ee3c41297b3d",
+    "wiki/project/lora-placement.md": "5b5b92287ff3df5fefbc429b4063c752e997d742abaea351450ee0409bd4f0f0",
+    "wiki/project/loss-screen.md": "c9e4286463ecec762a943a53993a57441457c73b3eb9e3709c61dc3881e6627c",
+    "wiki/project/vision-train-screen.md": "55ae174145155551b36c66db5fae9e06598371d9a85020c479988ddfb1b89919",
+    "wiki/project/hub-g7-merges.md": "8c94a48088b2b1321c9f4f73d49756e2eba0b7bfa85860811a157017bf4f2676",
+    "wiki/project/jev-index.md": "666a9a255f2fd112595ec6ded5720a97a65c824371cf9b8dd6bc50f7e5ef88ac",
+    "wiki/papers/gliclass.md": "5dcc4acd20e2dd5c7c1eebf2d7692ebc94ea182484944b2f9acb4f59d3bd2275",
+    "wiki/papers/vlm-modality-finetuning.md": "70364545e04c2071bf218d533d017f6de16b25b4187f86bdd6b584ddbff01295",
+    "qwen_decision/v3/mix.py": "cc1d5564c1e53345a4441a8afb468dff3a27c89f876171f5392d00128e462e82",
+    "qwen_decision/v3/lora_placement_experiment.py": "33defacf5869fedecc9fd3365d9687b6452f16fce3d1755b0c93510fc16669b9",
+    "qwen_decision/v3/vision_train.py": "10d1fb5b5b1c23919862750b7284391fe3fffe63d02a9c11b419804efb317185",
+    "qwen_decision/v3/proxy_eval.py": "6f4bbbae76c43ca422b2836fafa99256836f870ef25952e6ab320e9985ad69f7",
+    "runs/from-base/lora-placement-v1/report.json": "62764be4ded0a0344d93c8bb33a7611b65cf93bf99ab81a3400e01f7fe88357f",
+    "runs/from-base/loss-v1/report.json": "1d58e51c438f18f29235798cb1b5f97a9faad1df9a38ff1375c8ab19357dceb2",
+    "runs/vision-train/screen-report.json": "a10a5fedb2d4a27e20bba25858dbb8798c4d35de0f313d68e9929c8ecf0ebb29",
+    "runs/inference-policy-v1/report.json": "c4fc0339613cefea8572434e28e0b1c919269c8df38453c32bfb2048f81ba748",
+    "runs/vision-question-repeat-v1/report.json": "5bbcd35dc3aadb66fc4155ec9cff5506e15281603ad46587a2f230bdcb32c1ff",
+    "wiki/project/champion-v1-g7-review.json": "2902bf7f1f036ad7532eade1b9b66f56b0047fe88d6c54274a02a2c08541c104",
+    "runs/champion-v1/board/index.json": "bdfdd5ff3e7700f66e27b4d31274830d8136344d732487a00f74af5c936c72e2",
+    "runs/champion-v1/board/metadata.json": "33ce3b0f7b3259fae62fb60c0174c567c6e8b7fe9e10ae7ada2d5d75488c59eb",
+    "runs/champion-v1/board/methodology.json": "bf299b4961972eae6c8c6924c494e934205e72eab1aa062b9b3457eebcbc1bdc",
+    "runs/champion-v1/board/vision.json": "1fd6bad57b9957f9cfe6552820980f9f57d9ced3048160588a5264e85e830fe0",
+    "runs/champion-v1/sources/Kyunghwan-kim__crystal-0.8b.json": "41f3f95ee25dc7e889ec851e3a514eba794b37b67b7faeff173dc997d5bcfa35",
+    "runs/champion-v1/sources/Kyunghwan-kim__crystal-0.8b.md": "6c15821953342cd413e801ca2eafd8412a96cc8dc765174a64577f3834f35c0f",
+    "runs/champion-v1/sources/gliclass-v4-edge/README.md": "cddc2dfc06ac15d7bb2a4bc7790db7aa3647d2545e6b8071c034194b35adffc0",
+    "runs/champion-v1/sources/gliclass-v4-edge/config.json": "773d286cb19734471d1984a546d8348784223dcc40b11e37155972e4a0e4ea59",
+    "runs/champion-v1/sources/gliclass-v4-edge-revision.json": "ed1972b941105271ad5b968685c12fef9dea12de48f856a882187f93314afbe1",
+    "runs/champion-v1/sources/ken-jo__QEV-0.8B.json": "70bd0ee3ed4b5e8c4a4203b01e617d793e5218d8d854938c1d6ab9542f54f185",
+    "runs/champion-v1/sources/ken-jo__QEV-0.8B.md": "11e4910c8ec8de13e1442ce10ffc6b6454e62e217d61bdc0f962b715ccc0d4ed"
+  },
+  "space_revision": "01156854e703d6e58be85beb676a8b99d12e0be6",
+  "data_generated_utc": {
+    "text": "2026-10-29T14:04:16Z",
+    "vision": "2026-10-29T17:22:47Z"
+  },
+  "text_small_models": [
+    {
+      "engine": "gliclass-v4-edge",
+      "parameters": 439790595,
+      "full": 31.21,
+      "public": 47.49,
+      "same": 42.16,
+      "new": 10.53
+    },
+    {
+      "engine": "onejev1.6-0.8b",
+      "parameters": 852985920,
+      "full": 29.58,
+      "public": 48.76,
+      "same": 40.49,
+      "new": 9.28
+    },
+    {
+      "engine": "crystal-0.8b",
+      "parameters": 852985920,
+      "full": 29.37,
+      "public": 42.79,
+      "same": 39.31,
+      "new": 10.29
+    },
+    {
+      "engine": "vela3-fast",
+      "parameters": 380436225,
+      "full": 29.27,
+      "public": 50.36,
+      "same": 40.22,
+      "new": 8.96
+    },
+    {
+      "engine": "startlux-decision-v1.1-0.8b-instant",
+      "parameters": 873438784,
+      "full": 28.88,
+      "public": 53.79,
+      "same": 41.29,
+      "new": 6.86
+    },
+    {
+      "engine": "saina-helm-2-omni",
+      "parameters": 852985920,
+      "full": 26.54,
+      "public": 37.44,
+      "same": 35.21,
+      "new": 9.59
+    },
+    {
+      "engine": "vllm-sr-d3-lite",
+      "parameters": 852985920,
+      "full": 26.16,
+      "public": 36.93,
+      "same": 34.81,
+      "new": 9.33
+    },
+    {
+      "engine": "amber-0.4b",
+      "parameters": 395881664,
+      "full": 26,
+      "public": 49.74,
+      "same": 35.73,
+      "new": 7.86
+    },
+    {
+      "engine": "jiwo-0.8b-v2-r2",
+      "parameters": 752393024,
+      "full": 25.81,
+      "public": 29.58,
+      "same": 30.66,
+      "new": 13.71
+    },
+    {
+      "engine": "saina-helm-2-v2",
+      "parameters": 852985920,
+      "full": 25.29,
+      "public": 39.26,
+      "same": 34.65,
+      "new": 7.75
+    },
+    {
+      "engine": "crivo-400m",
+      "parameters": 395838465,
+      "full": 23.74,
+      "public": 39.79,
+      "same": 30.7,
+      "new": 9.48
+    },
+    {
+      "engine": "jdi-ptr14-0.8b",
+      "parameters": 752393024,
+      "full": 23.58,
+      "public": 35.79,
+      "same": 31.28,
+      "new": 8.44
+    },
+    {
+      "engine": "vela3-fast-vision-text",
+      "parameters": 254088960,
+      "full": 22.11,
+      "public": 37.5,
+      "same": 30.47,
+      "new": 6.45
+    },
+    {
+      "engine": "wyat-1-800m",
+      "parameters": 873438784,
+      "full": 21.49,
+      "public": 25.78,
+      "same": 25.21,
+      "new": 11.68
+    },
+    {
+      "engine": "sieve-0.8b",
+      "parameters": 590000000,
+      "full": 20.82,
+      "public": 32.26,
+      "same": 26.01,
+      "new": 9.33
+    },
+    {
+      "engine": "tasksource-decider-nano-v5",
+      "parameters": 149015041,
+      "full": 19.85,
+      "public": 33.51,
+      "same": 26.1,
+      "new": 7.25
+    },
+    {
+      "engine": "crivo-68m",
+      "parameters": 68410881,
+      "full": 19.51,
+      "public": 32.82,
+      "same": 25.27,
+      "new": 7.59
+    },
+    {
+      "engine": "jev-ettin-150m",
+      "parameters": 149610241,
+      "full": 18.52,
+      "public": 37.31,
+      "same": 25.45,
+      "new": 5.36
+    },
+    {
+      "engine": "decision-2.0-eos-0.8b",
+      "parameters": 870000000,
+      "full": 18.37,
+      "public": 20.57,
+      "same": 21.31,
+      "new": 10.16
+    },
+    {
+      "engine": "crivo-150m-v2",
+      "parameters": 149610241,
+      "full": 18.26,
+      "public": 34.38,
+      "same": 24.93,
+      "new": 5.48
+    },
+    {
+      "engine": "bekko-v0-400m",
+      "parameters": 400000000,
+      "full": 17.98,
+      "public": 22.45,
+      "same": 21.55,
+      "new": 9.05
+    },
+    {
+      "engine": "mola-150m",
+      "parameters": 149311489,
+      "full": 17.84,
+      "public": 31.34,
+      "same": 23.55,
+      "new": 6.32
+    },
+    {
+      "engine": "vllm-sr-d3-edge",
+      "parameters": 594321600,
+      "full": 17.69,
+      "public": 28.82,
+      "same": 24.34,
+      "new": 5.03
+    },
+    {
+      "engine": "mola-68m",
+      "parameters": 68277249,
+      "full": 17.6,
+      "public": 27.27,
+      "same": 21.99,
+      "new": 7.74
+    },
+    {
+      "engine": "decisiontune-1.0",
+      "parameters": 394781696,
+      "full": 17.22,
+      "public": 28.85,
+      "same": 22.11,
+      "new": 6.82
+    },
+    {
+      "engine": "valen-0.8b-r2",
+      "parameters": 854305641,
+      "full": 16.55,
+      "public": 20.79,
+      "same": 19.6,
+      "new": 8.57
+    },
+    {
+      "engine": "decision-2.0-kai-0.6b",
+      "parameters": 600000000,
+      "full": 16.43,
+      "public": 16.68,
+      "same": 16.9,
+      "new": 11.63
+    },
+    {
+      "engine": "dinah-1",
+      "parameters": 149614978,
+      "full": 16.36,
+      "public": 34.32,
+      "same": 22.29,
+      "new": 4.85
+    },
+    {
+      "engine": "kev-0.8b-r15",
+      "parameters": 870000000,
+      "full": 16.3,
+      "public": 16.78,
+      "same": 15.84,
+      "new": 12.67
+    },
+    {
+      "engine": "pick-150m-v5",
+      "parameters": 149015808,
+      "full": 15.62,
+      "public": 32.09,
+      "same": 19.76,
+      "new": 6.48
+    },
+    {
+      "engine": "jpt-0.8b",
+      "parameters": 873438784,
+      "full": 15.46,
+      "public": 19.37,
+      "same": 17.82,
+      "new": 8.55
+    },
+    {
+      "engine": "jev-ettin-400m",
+      "parameters": 400000000,
+      "full": 15.24,
+      "public": 14.11,
+      "same": 14.82,
+      "new": 11.77
+    },
+    {
+      "engine": "sifr-0.8b-v3.1",
+      "parameters": 870000000,
+      "full": 14.53,
+      "public": 25.65,
+      "same": 18.93,
+      "new": 5.31
+    },
+    {
+      "engine": "crivo-32m-v2",
+      "parameters": 32033665,
+      "full": 14.23,
+      "public": 27.34,
+      "same": 18.44,
+      "new": 5.29
+    },
+    {
+      "engine": "intern-decision-0.8b",
+      "parameters": 873438784,
+      "full": 12.71,
+      "public": 11.81,
+      "same": 12.93,
+      "new": 8.97
+    },
+    {
+      "engine": "jev-style-0.8b-v3",
+      "parameters": 870000000,
+      "full": 12.5,
+      "public": 17,
+      "same": 14.65,
+      "new": 6.44
+    },
+    {
+      "engine": "tev1-0.8b",
+      "parameters": 873438784,
+      "full": 12.47,
+      "public": 13.1,
+      "same": 12.84,
+      "new": 8.6
+    },
+    {
+      "engine": "bekko-v0-68m",
+      "parameters": 68000000,
+      "full": 12.4,
+      "public": 13.01,
+      "same": 12.62,
+      "new": 8.73
+    },
+    {
+      "engine": "d1-omni-600m",
+      "parameters": 587000000,
+      "full": 11.75,
+      "public": 17.9,
+      "same": 12.86,
+      "new": 7.13
+    },
+    {
+      "engine": "von-1.3",
+      "parameters": 400000000,
+      "full": 11.65,
+      "public": 13.86,
+      "same": 12.8,
+      "new": 6.99
+    },
+    {
+      "engine": "crivo-17m",
+      "parameters": 16865025,
+      "full": 11.65,
+      "public": 22.15,
+      "same": 15.88,
+      "new": 3.21
+    },
+    {
+      "engine": "bosun-v3.1-0.6b",
+      "parameters": 596049920,
+      "full": 11.04,
+      "public": 14.5,
+      "same": 14.09,
+      "new": 4.18
+    },
+    {
+      "engine": "vera-spark",
+      "parameters": 638468358,
+      "full": 11,
+      "public": 19.59,
+      "same": 15.13,
+      "new": 2.81
+    },
+    {
+      "engine": "lavoir",
+      "parameters": 395881664,
+      "full": 10.85,
+      "public": 8.85,
+      "same": 9.9,
+      "new": 8.94
+    },
+    {
+      "engine": "gliner-decide",
+      "parameters": 486444053,
+      "full": 10.14,
+      "public": 11.48,
+      "same": 12.05,
+      "new": 4.86
+    },
+    {
+      "engine": "laya-1e28ac20",
+      "parameters": 421293830,
+      "full": 9.21,
+      "public": 6.19,
+      "same": 9.08,
+      "new": 6.63
+    },
+    {
+      "engine": "jevk5-lite",
+      "parameters": 300000000,
+      "full": 8.78,
+      "public": 10.28,
+      "same": 10.37,
+      "new": 4.18
+    },
+    {
+      "engine": "bekko-v0-17m",
+      "parameters": 17000000,
+      "full": 7.66,
+      "public": 7.44,
+      "same": 5.89,
+      "new": 7.4
+    },
+    {
+      "engine": "jeff-uncapped",
+      "parameters": 575683963,
+      "full": 6.21,
+      "public": 8.27,
+      "same": 6.86,
+      "new": 3.29
+    },
+    {
+      "engine": "lfm350-sdpa",
+      "parameters": 354483968,
+      "full": 5.86,
+      "public": 1.43,
+      "same": 2.29,
+      "new": 8.18
+    },
+    {
+      "engine": "akash-gemma",
+      "parameters": 268098176,
+      "full": 5.22,
+      "public": 5.19,
+      "same": 5.03,
+      "new": 3.52
+    },
+    {
+      "engine": "dm-jepa-1.1",
+      "parameters": 149000000,
+      "full": 4.96,
+      "public": 19.19,
+      "same": 4.17,
+      "new": 4.04
+    },
+    {
+      "engine": "julia-1",
+      "parameters": 140908331,
+      "full": 4.75,
+      "public": 4.24,
+      "same": 4.54,
+      "new": 3.18
+    },
+    {
+      "engine": "nirnaya-0.4b",
+      "parameters": 389956608,
+      "full": 3.51,
+      "public": 1.6,
+      "same": 2.66,
+      "new": 2.98
+    },
+    {
+      "engine": "verdict-8af2496e",
+      "parameters": 151378176,
+      "full": 2.04,
+      "public": 1.86,
+      "same": 2.41,
+      "new": 0.32
+    }
+  ],
+  "vision_small_models": [
+    {
+      "engine": "qev-0.8b",
+      "params": 852985920,
+      "pub": 52.73,
+      "priv": 36.89,
+      "full": 44.81
+    },
+    {
+      "engine": "valen-0.8b-r2",
+      "params": 854305641.0,
+      "pub": 47.7,
+      "priv": 39.67,
+      "full": 43.69
+    },
+    {
+      "engine": "vllm-sr-d3-lite",
+      "params": 852985920.0,
+      "pub": 47.88,
+      "priv": 36.33,
+      "full": 42.11
+    },
+    {
+      "engine": "jpt-0.8b",
+      "params": 873438784,
+      "pub": 44.55,
+      "priv": 39.65,
+      "full": 42.1
+    },
+    {
+      "engine": "saina-helm-2-omni",
+      "params": 852985920.0,
+      "pub": 46.89,
+      "priv": 34.1,
+      "full": 40.49
+    },
+    {
+      "engine": "intern-decision-0.8b",
+      "params": 873438784,
+      "pub": 38.96,
+      "priv": 33.71,
+      "full": 36.34
+    },
+    {
+      "engine": "vllm-sr-d3-edge",
+      "params": 594321600.0,
+      "pub": 36.61,
+      "priv": 26.81,
+      "full": 31.71
+    }
+  ],
+  "strict_numeric_parameter_filter": "0 < served_params (text) or params (vision) <= 1,000,000,000; unknown sizes excluded; names ignored",
+  "current_text_ordinal_position": 3,
+  "rank_caveat": "ordinal score order, not the board's statistical tie rank",
+  "aspirational_official_targets": {
+    "text": 36.3,
+    "vision": 50.0
+  },
+  "score_policy": {
+    "text": "60% private same +40% private new, equated; public not included",
+    "vision": {
+      "public": 0.5,
+      "private": 0.5
+    }
+  },
+  "text_public_panel_metric_counts": {
+    "macro-F1": 8,
+    "accuracy": 20,
+    "nDCG@10": 2,
+    "case exact accuracy": 3,
+    "accuracy (4- and 10-choice)": 1,
+    "per-review F1": 1,
+    "Sarcasm F1 · track A, English": 1,
+    "F1 on hallucinated class": 1
+  },
+  "placement_5_seed_means": {
+    "gdn": {
+      "selection": {
+        "correct": 0.6767829547570001,
+        "nll": 0.7680168620062876
+      },
+      "long": {
+        "correct": 0.6355895303929262,
+        "nll": 0.9673975458482109
+      }
+    },
+    "mlp": {
+      "selection": {
+        "correct": 0.6857246631301857,
+        "nll": 0.745394562050806
+      },
+      "long": {
+        "correct": 0.6356695617114878,
+        "nll": 0.9637356146286585
+      }
+    },
+    "attn-mlp": {
+      "selection": {
+        "correct": 0.6908869248367119,
+        "nll": 0.7430135206421723
+      },
+      "long": {
+        "correct": 0.6298354567480534,
+        "nll": 0.957013093278826
+      }
+    },
+    "all": {
+      "selection": {
+        "correct": 0.6940049694899242,
+        "nll": 0.7497591127982036
+      },
+      "long": {
+        "correct": 0.6309613480309544,
+        "nll": 0.9518814396462749
+      }
+    },
+    "attn-r160": {
+      "selection": {
+        "correct": 0.6573342696502921,
+        "nll": 0.8128725112315861
+      },
+      "long": {
+        "correct": 0.5841542157415155,
+        "nll": 1.0883924431978254
+      }
+    },
+    "attn": {
+      "selection": {
+        "correct": 0.6581242764404925,
+        "nll": 0.8139762561698118
+      },
+      "long": {
+        "correct": 0.6309737837156559,
+        "nll": 0.984632947100805
+      }
+    },
+    "noncausal": {
+      "selection": {
+        "correct": 0.6663894333513655,
+        "nll": 0.8079280898146124
+      },
+      "long": {
+        "correct": 0.5825591243151786,
+        "nll": 1.1535342273120424
+      }
+    },
+    "frozen": {
+      "selection": {
+        "correct": 0.6802292964063092,
+        "nll": 0.7722921281184405
+      },
+      "long": {
+        "correct": 0.605495136798629,
+        "nll": 1.055726585793768
+      }
+    }
+  },
+  "placement_tests": {
+    "gdn-attn": {
+      "selection": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.03855949412024825,
+          "151": -0.03921437044910868,
+          "173": -0.04670331846615315,
+          "191": -0.05164320445874244,
+          "211": -0.05367658332336852
+        },
+        "mean": -0.04595939416352421,
+        "ci95": [
+          -0.060445598529590784,
+          -0.030098545279865625
+        ],
+        "seeds_favouring_candidate": 5,
+        "better": true,
+        "worse": false
+      },
+      "long": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.05449564488361533,
+          "151": 0.06982226505841427,
+          "173": -0.01763521160886628,
+          "191": -0.02819869764982963,
+          "211": -0.055669717179072827
+        },
+        "mean": -0.01723540125259396,
+        "ci95": [
+          -0.05664419984163999,
+          0.031280824656632754
+        ],
+        "seeds_favouring_candidate": 4,
+        "better": false,
+        "worse": false
+      }
+    },
+    "mlp-attn": {
+      "selection": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.07145227656706463,
+          "151": -0.06590072041673443,
+          "173": -0.05504337215551726,
+          "191": -0.08042560051923223,
+          "211": -0.07008650093648042
+        },
+        "mean": -0.06858169411900579,
+        "ci95": [
+          -0.08555724337554008,
+          -0.05076274647293321
+        ],
+        "seeds_favouring_candidate": 5,
+        "better": true,
+        "worse": false
+      },
+      "long": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.038230947879932704,
+          "151": -0.01271329934016513,
+          "173": 0.027164316774999166,
+          "191": -0.07436243665872128,
+          "211": -0.006344295256912211
+        },
+        "mean": -0.02089733247214643,
+        "ci95": [
+          -0.05657659823367142,
+          0.015479543301908823
+        ],
+        "seeds_favouring_candidate": 4,
+        "better": false,
+        "worse": false
+      }
+    },
+    "attn_mlp-attn": {
+      "selection": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.06485109476124411,
+          "151": -0.06556117845467264,
+          "173": -0.07302801355122471,
+          "191": -0.07982612037234514,
+          "211": -0.07154727049871105
+        },
+        "mean": -0.07096273552763953,
+        "ci95": [
+          -0.08747768565323924,
+          -0.053893643689459494
+        ],
+        "seeds_favouring_candidate": 5,
+        "better": true,
+        "worse": false
+      },
+      "long": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.011416001091474344,
+          "151": -0.04041265744066697,
+          "173": 0.0061423832222803135,
+          "191": -0.0891898776114155,
+          "211": -0.003223116188617762
+        },
+        "mean": -0.027619853821978853,
+        "ci95": [
+          -0.06560796801444355,
+          0.005680978584790837
+        ],
+        "seeds_favouring_candidate": 4,
+        "better": false,
+        "worse": false
+      }
+    },
+    "all-attn": {
+      "selection": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.05439049438905028,
+          "151": -0.06623420630883937,
+          "173": -0.05079712398292551,
+          "191": -0.06700387101810087,
+          "211": -0.08266002115912469
+        },
+        "mean": -0.06421714337160815,
+        "ci95": [
+          -0.08487194841557315,
+          -0.04278736652994734
+        ],
+        "seeds_favouring_candidate": 5,
+        "better": true,
+        "worse": false
+      },
+      "long": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.051309918713073416,
+          "151": 0.017108875683013218,
+          "173": 0.0018506391016225397,
+          "191": -0.08784927750528046,
+          "211": -0.043557855838931535
+        },
+        "mean": -0.032751507454529934,
+        "ci95": [
+          -0.07205387245943819,
+          0.006465946875195019
+        ],
+        "seeds_favouring_candidate": 3,
+        "better": false,
+        "worse": false
+      }
+    },
+    "all-attn_r160": {
+      "selection": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.060657581746845955,
+          "151": -0.06153257753398293,
+          "173": -0.040416702593222435,
+          "191": -0.07961358104808969,
+          "211": -0.07334654924477124
+        },
+        "mean": -0.06311339843338246,
+        "ci95": [
+          -0.08375402328068025,
+          -0.04269116665337699
+        ],
+        "seeds_favouring_candidate": 5,
+        "better": true,
+        "worse": false
+      },
+      "long": {
+        "seeds": [
+          131,
+          151,
+          173,
+          191,
+          211
+        ],
+        "per_seed": {
+          "131": -0.16828714935853817,
+          "151": -0.08612126879051175,
+          "173": -0.1077135410454337,
+          "191": -0.20403139800809303,
+          "211": -0.11640166055517474
+        },
+        "mean": -0.13651100355155027,
+        "ci95": [
+          -0.1817302142019584,
+          -0.09339875078546817
+        ],
+        "seeds_favouring_candidate": 5,
+        "better": true,
+        "worse": false
+      }
+    }
+  },
+  "focal_minus_ce_selection_accuracy": {
+    "seeds": [
+      131,
+      151,
+      173,
+      191,
+      211
+    ],
+    "per_seed": {
+      "131": -0.022130696329189445,
+      "151": -0.006847941477789221,
+      "173": -0.020950830556098112,
+      "191": -0.005359361264450249,
+      "211": -0.01900485155664399
+    },
+    "mean": -0.014858736236834202,
+    "ci95": [
+      -0.02841402753097911,
+      -0.0023228399902195
+    ],
+    "seeds_favouring_candidate": 0,
+    "better": false,
+    "worse": true
+  },
+  "vision_screen": {
+    "arms": {
+      "frozen": {
+        "seeds": [
+          "screen-frozen-s1",
+          "screen-frozen-s2",
+          "screen-frozen-s3"
+        ],
+        "heldout_index": [
+          52.77,
+          52.95,
+          51.0
+        ],
+        "image-dev_macro_accuracy": [
+          0.761,
+          0.7555,
+          0.7596
+        ],
+        "text-dev_macro_accuracy": [
+          0.8648,
+          0.8636,
+          0.8623
+        ],
+        "heldout_index_mean": 52.24,
+        "image-dev_macro_accuracy_mean": 0.7587,
+        "text-dev_macro_accuracy_mean": 0.8636
+      },
+      "vit": {
+        "seeds": [
+          "screen-vit-s1",
+          "screen-vit-s2",
+          "screen-vit-s3"
+        ],
+        "heldout_index": [
+          47.9,
+          52.0,
+          49.09
+        ],
+        "image-dev_macro_accuracy": [
+          0.7533,
+          0.7519,
+          0.7555
+        ],
+        "text-dev_macro_accuracy": [
+          0.8587,
+          0.8578,
+          0.8623
+        ],
+        "heldout_index_mean": 49.6633,
+        "image-dev_macro_accuracy_mean": 0.7536,
+        "text-dev_macro_accuracy_mean": 0.8596
+      },
+      "base": {
+        "seeds": [
+          "base-packed"
+        ],
+        "heldout_index": [
+          50.83
+        ],
+        "image-dev_macro_accuracy": [
+          0.7133
+        ],
+        "text-dev_macro_accuracy": [
+          0.8697
+        ],
+        "heldout_index_mean": 50.83,
+        "image-dev_macro_accuracy_mean": 0.7133,
+        "text-dev_macro_accuracy_mean": 0.8697
+      }
+    },
+    "comparisons": {
+      "frozen - base": {
+        "heldout_index": 1.39,
+        "ci95": [
+          0.07,
+          2.58
+        ]
+      },
+      "vit - base": {
+        "heldout_index": -1.17,
+        "ci95": [
+          -2.64,
+          0.14
+        ]
+      },
+      "vit - frozen": {
+        "heldout_index": -2.56,
+        "ci95": [
+          -3.6,
+          -1.61
+        ]
+      }
+    }
+  },
+  "initialization": "only the official original Qwen3.5-0.8B weights; no Crystal/QEV/GLiClass checkpoint",
+  "resources": "current host GPU only, per latest user instruction",
+  "canonical_latest_text_data": {
+    "name": "v3-gold7",
+    "train_rows": 999961,
+    "train_sources": 113,
+    "review": "wiki/project/champion-v1-g7-review.json"
+  },
+  "existing_input_audit_scope": "historical g6 only; not a g7 audit",
+  "new_training_started": false
+}

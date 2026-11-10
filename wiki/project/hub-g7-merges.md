@@ -13,6 +13,8 @@
 
 ## g7
 
+**11-04 원본 재확인:** Hub의 실제 data/training manifest, best, complete, merge를 다시 받아 [검토 증거](champion-v1-g7-review.json)에 저장했다. 최신 텍스트 데이터는 g7이며, 새 프로젝트가 g6 70만 행을 최신 기준으로 삼았던 부분은 [프로젝트 문서](champion-v1.md)에서 정정했다. g7 train/dev의 Hub LFS SHA256과 당시 학습 manifest의 SHA256이 일치한다.
+
 | 항목 | 값 |
 |---|---|
 | 데이터 | v3-gold7, 999,961행, 113개 출처, dev 33,821행. 정답 출처는 사람 922,031 / 프로그램 45,126 / 모델 32,804(도구 영역만 허용) |

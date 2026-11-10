@@ -1,0 +1,321 @@
+{
+  "audit_date": "2026-11-04",
+  "scope": "post-hoc audit and exploratory diagnostics; maps are not reselected; separate forward spot check if available",
+  "audit_source_sha256": "0b4c88bfd4419e7d6f8c58b1010d54022018085bfaece685352d4f7520a54acc",
+  "audit_runtime": {
+    "torch": "2.10.0+cu128",
+    "numpy": "2.5.3"
+  },
+  "source_run": "runs/rotation-pilot/plain-qwen-v1",
+  "artifact_checksums_verified": {
+    "qwen_decision/v3/rotation_pilot.py": true,
+    "tests/test_v3_rotation_pilot.py": true,
+    "runs/rotation-pilot/plain-qwen-v1/plan.json": true,
+    "runs/rotation-pilot/plain-qwen-v1/scenes.jsonl": true,
+    "runs/rotation-pilot/plain-qwen-v1/features.pt": true,
+    "runs/rotation-pilot/plain-qwen-v1/rotation.pt": true,
+    "runs/rotation-pilot/plain-qwen-v1/predictions.jsonl": true,
+    "models/qwen3.5-0.8b/model.safetensors-00001-of-00001.safetensors": true
+  },
+  "data_checks": {
+    "unique_ids": 672,
+    "unique_worlds": 672,
+    "unique_rendered_images": 672,
+    "gold_labels_independently_checked": 672,
+    "counts": {
+      "train": 384,
+      "validation": 96,
+      "test": 192
+    },
+    "gold_counts_by_split_task": {
+      "train": {
+        "color": {
+          "1": 25,
+          "4": 23,
+          "0": 21,
+          "2": 12,
+          "3": 23,
+          "5": 24
+        },
+        "shape": {
+          "1": 36,
+          "2": 29,
+          "3": 29,
+          "0": 34
+        },
+        "relation": {
+          "2": 39,
+          "1": 40,
+          "0": 21,
+          "3": 28
+        }
+      },
+      "validation": {
+        "color": {
+          "4": 7,
+          "0": 8,
+          "1": 4,
+          "3": 6,
+          "2": 5,
+          "5": 2
+        },
+        "shape": {
+          "0": 5,
+          "2": 6,
+          "1": 11,
+          "3": 10
+        },
+        "relation": {
+          "0": 12,
+          "2": 6,
+          "1": 8,
+          "3": 6
+        }
+      },
+      "test": {
+        "color": {
+          "5": 18,
+          "0": 9,
+          "1": 9,
+          "4": 11,
+          "2": 4,
+          "3": 13
+        },
+        "shape": {
+          "3": 19,
+          "2": 18,
+          "1": 12,
+          "0": 15
+        },
+        "relation": {
+          "3": 13,
+          "0": 20,
+          "2": 16,
+          "1": 15
+        }
+      }
+    },
+    "shuffled_pairs_same_gold_fraction": 0.24479166666666666,
+    "test_distinct_exact_prompts": 22,
+    "within_prompt_retrieval_chance": 0.11458333333333333
+  },
+  "independent_recomputation": {
+    "image_identity": {
+      "correct": 147,
+      "n": 192,
+      "accuracy": 0.765625,
+      "nll": 0.6447094636958505,
+      "brier_sum_over_options": 0.31561251428627535,
+      "by_task": {
+        "color": {
+          "correct": 62,
+          "n": 64,
+          "nll": 0.14472872094399514
+        },
+        "shape": {
+          "correct": 47,
+          "n": 64,
+          "nll": 0.8805775469690975
+        },
+        "relation": {
+          "correct": 38,
+          "n": 64,
+          "nll": 0.908822123174459
+        }
+      }
+    },
+    "image_rotation": {
+      "correct": 157,
+      "n": 192,
+      "accuracy": 0.8177083333333334,
+      "nll": 0.5522231072074146,
+      "brier_sum_over_options": 0.28180050939922424,
+      "by_task": {
+        "color": {
+          "correct": 62,
+          "n": 64,
+          "nll": 0.1859869146227932
+        },
+        "shape": {
+          "correct": 54,
+          "n": 64,
+          "nll": 0.5088566202470545
+        },
+        "relation": {
+          "correct": 41,
+          "n": 64,
+          "nll": 0.9618257867523962
+        }
+      }
+    },
+    "image_shuffled_pairs_rotation": {
+      "correct": 153,
+      "n": 192,
+      "accuracy": 0.796875,
+      "nll": 0.6399967843381088,
+      "brier_sum_over_options": 0.3162290570087933,
+      "by_task": {
+        "color": {
+          "correct": 59,
+          "n": 64,
+          "nll": 0.2553503003380227
+        },
+        "shape": {
+          "correct": 48,
+          "n": 64,
+          "nll": 0.643827307877059
+        },
+        "relation": {
+          "correct": 46,
+          "n": 64,
+          "nll": 1.020812744799245
+        }
+      }
+    },
+    "text_reference": {
+      "correct": 169,
+      "n": 192,
+      "accuracy": 0.8802083333333334,
+      "nll": 0.5274906152977277,
+      "brier_sum_over_options": 0.2447681491343134,
+      "by_task": {
+        "color": {
+          "correct": 58,
+          "n": 64,
+          "nll": 0.4221883284294807
+        },
+        "shape": {
+          "correct": 62,
+          "n": 64,
+          "nll": 0.22293256769730682
+        },
+        "relation": {
+          "correct": 49,
+          "n": 64,
+          "nll": 0.9373509497663957
+        }
+      }
+    }
+  },
+  "transitions": {
+    "image_identity": {
+      "wrong_to_correct": 24,
+      "correct_to_wrong": 14,
+      "both_correct": 133,
+      "both_wrong": 21,
+      "mcnemar_exact_two_sided_p": 0.14330665429588407
+    },
+    "image_shuffled_pairs_rotation": {
+      "wrong_to_correct": 12,
+      "correct_to_wrong": 8,
+      "both_correct": 145,
+      "both_wrong": 27,
+      "mcnemar_exact_two_sided_p": 0.5034446716308594
+    }
+  },
+  "posthoc_task_stratified_bootstrap_20000": {
+    "image_identity": {
+      "accuracy_delta_ci95": [
+        -0.010416666666666666,
+        0.11458333333333333
+      ],
+      "nll_delta_ci95": [
+        -0.16226126043697214,
+        -0.026581583676127323
+      ]
+    },
+    "image_shuffled_pairs_rotation": {
+      "accuracy_delta_ci95": [
+        -0.020833333333333332,
+        0.06770833333333333
+      ],
+      "nll_delta_ci95": [
+        -0.13357922881964845,
+        -0.043078504363810007
+      ]
+    }
+  },
+  "posthoc_geometry": {
+    "identity": {
+      "raw_paired_cosine": 0.8372081073980736,
+      "train_centered_unit_feature_cosine": 0.6031758089587701,
+      "mutual10nn_no_clipping": 0.5265625,
+      "biased_centered_linear_CKA": 0.8370276754527834,
+      "max_normalized_image_gram_change": 0.0,
+      "cross_modal_retrieval_top1_all_192": 0.08854166666666667,
+      "cross_modal_retrieval_top1_same_prompt": 0.328125,
+      "readout": {
+        "accuracy": 0.765625,
+        "nll": 0.6447095971447504
+      }
+    },
+    "paired": {
+      "raw_paired_cosine": 0.9786010848673458,
+      "train_centered_unit_feature_cosine": 0.8128263076493867,
+      "mutual10nn_no_clipping": 0.5265625,
+      "biased_centered_linear_CKA": 0.8370276753472022,
+      "max_normalized_image_gram_change": 3.4881462163127708e-09,
+      "cross_modal_retrieval_top1_all_192": 0.13541666666666666,
+      "cross_modal_retrieval_top1_same_prompt": 0.4010416666666667,
+      "readout": {
+        "accuracy": 0.8177083333333334,
+        "nll": 0.5522231444078213
+      }
+    },
+    "shuffled": {
+      "raw_paired_cosine": 0.9712024738679913,
+      "train_centered_unit_feature_cosine": 0.7390840480435692,
+      "mutual10nn_no_clipping": 0.5265625,
+      "biased_centered_linear_CKA": 0.8370276757835234,
+      "max_normalized_image_gram_change": 4.846466894470325e-09,
+      "cross_modal_retrieval_top1_all_192": 0.10416666666666667,
+      "cross_modal_retrieval_top1_same_prompt": 0.3541666666666667,
+      "readout": {
+        "accuracy": 0.796875,
+        "nll": 0.6399965671771776
+      }
+    },
+    "mean_direction_only": {
+      "raw_paired_cosine": 0.9612686597352069,
+      "train_centered_unit_feature_cosine": 0.6031386584349848,
+      "mutual10nn_no_clipping": 0.5265625,
+      "biased_centered_linear_CKA": 0.8370276754527836,
+      "max_normalized_image_gram_change": 1.887379141862766e-15,
+      "cross_modal_retrieval_top1_all_192": 0.08854166666666667,
+      "cross_modal_retrieval_top1_same_prompt": 0.3802083333333333,
+      "readout": {
+        "accuracy": 0.765625,
+        "nll": 0.6859409189449618
+      }
+    }
+  },
+  "mean_direction_rotation_orthogonality_error": 1.887379141862766e-15,
+  "effective_head_equivalence_max_logit_error": 1.7763568394002505e-14,
+  "forward_spotcheck": {
+    "path": "runs/rotation-pilot/plain-qwen-v1/forward-spotcheck.json",
+    "n": 16,
+    "same_predictions": 16,
+    "min_hidden_cosine": 0.9990241527557373,
+    "max_logit_abs_diff": 0.2980365753173828,
+    "scope": "8 held-out scenes x 2 modalities, single-row versus original batch-of-4 BF16 forward; spot check only"
+  },
+  "unit_feature_mean_energy_fraction_test": {
+    "image": 0.8800814686136728,
+    "text": 0.9348289264235788
+  },
+  "same_state_only_counterexample": {
+    "mean_a": 0.0,
+    "mean_b": 0.0,
+    "second_moment_a": 0.9999999999999999,
+    "second_moment_b": 0.9999999999999997,
+    "best_O1_error": 1.9999999999999998,
+    "positive_pair_kernel": "diag(1/3,1/3,1/3); K=I; all eigenvalues 1; k=1 has no eigengap"
+  },
+  "scope_caveats": [
+    "Diagnostics chosen after seeing the original test; not new held-out confirmation.",
+    "One fixed mapping split, one negative-control shuffle, one checkpoint.",
+    "Full rotation and negative control share ratio selected on true-pair validation.",
+    "Biased centered CKA and no-clipping kNN differ from the paper's full PRH protocol.",
+    "Confidence intervals condition on the fixed fitted map; no refit or domain uncertainty."
+  ]
+}

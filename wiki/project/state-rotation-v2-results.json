@@ -1,0 +1,426 @@
+{
+  "experiment": "plain-qwen-question-free-state-rotation-v2",
+  "counts": {
+    "train": 1024,
+    "validation": 256,
+    "test": 256
+  },
+  "queries": {
+    "total_signatures": 22,
+    "seen_signatures": 16,
+    "heldout_signatures": [
+      "color:diamond",
+      "relation:circle:triangle",
+      "relation:diamond:square",
+      "relation:square:diamond",
+      "relation:triangle:circle",
+      "shape:purple"
+    ],
+    "train_records": 8922,
+    "validation_records": 2251,
+    "test_records": 3072
+  },
+  "representation": {
+    "source_dimension": 1024,
+    "aligned_dimension": 64,
+    "shared_train_PCA_energy": 0.9340133074944535,
+    "image_train_min_singular_value": 0.4413299651501529,
+    "qwen_trainable_parameters": 0,
+    "state_input_contains_question_or_options": false
+  },
+  "alignment_test": {
+    "image_raw": {
+      "paired_cosine": 0.03334207403546765,
+      "retrieval_R1": 0.01171875,
+      "retrieval_R5": 0.0625
+    },
+    "image_mean_only": {
+      "paired_cosine": 0.18105691884670594,
+      "retrieval_R1": 0.22265625,
+      "retrieval_R5": 0.50390625
+    },
+    "image_rotation": {
+      "paired_cosine": 0.6368022672162235,
+      "retrieval_R1": 0.43359375,
+      "retrieval_R5": 0.75390625
+    },
+    "shuffle_00": {
+      "paired_cosine": -0.11841387590031265,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.00390625
+    },
+    "shuffle_01": {
+      "paired_cosine": -0.005748492040649171,
+      "retrieval_R1": 0.00390625,
+      "retrieval_R5": 0.01171875
+    },
+    "shuffle_02": {
+      "paired_cosine": -0.07675282843694062,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0078125
+    },
+    "shuffle_03": {
+      "paired_cosine": 0.024372853646660197,
+      "retrieval_R1": 0.0078125,
+      "retrieval_R5": 0.046875
+    },
+    "shuffle_04": {
+      "paired_cosine": 0.04273851695876873,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0
+    },
+    "shuffle_05": {
+      "paired_cosine": 0.029583388861323334,
+      "retrieval_R1": 0.015625,
+      "retrieval_R5": 0.05078125
+    },
+    "shuffle_06": {
+      "paired_cosine": 0.05008895856328431,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0078125
+    },
+    "shuffle_07": {
+      "paired_cosine": 0.09755197842925817,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.01953125
+    },
+    "shuffle_08": {
+      "paired_cosine": -0.17935739113893853,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0
+    },
+    "shuffle_09": {
+      "paired_cosine": 0.19966347827411413,
+      "retrieval_R1": 0.01953125,
+      "retrieval_R5": 0.08203125
+    },
+    "shuffle_10": {
+      "paired_cosine": -0.15364274821277119,
+      "retrieval_R1": 0.01171875,
+      "retrieval_R5": 0.0234375
+    },
+    "shuffle_11": {
+      "paired_cosine": -0.04132165268366078,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0078125
+    },
+    "shuffle_12": {
+      "paired_cosine": -0.18219622284487752,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0
+    },
+    "shuffle_13": {
+      "paired_cosine": -0.16052827786190355,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0078125
+    },
+    "shuffle_14": {
+      "paired_cosine": -0.21705475223464687,
+      "retrieval_R1": 0.00390625,
+      "retrieval_R5": 0.00390625
+    },
+    "shuffle_15": {
+      "paired_cosine": 0.010137624532633545,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.01171875
+    },
+    "shuffle_16": {
+      "paired_cosine": 0.08742525893537148,
+      "retrieval_R1": 0.0078125,
+      "retrieval_R5": 0.02734375
+    },
+    "shuffle_17": {
+      "paired_cosine": -0.01094672408240234,
+      "retrieval_R1": 0.0,
+      "retrieval_R5": 0.0078125
+    },
+    "shuffle_18": {
+      "paired_cosine": -0.12024953819452028,
+      "retrieval_R1": 0.00390625,
+      "retrieval_R5": 0.01953125
+    },
+    "shuffle_19": {
+      "paired_cosine": 0.09168973033348574,
+      "retrieval_R1": 0.00390625,
+      "retrieval_R5": 0.0390625
+    }
+  },
+  "decision_test": {
+    "image_raw": {
+      "seen": {
+        "macro_accuracy": 0.2416166270503973,
+        "macro_nll": 6.508137945418291,
+        "questions": 2244,
+        "by_task": {
+          "color": {
+            "accuracy": 0.2024432809773124,
+            "nll": 6.5789153778579745,
+            "questions": 573
+          },
+          "shape": {
+            "accuracy": 0.2668727460072128,
+            "nll": 6.336896854808332,
+            "questions": 647
+          },
+          "relation": {
+            "accuracy": 0.2555338541666667,
+            "nll": 6.608601603588568,
+            "questions": 1024
+          }
+        }
+      },
+      "unseen": {
+        "macro_accuracy": 0.2311957718207718,
+        "macro_nll": 7.430176985356545,
+        "questions": 828,
+        "by_task": {
+          "color": {
+            "accuracy": 0.17606837606837608,
+            "nll": 7.436516178822226,
+            "questions": 195
+          },
+          "shape": {
+            "accuracy": 0.2727272727272727,
+            "nll": 4.64607947274591,
+            "questions": 121
+          },
+          "relation": {
+            "accuracy": 0.24479166666666666,
+            "nll": 10.207935304501499,
+            "questions": 512
+          }
+        }
+      }
+    },
+    "image_mean_only": {
+      "seen": {
+        "macro_accuracy": 0.259697325780294,
+        "macro_nll": 7.562252206605218,
+        "questions": 2244,
+        "by_task": {
+          "color": {
+            "accuracy": 0.25654450261780104,
+            "nll": 6.417598983800718,
+            "questions": 573
+          },
+          "shape": {
+            "accuracy": 0.2539927872230809,
+            "nll": 7.6762566061547215,
+            "questions": 647
+          },
+          "relation": {
+            "accuracy": 0.2685546875,
+            "nll": 8.592901029860217,
+            "questions": 1024
+          }
+        }
+      },
+      "unseen": {
+        "macro_accuracy": 0.2576778584946198,
+        "macro_nll": 8.836446054914303,
+        "questions": 828,
+        "by_task": {
+          "color": {
+            "accuracy": 0.2188034188034188,
+            "nll": 9.422727267264207,
+            "questions": 195
+          },
+          "shape": {
+            "accuracy": 0.2892561983471074,
+            "nll": 6.6896139269671595,
+            "questions": 121
+          },
+          "relation": {
+            "accuracy": 0.2649739583333333,
+            "nll": 10.39699697051154,
+            "questions": 512
+          }
+        }
+      }
+    },
+    "image_rotation": {
+      "seen": {
+        "macro_accuracy": 0.4346542474717368,
+        "macro_nll": 3.737730628964451,
+        "questions": 2244,
+        "by_task": {
+          "color": {
+            "accuracy": 0.36067481093659104,
+            "nll": 4.49872282630137,
+            "questions": 573
+          },
+          "shape": {
+            "accuracy": 0.3755795981452859,
+            "nll": 3.3682176578287275,
+            "questions": 647
+          },
+          "relation": {
+            "accuracy": 0.5677083333333334,
+            "nll": 3.3462514027632557,
+            "questions": 1024
+          }
+        }
+      },
+      "unseen": {
+        "macro_accuracy": 0.2925657636240023,
+        "macro_nll": 8.240934925839843,
+        "questions": 828,
+        "by_task": {
+          "color": {
+            "accuracy": 0.20512820512820512,
+            "nll": 12.277853458466184,
+            "questions": 195
+          },
+          "shape": {
+            "accuracy": 0.2865013774104683,
+            "nll": 4.743937422605437,
+            "questions": 121
+          },
+          "relation": {
+            "accuracy": 0.3860677083333333,
+            "nll": 7.701013896447911,
+            "questions": 512
+          }
+        }
+      }
+    },
+    "text_reference": {
+      "seen": {
+        "macro_accuracy": 0.8397082760516086,
+        "macro_nll": 0.3496783378449016,
+        "questions": 2244,
+        "by_task": {
+          "color": {
+            "accuracy": 0.8766724840023269,
+            "nll": 0.30186049899459255,
+            "questions": 573
+          },
+          "shape": {
+            "accuracy": 0.6424523441524987,
+            "nll": 0.7451699014538625,
+            "questions": 647
+          },
+          "relation": {
+            "accuracy": 1.0,
+            "nll": 0.002004613086249725,
+            "questions": 1024
+          }
+        }
+      },
+      "unseen": {
+        "macro_accuracy": 0.2996332331914718,
+        "macro_nll": 5.6859712592714216,
+        "questions": 828,
+        "by_task": {
+          "color": {
+            "accuracy": 0.20170940170940171,
+            "nll": 7.834402634658651,
+            "questions": 195
+          },
+          "shape": {
+            "accuracy": 0.1652892561983471,
+            "nll": 2.7369704058511855,
+            "questions": 121
+          },
+          "relation": {
+            "accuracy": 0.5319010416666666,
+            "nll": 6.486540737304426,
+            "questions": 512
+          }
+        }
+      }
+    }
+  },
+  "shuffle_decision_summary_20": {
+    "seen": {
+      "macro_accuracy": {
+        "mean": 0.21635262708567854,
+        "min": 0.1663307883402993,
+        "max": 0.25473595812881994
+      },
+      "macro_nll": {
+        "mean": 11.339905146599174,
+        "min": 9.725362537041063,
+        "max": 12.997510727829512
+      }
+    },
+    "unseen": {
+      "macro_accuracy": {
+        "mean": 0.21786476774225352,
+        "min": 0.17869804727049043,
+        "max": 0.25830859218643315
+      },
+      "macro_nll": {
+        "mean": 12.956738037838573,
+        "min": 11.29935316403028,
+        "max": 14.798799303864348
+      }
+    }
+  },
+  "paired_head_seed_scene_bootstrap_5000": {
+    "image_raw": {
+      "seen": {
+        "accuracy_delta_ci95": [
+          0.16045314916526388,
+          0.224319101898159
+        ],
+        "nll_delta_ci95": [
+          -3.4301516456471295,
+          -2.172622747061541
+        ]
+      },
+      "unseen": {
+        "accuracy_delta_ci95": [
+          0.016006569292229565,
+          0.10280281387779436
+        ],
+        "nll_delta_ci95": [
+          -1.5879322150611033,
+          4.2427005595219915
+        ]
+      }
+    },
+    "image_mean_only": {
+      "seen": {
+        "accuracy_delta_ci95": [
+          0.1453488366544082,
+          0.20584132603649014
+        ],
+        "nll_delta_ci95": [
+          -4.524834828124533,
+          -3.2209937714143195
+        ]
+      },
+      "unseen": {
+        "accuracy_delta_ci95": [
+          -0.009944918825360086,
+          0.07913768917343995
+        ],
+        "nll_delta_ci95": [
+          -1.5154541137964692,
+          0.29070340801168054
+        ]
+      }
+    }
+  },
+  "text_reference_gate": {
+    "seen_at_least_80_percent": true,
+    "unseen_at_least_70_percent": false
+  },
+  "extraction_seconds": 46.338950578996446,
+  "checks": {
+    "orthogonality_max_error": 4.76837158203125e-07,
+    "distinct_worlds": 1536,
+    "train_state_pairs": 1024,
+    "unique_state_vectors_reused_for_test_questions": 256
+  },
+  "limitations": [
+    "Synthetic three-object scenes; no natural-image claim.",
+    "Same jointly pretrained frozen VLM on both sides, not independent JEPA training.",
+    "Shared PCA reduces to 64 dimensions before rotation; not full 1024-dimensional equivalence.",
+    "Small text-only MLP is newly trained; this is not the native Qwen code head.",
+    "Unseen query signatures are fixed semantic combinations, not arbitrary new tasks.",
+    "Bootstrap conditions on one state split/PCA/rotation; head seeds and test scenes are resampled.",
+    "If the text-only unseen gate fails, image unseen failure cannot be attributed solely to the rotation."
+  ]
+}

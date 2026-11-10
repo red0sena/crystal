@@ -86,7 +86,7 @@ Joint encoder라고 해서 label 순열 대칭성을 자동으로 보장하지 �
 - **하나를 고르는 문제에서 정답률 보상의 기대 gradient는 ∇p(gold)다.** 그래서 −p loss와 같다([loss 문헌](loss-alternatives.md)). PPO 장치는 표본 분산만 줄인다. CE와 실제로 다른 경우는 F1처럼 문항 단위로 나뉘지 않는 지표뿐이다.
 
 **우리에게 배울 점: 보드 지표에 맞춘 학습과 평가**
-- 보드 37개 중 정답률로 채점하는 것은 17개다. 나머지는 이렇다(`data/index.json`의 metric).
+- **11-04 재검산:** 현재 고정한 보드의 공식 panel 37개에서 단순 정답률형은21개다(그중 GSM8K는4/10-choice 표기). 이전 기록의17개를 정정한다. 아래와 합쳐37개다([현재 근거·집계](../project/champion-v1.md#먼저-고칠-평가)).
   - macro-F1 8개: BANKING77, CLINC, ContractNLI, ANLI, ESCI, FinEntity, VAST, NLI4CT
   - 특정 클래스 F1 2개: RAGTruth, iSarcasm
   - 리뷰별 F1 1개: ACOS
@@ -97,7 +97,7 @@ Joint encoder라고 해서 label 순열 대칭성을 자동으로 보장하지 �
   1. 대리 평가를 보드와 같은 지표로 채점한다.
   2. 출처 안에서 클래스 균형 가중치를 준다(macro-F1의 대리).
   3. 기대 지표를 직접 미분한다. 하나 고르기는 −p, F1 과제는 배치 단위 soft-F1, 여러 항목 요청은 "모두 맞을 확률"을 쓴다. 행동이 한 단계라 확률이 다 보이므로 표본을 뽑을 필요가 없다.
-- 보정기는 Full 순위에는 nDCG 두 셋을 빼면 거의 영향이 없다.
+- 전역 양의 temperature는 argmax·이진0.5 판정을 바꾸지 않는다. 반면 앞서 확인한 입력·라벨별 bias는 답을 바꿀 수 있으므로, **보정기 전체가 Full 순위에 거의 영향이 없다고 일반화하지 않는다.**
 
 **학습 데이터 규모(11-02 확인)**
 - **v4의 학습 데이터 규모와 구성은 공개되지 않았다.** 카드에는 과제 종류만 있다. 두 번째 인용 논문(2609.02292, SCX Router)은 다른 모델이다.
@@ -120,4 +120,3 @@ Joint encoder라고 해서 label 순열 대칭성을 자동으로 보장하지 �
 
 - [soft-contextualized-encoder ](soft-contextualized-encoder.md)
 - [architecture-map ](../concepts/architecture-map.md)
-

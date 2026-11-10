@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19",
+  "updated": "2026-11-04",
   "language": "ko",
   "scope": "decision model literature notes; implementation and validation status recorded per project trial",
   "papers": [
@@ -362,6 +362,30 @@
       "topic": "평가셋 크기 / 검정력",
       "url": "https://web.stanford.edu/~jurafsky/pubs/2020.emnlp-main.745.pdf",
       "note": "papers/power-analysis.md"
+    },
+    {
+      "slug": "platonic-jepa",
+      "title": "Proving and Improving the Platonic Representation Hypothesis with JEPAs",
+      "authors": [
+        "Randall Balestriero",
+        "Yann LeCun"
+      ],
+      "arxiv_id": "2610.39302",
+      "version": "v1",
+      "year": 2026,
+      "topic": "직교 표현 동치 / good views / 고정 Decision readout 보정",
+      "url": "https://arxiv.org/abs/2610.39302v1",
+      "note": "papers/platonic-jepa.md",
+      "reviewed": "2026-11-04",
+      "evidence_scope": "본문 §1–7 및 부록 A–C 대조, 공식 코드 고정 커밋 정적 검토; 저자 학습·공식 전체 테스트 미재현",
+      "code_revision": "a2b9949fa907d4fbe562742d4b1ffa7205ab7427",
+      "local_experiment": "project/rotation-alignment.md",
+      "additional_experiments": [
+        "project/state-rotation-v2.md",
+        "project/crystal-state-methods.md",
+        "project/jepa-decision.md",
+        "project/jepa-decision-seeds10.md"
+      ]
     }
   ],
   "v3_resources": [

@@ -1,0 +1,1101 @@
+{
+  "all_3072_test_gold_verified_from_worlds": true,
+  "immutable_input_source_base_hashes_verified": true,
+  "paired_step_input_digests_identical": {
+    "271": 558,
+    "283": 558,
+    "307": 558
+  },
+  "control_runner_freeze_only_maintenance": {
+    "reason": "After completion, fix fresh freeze when optional plan-initial.json does not exist; no fit or evaluation logic changed.",
+    "executed_source_snapshot": "source-at-execution.py",
+    "executed_source_sha256": "d4ee75e4692e06fbcf4fd625852fae5d82d0f3f84f3bb7eb366c1dd56bd1a32f",
+    "current_source_sha256": "f2637cde79b1187daa0cce2ddbddcf6b16cbba79a8f347792a5a01308ff7a85c",
+    "ast_identical_except_freeze": true
+  },
+  "directories": {
+    "causal-271": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 1.59246896984655e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.24255360290060568,
+              "macro_nll": 7.2884006007904345
+            },
+            "unseen": {
+              "macro_accuracy": 0.21902200545666453,
+              "macro_nll": 9.290970715685342
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.2467019802271653,
+              "macro_nll": 5.092553443836834
+            },
+            "unseen": {
+              "macro_accuracy": 0.2488611346565892,
+              "macro_nll": 7.002064545859866
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.41862453050948667,
+              "macro_nll": 4.351346959054194
+            },
+            "unseen": {
+              "macro_accuracy": 0.3084439326981941,
+              "macro_nll": 7.757761992112839
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.7870701667903149,
+              "macro_nll": 0.47361833400327163
+            },
+            "unseen": {
+              "macro_accuracy": 0.2917116698011584,
+              "macro_nll": 4.79039008236636
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 2.4397853071178588e-08,
+        "independent_retrieval_R1": 0.53515625
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 1.0091997992844881e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 9.332346429939865e-09
+            },
+            "unseen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 1.1033531340240864e-08
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 2.2208712735505287e-06,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.7203063028895951,
+              "macro_nll": 4.254621901839776
+            },
+            "unseen": {
+              "macro_accuracy": 0.649557308222081,
+              "macro_nll": 5.940358459512448
+            }
+          }
+        }
+      }
+    },
+    "causal-283": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 2.3017571379568835e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.21986029468731294,
+              "macro_nll": 14.94872464344171
+            },
+            "unseen": {
+              "macro_accuracy": 0.22776988636363638,
+              "macro_nll": 15.350563876452378
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.2755906764013567,
+              "macro_nll": 5.588948801573856
+            },
+            "unseen": {
+              "macro_accuracy": 0.2794374028749029,
+              "macro_nll": 6.9117449154108
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.36073684643106757,
+              "macro_nll": 6.790562738028093
+            },
+            "unseen": {
+              "macro_accuracy": 0.3057249818258341,
+              "macro_nll": 10.119857883666002
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.7038531699847921,
+              "macro_nll": 0.5823038424657156
+            },
+            "unseen": {
+              "macro_accuracy": 0.2641747089190271,
+              "macro_nll": 3.6897428095294154
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 4.363099503912338e-08,
+        "independent_retrieval_R1": 0.46484375
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 1.2226754364519365e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 2.7352898075727072e-08
+            },
+            "unseen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 2.9042028219400736e-08
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 1.908191961774719e-06,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.7421259240190327,
+              "macro_nll": 4.18767810246351
+            },
+            "unseen": {
+              "macro_accuracy": 0.6196895197605424,
+              "macro_nll": 6.545653451556106
+            }
+          }
+        }
+      }
+    },
+    "causal-307": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 2.808969486522983e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.2129722000625491,
+              "macro_nll": 14.11084416366977
+            },
+            "unseen": {
+              "macro_accuracy": 0.21722496122354076,
+              "macro_nll": 12.868670679144534
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.2546029327727966,
+              "macro_nll": 6.570565224438166
+            },
+            "unseen": {
+              "macro_accuracy": 0.22402291784394057,
+              "macro_nll": 8.148647928226408
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.37290550874207534,
+              "macro_nll": 5.683203566071484
+            },
+            "unseen": {
+              "macro_accuracy": 0.2677698550922983,
+              "macro_nll": 8.30153417162302
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.7468382657876339,
+              "macro_nll": 0.5316882110932083
+            },
+            "unseen": {
+              "macro_accuracy": 0.3437994087141814,
+              "macro_nll": 3.872242063923164
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 4.720062185548102e-08,
+        "independent_retrieval_R1": 0.5625
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 9.818139901085488e-08,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 1.995761811274468e-08
+            },
+            "unseen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 1.942083034945955e-08
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 1.8472756657672562e-06,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.7743632953304305,
+              "macro_nll": 2.3156036378991374
+            },
+            "unseen": {
+              "macro_accuracy": 0.6087841096718938,
+              "macro_nll": 5.560291864667689
+            }
+          }
+        }
+      }
+    },
+    "crystal-271": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 4.8819009748513054e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.23773208189295458,
+              "macro_nll": 7.871502666042152
+            },
+            "unseen": {
+              "macro_accuracy": 0.21955244093028184,
+              "macro_nll": 9.051116235190047
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.2769875919083214,
+              "macro_nll": 4.532504788227871
+            },
+            "unseen": {
+              "macro_accuracy": 0.2983950721521744,
+              "macro_nll": 5.81588599506961
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.3516053284151597,
+              "macro_nll": 5.675693738739713
+            },
+            "unseen": {
+              "macro_accuracy": 0.30983699723046315,
+              "macro_nll": 6.303771986793598
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.6200761318703978,
+              "macro_nll": 0.7114332289308211
+            },
+            "unseen": {
+              "macro_accuracy": 0.36581281197758475,
+              "macro_nll": 2.8485162339956815
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 4.053804203429934e-08,
+        "independent_retrieval_R1": 0.4765625
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 1.1150163459205942e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 3.215148034684502e-08
+            },
+            "unseen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 3.0367694242253295e-08
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 2.195108866231976e-06,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.7726231258662503,
+              "macro_nll": 3.2063981463157014
+            },
+            "unseen": {
+              "macro_accuracy": 0.6085642261778625,
+              "macro_nll": 6.570773016025815
+            }
+          }
+        }
+      }
+    },
+    "crystal-283": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 1.652360390380636e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.229751790096046,
+              "macro_nll": 9.846876232788832
+            },
+            "unseen": {
+              "macro_accuracy": 0.2070294840891432,
+              "macro_nll": 11.93293140468922
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.26045774044266223,
+              "macro_nll": 9.644377690937402
+            },
+            "unseen": {
+              "macro_accuracy": 0.2528859030279485,
+              "macro_nll": 8.985298099256301
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.4320214636500627,
+              "macro_nll": 4.2046400445332575
+            },
+            "unseen": {
+              "macro_accuracy": 0.3229750888841798,
+              "macro_nll": 7.880438940072239
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.8305393038798122,
+              "macro_nll": 0.3927943822809858
+            },
+            "unseen": {
+              "macro_accuracy": 0.28825238839443384,
+              "macro_nll": 5.453043882754621
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 3.260319125786282e-08,
+        "independent_retrieval_R1": 0.484375
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 9.803065026403601e-08,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 9.045437178248637e-09
+            },
+            "unseen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 8.135257142417116e-09
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 2.1930047182650014e-06,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.7165024986459746,
+              "macro_nll": 2.889005624901902
+            },
+            "unseen": {
+              "macro_accuracy": 0.5729698371388713,
+              "macro_nll": 5.630238431849821
+            }
+          }
+        }
+      }
+    },
+    "crystal-307": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 2.528818575342484e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.23047982222678529,
+              "macro_nll": 3.542753221264037
+            },
+            "unseen": {
+              "macro_accuracy": 0.2774379411098162,
+              "macro_nll": 3.829815887261704
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.24354051294239173,
+              "macro_nll": 5.226637419146375
+            },
+            "unseen": {
+              "macro_accuracy": 0.29225735465082053,
+              "macro_nll": 4.966185723687808
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.3407947436463928,
+              "macro_nll": 5.821079372845431
+            },
+            "unseen": {
+              "macro_accuracy": 0.3171961272103318,
+              "macro_nll": 6.337428310762422
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.6668704178834819,
+              "macro_nll": 0.6506660284424071
+            },
+            "unseen": {
+              "macro_accuracy": 0.3528482118680982,
+              "macro_nll": 2.2210622936581306
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 3.680275162398772e-08,
+        "independent_retrieval_R1": 0.5
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 8.049890531935944e-08,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 6.169173088648796e-09
+            },
+            "unseen": {
+              "macro_accuracy": 1.0,
+              "macro_nll": 6.369942851616086e-09
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 1.6984371811190613e-06,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.6914879157945159,
+              "macro_nll": 2.76862752702391
+            },
+            "unseen": {
+              "macro_accuracy": 0.5377588990870241,
+              "macro_nll": 5.305224457678272
+            }
+          }
+        }
+      }
+    },
+    "noncausal-control/untrained-causal": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 1.510522567116368e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.22934253741350796,
+              "macro_nll": 6.860275181488461
+            },
+            "unseen": {
+              "macro_accuracy": 0.2333124919062419,
+              "macro_nll": 6.918604136675969
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.2598847669016866,
+              "macro_nll": 7.420575357154987
+            },
+            "unseen": {
+              "macro_accuracy": 0.24667151556356104,
+              "macro_nll": 8.789470589848827
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.43278498017495987,
+              "macro_nll": 3.784653979585657
+            },
+            "unseen": {
+              "macro_accuracy": 0.29822926048068094,
+              "macro_nll": 8.198245876538556
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.8403730287818751,
+              "macro_nll": 0.35377785470017425
+            },
+            "unseen": {
+              "macro_accuracy": 0.2990164152451084,
+              "macro_nll": 5.603868603960877
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 3.6621963683813874e-08,
+        "independent_retrieval_R1": 0.4375
+      },
+      "native": {}
+    },
+    "noncausal-control/untrained-noncausal": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 1.8680800593529057e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.23282698796338255,
+              "macro_nll": 5.4821928746974455
+            },
+            "unseen": {
+              "macro_accuracy": 0.2291504055708601,
+              "macro_nll": 5.104639540973083
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.25900429511550227,
+              "macro_nll": 6.286713574939756
+            },
+            "unseen": {
+              "macro_accuracy": 0.26972724771020223,
+              "macro_nll": 5.532819937207549
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.48811836387565677,
+              "macro_nll": 2.8450749164303364
+            },
+            "unseen": {
+              "macro_accuracy": 0.3076174772197499,
+              "macro_nll": 5.324906892612892
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.7615730051929686,
+              "macro_nll": 0.5216134196449657
+            },
+            "unseen": {
+              "macro_accuracy": 0.3065540217883968,
+              "macro_nll": 3.473065043819156
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 4.380123619363019e-08,
+        "independent_retrieval_R1": 0.51953125
+      },
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 2.8932799978065304e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.8130972074639361,
+              "macro_nll": 0.49622190811898176
+            },
+            "unseen": {
+              "macro_accuracy": 0.8203125,
+              "macro_nll": 0.501922619647922
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 5.97343248642801e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.6610663001146722,
+              "macro_nll": 0.825850276148777
+            },
+            "unseen": {
+              "macro_accuracy": 0.5675385575598644,
+              "macro_nll": 0.9956817667633038
+            }
+          }
+        }
+      }
+    },
+    "noncausal-control/crystal-271": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 1.738087129865562e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.23301520850163823,
+              "macro_nll": 13.213718881342663
+            },
+            "unseen": {
+              "macro_accuracy": 0.22422239219114218,
+              "macro_nll": 12.329197855434607
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.23926967848515276,
+              "macro_nll": 6.834188220473718
+            },
+            "unseen": {
+              "macro_accuracy": 0.23658009840538252,
+              "macro_nll": 6.681017321923066
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.46309594909936197,
+              "macro_nll": 5.196393305957032
+            },
+            "unseen": {
+              "macro_accuracy": 0.2906102656812884,
+              "macro_nll": 10.841208097029465
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.8201599347832204,
+              "macro_nll": 0.41404812680149544
+            },
+            "unseen": {
+              "macro_accuracy": 0.33091255466965697,
+              "macro_nll": 4.1800174187926435
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 3.841408235949473e-08,
+        "independent_retrieval_R1": 0.65234375
+      },
+      "native": {}
+    },
+    "noncausal-control/crystal-283": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 1.7325267442913628e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.22257447386370513,
+              "macro_nll": 12.631085389086614
+            },
+            "unseen": {
+              "macro_accuracy": 0.22893508401320903,
+              "macro_nll": 15.912495835570596
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.2564030500181661,
+              "macro_nll": 9.452810015377827
+            },
+            "unseen": {
+              "macro_accuracy": 0.26466205432824746,
+              "macro_nll": 12.119510092664493
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.4843717860395895,
+              "macro_nll": 5.316993632290708
+            },
+            "unseen": {
+              "macro_accuracy": 0.29227142675296086,
+              "macro_nll": 12.494317561850492
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.9106893240122406,
+              "macro_nll": 0.21799881019192302
+            },
+            "unseen": {
+              "macro_accuracy": 0.2778920561235902,
+              "macro_nll": 10.023133886742425
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 3.846748652946985e-08,
+        "independent_retrieval_R1": 0.66796875
+      },
+      "native": {}
+    },
+    "noncausal-control/crystal-307": {
+      "state": {
+        "heads_replayed": 3,
+        "variants_replayed": 4,
+        "correct_count_mismatches": 0,
+        "max_scene_task_nll_sum_error": 2.198500929750935e-05,
+        "independent_headlines": {
+          "image_raw": {
+            "seen": {
+              "macro_accuracy": 0.2128709341144215,
+              "macro_nll": 16.551298629623506
+            },
+            "unseen": {
+              "macro_accuracy": 0.2126729580919922,
+              "macro_nll": 16.22685402037263
+            }
+          },
+          "image_mean_only": {
+            "seen": {
+              "macro_accuracy": 0.21582360255818908,
+              "macro_nll": 8.493860122481705
+            },
+            "unseen": {
+              "macro_accuracy": 0.24683524861081682,
+              "macro_nll": 6.760157362275272
+            }
+          },
+          "image_rotation": {
+            "seen": {
+              "macro_accuracy": 0.40331188232955073,
+              "macro_nll": 5.913992098575865
+            },
+            "unseen": {
+              "macro_accuracy": 0.2764683456799934,
+              "macro_nll": 10.428538359967657
+            }
+          },
+          "text_reference": {
+            "seen": {
+              "macro_accuracy": 0.8117821535569254,
+              "macro_nll": 0.42608437353438683
+            },
+            "unseen": {
+              "macro_accuracy": 0.34147110123672625,
+              "macro_nll": 3.439518180992915
+            }
+          }
+        },
+        "rotation_orthogonality_max_error": 3.591756225773679e-08,
+        "independent_retrieval_R1": 0.74609375
+      },
+      "native": {}
+    },
+    "plain": {
+      "native": {
+        "text": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 3.174447513742962e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.7823085716125707,
+              "macro_nll": 0.4939562165958154
+            },
+            "unseen": {
+              "macro_accuracy": 0.7890625,
+              "macro_nll": 0.50011233689269
+            }
+          }
+        },
+        "image": {
+          "questions_verified": 3072,
+          "correct_count_mismatches": 0,
+          "max_scene_task_nll_sum_error": 3.831784773922209e-07,
+          "independent_headline": {
+            "seen": {
+              "macro_accuracy": 0.6582467966370832,
+              "macro_nll": 0.853155471579378
+            },
+            "unseen": {
+              "macro_accuracy": 0.5520608731546232,
+              "macro_nll": 1.058735221460286
+            }
+          }
+        }
+      }
+    }
+  },
+  "overall_and_bootstrap": {
+    "crystal-minus-plain": {
+      "independent_ci95_seen_accuracy": [
+        -0.10913693449683026,
+        -0.0016608960400730293
+      ],
+      "all_seen_unseen_accuracy_nll_intervals_match": true
+    },
+    "crystal-minus-causal": {
+      "independent_ci95_seen_accuracy": [
+        -0.07160871912728974,
+        0.06528697885512716
+      ],
+      "all_seen_unseen_accuracy_nll_intervals_match": true
+    },
+    "noncausal-crystal-minus-untrained": {
+      "independent_ci95_seen_accuracy": [
+        -0.08917761148788919,
+        0.011118418086892604
+      ],
+      "all_seen_unseen_accuracy_nll_intervals_match": true
+    }
+  },
+  "native_comparisons_posthoc_5000_seed_scene_bootstrap": {
+    "crystal-minus-plain": {
+      "text": {
+        "seen": {
+          "accuracy": {
+            "delta": 0.21769142838742928,
+            "ci95": [
+              0.20851355498514862,
+              0.22691570327663238
+            ]
+          },
+          "nll": {
+            "delta": -0.4939562100101381,
+            "ci95": [
+              -0.5078471973184239,
+              -0.47927601845794904
+            ]
+          }
+        },
+        "unseen": {
+          "accuracy": {
+            "delta": 0.2109375,
+            "ci95": [
+              0.20052083333333334,
+              0.22135416666666666
+            ]
+          },
+          "nll": {
+            "delta": -0.5001123316200835,
+            "ci95": [
+              -0.5198262996665944,
+              -0.4806524810148256
+            ]
+          }
+        }
+      },
+      "image": {
+        "seen": {
+          "accuracy": {
+            "delta": 0.06862438346516375,
+            "ci95": [
+              0.03119695483687055,
+              0.11329981292466942
+            ]
+          },
+          "nll": {
+            "delta": 2.1015216133730585,
+            "ci95": [
+              1.8061837796754128,
+              2.461227039304062
+            ]
+          }
+        },
+        "unseen": {
+          "accuracy": {
+            "delta": 0.021036780979962755,
+            "ci95": [
+              -0.02642690056356219,
+              0.07167233598818089
+            ]
+          },
+          "nll": {
+            "delta": 4.7766767193136825,
+            "ci95": [
+              4.0925187725272405,
+              5.611869896057231
+            ]
+          }
+        }
+      }
+    },
+    "crystal-minus-causal": {
+      "text": {
+        "seen": {
+          "accuracy": {
+            "delta": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "nll": {
+            "delta": -2.328027617529067e-09,
+            "ci95": [
+              -1.586350225537398e-08,
+              1.7641081786881486e-08
+            ]
+          }
+        },
+        "unseen": {
+          "accuracy": {
+            "delta": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "nll": {
+            "delta": -2.925656794663953e-09,
+            "ci95": [
+              -1.7168247560933346e-08,
+              1.550223090866277e-08
+            ]
+          }
+        }
+      },
+      "image": {
+        "seen": {
+          "accuracy": {
+            "delta": -0.018727327310772424,
+            "ci95": [
+              -0.07734160536631168,
+              0.04973660007054119
+            ]
+          },
+          "nll": {
+            "delta": -0.6312907833871906,
+            "ci95": [
+              -1.3932508528814478,
+              0.32087821241721
+            ]
+          }
+        },
+        "unseen": {
+          "accuracy": {
+            "delta": -0.05291265841691983,
+            "ci95": [
+              -0.09001927782790865,
+              -0.01509231485769352
+            ]
+          },
+          "nll": {
+            "delta": -0.18002262471030583,
+            "ci95": [
+              -1.0426210518536794,
+              0.8083143568095514
+            ]
+          }
+        }
+      }
+    },
+    "crystal-minus-plain_noncausal": {
+      "text": {
+        "seen": {
+          "accuracy": {
+            "delta": 0.1869027925360639,
+            "ci95": [
+              0.18137858326833076,
+              0.19289888874522182
+            ]
+          },
+          "nll": {
+            "delta": -0.49622190091267104,
+            "ci95": [
+              -0.5034431632337122,
+              -0.4887933725258889
+            ]
+          }
+        },
+        "unseen": {
+          "accuracy": {
+            "delta": 0.1796875,
+            "ci95": [
+              0.17252604166666666,
+              0.18684895833333334
+            ]
+          },
+          "nll": {
+            "delta": -0.5019226140576732,
+            "ci95": [
+              -0.5165457756891022,
+              -0.4876215623905087
+            ]
+          }
+        }
+      },
+      "image": {
+        "seen": {
+          "accuracy": {
+            "delta": 0.06580487998757478,
+            "ci95": [
+              0.029273090262532515,
+              0.11047446498854069
+            ]
+          },
+          "nll": {
+            "delta": 2.1288268054733135,
+            "ci95": [
+              1.834823440456897,
+              2.4869341255344337
+            ]
+          }
+        },
+        "unseen": {
+          "accuracy": {
+            "delta": 0.005559096574721534,
+            "ci95": [
+              -0.04217780469163838,
+              0.055971199790273714
+            ]
+          },
+          "nll": {
+            "delta": 4.839730174194467,
+            "ci95": [
+              4.161165705421244,
+              5.67635418667256
+            ]
+          }
+        }
+      }
+    }
+  },
+  "baseline_kernel_drift": {
+    "image": {
+      "relative_frobenius_error": 0.012864532142782664,
+      "mean_paired_cosine": 0.9999228117596419
+    },
+    "text": {
+      "relative_frobenius_error": 0.007327618492004946,
+      "mean_paired_cosine": 0.9999733029451088
+    },
+    "query": {
+      "relative_frobenius_error": 0.00865629671873197,
+      "mean_paired_cosine": 0.9999626347948084
+    }
+  }
+}

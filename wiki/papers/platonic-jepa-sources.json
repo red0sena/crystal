@@ -1,0 +1,60 @@
+{
+  "commit": "a2b9949fa907d4fbe562742d4b1ffa7205ab7427",
+  "files": [
+    {
+      "path": "prh/align.py",
+      "bytes": 5278,
+      "sha256": "bad63b12b319c32f4044e84cf69c29374b07fea4499ad0af7d06c714c3fae87e"
+    },
+    {
+      "path": "prh/metrics.py",
+      "bytes": 10872,
+      "sha256": "ddbfa03afda8e91c979ab8de93c38ba24ace3e8b7d7dfcb5be6a57dae9fe3e95"
+    },
+    {
+      "path": "prh/theory.py",
+      "bytes": 17532,
+      "sha256": "80bec5c85ee83141960704817af0ff77d72b413e1acfb565a5385a5bab4fb458"
+    },
+    {
+      "path": "prh/forward.py",
+      "bytes": 3030,
+      "sha256": "0b7ff86788fce6eeab9b9ac25d57cfbe78fa8ab7e54a71a6355d2c3d3cd4519c"
+    },
+    {
+      "path": "prh/views.py",
+      "bytes": 7562,
+      "sha256": "3e8c40b8c01397dafd40ff4fdbe2db4edd6e6e86114889549cebf9a4e15adb80"
+    },
+    {
+      "path": "docs/design.md",
+      "bytes": 5002,
+      "sha256": "b4c88d8eb180c178004a65004dbab8dc89b6bbefb3d86f201b29d514a65a9521"
+    },
+    {
+      "path": "docs/reproduce.md",
+      "bytes": 25139,
+      "sha256": "5744b9577b9d68642046aa976c4b8cdf973a7ba1e50c8dbb7eb1228e36b7d409"
+    },
+    {
+      "path": "paper/data/llm_scale.csv",
+      "bytes": 1569,
+      "sha256": "e5cd75ec20c723a2ce54cbd8f7cc0c32519233e9ec636d3568c9e18af80c2cbf"
+    },
+    {
+      "path": "paper/data/text_sources.csv",
+      "bytes": 2047,
+      "sha256": "a10eca35a13df6eaf0ba88d5ef201081247d6c2436b3f12c6de5c9b64e46a4bd"
+    },
+    {
+      "path": "paper/data/pairfree_tests.csv",
+      "bytes": 1169,
+      "sha256": "9a7eccc8abbd358e2472ed0be106a4bb92fee39c4ccc3d03c0ce38be37fbcea2"
+    }
+  ],
+  "review_date": "2026-11-04",
+  "paper": "https://arxiv.org/pdf/2610.39302v1",
+  "paper_version": "v1",
+  "repository": "https://github.com/galilai-group/prh-proof",
+  "review_mode": "static reads of listed official files; no external code execution or training reproduction"
+}

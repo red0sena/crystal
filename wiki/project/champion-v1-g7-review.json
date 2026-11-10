@@ -1,0 +1,152 @@
+{
+  "verified_date_kst": "2026-11-04",
+  "data_revision": "c15b054aafa3013cb421597031aee87ee150ad4b",
+  "model_revision": "a93659f01bb135b2bf2140e8ae687d8320d233dc",
+  "canonical_latest_mix": "v3-gold7",
+  "train_rows": 999961,
+  "train_sources": 113,
+  "dev_rows": 33821,
+  "dev_sources": 111,
+  "added_sources_vs_g6": {
+    "aegis-prompts": 10849,
+    "argsme-train": 6177,
+    "csqa2-train": 6443,
+    "ezstance-train": 13054,
+    "minicheck-synth": 7820,
+    "nvd-cve": 13161,
+    "poem-pairs-gen": 8546,
+    "pstance-train": 9144,
+    "scruples-train": 12774
+  },
+  "training": {
+    "training": "full language backbone and tied embedding/LM head; vision frozen; BF16 compute, FP32 master weights and moments",
+    "loss": "cross-entropy over the shown answer codes against gold targets (gold_targets); no teacher model",
+    "steps": 93747,
+    "steps_per_epoch": 31249
+  },
+  "training_args": {
+    "base": "/home/khkim/qwen-decision/models/qwen3.5-0.8b",
+    "output": "runs/v3/g7-gold7-ep3-pad0",
+    "attention": "noncausal",
+    "layout": "d3",
+    "deltanet": "causal",
+    "kernel": "varlen",
+    "pack": true,
+    "gate_lr": 0.001,
+    "mix": "data/mix/v3-gold7.jsonl",
+    "train_rows": 0,
+    "epochs": 3,
+    "steps": 0,
+    "label_origins": "human,programmatic",
+    "gold_dev": "data/mix/v3-gold7.dev.jsonl",
+    "gold_dev_per_source": 0,
+    "train_probe_per_source": 25,
+    "lr": 3e-06,
+    "anchor": 0.0,
+    "effective_batch": 32,
+    "micro_batch": 16,
+    "token_budget": 16384,
+    "checkpoint_above": 16384,
+    "compile": true,
+    "max_tokens": 65536,
+    "pad_probability": 0.0,
+    "noul_choice_probability": 0.2,
+    "code_shuffle_probability": 0.2,
+    "code_sample_probability": 0.2,
+    "eval_every": 5000,
+    "seed": 41,
+    "preflight": false
+  },
+  "best_step": 62498,
+  "best_epoch": 2.0,
+  "best_macro_source_accuracy": 0.8161370345158857,
+  "merge": {
+    "base": "/home/khkim/qwen-decision/models/qwen3.5-0.8b",
+    "tuned": [
+      "runs/v3/g6-gold6-pad0/last",
+      "runs/v3/g7-gold7-ep3-pad0/epoch-2"
+    ],
+    "weights": [
+      0.5,
+      0.5
+    ],
+    "alpha": 0.8,
+    "beta": 0.0,
+    "outside": 0.8,
+    "decoder_layers": 24,
+    "layer_shares": [
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8,
+      0.8
+    ],
+    "rule": "theta = base + sum_i w_i * share * (theta_i - base); share = alpha + beta*(l-1)/(L-1) per decoder layer",
+    "slerp": false,
+    "ties": null,
+    "dare": null,
+    "seed": null,
+    "stock_t": null
+  },
+  "expanded_merge_weights": {
+    "base": 0.2,
+    "g6_last": 0.4,
+    "g7_epoch2": 0.4
+  },
+  "label_origin": {
+    "human": 922031,
+    "programmatic": 45126,
+    "model": 32804
+  },
+  "historical_model_origin_allowed": [
+    "apibank-train",
+    "minicheck-synth",
+    "tools-percall",
+    "when2call-train"
+  ],
+  "policy_difference_vs_local_g6_registry": "g7 manifest additionally allows minicheck-synth; new training eligibility must be reviewed under current user policy, not silently inherited",
+  "hub_files_match_g7_training_manifest": {
+    "data/mix/v3-gold7.dev.jsonl": {
+      "bytes": 97259237,
+      "sha256": "7486fbde210b552c653f394de987ba3c067f3f4fb87ed2a8d9d760f849adb546",
+      "matches_training_manifest": true
+    },
+    "data/mix/v3-gold7.jsonl": {
+      "bytes": 2448466234,
+      "sha256": "cdaa351a1de1abdd7316e1f1f996862d8c9ece2a42f11078f069ad915f2c5351",
+      "matches_training_manifest": true
+    }
+  },
+  "source_sha256": {
+    "runs/champion-v1/g7-review/revisions.json": "a7dfb3219db77eb17513f315c6c0353bb8d77bc01cd77290b8d93a8fbe9b10ba",
+    "runs/champion-v1/g7-review/data/mix/v3-gold7.manifest.json": "4ea9caa104fc22fb57bc67432e81b81330e1eeb571a2c4eba485e88738c6a533",
+    "runs/champion-v1/g7-review/model-records/runs/v3/g7-gold7-ep3-pad0/manifest.json": "0a58fb4596e54fbce55a4c83608a1ec471fdd3c5cdabee123b889612465def37",
+    "runs/champion-v1/g7-review/model-records/runs/v3/g7-gold7-ep3-pad0/best.json": "520f2786de1220e555c9e437349bb2b544f014a76bd67e6721816368814b0684",
+    "runs/champion-v1/g7-review/model-records/runs/v3/g7-gold7-ep3-pad0/complete.json": "bc5c710626ea07f0bbb315a2c523802e0cc2e2dd851d2a68ec633a8d25cb2929",
+    "runs/champion-v1/g7-review/model-records/runs/v3/wise80-g6-g7e2/v3_config.json": "26d59024deab581dabf6dd0b5a1d9e44e238fcf3572c2d3e819e70552c383d09",
+    "runs/champion-v1/g7-review/model-records/runs/v3/wise80-g6-g7e2/merge.json": "04e04e38ecee8d29a4d90abeedc138f5f433b58a25708f06870ef70a9cdcdfe3",
+    "runs/champion-v1/g7-review/model-records/runs/v3/g7-gold7-ep3-pad0/best/v3_config.json": "a891eb0743e3725632389507ce8ec26982871b1e025e477335f72b8077f81655"
+  },
+  "full_g7_rows_audited": false,
+  "new_training_started": false,
+  "g6_audit_status": "historical reference only; not a g7 audit"
+}

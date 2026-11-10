@@ -1,0 +1,2342 @@
+{
+  "complete": true,
+  "seed": 20261104,
+  "train_seconds": 2368.943289301009,
+  "total_train_tokens": 20750228,
+  "base": {
+    "text-dev": {
+      "rows": 1332,
+      "macro_accuracy": 0.47597597597597596,
+      "macro_nll": 1.3693046273407778,
+      "sources": {
+        "abcd-train": {
+          "rows": 12,
+          "accuracy": 0.08333333333333333,
+          "nll": 6.346952624715683
+        },
+        "acos-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.700286140095065
+        },
+        "aegis-prompts": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.6505721868131443
+        },
+        "apibank-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 3.0146385573146635
+        },
+        "aqua-rat-train": {
+          "rows": 12,
+          "accuracy": 0.08333333333333333,
+          "nll": 2.4303032337296195
+        },
+        "arc-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8162024490147344
+        },
+        "arena55k-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7924272496282523
+        },
+        "argsme-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.8687017004907519
+        },
+        "banking77-train": {
+          "rows": 12,
+          "accuracy": 0.08333333333333333,
+          "nll": 6.7961094469468595
+        },
+        "boolq-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.5247061178425684
+        },
+        "chid-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.8054682949649736
+        },
+        "civilcomments-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6217665863904379
+        },
+        "claimstance-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7779067329266809
+        },
+        "clinc-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 8.737210571046504
+        },
+        "cmrc-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.3047640156640658
+        },
+        "code-output-gen": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.5656086289220443
+        },
+        "commonsenseqa-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 1.093466472921625
+        },
+        "condaqa-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.992628611629792
+        },
+        "contractnli-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.3813418792414829
+        },
+        "corr2cause-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.8016576806933585
+        },
+        "cosmosqa-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.2505131783036487
+        },
+        "creak-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.6958009621104022
+        },
+        "csqa2-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.8686913959777357
+        },
+        "cuad-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5752673848716056
+        },
+        "drop-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.241592875876269
+        },
+        "ecare-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.525393868081998
+        },
+        "esci-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.9318272428768607
+        },
+        "ezstance-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.1630211138635194
+        },
+        "faithdial-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6906345883003236
+        },
+        "fewnerd-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.700950286611581
+        },
+        "fewrel-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.5928036442530864
+        },
+        "finer-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 1.2468691900932092
+        },
+        "fintweet-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 2.453226267931157
+        },
+        "folio-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.0611347391280013
+        },
+        "gap-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0604811765394861
+        },
+        "goemotions-train": {
+          "rows": 12,
+          "accuracy": 0,
+          "nll": 5.017127778557957
+        },
+        "gsm8k-train": {
+          "rows": 12,
+          "accuracy": 0.08333333333333333,
+          "nll": 2.5075810981896667
+        },
+        "habermas-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.1659372471977905
+        },
+        "hatexplain-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.0664550263750865
+        },
+        "headqa-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.7779239550022012
+        },
+        "hellaswag-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.4471713290945276
+        },
+        "helpsteer2-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.6510383058161473
+        },
+        "helpsteer3-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.6911674136945587
+        },
+        "hhrlhf-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.6102779091780608
+        },
+        "hover-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7471243059848586
+        },
+        "humicroedit-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6971805612479732
+        },
+        "icl-classify": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 3.757204137512738
+        },
+        "infotabs-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.0467737120264868
+        },
+        "isarcasm-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 0.7897543669496713
+        },
+        "jglue-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.9254734128772908
+        },
+        "klue-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 1.1482046633449317
+        },
+        "kv-lookup": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 4.611118865078974
+        },
+        "lexglue-short-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 1.6834259560462401
+        },
+        "lexglue-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9372026474266754
+        },
+        "logic-puzzles-gen": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 1.5945412345409602
+        },
+        "massive-intents": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 2.755313354007902
+        },
+        "mathqa-train": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 1.9557340958407696
+        },
+        "maud-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8539894635641051
+        },
+        "medmcqa-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.2413488698188593
+        },
+        "minicheck-synth": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7041364465109998
+        },
+        "mmlu-aux-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8938463428437308
+        },
+        "mnli-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8064470911773091
+        },
+        "moralstories-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5800311550647743
+        },
+        "mtop-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.8905280148720263
+        },
+        "multiwoz-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5740974467740964
+        },
+        "musique-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 2.2985031268405574
+        },
+        "newyorker-matching-train": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 1.6498386022050937
+        },
+        "nli4ct-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5570161109661225
+        },
+        "nvd-cve": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0763803321836953
+        },
+        "oasst2-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5911484359896958
+        },
+        "openbookqa-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.333480352634956
+        },
+        "paws-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.6941772111704072
+        },
+        "phishing": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7839133140205847
+        },
+        "poem-pairs-gen": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.8272069989681153
+        },
+        "pstance-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.9591472031847941
+        },
+        "pubhealth-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.4558514460972358
+        },
+        "pubmedqa-labeled": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8454505987739352
+        },
+        "quac-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.737026903303548
+        },
+        "quality-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.4205806718656133
+        },
+        "quoref-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.7130300221693832
+        },
+        "ragtruth-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5663086489071052
+        },
+        "redial-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5825050524394074
+        },
+        "ropes-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.7755339413104281
+        },
+        "scitail-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.6545571977720037
+        },
+        "scruples-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.8950493960934424
+        },
+        "semcor-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.8476919530947047
+        },
+        "sentfin-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.1747112553821113
+        },
+        "sharc-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.7258986503673184
+        },
+        "siqa-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9317172315818576
+        },
+        "snips-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.47796819621198033
+        },
+        "snli-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0184347050635643
+        },
+        "spartqa-train": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 1.5845348162971975
+        },
+        "squad2-answerability": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5686924040001594
+        },
+        "stepgame-train": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 2.302606819646694
+        },
+        "strategyqa-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6646733238855544
+        },
+        "svamp-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.4099755297610879
+        },
+        "tabfact-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.635112715244337
+        },
+        "taskmaster-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5598190333126448
+        },
+        "tatqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.9762684202415833
+        },
+        "tatqa-yesno": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6750467628094009
+        },
+        "tldr-feedback-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 0.8005783141951225
+        },
+        "tools-percall": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7411743823594638
+        },
+        "tydiqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7232306260311822
+        },
+        "vast-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9087470007042434
+        },
+        "vitaminc-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.1373669365210748
+        },
+        "wanli-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.2092636736076665
+        },
+        "when2call-train": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 2.813055958856953
+        },
+        "winogrande-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7029981506747234
+        },
+        "wned-el": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5208626312401311
+        },
+        "wtq-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 1.0045513905632177
+        },
+        "zeshel-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 2.252043883847685
+        }
+      }
+    },
+    "image-dev": {
+      "rows": 768,
+      "macro_accuracy": 0.7578125,
+      "macro_nll": 0.5111728356561549,
+      "sources": {
+        "cauldron/ai2d": {
+          "rows": 64,
+          "accuracy": 0.796875,
+          "nll": 0.5222710104752429
+        },
+        "cauldron/docvqa": {
+          "rows": 64,
+          "accuracy": 0.953125,
+          "nll": 0.18341538386697093
+        },
+        "cauldron/dvqa": {
+          "rows": 64,
+          "accuracy": 0.765625,
+          "nll": 0.6312506565501619
+        },
+        "cauldron/hateful_memes": {
+          "rows": 64,
+          "accuracy": 0.625,
+          "nll": 0.6363599107139886
+        },
+        "cauldron/infographic_vqa": {
+          "rows": 64,
+          "accuracy": 0.828125,
+          "nll": 0.47411394880509794
+        },
+        "cauldron/nlvr2": {
+          "rows": 64,
+          "accuracy": 0.484375,
+          "nll": 0.710841888275588
+        },
+        "cauldron/scienceqa": {
+          "rows": 64,
+          "accuracy": 0.609375,
+          "nll": 0.9287048514941554
+        },
+        "cauldron/screen2words": {
+          "rows": 64,
+          "accuracy": 0.953125,
+          "nll": 0.10201980396984145
+        },
+        "cauldron/tallyqa": {
+          "rows": 64,
+          "accuracy": 0.78125,
+          "nll": 0.5859944669828029
+        },
+        "cauldron/textvqa": {
+          "rows": 64,
+          "accuracy": 0.96875,
+          "nll": 0.1677490243225816
+        },
+        "cauldron/visual7w": {
+          "rows": 64,
+          "accuracy": 0.828125,
+          "nll": 0.5032920637537812
+        },
+        "cauldron/vsr": {
+          "rows": 64,
+          "accuracy": 0.5,
+          "nll": 0.6880610186636453
+        }
+      }
+    },
+    "text-diagnostic": {
+      "rows": 1335,
+      "macro_accuracy": 0.4309098408385093,
+      "macro_nll": 1.3310821165193605,
+      "sources": {
+        "bigbench-anachronisms": {
+          "rows": 46,
+          "accuracy": 0.45652173913043476,
+          "nll": 0.7882242634695994
+        },
+        "bigbench-analogical_similarity": {
+          "rows": 64,
+          "accuracy": 0.09375,
+          "nll": 2.540540794095129
+        },
+        "bigbench-entailed_polarity": {
+          "rows": 29,
+          "accuracy": 0,
+          "nll": 1.6063247463081676
+        },
+        "bigbench-epistemic_reasoning": {
+          "rows": 100,
+          "accuracy": 0.38,
+          "nll": 1.035667906403273
+        },
+        "bigbench-fantasy_reasoning": {
+          "rows": 40,
+          "accuracy": 0.45,
+          "nll": 0.7367595542554729
+        },
+        "bigbench-presuppositions_as_nli": {
+          "rows": 100,
+          "accuracy": 0.49,
+          "nll": 0.9799943148297927
+        },
+        "bigbench-timedial": {
+          "rows": 100,
+          "accuracy": 0.08,
+          "nll": 1.3684240983747957
+        },
+        "cb": {
+          "rows": 56,
+          "accuracy": 0.7142857142857143,
+          "nll": 0.8609661352881471
+        },
+        "copa": {
+          "rows": 100,
+          "accuracy": 0.83,
+          "nll": 0.5422153867155822
+        },
+        "ethics-commonsense": {
+          "rows": 100,
+          "accuracy": 0.52,
+          "nll": 0.6846615374664776
+        },
+        "goemotions": {
+          "rows": 100,
+          "accuracy": 0.2,
+          "nll": 5.200678957366084
+        },
+        "piqa": {
+          "rows": 100,
+          "accuracy": 0.63,
+          "nll": 0.6134176328114841
+        },
+        "qasc": {
+          "rows": 100,
+          "accuracy": 0.48,
+          "nll": 1.6822588544129424
+        },
+        "quartz": {
+          "rows": 100,
+          "accuracy": 0.6,
+          "nll": 0.7215293136564533
+        },
+        "swag": {
+          "rows": 100,
+          "accuracy": 0.47,
+          "nll": 1.2320928188904905
+        },
+        "wic": {
+          "rows": 100,
+          "accuracy": 0.5,
+          "nll": 0.7035575499658772
+        }
+      }
+    },
+    "vision-diagnostic": {
+      "rows": 2184,
+      "macro_accuracy": 0.5527327033275399,
+      "macro_nll": 0.9333668775616041,
+      "sources": {
+        "chartqapro": {
+          "rows": 235,
+          "accuracy": 0.4340425531914894,
+          "nll": 1.0751365763065936
+        },
+        "countbench": {
+          "rows": 300,
+          "accuracy": 0.7266666666666667,
+          "nll": 0.6976873116168654
+        },
+        "embspatial": {
+          "rows": 300,
+          "accuracy": 0.5533333333333333,
+          "nll": 1.0565561292451666
+        },
+        "mathvista": {
+          "rows": 162,
+          "accuracy": 0.42592592592592593,
+          "nll": 1.0211751845345352
+        },
+        "memotion": {
+          "rows": 300,
+          "accuracy": 0.5233333333333333,
+          "nll": 0.7012081279130095
+        },
+        "mmstar": {
+          "rows": 287,
+          "accuracy": 0.5052264808362369,
+          "nll": 1.1966380592512207
+        },
+        "mmvp": {
+          "rows": 300,
+          "accuracy": 0.62,
+          "nll": 0.69362139103349
+        },
+        "seed2plus": {
+          "rows": 300,
+          "accuracy": 0.6333333333333333,
+          "nll": 1.0249122405919517
+        }
+      }
+    }
+  },
+  "trained": {
+    "text-dev": {
+      "rows": 1332,
+      "macro_accuracy": 0.6681681681681682,
+      "macro_nll": 0.7653367096863875,
+      "sources": {
+        "abcd-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 2.3702614175054664
+        },
+        "acos-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5248463202844847
+        },
+        "aegis-prompts": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.3874458345341587
+        },
+        "apibank-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0550229409340763
+        },
+        "aqua-rat-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.4184388469547866
+        },
+        "arc-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5824901390111449
+        },
+        "arena55k-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.6818452785652234
+        },
+        "argsme-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5638235268463005
+        },
+        "banking77-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 2.416739264122503
+        },
+        "boolq-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7076669818768253
+        },
+        "chid-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 1.1521343821032646
+        },
+        "civilcomments-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.49207672082294335
+        },
+        "claimstance-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.755049153063707
+        },
+        "clinc-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 1.1141430106325378
+        },
+        "cmrc-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.0049580232928734995
+        },
+        "code-output-gen": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.2359464277178795
+        },
+        "commonsenseqa-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8369767262943184
+        },
+        "condaqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.9025061394493733
+        },
+        "contractnli-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.9266833307469123
+        },
+        "corr2cause-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5207625497125371
+        },
+        "cosmosqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.1506475877066862
+        },
+        "creak-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.4607166300326096
+        },
+        "csqa2-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.6827494629068593
+        },
+        "cuad-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.32267254488485353
+        },
+        "drop-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5064840159565275
+        },
+        "ecare-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.47187687152664104
+        },
+        "esci-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0871364994216555
+        },
+        "ezstance-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.8321008319898304
+        },
+        "faithdial-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.32633643654273864
+        },
+        "fewnerd-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8887316349859905
+        },
+        "fewrel-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.7351507208022164
+        },
+        "finer-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.4560004757433476
+        },
+        "fintweet-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.46241570688300193
+        },
+        "folio-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.3695403395944548
+        },
+        "gap-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5741993203498822
+        },
+        "goemotions-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 2.1291927988550716
+        },
+        "gsm8k-train": {
+          "rows": 12,
+          "accuracy": 0.08333333333333333,
+          "nll": 1.9623747625481789
+        },
+        "habermas-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.8820672269208257
+        },
+        "hatexplain-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.3871064945324612
+        },
+        "headqa-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.255392724380369
+        },
+        "hellaswag-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.4192198544319476
+        },
+        "helpsteer2-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6515465978206806
+        },
+        "helpsteer3-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.711400823886347
+        },
+        "hhrlhf-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6071492844718948
+        },
+        "hover-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.0240950176340118
+        },
+        "humicroedit-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7161646687482394
+        },
+        "icl-classify": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.2520479022851245
+        },
+        "infotabs-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.42615981363787386
+        },
+        "isarcasm-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.507026780203402
+        },
+        "jglue-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8411083913585164
+        },
+        "klue-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.7542950341937925
+        },
+        "kv-lookup": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.001856547644023247
+        },
+        "lexglue-short-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8673285321008796
+        },
+        "lexglue-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.3823985309062204
+        },
+        "logic-puzzles-gen": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.324255657898224
+        },
+        "massive-intents": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.28105094542155323
+        },
+        "mathqa-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.655666067407277
+        },
+        "maud-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.9670694118803645
+        },
+        "medmcqa-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9463630540447947
+        },
+        "minicheck-synth": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6468889691880015
+        },
+        "mmlu-aux-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.7464064733632906
+        },
+        "mnli-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.39013946020917256
+        },
+        "moralstories-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.12960761702232024
+        },
+        "mtop-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.6610925127524525
+        },
+        "multiwoz-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.038136901068289486
+        },
+        "musique-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8744276951034727
+        },
+        "newyorker-matching-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9641270950293488
+        },
+        "nli4ct-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.805294035157174
+        },
+        "nvd-cve": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6764023231914861
+        },
+        "oasst2-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.4230990904564888
+        },
+        "openbookqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.2374910728483968
+        },
+        "paws-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5897682119775575
+        },
+        "phishing": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5195028995954908
+        },
+        "poem-pairs-gen": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7447067602812268
+        },
+        "pstance-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.8227906203725007
+        },
+        "pubhealth-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8719111822254227
+        },
+        "pubmedqa-labeled": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.9437152721073644
+        },
+        "quac-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5237090584020136
+        },
+        "quality-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.2351358232122929
+        },
+        "quoref-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.09276680334296976
+        },
+        "ragtruth-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.6656227018411213
+        },
+        "redial-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.25676851251780136
+        },
+        "ropes-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.43348634939457886
+        },
+        "scitail-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.3700985158616625
+        },
+        "scruples-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7308901178549004
+        },
+        "semcor-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.3906852967705705
+        },
+        "sentfin-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.7976182228718559
+        },
+        "sharc-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.7630257727865891
+        },
+        "siqa-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.4205864339754613
+        },
+        "snips-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.08883003287386604
+        },
+        "snli-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8010624567511025
+        },
+        "spartqa-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.5091574334881137
+        },
+        "squad2-answerability": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.517832543761313
+        },
+        "stepgame-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.3224270815776855
+        },
+        "strategyqa-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.8640571605537054
+        },
+        "svamp-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5723386539968583
+        },
+        "tabfact-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.3198008929371956
+        },
+        "taskmaster-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.008368366579541764
+        },
+        "tatqa-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.27635229101148484
+        },
+        "tatqa-yesno": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.36831259409706796
+        },
+        "tldr-feedback-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8834849042170262
+        },
+        "tools-percall": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.2791439788967396
+        },
+        "tydiqa-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.505739220563728
+        },
+        "vast-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.011544297211199
+        },
+        "vitaminc-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.256953493637334
+        },
+        "wanli-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.6632940975491679
+        },
+        "when2call-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.2041784887697989
+        },
+        "winogrande-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5849198560196855
+        },
+        "wned-el": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.036008508812557384
+        },
+        "wtq-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8018385080427923
+        },
+        "zeshel-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.381915096049081
+        }
+      }
+    },
+    "image-dev": {
+      "rows": 768,
+      "macro_accuracy": 0.86328125,
+      "macro_nll": 0.34192526033687787,
+      "sources": {
+        "cauldron/ai2d": {
+          "rows": 64,
+          "accuracy": 0.875,
+          "nll": 0.3660212838061201
+        },
+        "cauldron/docvqa": {
+          "rows": 64,
+          "accuracy": 1,
+          "nll": 0.005916107647234242
+        },
+        "cauldron/dvqa": {
+          "rows": 64,
+          "accuracy": 0.90625,
+          "nll": 0.20291442706299334
+        },
+        "cauldron/hateful_memes": {
+          "rows": 64,
+          "accuracy": 0.703125,
+          "nll": 0.561088270716851
+        },
+        "cauldron/infographic_vqa": {
+          "rows": 64,
+          "accuracy": 0.859375,
+          "nll": 0.35093763744916806
+        },
+        "cauldron/nlvr2": {
+          "rows": 64,
+          "accuracy": 0.828125,
+          "nll": 0.38352651309928687
+        },
+        "cauldron/scienceqa": {
+          "rows": 64,
+          "accuracy": 0.765625,
+          "nll": 0.9523269196584327
+        },
+        "cauldron/screen2words": {
+          "rows": 64,
+          "accuracy": 0.984375,
+          "nll": 0.06320915142976133
+        },
+        "cauldron/tallyqa": {
+          "rows": 64,
+          "accuracy": 0.875,
+          "nll": 0.27176662440777855
+        },
+        "cauldron/textvqa": {
+          "rows": 64,
+          "accuracy": 0.984375,
+          "nll": 0.03199699484746396
+        },
+        "cauldron/visual7w": {
+          "rows": 64,
+          "accuracy": 0.9375,
+          "nll": 0.2726526143726733
+        },
+        "cauldron/vsr": {
+          "rows": 64,
+          "accuracy": 0.640625,
+          "nll": 0.640746579544771
+        }
+      }
+    },
+    "text-diagnostic": {
+      "rows": 1335,
+      "macro_accuracy": 0.6300711474619833,
+      "macro_nll": 0.8846670913472973,
+      "sources": {
+        "bigbench-anachronisms": {
+          "rows": 46,
+          "accuracy": 0.5434782608695652,
+          "nll": 0.9597991372616554
+        },
+        "bigbench-analogical_similarity": {
+          "rows": 64,
+          "accuracy": 0.25,
+          "nll": 1.88716845808454
+        },
+        "bigbench-entailed_polarity": {
+          "rows": 29,
+          "accuracy": 0.9655172413793104,
+          "nll": 0.22894488240138797
+        },
+        "bigbench-epistemic_reasoning": {
+          "rows": 100,
+          "accuracy": 0.48,
+          "nll": 1.1640738624760296
+        },
+        "bigbench-fantasy_reasoning": {
+          "rows": 40,
+          "accuracy": 0.575,
+          "nll": 0.6560258722330862
+        },
+        "bigbench-presuppositions_as_nli": {
+          "rows": 100,
+          "accuracy": 0.52,
+          "nll": 0.9874141013519866
+        },
+        "bigbench-timedial": {
+          "rows": 100,
+          "accuracy": 0.4,
+          "nll": 1.400561344483632
+        },
+        "cb": {
+          "rows": 56,
+          "accuracy": 0.8571428571428571,
+          "nll": 0.4431163482906773
+        },
+        "copa": {
+          "rows": 100,
+          "accuracy": 0.89,
+          "nll": 0.3366738576655493
+        },
+        "ethics-commonsense": {
+          "rows": 100,
+          "accuracy": 0.79,
+          "nll": 0.5329593337561668
+        },
+        "goemotions": {
+          "rows": 100,
+          "accuracy": 0.58,
+          "nll": 1.4977668120337564
+        },
+        "piqa": {
+          "rows": 100,
+          "accuracy": 0.77,
+          "nll": 0.5549789376171684
+        },
+        "qasc": {
+          "rows": 100,
+          "accuracy": 0.65,
+          "nll": 1.096475247172992
+        },
+        "quartz": {
+          "rows": 100,
+          "accuracy": 0.8,
+          "nll": 0.5259556425914647
+        },
+        "swag": {
+          "rows": 100,
+          "accuracy": 0.52,
+          "nll": 1.0406245867754873
+        },
+        "wic": {
+          "rows": 100,
+          "accuracy": 0.49,
+          "nll": 0.8421350373611771
+        }
+      }
+    },
+    "vision-diagnostic": {
+      "rows": 2184,
+      "macro_accuracy": 0.5961973805359465,
+      "macro_nll": 0.9243154179300488,
+      "sources": {
+        "chartqapro": {
+          "rows": 235,
+          "accuracy": 0.4425531914893617,
+          "nll": 1.0996701960007667
+        },
+        "countbench": {
+          "rows": 300,
+          "accuracy": 0.7233333333333334,
+          "nll": 0.6371986151042588
+        },
+        "embspatial": {
+          "rows": 300,
+          "accuracy": 0.6266666666666667,
+          "nll": 1.1020410725636183
+        },
+        "mathvista": {
+          "rows": 162,
+          "accuracy": 0.5246913580246914,
+          "nll": 0.933939133545536
+        },
+        "memotion": {
+          "rows": 300,
+          "accuracy": 0.5066666666666667,
+          "nll": 0.7987357406230761
+        },
+        "mmstar": {
+          "rows": 287,
+          "accuracy": 0.5923344947735192,
+          "nll": 1.1032833134698916
+        },
+        "mmvp": {
+          "rows": 300,
+          "accuracy": 0.6933333333333334,
+          "nll": 0.6650746572007783
+        },
+        "seed2plus": {
+          "rows": 300,
+          "accuracy": 0.66,
+          "nll": 1.0545806149324644
+        }
+      }
+    }
+  },
+  "deltas": {
+    "text-dev": {
+      "macro_accuracy": 0.1921921921921922,
+      "macro_nll": -0.6039679176543904
+    },
+    "image-dev": {
+      "macro_accuracy": 0.10546875,
+      "macro_nll": -0.16924757531927703
+    },
+    "text-diagnostic": {
+      "macro_accuracy": 0.19916130662347403,
+      "macro_nll": -0.4464150251720632
+    },
+    "vision-diagnostic": {
+      "macro_accuracy": 0.04346467720840663,
+      "macro_nll": -0.009051459631555292
+    }
+  },
+  "adapter_before_merge": {
+    "text-dev": {
+      "rows": 1332,
+      "macro_accuracy": 0.6681681681681682,
+      "macro_nll": 0.7658437952012904,
+      "sources": {
+        "abcd-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 2.378227504434398
+        },
+        "acos-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5233572186425404
+        },
+        "aegis-prompts": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.38682170977023755
+        },
+        "apibank-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0540896697092665
+        },
+        "aqua-rat-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.4291466368615096
+        },
+        "arc-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5838878400695408
+        },
+        "arena55k-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.6826491621344607
+        },
+        "argsme-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5606661427675288
+        },
+        "banking77-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 2.4179382281027997
+        },
+        "boolq-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7031574988887477
+        },
+        "chid-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 1.148715965954658
+        },
+        "civilcomments-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.4904165018403635
+        },
+        "claimstance-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.7582336207430389
+        },
+        "clinc-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 1.1451294932348512
+        },
+        "cmrc-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.004858817664506502
+        },
+        "code-output-gen": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.2393555152262163
+        },
+        "commonsenseqa-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.830751894270505
+        },
+        "condaqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.9057262335989398
+        },
+        "contractnli-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.9270704712115303
+        },
+        "corr2cause-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5176656524061577
+        },
+        "cosmosqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.144086631455171
+        },
+        "creak-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.46282668066744304
+        },
+        "csqa2-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.6843715308874804
+        },
+        "cuad-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.32451762367599163
+        },
+        "drop-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5111036126693501
+        },
+        "ecare-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.4667519658891653
+        },
+        "esci-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.0807146552897913
+        },
+        "ezstance-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.8240640697734197
+        },
+        "faithdial-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.32333530013153605
+        },
+        "fewnerd-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8874138236848973
+        },
+        "fewrel-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.7309961124021126
+        },
+        "finer-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.4655591619048349
+        },
+        "fintweet-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.46435065309504014
+        },
+        "folio-train": {
+          "rows": 12,
+          "accuracy": 0.16666666666666666,
+          "nll": 1.3755061573662155
+        },
+        "gap-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5669150981750904
+        },
+        "goemotions-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 2.1471166236616654
+        },
+        "gsm8k-train": {
+          "rows": 12,
+          "accuracy": 0.08333333333333333,
+          "nll": 1.9702813232651233
+        },
+        "habermas-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.8818313924790719
+        },
+        "hatexplain-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.3886402880921722
+        },
+        "headqa-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.251706909177339
+        },
+        "hellaswag-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.4222224647111934
+        },
+        "helpsteer2-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6539760240039767
+        },
+        "helpsteer3-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.712875771935165
+        },
+        "hhrlhf-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6122728523919632
+        },
+        "hover-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 1.0251123895497294
+        },
+        "humicroedit-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7172832576166427
+        },
+        "icl-classify": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.2565135828832708
+        },
+        "infotabs-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.43398076345877507
+        },
+        "isarcasm-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5068936114093328
+        },
+        "jglue-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8372767818345968
+        },
+        "klue-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.7614954970768925
+        },
+        "kv-lookup": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.0018190709561342426
+        },
+        "lexglue-short-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8690811347185008
+        },
+        "lexglue-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.38366357173022037
+        },
+        "logic-puzzles-gen": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.3248380754788138
+        },
+        "massive-intents": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.2831784222659099
+        },
+        "mathqa-train": {
+          "rows": 12,
+          "accuracy": 0.25,
+          "nll": 1.6587684440055752
+        },
+        "maud-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.9615500287379284
+        },
+        "medmcqa-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9439674798084311
+        },
+        "minicheck-synth": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6479152037612145
+        },
+        "mmlu-aux-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.749711655700346
+        },
+        "mnli-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.3900967447730925
+        },
+        "moralstories-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.12914104471844143
+        },
+        "mtop-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.65661776970705
+        },
+        "multiwoz-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.03908495414965222
+        },
+        "musique-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8692317903605499
+        },
+        "newyorker-matching-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.9683097781932278
+        },
+        "nli4ct-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 0.8072407009220931
+        },
+        "nvd-cve": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.6755083933126315
+        },
+        "oasst2-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.42304340619011455
+        },
+        "openbookqa-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.2383866464130031
+        },
+        "paws-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5893792011640833
+        },
+        "phishing": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.526189900275822
+        },
+        "poem-pairs-gen": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.7453064021902852
+        },
+        "pstance-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.8239237485217347
+        },
+        "pubhealth-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.8760576842988655
+        },
+        "pubmedqa-labeled": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 0.941042974127913
+        },
+        "quac-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5261317188796767
+        },
+        "quality-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 1.230341243949282
+        },
+        "quoref-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.08844873610115374
+        },
+        "ragtruth-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.6650033122931235
+        },
+        "redial-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.2571357794398185
+        },
+        "ropes-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.431719920897687
+        },
+        "scitail-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.3605512528974524
+        },
+        "scruples-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.7293367769266572
+        },
+        "semcor-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.3831939015948276
+        },
+        "sentfin-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8014500846073879
+        },
+        "sharc-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.7593606096182811
+        },
+        "siqa-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.4185069759946254
+        },
+        "snips-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.08978051372777414
+        },
+        "snli-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8028085115841556
+        },
+        "spartqa-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.5100274055666183
+        },
+        "squad2-answerability": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.5101045481630097
+        },
+        "stepgame-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.3214392304899052
+        },
+        "strategyqa-train": {
+          "rows": 12,
+          "accuracy": 0.3333333333333333,
+          "nll": 0.8637291886892368
+        },
+        "svamp-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.5761393553585403
+        },
+        "tabfact-train": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.3204070516969357
+        },
+        "taskmaster-train": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.008533867370290457
+        },
+        "tatqa-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.27949045788920807
+        },
+        "tatqa-yesno": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.3683852508088387
+        },
+        "tldr-feedback-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.8839644230062115
+        },
+        "tools-percall": {
+          "rows": 12,
+          "accuracy": 0.8333333333333334,
+          "nll": 0.27744445853715777
+        },
+        "tydiqa-train": {
+          "rows": 12,
+          "accuracy": 0.6666666666666666,
+          "nll": 0.5000153487111284
+        },
+        "vast-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.0045464357283753
+        },
+        "vitaminc-train": {
+          "rows": 12,
+          "accuracy": 0.4166666666666667,
+          "nll": 1.2537721479791777
+        },
+        "wanli-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.6670059015667791
+        },
+        "when2call-train": {
+          "rows": 12,
+          "accuracy": 0.9166666666666666,
+          "nll": 0.20616027980406093
+        },
+        "winogrande-train": {
+          "rows": 12,
+          "accuracy": 0.5833333333333334,
+          "nll": 0.5822249240357876
+        },
+        "wned-el": {
+          "rows": 12,
+          "accuracy": 1,
+          "nll": 0.03543479550935924
+        },
+        "wtq-train": {
+          "rows": 12,
+          "accuracy": 0.75,
+          "nll": 0.8065106835576468
+        },
+        "zeshel-train": {
+          "rows": 12,
+          "accuracy": 0.5,
+          "nll": 1.3866435597351827
+        }
+      }
+    },
+    "image-dev": {
+      "rows": 768,
+      "macro_accuracy": 0.8606770833333334,
+      "macro_nll": 0.3412608275451383,
+      "sources": {
+        "cauldron/ai2d": {
+          "rows": 64,
+          "accuracy": 0.875,
+          "nll": 0.3624208788925618
+        },
+        "cauldron/docvqa": {
+          "rows": 64,
+          "accuracy": 1,
+          "nll": 0.005743908509208889
+        },
+        "cauldron/dvqa": {
+          "rows": 64,
+          "accuracy": 0.90625,
+          "nll": 0.20171290923515042
+        },
+        "cauldron/hateful_memes": {
+          "rows": 64,
+          "accuracy": 0.703125,
+          "nll": 0.5606301910730803
+        },
+        "cauldron/infographic_vqa": {
+          "rows": 64,
+          "accuracy": 0.859375,
+          "nll": 0.35001556386511246
+        },
+        "cauldron/nlvr2": {
+          "rows": 64,
+          "accuracy": 0.8125,
+          "nll": 0.38279798689118194
+        },
+        "cauldron/scienceqa": {
+          "rows": 64,
+          "accuracy": 0.765625,
+          "nll": 0.9492739072058836
+        },
+        "cauldron/screen2words": {
+          "rows": 64,
+          "accuracy": 0.984375,
+          "nll": 0.06494482782551592
+        },
+        "cauldron/tallyqa": {
+          "rows": 64,
+          "accuracy": 0.875,
+          "nll": 0.27050795176697806
+        },
+        "cauldron/textvqa": {
+          "rows": 64,
+          "accuracy": 0.984375,
+          "nll": 0.032030020499661305
+        },
+        "cauldron/visual7w": {
+          "rows": 64,
+          "accuracy": 0.9375,
+          "nll": 0.2734677477967338
+        },
+        "cauldron/vsr": {
+          "rows": 64,
+          "accuracy": 0.625,
+          "nll": 0.6415840369805914
+        }
+      }
+    },
+    "text-diagnostic": {
+      "rows": 1335,
+      "macro_accuracy": 0.6306961474619833,
+      "macro_nll": 0.8842270521391751,
+      "sources": {
+        "bigbench-anachronisms": {
+          "rows": 46,
+          "accuracy": 0.5434782608695652,
+          "nll": 0.9579464359555088
+        },
+        "bigbench-analogical_similarity": {
+          "rows": 64,
+          "accuracy": 0.25,
+          "nll": 1.8814400706054542
+        },
+        "bigbench-entailed_polarity": {
+          "rows": 29,
+          "accuracy": 0.9655172413793104,
+          "nll": 0.22923218803440285
+        },
+        "bigbench-epistemic_reasoning": {
+          "rows": 100,
+          "accuracy": 0.47,
+          "nll": 1.1641661016389897
+        },
+        "bigbench-fantasy_reasoning": {
+          "rows": 40,
+          "accuracy": 0.575,
+          "nll": 0.656650062446238
+        },
+        "bigbench-presuppositions_as_nli": {
+          "rows": 100,
+          "accuracy": 0.52,
+          "nll": 0.9906665566110517
+        },
+        "bigbench-timedial": {
+          "rows": 100,
+          "accuracy": 0.4,
+          "nll": 1.4008553983757455
+        },
+        "cb": {
+          "rows": 56,
+          "accuracy": 0.8571428571428571,
+          "nll": 0.4417156273874302
+        },
+        "copa": {
+          "rows": 100,
+          "accuracy": 0.9,
+          "nll": 0.3363386516528218
+        },
+        "ethics-commonsense": {
+          "rows": 100,
+          "accuracy": 0.79,
+          "nll": 0.5335703728972264
+        },
+        "goemotions": {
+          "rows": 100,
+          "accuracy": 0.59,
+          "nll": 1.4977272253539404
+        },
+        "piqa": {
+          "rows": 100,
+          "accuracy": 0.78,
+          "nll": 0.5531583249708932
+        },
+        "qasc": {
+          "rows": 100,
+          "accuracy": 0.64,
+          "nll": 1.0972088512886615
+        },
+        "quartz": {
+          "rows": 100,
+          "accuracy": 0.81,
+          "nll": 0.5245393966352342
+        },
+        "swag": {
+          "rows": 100,
+          "accuracy": 0.52,
+          "nll": 1.039592792547026
+        },
+        "wic": {
+          "rows": 100,
+          "accuracy": 0.48,
+          "nll": 0.8428247778261763
+        }
+      }
+    },
+    "vision-diagnostic": {
+      "rows": 2184,
+      "macro_accuracy": 0.5959480106790261,
+      "macro_nll": 0.924244557635932,
+      "sources": {
+        "chartqapro": {
+          "rows": 235,
+          "accuracy": 0.4340425531914894,
+          "nll": 1.101514857915906
+        },
+        "countbench": {
+          "rows": 300,
+          "accuracy": 0.7233333333333334,
+          "nll": 0.6363022626806831
+        },
+        "embspatial": {
+          "rows": 300,
+          "accuracy": 0.6333333333333333,
+          "nll": 1.101456274354721
+        },
+        "mathvista": {
+          "rows": 162,
+          "accuracy": 0.5246913580246914,
+          "nll": 0.9318815668596625
+        },
+        "memotion": {
+          "rows": 300,
+          "accuracy": 0.5066666666666667,
+          "nll": 0.7995695398767343
+        },
+        "mmstar": {
+          "rows": 287,
+          "accuracy": 0.5888501742160279,
+          "nll": 1.1049509556259876
+        },
+        "mmvp": {
+          "rows": 300,
+          "accuracy": 0.6933333333333334,
+          "nll": 0.6653865396525656
+        },
+        "seed2plus": {
+          "rows": 300,
+          "accuracy": 0.6633333333333333,
+          "nll": 1.0528944641211966
+        }
+      }
+    }
+  },
+  "alignment": {
+    "eligible": true,
+    "fit": 193,
+    "evaluation": 63,
+    "rank": 16,
+    "raw": {
+      "paired_cosine": 0.022829479420239395,
+      "image_to_text_r1": 0.031746031746031744
+    },
+    "orthogonal": {
+      "paired_cosine": 0.1449996690884254,
+      "image_to_text_r1": 0.047619047619047616
+    },
+    "shuffled_fit": {
+      "paired_cosine": -0.09491095184824537,
+      "image_to_text_r1": 0.015873015873015872
+    },
+    "orthogonality_max_error": 1.4432899320127035e-15,
+    "scope": "PCA and centering fit on fit groups only; evaluation untouched; no downstream logits modified",
+    "data_caveat": "NLVR2 true human statements describe partial scenes; good-view kernel equality is not established; no theorem or decision-accuracy gain inferred"
+  },
+  "export_replay_exact": true,
+  "scope": "single-seed exploratory joint reference; internal source metrics, not official Full; alignment geometry only; final image contamination clearance incomplete"
+}

@@ -1,0 +1,143 @@
+{
+  "complete": true,
+  "predictions_algebra_checked": 6552,
+  "frozen_reference_predictions": 2184,
+  "image_hashes_checked": 2184,
+  "model_replay_samples": [
+    [
+      "vision:heldout_chartqapro:1",
+      "base"
+    ],
+    [
+      "vision:heldout_chartqapro:1",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_chartqapro:1",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_countbench:0",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_countbench:0",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_countbench:0",
+      "base"
+    ],
+    [
+      "vision:heldout_embspatial:ai2thor_46",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_embspatial:ai2thor_46",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_embspatial:ai2thor_46",
+      "base"
+    ],
+    [
+      "vision:heldout_mathvista:677",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_mathvista:677",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_mathvista:677",
+      "base"
+    ],
+    [
+      "vision:heldout_memotion:0",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_memotion:0",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_memotion:0",
+      "base"
+    ],
+    [
+      "vision:heldout_mmstar:124",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_mmstar:124",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_mmstar:124",
+      "base"
+    ],
+    [
+      "vision:heldout_mmvp:1",
+      "base"
+    ],
+    [
+      "vision:heldout_mmvp:1",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_mmvp:1",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_seed2plus:1404",
+      "base"
+    ],
+    [
+      "vision:heldout_seed2plus:1404",
+      "q_repeat"
+    ],
+    [
+      "vision:heldout_seed2plus:1404",
+      "q_echo"
+    ],
+    [
+      "vision:heldout_chartqapro:1",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_countbench:0",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_embspatial:ai2thor_46",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_mathvista:677",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_memotion:0",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_mmstar:124",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_mmvp:1",
+      "image_repeat"
+    ],
+    [
+      "vision:heldout_seed2plus:1404",
+      "image_repeat"
+    ]
+  ],
+  "baseline_drift": {
+    "prediction_differences": 0,
+    "max_logit_difference": 0.0
+  },
+  "report_sha256": "5bbcd35dc3aadb66fc4155ec9cff5506e15281603ad46587a2f230bdcb32c1ff",
+  "scope": "all source/model/parent/example/image hashes; all new image-token counts unchanged; all gold, coverage, raw/calibrated aggregate accuracy/NLL; sampled native model replay including cached full repetition",
+  "limits": "model replay sampled; bootstrap/temperature solver not independently repeated; cached full-image timing is from earlier run"
+}

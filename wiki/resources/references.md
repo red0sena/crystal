@@ -39,6 +39,12 @@
 | FINCH (2605.20005), 재노출 연구 (2512.22337), 문항별 망각 (2510.17776), mSFT (2603.21606), FLOW (2502.02797), FastMix (2606.14971), Post-Training Science (2609.01244), 불완전 학습 (2604.10079), Prism-1 (2610.22066), Label smoothing (Müller 외 2019) | 인용만 | 외부 검토 근거. 수치를 우리 근거로 쓰지 않음. label smoothing 자체는 10-31에 시험했고 CE와 같았다([Loss 비교](../project/loss-screen.md)) |
 | ProLong (Gao 외, ACL 2025) | 검색 | **정정:** 장문 붕괴 진단 근거로 쓴 것은 잘못이었다 |
 
+## 표현 정렬과 회전 동치 (2026-11-04 추가)
+
+| 논문 | 확인 | 쓰인 곳 |
+|---|---|---|
+| [Proving and Improving the Platonic Representation Hypothesis with JEPAs](../papers/platonic-jepa.md), Balestriero·LeCun, arXiv:2610.39302v1 | 원문 본문·부록 A–C, 고정 커밋의 공식 정렬·지표·손실 코드 정적 대조 | [고정 plain Qwen 회전 pilot 및 사후 감사](../project/rotation-alignment.md), [실제 상태 경로의 CE+LeJEPA 후속](../project/jepa-decision.md). 논문의 독립 JEPA 학습을 재현한 것은 아님 |
+
 ## VLM 학습 방식 (2026-10-31 추가)
 
 | 논문 | 확인 | 쓰인 곳 |

@@ -1,0 +1,165 @@
+{
+  "experiment": "plain-qwen-rotation-pilot-v1",
+  "model_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "counts": {
+    "train": 384,
+    "validation": 96,
+    "test": 192
+  },
+  "hidden_dim": 1024,
+  "selection": "minimum validation normalized alignment MSE; no answer labels",
+  "candidates": [
+    {
+      "ridge_ratio": 0.001,
+      "validation_normalized_mse": 0.03947316110134125
+    },
+    {
+      "ridge_ratio": 0.01,
+      "validation_normalized_mse": 0.05296184495091438
+    },
+    {
+      "ridge_ratio": 0.1,
+      "validation_normalized_mse": 0.0777810588479042
+    },
+    {
+      "ridge_ratio": 1.0,
+      "validation_normalized_mse": 0.19522827863693237
+    }
+  ],
+  "selected_ridge_ratio": 0.001,
+  "metrics": {
+    "image_identity": {
+      "accuracy": 0.765625,
+      "nll": 0.6447094678878784,
+      "by_task": {
+        "color": {
+          "n": 64,
+          "accuracy": 0.96875,
+          "nll": 0.14472872018814087
+        },
+        "shape": {
+          "n": 64,
+          "accuracy": 0.734375,
+          "nll": 0.880577564239502
+        },
+        "relation": {
+          "n": 64,
+          "accuracy": 0.59375,
+          "nll": 0.9088221192359924
+        }
+      },
+      "normalized_alignment_mse": 0.3255838453769684,
+      "mean_cosine_to_text": 0.8372082710266113
+    },
+    "image_rotation": {
+      "accuracy": 0.8177083134651184,
+      "nll": 0.5522230863571167,
+      "by_task": {
+        "color": {
+          "n": 64,
+          "accuracy": 0.96875,
+          "nll": 0.18598689138889313
+        },
+        "shape": {
+          "n": 64,
+          "accuracy": 0.84375,
+          "nll": 0.5088565945625305
+        },
+        "relation": {
+          "n": 64,
+          "accuracy": 0.640625,
+          "nll": 0.9618258476257324
+        }
+      },
+      "normalized_alignment_mse": 0.04279783368110657,
+      "mean_cosine_to_text": 0.9786011576652527
+    },
+    "image_shuffled_pairs_rotation": {
+      "accuracy": 0.796875,
+      "nll": 0.6399968266487122,
+      "by_task": {
+        "color": {
+          "n": 64,
+          "accuracy": 0.921875,
+          "nll": 0.2553503215312958
+        },
+        "shape": {
+          "n": 64,
+          "accuracy": 0.75,
+          "nll": 0.6438273191452026
+        },
+        "relation": {
+          "n": 64,
+          "accuracy": 0.71875,
+          "nll": 1.020812749862671
+        }
+      },
+      "normalized_alignment_mse": 0.057595059275627136,
+      "mean_cosine_to_text": 0.971202552318573
+    },
+    "text_reference": {
+      "accuracy": 0.8802083134651184,
+      "nll": 0.5274906158447266,
+      "by_task": {
+        "color": {
+          "n": 64,
+          "accuracy": 0.90625,
+          "nll": 0.42218834161758423
+        },
+        "shape": {
+          "n": 64,
+          "accuracy": 0.96875,
+          "nll": 0.2229325771331787
+        },
+        "relation": {
+          "n": 64,
+          "accuracy": 0.765625,
+          "nll": 0.9373509883880615
+        }
+      },
+      "normalized_alignment_mse": 0.0,
+      "mean_cosine_to_text": 1.0000001192092896
+    }
+  },
+  "paired_scene_bootstrap_5000": {
+    "image_rotation-minus-image_identity": {
+      "accuracy_delta": 0.0520833320915699,
+      "accuracy_delta_ci95": [
+        -0.010416666977107525,
+        0.1145833358168602
+      ],
+      "nll_delta": -0.09248635917901993,
+      "nll_delta_ci95": [
+        -0.17005403339862823,
+        -0.022110257297754288
+      ]
+    },
+    "image_rotation-minus-image_shuffled_pairs_rotation": {
+      "accuracy_delta": 0.02083333395421505,
+      "accuracy_delta_ci95": [
+        -0.02604166604578495,
+        0.0677083358168602
+      ],
+      "nll_delta": -0.08777368068695068,
+      "nll_delta_ci95": [
+        -0.13332241773605347,
+        -0.042988330125808716
+      ]
+    }
+  },
+  "checks": {
+    "max_orthogonality_error": 1.0132789611816406e-06,
+    "max_norm_error": 3.0517578125e-05,
+    "shuffled_training_pairs_changed": 384,
+    "trainable_model_parameters": 0,
+    "frozen_model_parameters": 852985920
+  },
+  "feature_extraction_seconds": 20.62261253100587,
+  "limitations": [
+    "Synthetic two-object scenes and one prompt family only; not natural-image transfer.",
+    "Shared frozen VLM final readouts, not two independently trained JEPA encoders.",
+    "384 pairs < 1024 dimensions: identity-regularized orthogonal fit; full rotation not identifiable.",
+    "Confidence intervals cover sampled test scenes, not model seeds or new domains.",
+    "Pairs and captions are programmatically constructed; no teacher or generated labels."
+  ]
+}

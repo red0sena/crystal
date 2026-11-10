@@ -1,0 +1,144 @@
+{
+  "unique_rendered_images": 1536,
+  "gold_test_questions_verified": 3072,
+  "state_records_have_no_questions_or_gold": true,
+  "original_plan_code_hash_verified": true,
+  "PCA_train_means_verified": true,
+  "max_orthogonality_error": 3.3494032880554414e-08,
+  "functional_float64_vs_stored_correct_count_disagreements": 0,
+  "max_per_scene_task_nll_sum_error": 3.569764289679256e-05,
+  "max_headline_accuracy_error": 1.1102230246251565e-16,
+  "max_headline_nll_error": 3.32407784853217e-07,
+  "independently_verified_retrieval_R1": 0.43359375,
+  "per_head_seed": {
+    "271": {
+      "image_raw": {
+        "seen": {
+          "macro_accuracy": 0.2452387238475584,
+          "macro_nll": 6.5694082588266305
+        },
+        "unseen": {
+          "macro_accuracy": 0.23313789666772622,
+          "macro_nll": 7.930182057671243
+        }
+      },
+      "image_mean_only": {
+        "seen": {
+          "macro_accuracy": 0.26216096472801936,
+          "macro_nll": 7.638978344017912
+        },
+        "unseen": {
+          "macro_accuracy": 0.25179066120117255,
+          "macro_nll": 7.655616677057779
+        }
+      },
+      "image_rotation": {
+        "seen": {
+          "macro_accuracy": 0.42208798802371755,
+          "macro_nll": 3.9009878834862803
+        },
+        "unseen": {
+          "macro_accuracy": 0.30293080499046404,
+          "macro_nll": 7.216767153004469
+        }
+      },
+      "text_reference": {
+        "seen": {
+          "macro_accuracy": 0.8296806399608702,
+          "macro_nll": 0.36231013778138377
+        },
+        "unseen": {
+          "macro_accuracy": 0.293385201446281,
+          "macro_nll": 5.004094732536653
+        }
+      }
+    },
+    "283": {
+      "image_raw": {
+        "seen": {
+          "macro_accuracy": 0.2407317901785594,
+          "macro_nll": 5.872638056003464
+        },
+        "unseen": {
+          "macro_accuracy": 0.2299757573550187,
+          "macro_nll": 7.46517054511597
+        }
+      },
+      "image_mean_only": {
+        "seen": {
+          "macro_accuracy": 0.2731145527350019,
+          "macro_nll": 6.982880378281536
+        },
+        "unseen": {
+          "macro_accuracy": 0.23919968919968917,
+          "macro_nll": 6.657358099403652
+        }
+      },
+      "image_rotation": {
+        "seen": {
+          "macro_accuracy": 0.4496909809114178,
+          "macro_nll": 3.5527014364645915
+        },
+        "unseen": {
+          "macro_accuracy": 0.2630353469131878,
+          "macro_nll": 6.144330881878595
+        }
+      },
+      "text_reference": {
+        "seen": {
+          "macro_accuracy": 0.8562066116222634,
+          "macro_nll": 0.3267278002968115
+        },
+        "unseen": {
+          "macro_accuracy": 0.28006888156035886,
+          "macro_nll": 4.893467858820137
+        }
+      }
+    },
+    "307": {
+      "image_raw": {
+        "seen": {
+          "macro_accuracy": 0.23887936712507407,
+          "macro_nll": 7.082367291495711
+        },
+        "unseen": {
+          "macro_accuracy": 0.23047366143957052,
+          "macro_nll": 6.89517795069577
+        }
+      },
+      "image_mean_only": {
+        "seen": {
+          "macro_accuracy": 0.2438164598778607,
+          "macro_nll": 8.064898513645405
+        },
+        "unseen": {
+          "macro_accuracy": 0.2820432250829978,
+          "macro_nll": 12.196363066534273
+        }
+      },
+      "image_rotation": {
+        "seen": {
+          "macro_accuracy": 0.4321837734800749,
+          "macro_nll": 3.7595030072696627
+        },
+        "unseen": {
+          "macro_accuracy": 0.31173113896835486,
+          "macro_nll": 11.36170671446444
+        }
+      },
+      "text_reference": {
+        "seen": {
+          "macro_accuracy": 0.8332375765716922,
+          "macro_nll": 0.3599970558781842
+        },
+        "unseen": {
+          "macro_accuracy": 0.32544561656777565,
+          "macro_nll": 7.160350189234119
+        }
+      }
+    }
+  },
+  "train_cross_covariance_min_singular_value": 9.832003714041152e-05,
+  "train_text_min_singular_value": 0.05380859959136271,
+  "train_alignment_cosine": 0.6305599497044367
+}
